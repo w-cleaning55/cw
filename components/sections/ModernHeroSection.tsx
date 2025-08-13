@@ -102,7 +102,7 @@ const ModernHeroSection: React.FC<ModernHeroSectionProps> = ({ className = "" })
             <div className="flex items-center gap-6 pt-6 border-t border-white/20">
               <div className="text-center">
                 <div className="text-2xl font-bold text-cyan-300">6+</div>
-                <div className="text-sm text-blue-200">سنوات خبرة</div>
+                <div className="text-sm text-blue-200">سن��ات خبرة</div>
               </div>
               <div className="text-center">
                 <div className="text-2xl font-bold text-cyan-300">24/7</div>
@@ -125,15 +125,15 @@ const ModernHeroSection: React.FC<ModernHeroSectionProps> = ({ className = "" })
                   {/* Service icons */}
                   <div className="grid grid-cols-3 gap-4 mb-8">
                     {[
-                      { icon: "🏠", label: "المنازل" },
-                      { icon: "🏢", label: "المكاتب" },
-                      { icon: "🧽", label: "السجاد" },
-                      { icon: "✨", label: "الرخام" },
-                      { icon: "💧", label: "الخزانات" },
-                      { icon: "🛡️", label: "الحشرات" }
+                      { icon: <HomeIcon size="lg" className="text-blue-300" />, label: "المنازل" },
+                      { icon: <BuildingIcon size="lg" className="text-cyan-300" />, label: "المكاتب" },
+                      { icon: <SparkleIcon size="lg" className="text-purple-300" />, label: "السجاد" },
+                      { icon: <SparkleIcon size="lg" className="text-yellow-300" />, label: "الرخام" },
+                      { icon: <WaterIcon size="lg" className="text-blue-400" />, label: "الخزانات" },
+                      { icon: <ShieldIcon size="lg" className="text-green-300" />, label: "الحشرات" }
                     ].map((service, index) => (
                       <div key={index} className="text-center p-4 bg-white/10 rounded-xl backdrop-blur-sm border border-white/20 hover:bg-white/20 transition-all duration-300 transform hover:scale-105">
-                        <div className="text-3xl mb-2">{service.icon}</div>
+                        <div className="flex justify-center mb-2">{service.icon}</div>
                         <div className="text-xs text-white font-medium">{service.label}</div>
                       </div>
                     ))}
