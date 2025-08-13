@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { ArrowRight, CheckCircle, Star, Zap, Shield } from "lucide-react";
+import { ArrowRight, CheckCircle, Star, Zap, Shield, Home, Building, Sparkles, Droplet } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -11,6 +11,26 @@ interface PremiumServicesSectionProps {
 }
 
 const PremiumServicesSection: React.FC<PremiumServicesSectionProps> = ({ className = "" }) => {
+  const getServiceIcon = (iconType: string) => {
+    const iconClass = "w-8 h-8";
+    switch (iconType) {
+      case "home":
+        return <Home className={iconClass} />;
+      case "office":
+        return <Building className={iconClass} />;
+      case "carpet":
+        return <Star className={iconClass} />;
+      case "sparkles":
+        return <Sparkles className={iconClass} />;
+      case "water":
+        return <Droplet className={iconClass} />;
+      case "shield":
+        return <Shield className={iconClass} />;
+      default:
+        return <Star className={iconClass} />;
+    }
+  };
+
   const services = [
     {
       id: "home-cleaning",
@@ -132,7 +152,9 @@ const PremiumServicesSection: React.FC<PremiumServicesSectionProps> = ({ classNa
                 {/* Service icon and title */}
                 <div className="mb-6">
                   <div className={`inline-flex p-4 rounded-2xl ${service.bgPattern} mb-4 group-hover:scale-110 transition-transform duration-300`}>
-                    <span className="text-4xl">{service.icon}</span>
+                    <div className={`text-transparent bg-gradient-to-r ${service.gradient} bg-clip-text`}>
+                      {getServiceIcon(service.icon)}
+                    </div>
                   </div>
                   
                   <h3 className="text-2xl font-bold text-gray-900 mb-3 group-hover:text-blue-700 transition-colors duration-300" dir="rtl">
