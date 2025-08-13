@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { Phone, CheckCircle, MapPin, Star, Award, Users } from "lucide-react";
+import { Phone, CheckCircle, MapPin, Star, Award, Users, Shield } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 
@@ -31,7 +31,7 @@ const ModernHeroSection: React.FC<ModernHeroSectionProps> = ({ className = "" })
             <div className="flex flex-wrap gap-3 mb-6">
               <Badge className="bg-green-500/20 text-green-300 border-green-400/30 px-3 py-1">
                 <CheckCircle className="w-4 h-4 mr-1" />
-                مرخص رسمياً
+                مرخص رسمي��ً
               </Badge>
               <Badge className="bg-yellow-500/20 text-yellow-300 border-yellow-400/30 px-3 py-1">
                 <Star className="w-4 h-4 mr-1" />
