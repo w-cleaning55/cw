@@ -66,14 +66,14 @@ const ModernHeroSection: React.FC<ModernHeroSectionProps> = ({ className = "" })
             {/* Features list */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 my-8">
               {[
-                "✨ أحدث المعدات العالمية",
-                "🏆 فريق متخصص ومدرب",
-                "🛡️ ضمان شامل 100%",
-                "⚡ خدمة سريعة ومضمونة"
+                { icon: <Star className="w-5 h-5" />, text: "أحدث المعدات العالمية" },
+                { icon: <Award className="w-5 h-5" />, text: "فريق متخصص ومدرب" },
+                { icon: <Shield className="w-5 h-5" />, text: "ضمان شامل 100%" },
+                { icon: <CheckCircle className="w-5 h-5" />, text: "خدمة سريعة ومضمونة" }
               ].map((feature, index) => (
                 <div key={index} className="flex items-center gap-3 text-blue-100">
-                  <div className="text-lg">{feature.charAt(0)}</div>
-                  <span className="font-medium">{feature.slice(2)}</span>
+                  <div className="text-cyan-300">{feature.icon}</div>
+                  <span className="font-medium">{feature.text}</span>
                 </div>
               ))}
             </div>
