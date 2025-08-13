@@ -228,3 +228,18 @@ export const GRID_LAYOUTS = {
   footer: "grid-cols-1 md:grid-cols-4",
   aboutStats: "grid-cols-2",
 } as const;
+
+// API defaults and validation rules for api-utils
+export const DEFAULT_RESPONSES = {
+  array: [] as any[],
+  object: {} as Record<string, any>,
+  number: 0,
+  string: "",
+  boolean: false,
+};
+
+export const VALIDATION_RULES = {
+  required: (v: any) => (Array.isArray(v) ? v.length > 0 : v !== undefined && v !== null && v !== ""),
+  email: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+  phone: /^\+?[0-9\-()\s]{7,}$/,
+};

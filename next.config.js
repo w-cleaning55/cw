@@ -51,16 +51,12 @@ const nextConfig = {
   
   // ESLint configuration
   eslint: {
-    // Warning: This allows production builds to successfully complete even if
-    // your project has ESLint errors.
-    ignoreDuringBuilds: true,
+    ignoreDuringBuilds: false,
   },
   
   // TypeScript configuration
   typescript: {
-    // Warning: This allows production builds to successfully complete even if
-    // your project has type errors.
-    ignoreBuildErrors: true,
+    ignoreBuildErrors: false,
   },
   
   // Image optimization
@@ -79,13 +75,27 @@ const nextConfig = {
 
   // Webpack optimizations
   webpack: (config, { dev, isServer, webpack }) => {
+    // Silence optional provider packages when not installed
+    config.resolve = config.resolve || {};
+    config.resolve.fallback = {
+      ...(config.resolve.fallback || {}),
+      firebase: false,
+      'firebase/app': false,
+      'firebase/firestore': false,
+      mongodb: false,
+      '@supabase/supabase-js': false,
+      'serverless-http': false,
+      cors: false,
+      '@testing-library/react': false,
+      '@testing-library/user-event': false,
+      '@vitejs/plugin-react': false,
+    };
+
     // Production optimizations
     if (!dev && !isServer) {
-      // Enable tree shaking
       config.optimization.usedExports = true;
       config.optimization.sideEffects = false;
       
-      // Optimize chunk splitting
       config.optimization.splitChunks = {
         chunks: 'all',
         cacheGroups: {
@@ -118,14 +128,10 @@ const nextConfig = {
         },
       };
 
-      // Enable module concatenation
       config.optimization.concatenateModules = true;
-      
-      // Optimize runtime
       config.optimization.runtimeChunk = 'single';
     }
 
-    // Development optimizations
     if (dev) {
       config.watchOptions = {
         poll: 1000,
@@ -134,7 +140,6 @@ const nextConfig = {
       };
     }
 
-    // Add bundle analyzer in development
     if (process.env.ANALYZE === 'true') {
       const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
       config.plugins.push(
@@ -154,31 +159,16 @@ const nextConfig = {
       {
         source: "/:path*",
         headers: [
-          {
-            key: "X-Content-Type-Options",
-            value: "nosniff",
-          },
-          {
-            key: "Referrer-Policy",
-            value: "origin-when-cross-origin",
-          },
-          {
-            key: "X-Frame-Options",
-            value: "DENY",
-          },
-          {
-            key: "X-XSS-Protection",
-            value: "1; mode=block",
-          },
+          { key: "X-Content-Type-Options", value: "nosniff" },
+          { key: "Referrer-Policy", value: "origin-when-cross-origin" },
+          { key: "X-Frame-Options", value: "DENY" },
+          { key: "X-XSS-Protection", value: "1; mode=block" },
         ],
       },
       {
         source: "/static/:path*",
         headers: [
-          {
-            key: "Cache-Control",
-            value: "public, max-age=31536000, immutable",
-          },
+          { key: "Cache-Control", value: "public, max-age=31536000, immutable" },
         ],
       },
     ];
@@ -187,16 +177,6 @@ const nextConfig = {
   // Environment variables
   env: {
     CUSTOM_KEY: "cleaning-world-app",
-  },
-
-  // TypeScript optimization
-  typescript: {
-    ignoreBuildErrors: false,
-  },
-
-  // ESLint optimization
-  eslint: {
-    ignoreDuringBuilds: false,
   },
 };
 

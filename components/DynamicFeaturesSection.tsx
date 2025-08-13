@@ -39,6 +39,7 @@ import {
   Wrench,
   Droplets,
   Bug,
+  X,
 } from "lucide-react";
 
 interface Feature {
