@@ -109,9 +109,9 @@ export default function AddressSelector({
 
   // أنواع العناوين
   const addressTypes = [
-    { value: 'home', label: 'منزل', icon: '��' },
-    { value: 'work', label: 'عمل', icon: '🏢' },
-    { value: 'other', label: 'أخرى', icon: '📍' }
+    { value: 'home', label: 'منزل', icon: <HomeIcon size="sm" /> },
+    { value: 'work', label: 'عمل', icon: <BuildingIcon size="sm" /> },
+    { value: 'other', label: 'أخرى', icon: <LocationIcon size="sm" /> }
   ];
 
   // تحميل العناوين المحفوظة
@@ -219,7 +219,7 @@ export default function AddressSelector({
     const districtCoords = {
       'الحمراء': { lat: 21.5433, lng: 39.1728 },
       'النسيم': { lat: 21.5169, lng: 39.2186 },
-      'الروض��': { lat: 21.5507, lng: 39.1372 },
+      'الروضة': { lat: 21.5507, lng: 39.1372 },
       'البوادي': { lat: 21.5297, lng: 39.1542 },
       'الصفا': { lat: 21.5751, lng: 39.1494 },
       'النزهة': { lat: 21.5883, lng: 39.1572 }
@@ -297,10 +297,10 @@ export default function AddressSelector({
       isDefault: addr.id === id
     }));
     saveAddresses(updatedAddresses);
-    notify.success('تم التحديث', 'تم تعيين العنوان الافتراضي');
+    notify.success('ت�� التحديث', 'تم تعيين العنوان الافتراضي');
   };
 
-  // التحقق من صحة ا��عنوان
+  // التحقق من صحة العنوان
   const validateAddress = (address: AddressDetails): string[] => {
     const errors: string[] = [];
     
@@ -385,7 +385,7 @@ export default function AddressSelector({
                       {addressTypes.map((type) => (
                         <SelectItem key={type.value} value={type.value}>
                           <div className="flex items-center gap-2">
-                            <span>{type.icon}</span>
+                            {type.icon}
                             {type.label}
                           </div>
                         </SelectItem>
@@ -470,7 +470,7 @@ export default function AddressSelector({
                   id="manual-notes"
                   value={manualAddress.notes}
                   onChange={(e) => setManualAddress(prev => ({...prev, notes: e.target.value}))}
-                  placeholder="أي ملا��ظات تساعد في الوصول للموقع"
+                  placeholder="أي ملاحظات تساعد في الوصول للموقع"
                   rows={2}
                 />
               </div>
@@ -646,9 +646,7 @@ export default function AddressSelector({
                           <div className="flex items-start justify-between">
                             <div className="flex-1">
                               <div className="flex items-center gap-2 mb-2">
-                                <span className="text-lg">
-                                  {addressTypes.find(t => t.value === address.type)?.icon}
-                                </span>
+                                {addressTypes.find(t => t.value === address.type)?.icon}
                                 <h4 className="font-medium">{address.name}</h4>
                                 {address.isDefault && (
                                   <Badge variant="default" className="text-xs">
@@ -661,7 +659,10 @@ export default function AddressSelector({
                                 <p>{address.street}, {address.district}</p>
                                 <p>{address.city}</p>
                                 {address.landmark && (
-                                  <p className="text-xs">📍 {address.landmark}</p>
+                                  <div className="flex items-center gap-1 text-xs">
+                                    <LocationIcon size="xs" className="text-muted-foreground" />
+                                    <span>{address.landmark}</span>
+                                  </div>
                                 )}
                               </div>
                             </div>
@@ -711,7 +712,7 @@ export default function AddressSelector({
           </CardHeader>
           <CardContent>
             <div className="flex items-start gap-3">
-              <div className="text-lg">
+              <div>
                 {addressTypes.find(t => t.value === selectedAddress.type)?.icon}
               </div>
               <div className="flex-1">
@@ -720,9 +721,10 @@ export default function AddressSelector({
                   {selectedAddress.street}, {selectedAddress.district}, {selectedAddress.city}
                 </p>
                 {selectedAddress.coordinates && (
-                  <p className="text-xs text-muted-foreground mt-1">
-                    📍 {selectedAddress.coordinates.latitude.toFixed(6)}, {selectedAddress.coordinates.longitude.toFixed(6)}
-                  </p>
+                  <div className="flex items-center gap-1 text-xs text-muted-foreground mt-1">
+                    <LocationIcon size="xs" />
+                    <span>{selectedAddress.coordinates.latitude.toFixed(6)}, {selectedAddress.coordinates.longitude.toFixed(6)}</span>
+                  </div>
                 )}
               </div>
             </div>
