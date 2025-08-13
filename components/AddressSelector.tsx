@@ -22,6 +22,7 @@ import {
   Plus,
   Trash2
 } from 'lucide-react';
+import { HomeIcon, BuildingIcon, LocationIcon } from '@/components/ui/CompactIcons';
 import { useTranslation } from '../hooks/useTranslation';
 import { useNotify } from './NotificationSystem';
 
@@ -469,7 +470,7 @@ export default function AddressSelector({
                   id="manual-notes"
                   value={manualAddress.notes}
                   onChange={(e) => setManualAddress(prev => ({...prev, notes: e.target.value}))}
-                  placeholder="أي ملاحظات تساعد في الوصول للموقع"
+                  placeholder="أي ملا��ظات تساعد في الوصول للموقع"
                   rows={2}
                 />
               </div>
