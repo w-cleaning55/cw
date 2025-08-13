@@ -1,262 +1,335 @@
-'use client';
-
-import React, { useState } from 'react';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../../../components/ui/card';
-import { Badge } from '../../../components/ui/badge';
-import { Button } from '../../../components/ui/button';
-import { Input } from '../../../components/ui/input';
-import { Textarea } from '../../../components/ui/textarea';
-import {
-  MessageSquare,
-  Send,
-  Search,
-  Filter,
-  MoreVertical,
-  Reply,
-  Trash2,
-  Archive,
-  Star,
-  Phone,
-  Mail
-} from 'lucide-react';
-
-const messages = [
-  {
-    id: 1,
-    name: 'أحمد محمد',
-    email: 'ahmed@example.com',
-    phone: '+966501234567',
-    subject: 'استفسار عن خدمة تنظيف المنزل',
-    message: 'مرحباً، أريد معرفة تفاصيل أكثر عن خدمة تنظيف المنزل والأسعار المتاحة.',
-    date: '2024-01-15 10:30',
-    status: 'جديد',
-    priority: 'عالي',
-    isRead: false
-  },
-  {
-    id: 2,
-    name: 'فاطمة أحمد',
-    email: 'fatima@example.com',
-    phone: '+966509876543',
-    subject: 'طلب حجز خدمة تنظيف مكتب',
-    message: 'أحتاج إلى خدمة تنظيف مكتب شهرية، يرجى التواصل معي لتحديد الموعد المناسب.',
-    date: '2024-01-14 14:20',
-    status: 'قيد المراجعة',
-    priority: 'متوسط',
-    isRead: true
-  },
-  {
-    id: 3,
-    name: 'محمد علي',
-    email: 'mohammed@example.com',
-    phone: '+966512345678',
-    subject: 'شكوى بخصوص الخدمة',
-    message: 'لدي شكوى بخصوص جودة الخدمة المقدمة الأسبوع الماضي، أرجو التواصل.',
-    date: '2024-01-13 09:15',
-    status: 'تم الرد',
-    priority: 'عالي',
-    isRead: true
-  }
-];
+import SoftUIDashboard from "../../../components/dashboard/SoftUIDashboard";
+import SoftUICard from "../../../components/dashboard/SoftUICard";
+import SoftUIButton from "../../../components/dashboard/SoftUIButton";
+import { Send, Phone, Video, MoreVertical, Search, Filter, Archive, Star } from "lucide-react";
 
 export default function MessagesPage() {
-  const [selectedMessage, setSelectedMessage] = useState(messages[0]);
-  const [replyText, setReplyText] = useState('');
-  const [searchTerm, setSearchTerm] = useState('');
+  const conversations = [
+    {
+      id: 1,
+      customerName: "أحمد محمد الأحمدي",
+      lastMessage: "شكراً لكم على الخدمة الممتازة، المنزل أصبح نظيفاً تماماً",
+      timestamp: "قبل 5 دقائق",
+      unread: false,
+      avatar: "أ",
+      status: "نشط",
+      type: "عام"
+    },
+    {
+      id: 2,
+      customerName: "فاطمة عبدالله",
+      lastMessage: "هل يمكن تغيير موعد التنظيف إلى الغد؟",
+      timestamp: "قبل 15 دقيقة",
+      unread: true,
+      avatar: "ف",
+      status: "في الانتظار",
+      type: "استفسار"
+    },
+    {
+      id: 3,
+      customerName: "محمد العتيبي",
+      lastMessage: "أريد حجز خدمة تنظيف سجاد عاجلة",
+      timestamp: "قبل 30 دقيقة",
+      unread: true,
+      avatar: "م",
+      status: "عاجل",
+      type: "حجز"
+    },
+    {
+      id: 4,
+      customerName: "نورا السالم",
+      lastMessage: "تم استلام الدفعة، شكراً لكم",
+      timestamp: "قبل ساعة",
+      unread: false,
+      avatar: "ن",
+      status: "مكتمل",
+      type: "دفع"
+    },
+    {
+      id: 5,
+      customerName: "خالد المطيري",
+      lastMessage: "الفريق وصل في الوقت المحدد، خدمة احترافية",
+      timestamp: "قبل ساعتين",
+      unread: false,
+      avatar: "خ",
+      status: "مراجعة",
+      type: "تقييم"
+    }
+  ];
+
+  const currentChat = conversations[1]; // فاطمة عبدالله
+  
+  const chatMessages = [
+    {
+      id: 1,
+      sender: "customer",
+      message: "السلام عليكم، أريد حجز موعد لتنظيف المكتب",
+      timestamp: "10:30 صباحاً",
+      read: true
+    },
+    {
+      id: 2,
+      sender: "admin",
+      message: "وعليكم السلام ورحمة الله، أهلاً وسهلاً بك. يمكننا ترتيب موعد مناسب لك",
+      timestamp: "10:32 صباحاً",
+      read: true
+    },
+    {
+      id: 3,
+      sender: "customer", 
+      message: "ممتاز، ما هي الأوقات المتاحة لهذا الأسبوع؟",
+      timestamp: "10:35 صباحاً",
+      read: true
+    },
+    {
+      id: 4,
+      sender: "admin",
+      message: "لدينا مواعيد متاحة يوم الثلاثاء من 9-12 صباحاً ويوم الخميس من 2-5 مساءً",
+      timestamp: "10:37 صباحاً", 
+      read: true
+    },
+    {
+      id: 5,
+      sender: "customer",
+      message: "هل يمكن تغيير موعد التنظيف إلى الغد؟",
+      timestamp: "11:15 صباحاً",
+      read: false
+    }
+  ];
 
   const getStatusColor = (status: string) => {
     switch (status) {
-      case 'جديد': return 'default';
-      case 'قيد المراجعة': return 'secondary';
-      case 'تم الرد': return 'outline';
-      default: return 'default';
+      case "عاجل":
+        return "bg-red-500";
+      case "في الانتظار":
+        return "bg-yellow-500";
+      case "نشط":
+        return "bg-green-500";
+      case "مكتمل":
+        return "bg-blue-500";
+      default:
+        return "bg-gray-500";
     }
   };
 
-  const getPriorityColor = (priority: string) => {
-    switch (priority) {
-      case 'عالي': return 'destructive';
-      case 'متوسط': return 'secondary';
-      case 'منخفض': return 'outline';
-      default: return 'default';
+  const getTypeIcon = (type: string) => {
+    switch (type) {
+      case "حجز":
+        return "📅";
+      case "دفع":
+        return "💰";
+      case "تقييم":
+        return "⭐";
+      case "استفسار":
+        return "❓";
+      default:
+        return "💬";
     }
   };
 
   return (
-    <div className="space-y-6">
-      <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-3xl font-bold">الرسائل والاستفسارات</h1>
-          <p className="text-muted-foreground mt-2">
-            إدارة والرد على رسائل العملاء
-          </p>
-        </div>
-        <div className="flex gap-2">
-          <Button variant="outline" size="sm">
-            <Filter className="w-4 h-4 mr-2" />
-            تصفية
-          </Button>
-          <Button size="sm">
-            <MessageSquare className="w-4 h-4 mr-2" />
-            رسالة جديدة
-          </Button>
-        </div>
-      </div>
+    <SoftUIDashboard>
+      <div className="h-[calc(100vh-200px)] flex gap-6">
+        
+        {/* Conversations List */}
+        <div className="w-1/3">
+          <SoftUICard variant="glass" className="h-full flex flex-col" padding="md">
+            {/* Header */}
+            <div className="flex items-center justify-between mb-6">
+              <h3 className="text-xl font-bold text-gray-900" dir="rtl">المحادثات</h3>
+              <div className="flex gap-2">
+                <button className="p-2 bg-white/50 rounded-lg hover:bg-white/70 transition-colors">
+                  <Search className="w-4 h-4 text-gray-600" />
+                </button>
+                <button className="p-2 bg-white/50 rounded-lg hover:bg-white/70 transition-colors">
+                  <Filter className="w-4 h-4 text-gray-600" />
+                </button>
+              </div>
+            </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        {/* قائمة الرسائل */}
-        <Card className="lg:col-span-1">
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              <MessageSquare className="w-5 h-5" />
-              الرسائل الواردة
-            </CardTitle>
-            <div className="relative">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-              <Input
-                placeholder="البحث في الرسائل..."
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                className="pl-10"
+            {/* Search */}
+            <div className="relative mb-4">
+              <Search className="absolute right-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
+              <input
+                type="text"
+                placeholder="البحث في المحادثات..."
+                className="w-full pr-10 pl-4 py-3 bg-white/50 backdrop-blur-sm border border-white/30 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/20 text-right"
+                dir="rtl"
               />
             </div>
-          </CardHeader>
-          <CardContent className="space-y-2 max-h-[600px] overflow-y-auto">
-            {messages.map((message) => (
-              <div
-                key={message.id}
-                className={`p-3 border rounded-lg cursor-pointer transition-colors ${
-                  selectedMessage.id === message.id 
-                    ? 'bg-primary/10 border-primary' 
-                    : 'hover:bg-muted'
-                } ${!message.isRead ? 'border-l-4 border-l-blue-500' : ''}`}
-                onClick={() => setSelectedMessage(message)}
-              >
-                <div className="flex items-start justify-between mb-2">
-                  <div className="font-medium text-sm">{message.name}</div>
-                  <div className="text-xs text-muted-foreground">
-                    {message.date.split(' ')[1]}
+
+            {/* Conversations */}
+            <div className="flex-1 overflow-y-auto space-y-2">
+              {conversations.map((conversation) => (
+                <div 
+                  key={conversation.id}
+                  className={`p-4 rounded-xl cursor-pointer transition-all duration-200 ${
+                    conversation.id === currentChat.id 
+                      ? 'bg-gradient-to-r from-blue-100 to-purple-100 shadow-md' 
+                      : 'bg-white/30 hover:bg-white/50'
+                  }`}
+                >
+                  <div className="flex items-start gap-3">
+                    <div className="relative">
+                      <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center text-white font-bold">
+                        {conversation.avatar}
+                      </div>
+                      <div className={`absolute -bottom-1 -right-1 w-4 h-4 ${getStatusColor(conversation.status)} rounded-full border-2 border-white`}></div>
+                    </div>
+                    
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center justify-between mb-1">
+                        <div className="font-medium text-gray-900 truncate" dir="rtl">
+                          {conversation.customerName}
+                        </div>
+                        <div className="flex items-center gap-1">
+                          <span className="text-xs">{getTypeIcon(conversation.type)}</span>
+                          {conversation.unread && (
+                            <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                          )}
+                        </div>
+                      </div>
+                      
+                      <p className="text-sm text-gray-600 truncate" dir="rtl">
+                        {conversation.lastMessage}
+                      </p>
+                      
+                      <div className="flex items-center justify-between mt-2">
+                        <span className="text-xs text-gray-500">{conversation.timestamp}</span>
+                        <span className={`text-xs px-2 py-1 rounded-full text-white ${getStatusColor(conversation.status)}`}>
+                          {conversation.status}
+                        </span>
+                      </div>
+                    </div>
                   </div>
                 </div>
-                <div className="text-sm text-muted-foreground mb-2 truncate">
-                  {message.subject}
+              ))}
+            </div>
+          </SoftUICard>
+        </div>
+
+        {/* Chat Area */}
+        <div className="flex-1">
+          <SoftUICard variant="glass" className="h-full flex flex-col" padding="md">
+            {/* Chat Header */}
+            <div className="flex items-center justify-between pb-4 border-b border-white/20">
+              <div className="flex items-center gap-3">
+                <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center text-white font-bold">
+                  {currentChat.avatar}
                 </div>
-                <div className="flex items-center justify-between">
-                  <Badge variant={getStatusColor(message.status)} className="text-xs">
-                    {message.status}
-                  </Badge>
-                  <Badge variant={getPriorityColor(message.priority)} className="text-xs">
-                    {message.priority}
-                  </Badge>
+                <div className="text-right" dir="rtl">
+                  <div className="font-semibold text-gray-900">{currentChat.customerName}</div>
+                  <div className="text-sm text-gray-500">متصل الآن</div>
                 </div>
               </div>
-            ))}
-          </CardContent>
-        </Card>
-
-        {/* تفاصيل الرسالة */}
-        <Card className="lg:col-span-2">
-          <CardHeader>
-            <div className="flex items-center justify-between">
-              <CardTitle className="flex items-center gap-2">
-                <Mail className="w-5 h-5" />
-                تفاصيل الرسالة
-              </CardTitle>
-              <div className="flex gap-1">
-                <Button variant="ghost" size="sm">
-                  <Star className="w-4 h-4" />
-                </Button>
-                <Button variant="ghost" size="sm">
-                  <Archive className="w-4 h-4" />
-                </Button>
-                <Button variant="ghost" size="sm">
-                  <Trash2 className="w-4 h-4" />
-                </Button>
-                <Button variant="ghost" size="sm">
-                  <MoreVertical className="w-4 h-4" />
-                </Button>
+              
+              <div className="flex gap-2">
+                <SoftUIButton variant="outline" size="sm" icon={<Phone className="w-4 h-4" />}>
+                  اتصال
+                </SoftUIButton>
+                <SoftUIButton variant="outline" size="sm" icon={<Video className="w-4 h-4" />}>
+                  فيديو
+                </SoftUIButton>
+                <button className="p-2 rounded-lg hover:bg-white/30 transition-colors">
+                  <MoreVertical className="w-4 h-4 text-gray-600" />
+                </button>
               </div>
             </div>
-          </CardHeader>
-          <CardContent className="space-y-6">
-            {selectedMessage && (
-              <>
-                {/* معلومات المرسل */}
-                <div className="space-y-3">
-                  <div className="flex items-center justify-between">
-                    <h3 className="text-lg font-semibold">{selectedMessage.subject}</h3>
-                    <div className="flex gap-2">
-                      <Badge variant={getStatusColor(selectedMessage.status)}>
-                        {selectedMessage.status}
-                      </Badge>
-                      <Badge variant={getPriorityColor(selectedMessage.priority)}>
-                        {selectedMessage.priority}
-                      </Badge>
+
+            {/* Messages */}
+            <div className="flex-1 overflow-y-auto py-4 space-y-4">
+              {chatMessages.map((message) => (
+                <div 
+                  key={message.id}
+                  className={`flex ${message.sender === 'admin' ? 'justify-start' : 'justify-end'}`}
+                >
+                  <div className={`max-w-[70%] ${
+                    message.sender === 'admin' 
+                      ? 'bg-white/60 text-gray-900' 
+                      : 'bg-gradient-to-r from-blue-500 to-purple-600 text-white'
+                  } px-4 py-3 rounded-2xl backdrop-blur-sm`}>
+                    <p className="text-sm" dir="rtl">{message.message}</p>
+                    <div className={`text-xs mt-1 ${
+                      message.sender === 'admin' ? 'text-gray-500' : 'text-blue-100'
+                    }`}>
+                      {message.timestamp}
                     </div>
-                  </div>
-                  
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4 p-4 bg-muted rounded-lg">
-                    <div>
-                      <div className="text-sm text-muted-foreground">الاسم</div>
-                      <div className="font-medium">{selectedMessage.name}</div>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <Mail className="w-4 h-4 text-muted-foreground" />
-                      <a href={`mailto:${selectedMessage.email}`} className="text-blue-600 hover:underline">
-                        {selectedMessage.email}
-                      </a>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <Phone className="w-4 h-4 text-muted-foreground" />
-                      <a href={`tel:${selectedMessage.phone}`} className="text-blue-600 hover:underline">
-                        {selectedMessage.phone}
-                      </a>
-                    </div>
-                  </div>
-                  
-                  <div className="text-sm text-muted-foreground">
-                    تاريخ الإرسال: {selectedMessage.date}
                   </div>
                 </div>
+              ))}
+            </div>
 
-                {/* محتوى الرسالة */}
-                <div className="space-y-3">
-                  <h4 className="font-medium">محتوى الرسالة:</h4>
-                  <div className="p-4 bg-gray-50 dark:bg-gray-800 rounded-lg">
-                    <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-                      {selectedMessage.message}
-                    </p>
-                  </div>
+            {/* Message Input */}
+            <div className="pt-4 border-t border-white/20">
+              <div className="flex gap-3">
+                <div className="flex gap-2">
+                  <button className="p-2 bg-white/50 rounded-lg hover:bg-white/70 transition-colors">
+                    📎
+                  </button>
+                  <button className="p-2 bg-white/50 rounded-lg hover:bg-white/70 transition-colors">
+                    😊
+                  </button>
                 </div>
-
-                {/* نموذج الرد */}
-                <div className="space-y-3">
-                  <h4 className="font-medium flex items-center gap-2">
-                    <Reply className="w-4 h-4" />
-                    الرد على الرسالة:
-                  </h4>
-                  <Textarea
-                    placeholder="اكتب ردك هنا..."
-                    value={replyText}
-                    onChange={(e) => setReplyText(e.target.value)}
-                    rows={4}
+                
+                <div className="flex-1 relative">
+                  <input
+                    type="text"
+                    placeholder="اكتب رسالتك..."
+                    className="w-full px-4 py-3 bg-white/50 backdrop-blur-sm border border-white/30 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/20 text-right"
+                    dir="rtl"
                   />
-                  <div className="flex gap-2">
-                    <Button className="flex-1">
-                      <Send className="w-4 h-4 mr-2" />
-                      إرسال الرد
-                    </Button>
-                    <Button variant="outline">
-                      <Phone className="w-4 h-4 mr-2" />
-                      اتصال
-                    </Button>
-                  </div>
                 </div>
-              </>
-            )}
-          </CardContent>
-        </Card>
+                
+                <SoftUIButton variant="primary" icon={<Send className="w-4 h-4" />}>
+                  إرسال
+                </SoftUIButton>
+              </div>
+            </div>
+          </SoftUICard>
+        </div>
+
+        {/* Quick Actions */}
+        <div className="w-64">
+          <SoftUICard variant="glass" padding="md">
+            <h4 className="font-bold text-gray-900 mb-4" dir="rtl">إجراءات سريعة</h4>
+            
+            <div className="space-y-3">
+              <SoftUIButton variant="outline" size="sm" className="w-full justify-start" icon={<Star className="w-4 h-4" />}>
+                <span dir="rtl">إضافة لمميز</span>
+              </SoftUIButton>
+              
+              <SoftUIButton variant="outline" size="sm" className="w-full justify-start" icon={<Archive className="w-4 h-4" />}>
+                <span dir="rtl">أرشفة المحادثة</span>
+              </SoftUIButton>
+              
+              <SoftUIButton variant="outline" size="sm" className="w-full justify-start" icon={<Phone className="w-4 h-4" />}>
+                <span dir="rtl">بدء مكالمة</span>
+              </SoftUIButton>
+            </div>
+
+            {/* Customer Info */}
+            <div className="mt-6 pt-4 border-t border-white/20">
+              <h5 className="font-medium text-gray-900 mb-3" dir="rtl">معلومات العميل</h5>
+              <div className="space-y-2 text-sm">
+                <div className="flex justify-between" dir="rtl">
+                  <span className="text-gray-600">الاسم:</span>
+                  <span className="text-gray-900">{currentChat.customerName}</span>
+                </div>
+                <div className="flex justify-between" dir="rtl">
+                  <span className="text-gray-600">الحالة:</span>
+                  <span className={`px-2 py-1 rounded-full text-xs text-white ${getStatusColor(currentChat.status)}`}>
+                    {currentChat.status}
+                  </span>
+                </div>
+                <div className="flex justify-between" dir="rtl">
+                  <span className="text-gray-600">النوع:</span>
+                  <span className="text-gray-900">{currentChat.type}</span>
+                </div>
+              </div>
+            </div>
+          </SoftUICard>
+        </div>
       </div>
-    </div>
+    </SoftUIDashboard>
   );
 }
