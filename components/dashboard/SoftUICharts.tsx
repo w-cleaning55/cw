@@ -108,13 +108,13 @@ const SoftUICharts: React.FC<SoftUIChartsProps> = ({ className = "" }) => {
         
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
           {[
-            { label: "متوسط وقت الاستجابة", value: "15 دقيقة", icon: "⚡", color: "from-yellow-400 to-orange-500" },
-            { label: "معدل إتمام المشا��يع", value: "98.5%", icon: "✅", color: "from-green-400 to-emerald-500" },
-            { label: "عملاء جدد هذا الشهر", value: "147", icon: "👥", color: "from-blue-400 to-cyan-500" },
-            { label: "متوسط التقييم", value: "4.9/5", icon: "⭐", color: "from-purple-400 to-pink-500" }
+            { label: "متوسط وقت الاستجابة", value: "15 دقيقة", icon: <SpeedIcon size="lg" className="text-white" />, color: "from-yellow-400 to-orange-500" },
+            { label: "معدل إتمام المشاريع", value: "98.5%", icon: <CheckIcon size="lg" className="text-white" />, color: "from-green-400 to-emerald-500" },
+            { label: "عملاء جدد هذا الشهر", value: "147", icon: <UsersIcon size="lg" className="text-white" />, color: "from-blue-400 to-cyan-500" },
+            { label: "متوسط التقييم", value: "4.9/5", icon: <StarIcon size="lg" className="text-white" />, color: "from-purple-400 to-pink-500" }
           ].map((metric, index) => (
             <div key={index} className="text-center">
-              <div className={`w-16 h-16 mx-auto mb-3 bg-gradient-to-r ${metric.color} rounded-2xl flex items-center justify-center text-2xl shadow-lg`}>
+              <div className={`w-16 h-16 mx-auto mb-3 bg-gradient-to-r ${metric.color} rounded-2xl flex items-center justify-center shadow-lg`}>
                 {metric.icon}
               </div>
               <div className="text-2xl font-bold text-gray-900 mb-1">{metric.value}</div>
