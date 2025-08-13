@@ -33,10 +33,16 @@ export function useIntersectionObserver(
   return { isIntersecting, hasIntersected };
 }
 
+// Default fallback component
+const DefaultFallback: React.ComponentType = () => 
+  React.createElement("div", { 
+    className: "animate-pulse bg-gray-200 h-48 rounded" 
+  });
+
 // Lazy loading component wrapper
 export function withLazyLoading<P extends object>(
   Component: React.ComponentType<P>,
-  fallback: React.ComponentType = () => <div className="animate-pulse bg-gray-200 h-48 rounded" />
+  fallback: React.ComponentType = DefaultFallback
 ) {
   return React.forwardRef<HTMLDivElement, P>((props, ref) => {
     const containerRef = React.useRef<HTMLDivElement>(null);
@@ -44,10 +50,10 @@ export function withLazyLoading<P extends object>(
 
     React.useImperativeHandle(ref, () => containerRef.current!);
 
-    return (
-      <div ref={containerRef}>
-        {hasIntersected ? <Component {...props} /> : React.createElement(fallback)}
-      </div>
+    return React.createElement("div", { ref: containerRef }, 
+      hasIntersected 
+        ? React.createElement(Component, props)
+        : React.createElement(fallback)
     );
   });
 }
@@ -128,7 +134,7 @@ export function useMemoryMonitor() {
   const [memoryInfo, setMemoryInfo] = React.useState<any>(null);
 
   React.useEffect(() => {
-    if ("memory" in performance) {
+    if (typeof window !== "undefined" && "memory" in performance) {
       const updateMemoryInfo = () => {
         setMemoryInfo((performance as any).memory);
       };
@@ -144,18 +150,16 @@ export function useMemoryMonitor() {
 
 // Bundle splitting helper
 export function createAsyncComponent<P = {}>(
-  importFunc: () => Promise<{ default: React.ComponentType<P> }>,
-  fallback?: React.ComponentType
+  importFunc: () => Promise<{ default: React.ComponentType<P> }>
 ) {
   const LazyComponent = React.lazy(importFunc);
 
-  return React.forwardRef<any, P>((props, ref) => (
-    <React.Suspense 
-      fallback={fallback ? React.createElement(fallback) : <div>Loading...</div>}
-    >
-      <LazyComponent {...props} ref={ref} />
-    </React.Suspense>
-  ));
+  return React.forwardRef<any, P>((props, ref) => 
+    React.createElement(React.Suspense, 
+      { fallback: React.createElement("div", { children: "Loading..." }) },
+      React.createElement(LazyComponent, { ...props, ref })
+    )
+  );
 }
 
 // Virtual scrolling for large lists
@@ -199,23 +203,68 @@ export function useResourcePreload(resources: string[]) {
   }, [resources]);
 }
 
-// Web vitals tracking
-export function useWebVitals() {
-  const [vitals, setVitals] = React.useState<any>({});
-
-  React.useEffect(() => {
-    if (typeof window !== "undefined") {
-      import("web-vitals").then(({ getCLS, getFID, getFCP, getLCP, getTTFB }) => {
-        getCLS((metric) => setVitals((prev: any) => ({ ...prev, cls: metric })));
-        getFID((metric) => setVitals((prev: any) => ({ ...prev, fid: metric })));
-        getFCP((metric) => setVitals((prev: any) => ({ ...prev, fcp: metric })));
-        getLCP((metric) => setVitals((prev: any) => ({ ...prev, lcp: metric })));
-        getTTFB((metric) => setVitals((prev: any) => ({ ...prev, ttfb: metric })));
-      }).catch(() => {
-        // web-vitals not available
-      });
+// Error boundary HOC
+export function withErrorBoundary<P extends object>(
+  Component: React.ComponentType<P>,
+  ErrorFallback?: React.ComponentType<{ error: Error; resetError: () => void }>
+) {
+  return class extends React.Component<P, { hasError: boolean; error?: Error }> {
+    constructor(props: P) {
+      super(props);
+      this.state = { hasError: false };
     }
-  }, []);
 
-  return vitals;
+    static getDerivedStateFromError(error: Error) {
+      return { hasError: true, error };
+    }
+
+    componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
+      console.error("Error caught by boundary:", error, errorInfo);
+    }
+
+    resetError = () => {
+      this.setState({ hasError: false, error: undefined });
+    };
+
+    render() {
+      if (this.state.hasError) {
+        const FallbackComponent = ErrorFallback || (() => 
+          React.createElement("div", { 
+            children: "Something went wrong. Please try again." 
+          })
+        );
+        return React.createElement(FallbackComponent, {
+          error: this.state.error!,
+          resetError: this.resetError,
+        });
+      }
+
+      return React.createElement(Component, this.props);
+    }
+  };
+}
+
+// Cache management hook
+export function useCache<T>(key: string, defaultValue: T) {
+  const [value, setValue] = React.useState<T>(() => {
+    if (typeof window === "undefined") return defaultValue;
+    
+    try {
+      const cached = localStorage.getItem(key);
+      return cached ? JSON.parse(cached) : defaultValue;
+    } catch {
+      return defaultValue;
+    }
+  });
+
+  const setCachedValue = React.useCallback((newValue: T) => {
+    setValue(newValue);
+    try {
+      localStorage.setItem(key, JSON.stringify(newValue));
+    } catch (error) {
+      console.warn("Failed to cache value:", error);
+    }
+  }, [key]);
+
+  return [value, setCachedValue] as const;
 }
