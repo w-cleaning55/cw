@@ -110,7 +110,7 @@ export default function CustomerReviews() {
       date: "2024-01-10",
       service: "Carpet & Upholstery Cleaning",
       serviceAr: "تنظيف السجاد والمفروشات",
-      avatar: "👩‍🏫",
+      avatar: "teacher",
       verified: true,
       helpful: 31,
       videoTestimonial: "testimonial1.mp4",
