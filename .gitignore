@@ -269,3 +269,5 @@ build-cache/
 dev-config/
 local-config/
 development-config/
+
+.vercel
