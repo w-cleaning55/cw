@@ -129,7 +129,7 @@ export default function CustomerReviews() {
       date: "2024-01-05",
       service: "Water Tank Cleaning",
       serviceAr: "تنظيف خزانات المياه",
-      avatar: "👨‍🔧",
+      avatar: "worker",
       verified: true,
       helpful: 18,
       images: ["tank1.jpg", "tank2.jpg", "tank3.jpg"],
