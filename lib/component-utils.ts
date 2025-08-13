@@ -1,3 +1,4 @@
+import React from "react";
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
 import { IconType, AnimationType } from "./types";
@@ -9,22 +10,22 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 // Icon mapping utility
-export function getIcon(iconType: IconType, className?: string) {
+export function getIcon(iconType: IconType, className?: string): React.ReactElement {
   const iconClass = cn("w-8 h-8", className);
   
-  const icons = {
-    shield: <Shield className={iconClass} />,
-    clock: <Clock className={iconClass} />,
-    award: <Award className={iconClass} />,
-    users: <Users className={iconClass} />,
-    star: <Star className={iconClass} />,
+  const icons: Record<IconType, React.ReactElement> = {
+    shield: React.createElement(Shield, { className: iconClass }),
+    clock: React.createElement(Clock, { className: iconClass }),
+    award: React.createElement(Award, { className: iconClass }),
+    users: React.createElement(Users, { className: iconClass }),
+    star: React.createElement(Star, { className: iconClass }),
   };
   
   return icons[iconType];
 }
 
 // Animation utility
-export function getAnimationClass(type: AnimationType, delay?: number) {
+export function getAnimationClass(type: AnimationType, delay?: number): string {
   const baseClasses = {
     fadeIn: "animate-fade-in",
     slideUp: "animate-slide-up", 
@@ -39,7 +40,7 @@ export function getAnimationClass(type: AnimationType, delay?: number) {
 // Responsive grid utility
 export function getGridClass(
   columns: { sm?: number; md?: number; lg?: number; xl?: number } = {}
-) {
+): string {
   const { sm = 1, md = 2, lg = 3, xl } = columns;
   
   return cn(
@@ -50,19 +51,8 @@ export function getGridClass(
   );
 }
 
-// Section wrapper utility
-export function createSectionWrapper(
-  Component: React.ComponentType<any>,
-  defaultProps: Record<string, any> = {}
-) {
-  return function WrappedSection(props: any) {
-    const mergedProps = { ...defaultProps, ...props };
-    return <Component {...mergedProps} />;
-  };
-}
-
 // Card variant utility
-export function getCardVariant(variant: "default" | "elevated" | "bordered" = "default") {
+export function getCardVariant(variant: "default" | "elevated" | "bordered" = "default"): string {
   const variants = {
     default: "bg-white rounded-lg shadow-sm",
     elevated: "bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300",
@@ -76,7 +66,7 @@ export function getCardVariant(variant: "default" | "elevated" | "bordered" = "d
 export function getButtonVariant(
   variant: "primary" | "secondary" | "outline" | "ghost" = "primary",
   size: "sm" | "md" | "lg" = "md"
-) {
+): string {
   const variants = {
     primary: "bg-blue-600 text-white hover:bg-blue-700",
     secondary: "bg-gray-600 text-white hover:bg-gray-700",
@@ -98,7 +88,7 @@ export function getButtonVariant(
 }
 
 // RTL text direction utility
-export function getRTLProps(content: string) {
+export function getRTLProps(content: string): { dir: string; className: string } {
   // Simple heuristic to detect Arabic content
   const arabicRegex = /[\u0600-\u06FF]/;
   const isArabic = arabicRegex.test(content);
@@ -109,32 +99,16 @@ export function getRTLProps(content: string) {
   };
 }
 
-// Lazy loading utility
-export function createLazyComponent<T = {}>(
-  importFunc: () => Promise<{ default: React.ComponentType<T> }>,
-  fallback?: React.ComponentType
-) {
-  const LazyComponent = React.lazy(importFunc);
-  
-  return function LazyWrapper(props: T) {
-    return (
-      <React.Suspense fallback={fallback ? <fallback /> : <div>Loading...</div>}>
-        <LazyComponent {...props} />
-      </React.Suspense>
-    );
-  };
-}
-
 // Performance optimization: memoize expensive calculations
 export function memoizeComponent<P extends object>(
   Component: React.ComponentType<P>,
   areEqual?: (prevProps: P, nextProps: P) => boolean
-) {
+): React.ComponentType<P> {
   return React.memo(Component, areEqual);
 }
 
 // Contact info formatter
-export function formatContactInfo(type: "phone" | "email", value: string) {
+export function formatContactInfo(type: "phone" | "email", value: string): string {
   switch (type) {
     case "phone":
       // Format phone number for better readability
@@ -147,65 +121,23 @@ export function formatContactInfo(type: "phone" | "email", value: string) {
 }
 
 // SEO utilities
-export function generatePageTitle(pageName?: string, companyName: string = "عالم النظافة") {
+export function generatePageTitle(pageName?: string, companyName: string = "عالم النظافة"): string {
   return pageName ? `${pageName} | ${companyName}` : companyName;
 }
 
-export function generateMetaDescription(content: string, maxLength: number = 160) {
+export function generateMetaDescription(content: string, maxLength: number = 160): string {
   return content.length > maxLength ? 
     content.substring(0, maxLength - 3) + "..." : 
     content;
 }
 
-// Error boundary utility
-export function createErrorBoundary(fallbackComponent?: React.ComponentType<{ error: Error }>) {
-  return class ErrorBoundary extends React.Component<
-    { children: React.ReactNode },
-    { hasError: boolean; error?: Error }
-  > {
-    constructor(props: { children: React.ReactNode }) {
-      super(props);
-      this.state = { hasError: false };
-    }
-
-    static getDerivedStateFromError(error: Error) {
-      return { hasError: true, error };
-    }
-
-    componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
-      console.error("Error caught by boundary:", error, errorInfo);
-    }
-
-    render() {
-      if (this.state.hasError) {
-        const FallbackComponent = fallbackComponent || (() => <div>Something went wrong.</div>);
-        return <FallbackComponent error={this.state.error!} />;
-      }
-
-      return this.props.children;
-    }
-  };
-}
-
 // Accessibility utilities
-export function getAriaLabel(text: string, context?: string) {
+export function getAriaLabel(text: string, context?: string): string {
   return context ? `${text} - ${context}` : text;
 }
 
-export function createSkipLink(targetId: string, text: string = "Skip to main content") {
-  return (
-    <a
-      href={`#${targetId}`}
-      className="sr-only focus:not-sr-only focus:absolute focus:top-0 focus:left-0 bg-blue-600 text-white p-2 z-50"
-      tabIndex={0}
-    >
-      {text}
-    </a>
-  );
-}
-
 // Performance monitoring utilities
-export function measurePerformance(name: string, fn: () => void) {
+export function measurePerformance(name: string, fn: () => void): void {
   const start = performance.now();
   fn();
   const end = performance.now();
@@ -223,5 +155,48 @@ export function debounce<T extends (...args: any[]) => any>(
   };
 }
 
-// Import React for JSX
-import React from "react";
+// Create optimized section component wrapper
+export function createOptimizedSection<P extends Record<string, any>>(
+  Component: React.ComponentType<P>
+): React.ComponentType<P> {
+  const OptimizedSection = React.memo((props: P) => {
+    return React.createElement(Component, props);
+  });
+  
+  OptimizedSection.displayName = `Optimized(${Component.displayName || Component.name})`;
+  return OptimizedSection;
+}
+
+// Loading skeleton generator
+export function createLoadingSkeleton(
+  type: "card" | "text" | "section" = "section"
+): React.ReactElement {
+  const skeletons = {
+    card: React.createElement("div", {
+      className: "bg-white p-6 rounded-lg shadow animate-pulse",
+      children: [
+        React.createElement("div", { key: "1", className: "h-4 bg-gray-200 rounded w-full mb-2" }),
+        React.createElement("div", { key: "2", className: "h-4 bg-gray-200 rounded w-3/4" }),
+      ]
+    }),
+    text: React.createElement("div", {
+      className: "animate-pulse",
+      children: [
+        React.createElement("div", { key: "1", className: "h-4 bg-gray-200 rounded w-full mb-2" }),
+        React.createElement("div", { key: "2", className: "h-4 bg-gray-200 rounded w-5/6" }),
+      ]
+    }),
+    section: React.createElement("div", {
+      className: "py-20 bg-gray-50 animate-pulse",
+      children: React.createElement("div", {
+        className: "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8",
+        children: [
+          React.createElement("div", { key: "1", className: "h-8 bg-gray-200 rounded w-64 mx-auto mb-4" }),
+          React.createElement("div", { key: "2", className: "h-4 bg-gray-200 rounded w-96 mx-auto mb-8" }),
+        ]
+      })
+    })
+  };
+  
+  return skeletons[type];
+}
