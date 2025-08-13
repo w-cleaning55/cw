@@ -8,7 +8,7 @@ import Header from "@/components/layout/Header";
 import HeroSection from "@/components/sections/HeroSection";
 import StatsSection from "@/components/sections/StatsSection";
 import { createLoadingSkeleton } from "@/lib/component-utils";
-import { usePerformanceMonitor, withErrorBoundary } from "@/lib/performance";
+import { usePerformanceMonitor } from "@/lib/performance";
 import { generateCleaningServiceStructuredData, generateFAQStructuredData, DEFAULT_SEO, generateMetaTags } from "@/lib/seo";
 import { COMPANY_INFO } from "@/lib/constants";
 import type { BaseComponent } from "@/lib/types";
@@ -169,5 +169,5 @@ const HomePage: React.FC<BaseComponent> = () => {
   );
 };
 
-// Export with error boundary and performance optimizations
-export default withErrorBoundary(React.memo(HomePage));
+// Export with performance optimizations
+export default React.memo(HomePage);
