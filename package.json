@@ -7,23 +7,24 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "build:fast": "cross-env NEXT_TELEMETRY_DISABLED=1 next build",
+    "build:analyze": "cross-env ANALYZE=true npm run build",
     "start": "next start",
     "lint": "next lint --fix",
     "lint:check": "next lint",
-    "typecheck": "tsc --noEmit",
+    "typecheck": "tsc --noEmit --incremental",
+    "typecheck:fast": "tsc --noEmit --incremental --skipLibCheck",
     "test": "vitest run",
     "test:watch": "vitest",
     "test:coverage": "vitest run --coverage",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "analyze": "cross-env ANALYZE=true npm run build",
-    "security:audit": "npm audit --audit-level moderate",
-    "security:fix": "npm audit fix",
-    "prepare": "husky install",
-    "postbuild": "next-sitemap",
-    "clean": "rimraf .next out dist",
+    "clean": "rimraf .next out dist .tsbuildinfo",
+    "clean:all": "rimraf .next out dist .tsbuildinfo node_modules package-lock.json",
     "db:seed": "node scripts/seed-database.js",
-    "backup:data": "node scripts/backup-data.js"
+    "backup:data": "node scripts/backup-data.js",
+    "prebuild": "npm run clean",
+    "postbuild": "next-sitemap"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.0",
@@ -93,17 +94,13 @@
     "@types/uuid": "^10.0.0",
     "@typescript-eslint/eslint-plugin": "^8.8.0",
     "@typescript-eslint/parser": "^8.8.0",
-    "@vitejs/plugin-react": "^5.0.0",
     "autoprefixer": "^10.4.21",
-    "critters": "^0.0.23",
     "cross-env": "^7.0.3",
     "eslint": "^8.57.0",
     "eslint-config-next": "^15.0.3",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-react": "^7.35.0",
     "eslint-plugin-react-hooks": "^4.6.2",
-    "husky": "^9.1.6",
-    "lint-staged": "^15.2.10",
     "next-sitemap": "^4.2.3",
     "postcss": "^8.5.6",
     "prettier": "^3.5.3",
@@ -120,12 +117,6 @@
     "*.{json,md,mdx,css,html,yml,yaml}": [
       "prettier --write"
     ]
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged",
-      "pre-push": "npm run typecheck && npm run test"
-    }
   },
   "browserslist": {
     "production": [
@@ -164,6 +155,5 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/cleaning-world/cleaning-world-pro"
-  },
-  "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e"
+  }
 }
