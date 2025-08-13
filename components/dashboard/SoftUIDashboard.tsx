@@ -83,8 +83,8 @@ const SoftUIDashboard: React.FC<SoftUIDashboardProps> = ({ children }) => {
           {/* Logo */}
           <div className="p-6 border-b border-white/20">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-600 rounded-xl flex items-center justify-center text-white text-xl">
-                🧽
+              <div className="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-600 rounded-xl flex items-center justify-center text-white">
+                <Home className="w-6 h-6" />
               </div>
               <div>
                 <h2 className="text-xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
