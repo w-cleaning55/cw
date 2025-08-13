@@ -24,18 +24,22 @@ import {
   Heart,
 } from "lucide-react";
 
-const UserAvatar: React.FC<{ variant?: string }> = ({ variant = "default" }) => {
+const UserAvatar: React.FC<{ variant?: string }> = ({
+  variant = "default",
+}) => {
   const colors = {
     default: "bg-blue-500",
     business: "bg-purple-500",
     teacher: "bg-green-500",
     worker: "bg-orange-500",
     manager: "bg-indigo-500",
-    farmer: "bg-emerald-500"
+    farmer: "bg-emerald-500",
   };
 
   return (
-    <div className={`w-12 h-12 rounded-full flex items-center justify-center text-white ${colors[variant as keyof typeof colors] || colors.default}`}>
+    <div
+      className={`w-12 h-12 rounded-full flex items-center justify-center text-white ${colors[variant as keyof typeof colors] || colors.default}`}
+    >
       <User className="w-6 h-6" />
     </div>
   );

@@ -1,7 +1,15 @@
 "use client";
 
 import React from "react";
-import { CompanyLogo, FacebookIcon, TwitterIcon, InstagramIcon, PhoneIcon, EmailIcon, LocationIcon } from "@/components/ui/CompactIcons";
+import {
+  CompanyLogo,
+  FacebookIcon,
+  TwitterIcon,
+  InstagramIcon,
+  PhoneIcon,
+  EmailIcon,
+  LocationIcon,
+} from "@/components/ui/CompactIcons";
 import { MessageCircle } from "lucide-react";
 
 interface FooterLinkProps {
@@ -10,7 +18,11 @@ interface FooterLinkProps {
   className?: string;
 }
 
-const FooterLink: React.FC<FooterLinkProps> = ({ href, children, className = "text-gray-400 hover:text-white transition-colors" }) => (
+const FooterLink: React.FC<FooterLinkProps> = ({
+  href,
+  children,
+  className = "text-gray-400 hover:text-white transition-colors",
+}) => (
   <a href={href} className={className} dir="rtl">
     {children}
   </a>
@@ -51,7 +63,11 @@ const Footer: React.FC<FooterProps> = ({ className = "" }) => {
 
   const socialMedia = [
     { icon: <FacebookIcon size="md" />, href: "#", label: "Facebook" },
-    { icon: <MessageCircle className="w-5 h-5" />, href: "#", label: "WhatsApp" },
+    {
+      icon: <MessageCircle className="w-5 h-5" />,
+      href: "#",
+      label: "WhatsApp",
+    },
     { icon: <TwitterIcon size="md" />, href: "#", label: "Twitter" },
     { icon: <InstagramIcon size="md" />, href: "#", label: "Instagram" },
   ];
@@ -70,11 +86,15 @@ const Footer: React.FC<FooterProps> = ({ className = "" }) => {
             <p className="text-gray-400 mb-4" dir="rtl">
               شريككم الموثوق لخدمات التنظيف المحترفة في جدة
             </p>
-            <div className="flex space-x-4" role="list" aria-label="وسائل التواصل الاجتماعي">
+            <div
+              className="flex space-x-4"
+              role="list"
+              aria-label="وسائل التواصل الاجتماعي"
+            >
               {socialMedia.map((social, index) => (
-                <a 
+                <a
                   key={index}
-                  href={social.href} 
+                  href={social.href}
                   className="text-gray-400 hover:text-white transition-colors"
                   aria-label={social.label}
                   role="listitem"
@@ -89,9 +109,7 @@ const Footer: React.FC<FooterProps> = ({ className = "" }) => {
             <ul className="space-y-2">
               {services.map((service, index) => (
                 <li key={index}>
-                  <FooterLink href={service.href}>
-                    {service.name}
-                  </FooterLink>
+                  <FooterLink href={service.href}>{service.name}</FooterLink>
                 </li>
               ))}
             </ul>
@@ -101,9 +119,7 @@ const Footer: React.FC<FooterProps> = ({ className = "" }) => {
             <ul className="space-y-2">
               {links.map((link, index) => (
                 <li key={index}>
-                  <FooterLink href={link.href}>
-                    {link.name}
-                  </FooterLink>
+                  <FooterLink href={link.href}>{link.name}</FooterLink>
                 </li>
               ))}
             </ul>

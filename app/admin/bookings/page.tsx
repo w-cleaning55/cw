@@ -1,7 +1,16 @@
 import SoftUIDashboard from "../../../components/dashboard/SoftUIDashboard";
 import SoftUICard from "../../../components/dashboard/SoftUICard";
 import SoftUIButton from "../../../components/dashboard/SoftUIButton";
-import { Calendar, Clock, User, MapPin, Phone, CheckCircle, XCircle, AlertCircle } from "lucide-react";
+import {
+  Calendar,
+  Clock,
+  User,
+  MapPin,
+  Phone,
+  CheckCircle,
+  XCircle,
+  AlertCircle,
+} from "lucide-react";
 
 export default function BookingsPage() {
   const bookings = [
@@ -15,7 +24,7 @@ export default function BookingsPage() {
       phone: "0501234567",
       status: "مؤكد",
       amount: 450,
-      notes: "تنظيف شامل للمنزل مع التعقيم"
+      notes: "تنظيف شامل للمنزل مع التعقيم",
     },
     {
       id: 2,
@@ -27,7 +36,7 @@ export default function BookingsPage() {
       phone: "0509876543",
       status: "في الانتظار",
       amount: 320,
-      notes: "تنظيف دوري أسبوعي"
+      notes: "تنظيف دوري أسبوعي",
     },
     {
       id: 3,
@@ -39,7 +48,7 @@ export default function BookingsPage() {
       phone: "0505555555",
       status: "مكتمل",
       amount: 280,
-      notes: "تنظيف سجاد غرفة المعيشة والصالة"
+      notes: "تنظيف سجاد غرفة المعيشة والصالة",
     },
     {
       id: 4,
@@ -51,7 +60,7 @@ export default function BookingsPage() {
       phone: "0502222222",
       status: "ملغ��",
       amount: 0,
-      notes: "تم الإلغاء بطلب العميل"
+      notes: "تم الإلغاء بطلب العميل",
     },
     {
       id: 5,
@@ -63,8 +72,8 @@ export default function BookingsPage() {
       phone: "0507777777",
       status: "مؤكد",
       amount: 380,
-      notes: "تنظيف وتعقيم خزان علوي"
-    }
+      notes: "تنظيف وتعقيم خزان علوي",
+    },
   ];
 
   const getStatusColor = (status: string) => {
@@ -97,10 +106,14 @@ export default function BookingsPage() {
     }
   };
 
-  const todayBookings = bookings.filter(b => b.date === "2024-01-20").length;
-  const pendingBookings = bookings.filter(b => b.status === "في الانتظار").length;
-  const completedBookings = bookings.filter(b => b.status === "مكتمل").length;
-  const totalRevenue = bookings.filter(b => b.status === "مكتمل").reduce((sum, b) => sum + b.amount, 0);
+  const todayBookings = bookings.filter((b) => b.date === "2024-01-20").length;
+  const pendingBookings = bookings.filter(
+    (b) => b.status === "في الانتظار",
+  ).length;
+  const completedBookings = bookings.filter((b) => b.status === "مكتمل").length;
+  const totalRevenue = bookings
+    .filter((b) => b.status === "مكتمل")
+    .reduce((sum, b) => sum + b.amount, 0);
 
   return (
     <SoftUIDashboard>
@@ -112,7 +125,9 @@ export default function BookingsPage() {
               <div className="p-3 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-2xl text-white">
                 <Calendar className="w-6 h-6" />
               </div>
-              <div className="text-2xl font-bold text-blue-600">{todayBookings}</div>
+              <div className="text-2xl font-bold text-blue-600">
+                {todayBookings}
+              </div>
             </div>
             <div className="text-right" dir="rtl">
               <div className="text-gray-600 text-sm">مواعيد اليوم</div>
@@ -124,7 +139,9 @@ export default function BookingsPage() {
               <div className="p-3 bg-gradient-to-r from-yellow-500 to-orange-500 rounded-2xl text-white">
                 <Clock className="w-6 h-6" />
               </div>
-              <div className="text-2xl font-bold text-orange-600">{pendingBookings}</div>
+              <div className="text-2xl font-bold text-orange-600">
+                {pendingBookings}
+              </div>
             </div>
             <div className="text-right" dir="rtl">
               <div className="text-gray-600 text-sm">في الانتظار</div>
@@ -136,7 +153,9 @@ export default function BookingsPage() {
               <div className="p-3 bg-gradient-to-r from-green-500 to-emerald-500 rounded-2xl text-white">
                 <CheckCircle className="w-6 h-6" />
               </div>
-              <div className="text-2xl font-bold text-green-600">{completedBookings}</div>
+              <div className="text-2xl font-bold text-green-600">
+                {completedBookings}
+              </div>
             </div>
             <div className="text-right" dir="rtl">
               <div className="text-gray-600 text-sm">مكتملة</div>
@@ -148,7 +167,9 @@ export default function BookingsPage() {
               <div className="p-3 bg-gradient-to-r from-purple-500 to-pink-500 rounded-2xl text-white">
                 💰
               </div>
-              <div className="text-lg font-bold text-purple-600">{totalRevenue.toLocaleString()}</div>
+              <div className="text-lg font-bold text-purple-600">
+                {totalRevenue.toLocaleString()}
+              </div>
             </div>
             <div className="text-right" dir="rtl">
               <div className="text-gray-600 text-sm">إجمالي الإيرادات</div>
@@ -159,13 +180,21 @@ export default function BookingsPage() {
         {/* Quick Actions */}
         <SoftUICard variant="gradient">
           <div className="text-center mb-6">
-            <h3 className="text-xl font-bold text-gray-900" dir="rtl">إجراءات سريعة</h3>
+            <h3 className="text-xl font-bold text-gray-900" dir="rtl">
+              إجراءات سريعة
+            </h3>
           </div>
           <div className="flex flex-wrap justify-center gap-4">
-            <SoftUIButton variant="primary" icon={<Calendar className="w-4 h-4" />}>
+            <SoftUIButton
+              variant="primary"
+              icon={<Calendar className="w-4 h-4" />}
+            >
               موعد جديد
             </SoftUIButton>
-            <SoftUIButton variant="secondary" icon={<User className="w-4 h-4" />}>
+            <SoftUIButton
+              variant="secondary"
+              icon={<User className="w-4 h-4" />}
+            >
               بحث عن عميل
             </SoftUIButton>
             <SoftUIButton variant="glass" icon={<Clock className="w-4 h-4" />}>
@@ -177,7 +206,9 @@ export default function BookingsPage() {
         {/* Bookings List */}
         <SoftUICard variant="glass">
           <div className="flex items-center justify-between mb-6">
-            <h3 className="text-xl font-bold text-gray-900" dir="rtl">قائمة المواعيد</h3>
+            <h3 className="text-xl font-bold text-gray-900" dir="rtl">
+              قائمة المواعيد
+            </h3>
             <SoftUIButton variant="outline" size="sm">
               عرض الكل
             </SoftUIButton>
@@ -185,9 +216,11 @@ export default function BookingsPage() {
 
           <div className="space-y-4">
             {bookings.map((booking) => (
-              <div key={booking.id} className="p-6 bg-white/30 rounded-2xl backdrop-blur-sm border border-white/20 hover:bg-white/40 transition-all duration-300">
+              <div
+                key={booking.id}
+                className="p-6 bg-white/30 rounded-2xl backdrop-blur-sm border border-white/20 hover:bg-white/40 transition-all duration-300"
+              >
                 <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 items-start">
-                  
                   {/* Customer Info */}
                   <div className="space-y-3">
                     <div className="flex items-center gap-3">
@@ -195,7 +228,9 @@ export default function BookingsPage() {
                         {booking.customerName.charAt(0)}
                       </div>
                       <div className="text-right" dir="rtl">
-                        <div className="font-semibold text-gray-900">{booking.customerName}</div>
+                        <div className="font-semibold text-gray-900">
+                          {booking.customerName}
+                        </div>
                         <div className="text-sm text-gray-600 flex items-center gap-1">
                           <Phone className="w-3 h-3" />
                           {booking.phone}
@@ -207,7 +242,9 @@ export default function BookingsPage() {
                   {/* Service & Location */}
                   <div className="space-y-3 text-right" dir="rtl">
                     <div>
-                      <div className="font-medium text-gray-900">{booking.service}</div>
+                      <div className="font-medium text-gray-900">
+                        {booking.service}
+                      </div>
                       <div className="text-sm text-gray-600 flex items-center gap-1 justify-end">
                         <span>{booking.location}</span>
                         <MapPin className="w-3 h-3" />
@@ -218,7 +255,9 @@ export default function BookingsPage() {
 
                   {/* Date & Time */}
                   <div className="space-y-2 text-center">
-                    <div className="font-medium text-gray-900">{booking.date}</div>
+                    <div className="font-medium text-gray-900">
+                      {booking.date}
+                    </div>
                     <div className="text-sm text-gray-600 flex items-center gap-1 justify-center">
                       <Clock className="w-4 h-4" />
                       {booking.time}
@@ -233,12 +272,14 @@ export default function BookingsPage() {
                   {/* Status & Actions */}
                   <div className="space-y-4">
                     <div className="flex justify-center">
-                      <span className={`inline-flex items-center gap-2 px-4 py-2 rounded-xl text-white font-medium bg-gradient-to-r ${getStatusColor(booking.status)}`}>
+                      <span
+                        className={`inline-flex items-center gap-2 px-4 py-2 rounded-xl text-white font-medium bg-gradient-to-r ${getStatusColor(booking.status)}`}
+                      >
                         {getStatusIcon(booking.status)}
                         {booking.status}
                       </span>
                     </div>
-                    
+
                     <div className="flex justify-center gap-2">
                       <button className="p-2 bg-blue-100 text-blue-600 rounded-lg hover:bg-blue-200 transition-colors">
                         👁️
