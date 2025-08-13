@@ -148,7 +148,7 @@ export default function CustomerReviews() {
       date: "2023-12-28",
       service: "Villa Deep Cleaning",
       serviceAr: "تنظيف عميق للفلل",
-      avatar: "👩‍💼",
+      avatar: "manager",
       verified: true,
       helpful: 27,
     },
