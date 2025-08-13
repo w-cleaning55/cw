@@ -91,7 +91,7 @@ export default function CustomerReviews() {
       date: "2024-01-15",
       service: "Office Deep Cleaning",
       serviceAr: "تنظيف عميق ��لمكاتب",
-      avatar: "👨‍💼",
+      avatar: "business",
       verified: true,
       helpful: 23,
       images: ["office1.jpg", "office2.jpg"],
@@ -157,7 +157,7 @@ export default function CustomerReviews() {
       name: "Khalid Al-Harthi",
       nameAr: "خالد الحارثي",
       location: "Mecca, Saudi Arabia",
-      locationAr: "مكة المكرمة، المملكة العربية الس��ودية",
+      locationAr: "مكة المكرمة، المملكة العربية السعودية",
       rating: 5,
       review:
         "Best pest control service in the region! They eliminated our ant problem completely and provided preventive measures. Great follow-up service too.",
