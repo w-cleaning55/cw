@@ -2,6 +2,7 @@
 
 import React from "react";
 import Link from "next/link";
+import { CompanyLogo } from "@/components/ui/CompactIcons";
 
 interface HeaderProps {
   className?: string;
