@@ -166,7 +166,7 @@ export default function CustomerReviews() {
       date: "2023-12-20",
       service: "Pest Control",
       serviceAr: "مكافحة الآفات",
-      avatar: "👨‍🌾",
+      avatar: "farmer",
       verified: true,
       helpful: 15,
     },
