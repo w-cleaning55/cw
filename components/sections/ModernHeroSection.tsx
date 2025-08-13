@@ -2,6 +2,7 @@
 
 import React from "react";
 import { Phone, CheckCircle, MapPin, Star, Award, Users, Shield } from "lucide-react";
+import { HomeIcon, BuildingIcon, SparkleIcon, WaterIcon, ShieldIcon } from "@/components/ui/CompactIcons";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 
