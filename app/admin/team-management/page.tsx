@@ -55,7 +55,7 @@ import {
   UserCheck,
   UserX,
   Briefcase,
-  Tool,
+  Wrench,
   Shield,
   BarChart3,
 } from "lucide-react";
@@ -782,7 +782,7 @@ export default function TeamManagementPage() {
                   <Card>
                     <CardHeader>
                       <CardTitle className="flex items-center gap-2">
-                        <Tool className="w-5 h-5" />
+                        <Wrench className="w-5 h-5" />
                         {isArabic ? "المهارات" : "Skills"}
                       </CardTitle>
                     </CardHeader>

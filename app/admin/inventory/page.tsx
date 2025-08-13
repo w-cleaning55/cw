@@ -34,7 +34,7 @@ import {
 import { useTranslation } from "../../../hooks/useTranslation";
 import {
   Package,
-  Tool,
+  Wrench,
   Plus,
   Search,
   Filter,
@@ -56,7 +56,6 @@ import {
   Building,
   ShoppingCart,
   ClipboardList,
-  Wrench,
   Zap,
 } from "lucide-react";
 
@@ -704,7 +703,7 @@ export default function InventoryManagementPage() {
                     <div className="flex items-center gap-3">
                       <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
                         {item.type === "equipment" ? (
-                          <Tool className="w-6 h-6 text-white" />
+                          <Wrench className="w-6 h-6 text-white" />
                         ) : item.type === "supplies" ? (
                           <Package className="w-6 h-6 text-white" />
                         ) : (

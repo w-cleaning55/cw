@@ -30,7 +30,6 @@ import {
   X,
   Settings,
   Filter,
-  MarkAsRead,
   Archive,
   Star,
   Trash2,
@@ -265,7 +264,7 @@ const BusinessNotifications: React.FC = () => {
 
         <div className="flex gap-2">
           <Button variant="outline" size="sm" onClick={markAllAsRead}>
-            <MarkAsRead className="w-4 h-4 mr-2" />
+            <CheckCircle className="w-4 h-4 mr-2" />
             قراءة الكل
           </Button>
           <Button variant="outline" size="sm">

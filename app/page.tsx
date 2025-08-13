@@ -1,7 +1,7 @@
 import React from "react";
 import type { Metadata } from "next";
 import HomeClient from "@/components/pages/HomeClient";
-import { DEFAULT_SEO, generateMetaTags, generateCleaningServiceStructuredData, generateFAQStructuredData } from "@/lib/seo";
+import { DEFAULT_SEO, generateCleaningServiceStructuredData, generateFAQStructuredData } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: DEFAULT_SEO.title,
@@ -23,11 +23,6 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://m-clean.net",
   },
-  other: Object.fromEntries(
-    generateMetaTags(DEFAULT_SEO)
-      .filter((t) => t.name && !["description", "keywords", "viewport", "author", "robots"].includes(t.name))
-      .map((t) => [t.name!, t.content])
-  ),
 };
 
 export default function Page() {
