@@ -28,6 +28,32 @@
       "@/shared/*": ["./shared/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
-  "exclude": ["node_modules", "dist", "server", "client"]
+  "include": [
+    "next-env.d.ts",
+    "app/**/*.ts",
+    "app/**/*.tsx",
+    "components/**/*.ts",
+    "components/**/*.tsx",
+    "hooks/**/*.ts",
+    "hooks/**/*.tsx",
+    "lib/**/*.ts",
+    "lib/**/*.tsx",
+    "utils/**/*.ts",
+    "utils/**/*.tsx",
+    ".next/types/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "server/**/*",
+    "client/**/*",
+    "api/**/*",
+    "netlify/**/*",
+    "scripts/**/*",
+    "**/*.spec.ts",
+    "**/*.test.ts",
+    "**/*.test.tsx",
+    "lib/ai/providers/**/*",
+    "lib/database/providers/**/*"
+  ]
 }
