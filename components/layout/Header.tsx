@@ -2,6 +2,7 @@
 
 import React from "react";
 import Link from "next/link";
+import { CompanyLogo } from "@/components/ui/CompactIcons";
 
 interface HeaderProps {
   className?: string;
@@ -14,9 +15,12 @@ const Header: React.FC<HeaderProps> = ({ className = "" }) => {
         <div className="flex justify-between items-center py-4">
           <div className="flex items-center">
             <div className="flex-shrink-0">
-              <h1 className="text-2xl font-bold text-blue-600">
-                🧽 عالم النظافة
-              </h1>
+              <div className="flex items-center gap-3">
+                <CompanyLogo size="lg" />
+                <h1 className="text-2xl font-bold text-blue-600">
+                  عالم النظافة
+                </h1>
+              </div>
             </div>
           </div>
           <nav className="hidden md:flex space-x-8" dir="rtl">

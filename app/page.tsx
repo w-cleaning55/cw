@@ -5,8 +5,9 @@ import dynamic from "next/dynamic";
 import Head from "next/head";
 
 import Header from "@/components/layout/Header";
-import HeroSection from "@/components/sections/HeroSection";
-import StatsSection from "@/components/sections/StatsSection";
+import ModernHeroSection from "@/components/sections/ModernHeroSection";
+import AdvancedStatsSection from "@/components/sections/AdvancedStatsSection";
+import PremiumServicesSection from "@/components/sections/PremiumServicesSection";
 import { createLoadingSkeleton } from "@/lib/component-utils";
 import { usePerformanceMonitor } from "@/lib/performance";
 import { generateCleaningServiceStructuredData, generateFAQStructuredData, DEFAULT_SEO, generateMetaTags } from "@/lib/seo";
@@ -14,11 +15,6 @@ import { COMPANY_INFO } from "@/lib/constants";
 import type { BaseComponent } from "@/lib/types";
 
 // Lazy load below-the-fold components for better performance
-const ServicesSection = dynamic(() => import("@/components/sections/ServicesSection"), {
-  ssr: true,
-  loading: () => createLoadingSkeleton("section"),
-});
-
 const FeaturesSection = dynamic(() => import("@/components/sections/FeaturesSection"), {
   ssr: true,
   loading: () => createLoadingSkeleton("section"),
@@ -137,12 +133,9 @@ const HomePage: React.FC<BaseComponent> = () => {
       <div className="min-h-screen bg-white">
         <Header />
         <main id="main-content" tabIndex={-1}>
-          <HeroSection />
-          <StatsSection />
-
-          <Suspense fallback={<SectionSkeleton />}>
-            <ServicesSection />
-          </Suspense>
+          <ModernHeroSection />
+          <AdvancedStatsSection />
+          <PremiumServicesSection />
 
           <Suspense fallback={<SectionSkeleton />}>
             <FeaturesSection />

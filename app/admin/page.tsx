@@ -1,6 +1,12 @@
-import React from 'react';
-import AdminDashboard from '../../components/admin/AdminDashboard';
+import SoftUIDashboard from "../../components/dashboard/SoftUIDashboard";
+import SoftUICharts from "../../components/dashboard/SoftUICharts";
 
 export default function AdminPage() {
-  return <AdminDashboard />;
+  return (
+    <SoftUIDashboard>
+      <div className="mt-8">
+        <SoftUICharts />
+      </div>
+    </SoftUIDashboard>
+  );
 }

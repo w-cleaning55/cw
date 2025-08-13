@@ -1,29 +1,40 @@
-'use client';
+"use client";
 
-import React, { useState, useEffect, useCallback } from 'react';
-import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
-import { Button } from './ui/button';
-import { Input } from './ui/input';
-import { Label } from './ui/label';
-import { Textarea } from './ui/textarea';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from './ui/select';
-import { Badge } from './ui/badge';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from './ui/tabs';
-import { 
-  MapPin, 
-  Navigation, 
-  Search, 
-  Target, 
+import React, { useState, useEffect, useCallback } from "react";
+import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
+import { Button } from "./ui/button";
+import { Input } from "./ui/input";
+import { Label } from "./ui/label";
+import { Textarea } from "./ui/textarea";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "./ui/select";
+import { Badge } from "./ui/badge";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "./ui/tabs";
+import {
+  MapPin,
+  Navigation,
+  Search,
+  Target,
   Map,
   Copy,
   Check,
   AlertTriangle,
   Loader2,
   Plus,
-  Trash2
-} from 'lucide-react';
-import { useTranslation } from '../hooks/useTranslation';
-import { useNotify } from './NotificationSystem';
+  Trash2,
+} from "lucide-react";
+import {
+  HomeIcon,
+  BuildingIcon,
+  LocationIcon,
+} from "@/components/ui/CompactIcons";
+import { useTranslation } from "../hooks/useTranslation";
+import { useNotify } from "./NotificationSystem";
 
 interface Coordinates {
   latitude: number;
@@ -45,7 +56,7 @@ interface AddressDetails {
   landmark?: string;
   notes?: string;
   isDefault?: boolean;
-  type: 'home' | 'work' | 'other';
+  type: "home" | "work" | "other";
 }
 
 interface AddressSelectorProps {
@@ -61,131 +72,167 @@ export default function AddressSelector({
   selectedAddress,
   showSavedAddresses = true,
   allowMultiple = false,
-  className = ''
+  className = "",
 }: AddressSelectorProps) {
   const { t } = useTranslation();
   const notify = useNotify();
-  
-  const [activeTab, setActiveTab] = useState<'manual' | 'coordinates' | 'map' | 'saved'>('manual');
+
+  const [activeTab, setActiveTab] = useState<
+    "manual" | "coordinates" | "map" | "saved"
+  >("manual");
   const [isLoadingLocation, setIsLoadingLocation] = useState(false);
-  const [currentLocation, setCurrentLocation] = useState<Coordinates | null>(null);
+  const [currentLocation, setCurrentLocation] = useState<Coordinates | null>(
+    null,
+  );
   const [savedAddresses, setSavedAddresses] = useState<AddressDetails[]>([]);
   const [copiedCoords, setCopiedCoords] = useState(false);
-  
+
   // عنوان يدوي
   const [manualAddress, setManualAddress] = useState<AddressDetails>({
-    name: '',
-    street: '',
-    district: '',
-    city: 'جدة',
-    buildingNumber: '',
-    floorNumber: '',
-    apartmentNumber: '',
-    landmark: '',
-    notes: '',
-    type: 'home'
+    name: "",
+    street: "",
+    district: "",
+    city: "جدة",
+    buildingNumber: "",
+    floorNumber: "",
+    apartmentNumber: "",
+    landmark: "",
+    notes: "",
+    type: "home",
   });
 
   // عنوان من الإحداثيات
   const [coordsAddress, setCoordsAddress] = useState<AddressDetails>({
-    name: '',
-    street: '',
-    district: '',
-    city: 'جدة',
+    name: "",
+    street: "",
+    district: "",
+    city: "جدة",
     coordinates: undefined,
-    type: 'home'
+    type: "home",
   });
 
   // الأحياء في جدة
   const jeddahDistricts = [
-    'الحمراء', 'النسيم', 'الروضة', 'البوادي', 'الصفا', 'الزهراء',
-    'السامر', 'النزهة', 'الفيصلية', 'السليمانية', 'المروة', 'الشاطئ',
-    'البساتين', 'الخالدية', 'الرحاب', 'المحمدية', 'الثغر', 'الكندرة',
-    'أبحر الشمالية', 'أبحر الجنوبية', 'ذهبان', 'الشرفية', 'العزيزية',
-    'المنتزهات', 'النعيم', 'الورود', 'الجامعة', 'الأجاويد', 'العمارية',
-    'الصحيفة', 'الربوة', 'المعارض', 'مدائن الفهد', 'حي الأمل'
+    "الحمراء",
+    "النسيم",
+    "الروضة",
+    "البوادي",
+    "الصفا",
+    "الزهراء",
+    "السامر",
+    "النزهة",
+    "الفيصلية",
+    "السليمانية",
+    "المروة",
+    "الشاطئ",
+    "البساتين",
+    "الخالدية",
+    "الرحاب",
+    "المحمدية",
+    "الثغر",
+    "الكندرة",
+    "أبحر الشمالية",
+    "أبحر الجنوبية",
+    "ذهبان",
+    "الشرفية",
+    "العزيزية",
+    "المنتزهات",
+    "النعيم",
+    "الورود",
+    "الجامعة",
+    "الأجاويد",
+    "العمارية",
+    "الصحيفة",
+    "الربوة",
+    "المعارض",
+    "مدائن الفهد",
+    "حي الأمل",
   ];
 
   // أنواع العناوين
   const addressTypes = [
-    { value: 'home', label: 'منزل', icon: '��' },
-    { value: 'work', label: 'عمل', icon: '🏢' },
-    { value: 'other', label: 'أخرى', icon: '📍' }
+    { value: "home", label: "منزل", icon: <HomeIcon size="sm" /> },
+    { value: "work", label: "عمل", icon: <BuildingIcon size="sm" /> },
+    { value: "other", label: "أخرى", icon: <LocationIcon size="sm" /> },
   ];
 
   // تحميل العناوين المحفوظة
   useEffect(() => {
-    const saved = localStorage.getItem('saved-addresses');
+    const saved = localStorage.getItem("saved-addresses");
     if (saved) {
       try {
         setSavedAddresses(JSON.parse(saved));
       } catch (error) {
-        console.error('خطأ في تحميل العناوين المحفوظة:', error);
+        console.error("خطأ في تحميل العناوين المحفوظة:", error);
       }
     }
   }, []);
 
   // حفظ العناوين
-  const saveAddresses = useCallback((addresses: AddressDetails[]) => {
-    try {
-      localStorage.setItem('saved-addresses', JSON.stringify(addresses));
-      setSavedAddresses(addresses);
-    } catch (error) {
-      console.error('خطأ في حفظ العناوين:', error);
-      notify.error('خطأ في الحفظ', 'لم يتم حفظ العنوان');
-    }
-  }, [notify]);
+  const saveAddresses = useCallback(
+    (addresses: AddressDetails[]) => {
+      try {
+        localStorage.setItem("saved-addresses", JSON.stringify(addresses));
+        setSavedAddresses(addresses);
+      } catch (error) {
+        console.error("خطأ في حفظ العناوين:", error);
+        notify.error("خطأ في الحفظ", "لم يتم حفظ العنوان");
+      }
+    },
+    [notify],
+  );
 
   // الحصول على الموقع الحالي
   const getCurrentLocation = async () => {
     if (!navigator.geolocation) {
-      notify.error('الموقع غير مدعوم', 'متصفحك لا يدعم خدمات الموقع');
+      notify.error("الموقع غير مدعوم", "متصفحك لا يدعم خدمات الموقع");
       return;
     }
 
     setIsLoadingLocation(true);
 
     try {
-      const position = await new Promise<GeolocationPosition>((resolve, reject) => {
-        navigator.geolocation.getCurrentPosition(resolve, reject, {
-          enableHighAccuracy: true,
-          timeout: 10000,
-          maximumAge: 60000
-        });
-      });
+      const position = await new Promise<GeolocationPosition>(
+        (resolve, reject) => {
+          navigator.geolocation.getCurrentPosition(resolve, reject, {
+            enableHighAccuracy: true,
+            timeout: 10000,
+            maximumAge: 60000,
+          });
+        },
+      );
 
       const coords: Coordinates = {
         latitude: position.coords.latitude,
         longitude: position.coords.longitude,
-        accuracy: position.coords.accuracy
+        accuracy: position.coords.accuracy,
       };
 
       setCurrentLocation(coords);
-      
+
       // تحديث العنوان من الإحداثيات
-      setCoordsAddress(prev => ({
+      setCoordsAddress((prev) => ({
         ...prev,
-        coordinates: coords
+        coordinates: coords,
       }));
 
       // محاولة الحصول على تفاصيل العنوان من الإحداثيات (Reverse Geocoding)
       await reverseGeocode(coords);
 
-      notify.success('تم تحديد الموقع', 'تم الحصول على موقعك الحالي بنجاح');
-
+      notify.success("تم تحديد الموقع", "تم الحصول على موقعك الحالي بنجاح");
     } catch (error: any) {
-      console.error('خطأ في الحصول على الموقع:', error);
-      
-      let errorMessage = 'لم يتم الحصول على الموقع';
+      console.error("خطأ في الحصول على الموقع:", error);
+
+      let errorMessage = "لم يتم الحصول على الموقع";
       if (error.code === 1) {
-        errorMessage = 'يجب السماح بالوصول للموقع';
+        errorMessage = "يجب السماح بالوصول للموقع";
       } else if (error.code === 2) {
-        errorMessage = 'الموقع غير متاح حالياً';
+        errorMessage = "الموقع غير متاح حالياً";
       } else if (error.code === 3) {
-        errorMessage = 'انتهت مهلة الحصول على الموقع';
+        errorMessage = "انتهت مهلة الحصول على الموقع";
       }
 
-      notify.error('خطأ في الموقع', errorMessage);
+      notify.error("خطأ في الموقع", errorMessage);
     } finally {
       setIsLoadingLocation(false);
     }
@@ -196,19 +243,18 @@ export default function AddressSelector({
     try {
       // هنا يمكن استخدام Google Maps API أو أي خدمة أخرى
       // مثال بسيط بدون API خارجي
-      
+
       // تقدير تقريبي للأحياء بناءً على الإحداثيات
       const estimatedDistrict = estimateDistrict(coords);
-      
-      setCoordsAddress(prev => ({
+
+      setCoordsAddress((prev) => ({
         ...prev,
         district: estimatedDistrict,
         street: `شارع بالقرب من ${coords.latitude.toFixed(4)}, ${coords.longitude.toFixed(4)}`,
-        name: `موقع من الإحداثيات - ${estimatedDistrict}`
+        name: `موقع من الإحداثيات - ${estimatedDistrict}`,
       }));
-
     } catch (error) {
-      console.error('خطأ في تحويل الإحداثيات:', error);
+      console.error("خطأ في تحويل الإحداثيات:", error);
     }
   };
 
@@ -216,21 +262,21 @@ export default function AddressSelector({
   const estimateDistrict = (coords: Coordinates): string => {
     // إحداثيات تقريبية لأحياء جدة
     const districtCoords = {
-      'الحمراء': { lat: 21.5433, lng: 39.1728 },
-      'النسيم': { lat: 21.5169, lng: 39.2186 },
-      'الروض��': { lat: 21.5507, lng: 39.1372 },
-      'البوادي': { lat: 21.5297, lng: 39.1542 },
-      'الصفا': { lat: 21.5751, lng: 39.1494 },
-      'النزهة': { lat: 21.5883, lng: 39.1572 }
+      الحمراء: { lat: 21.5433, lng: 39.1728 },
+      النسيم: { lat: 21.5169, lng: 39.2186 },
+      الروضة: { lat: 21.5507, lng: 39.1372 },
+      البوادي: { lat: 21.5297, lng: 39.1542 },
+      الصفا: { lat: 21.5751, lng: 39.1494 },
+      النزهة: { lat: 21.5883, lng: 39.1572 },
     };
 
-    let closestDistrict = 'مجهول';
+    let closestDistrict = "مجهول";
     let minDistance = Infinity;
 
     Object.entries(districtCoords).forEach(([district, districtCoord]) => {
       const distance = Math.sqrt(
-        Math.pow(coords.latitude - districtCoord.lat, 2) + 
-        Math.pow(coords.longitude - districtCoord.lng, 2)
+        Math.pow(coords.latitude - districtCoord.lat, 2) +
+          Math.pow(coords.longitude - districtCoord.lng, 2),
       );
 
       if (distance < minDistance) {
@@ -247,24 +293,24 @@ export default function AddressSelector({
     if (!currentLocation) return;
 
     const coordsText = `${currentLocation.latitude}, ${currentLocation.longitude}`;
-    
+
     try {
       await navigator.clipboard.writeText(coordsText);
       setCopiedCoords(true);
-      notify.success('تم النسخ', 'تم نسخ الإحداثيات');
-      
+      notify.success("تم النسخ", "تم نسخ الإحداثيات");
+
       setTimeout(() => setCopiedCoords(false), 2000);
     } catch (error) {
       // Fallback للمتصفحات القديمة
-      const textArea = document.createElement('textarea');
+      const textArea = document.createElement("textarea");
       textArea.value = coordsText;
       document.body.appendChild(textArea);
       textArea.select();
-      document.execCommand('copy');
+      document.execCommand("copy");
       document.body.removeChild(textArea);
-      
+
       setCopiedCoords(true);
-      notify.success('تم النسخ', 'تم نسخ الإحداثيات');
+      notify.success("تم النسخ", "تم نسخ الإحداثيات");
       setTimeout(() => setCopiedCoords(false), 2000);
     }
   };
@@ -278,36 +324,36 @@ export default function AddressSelector({
 
     const updatedAddresses = [...savedAddresses, newAddress];
     saveAddresses(updatedAddresses);
-    
-    notify.success('تم الحفظ', 'تم حفظ العنوان بنجاح');
+
+    notify.success("تم الحفظ", "تم حفظ العنوان بنجاح");
   };
 
   // حذف عنوان محفوظ
   const deleteAddress = (id: string) => {
-    const updatedAddresses = savedAddresses.filter(addr => addr.id !== id);
+    const updatedAddresses = savedAddresses.filter((addr) => addr.id !== id);
     saveAddresses(updatedAddresses);
-    notify.success('تم الحذف', 'تم حذف العنوان');
+    notify.success("تم الحذف", "تم حذف العنوان");
   };
 
   // تعيين عنوان افتراضي
   const setDefaultAddress = (id: string) => {
-    const updatedAddresses = savedAddresses.map(addr => ({
+    const updatedAddresses = savedAddresses.map((addr) => ({
       ...addr,
-      isDefault: addr.id === id
+      isDefault: addr.id === id,
     }));
     saveAddresses(updatedAddresses);
-    notify.success('تم التحديث', 'تم تعيين العنوان الافتراضي');
+    notify.success("ت�� التحديث", "تم تعيين العنوان الافتراضي");
   };
 
-  // التحقق من صحة ا��عنوان
+  // التحقق من صحة العنوان
   const validateAddress = (address: AddressDetails): string[] => {
     const errors: string[] = [];
-    
-    if (!address.name.trim()) errors.push('اسم العنوان مطلوب');
-    if (!address.street.trim()) errors.push('الشارع مطلوب');
-    if (!address.district.trim()) errors.push('الحي مطلوب');
-    if (!address.city.trim()) errors.push('المدينة مطلوبة');
-    
+
+    if (!address.name.trim()) errors.push("اسم العنوان مطلوب");
+    if (!address.street.trim()) errors.push("الشارع مطلوب");
+    if (!address.district.trim()) errors.push("الحي مطلوب");
+    if (!address.city.trim()) errors.push("المدينة مطلوبة");
+
     return errors;
   };
 
@@ -315,12 +361,12 @@ export default function AddressSelector({
   const selectAddress = (address: AddressDetails) => {
     const errors = validateAddress(address);
     if (errors.length > 0) {
-      notify.error('بيانات ناقصة', errors.join(', '));
+      notify.error("بيانات ناقصة", errors.join(", "));
       return;
     }
 
     onAddressSelect(address);
-    notify.success('تم الاختيار', 'تم اختيار العنوان بنجاح');
+    notify.success("تم الاختيار", "تم اختيار العنوان بنجاح");
   };
 
   return (
@@ -332,15 +378,21 @@ export default function AddressSelector({
             اختيار العنوان
           </CardTitle>
         </CardHeader>
-        
+
         <CardContent>
-          <Tabs value={activeTab} onValueChange={(value: any) => setActiveTab(value)}>
+          <Tabs
+            value={activeTab}
+            onValueChange={(value: any) => setActiveTab(value)}
+          >
             <TabsList className="grid w-full grid-cols-4">
               <TabsTrigger value="manual" className="flex items-center gap-1">
                 <Search className="w-4 h-4" />
                 كتابة
               </TabsTrigger>
-              <TabsTrigger value="coordinates" className="flex items-center gap-1">
+              <TabsTrigger
+                value="coordinates"
+                className="flex items-center gap-1"
+              >
                 <Target className="w-4 h-4" />
                 إحداثيات
               </TabsTrigger>
@@ -364,17 +416,22 @@ export default function AddressSelector({
                   <Input
                     id="manual-name"
                     value={manualAddress.name}
-                    onChange={(e) => setManualAddress(prev => ({...prev, name: e.target.value}))}
+                    onChange={(e) =>
+                      setManualAddress((prev) => ({
+                        ...prev,
+                        name: e.target.value,
+                      }))
+                    }
                     placeholder="مثل: المنزل، المكتب"
                   />
                 </div>
 
                 <div className="space-y-2">
                   <Label htmlFor="manual-type">نوع العنوان</Label>
-                  <Select 
-                    value={manualAddress.type} 
-                    onValueChange={(value: 'home' | 'work' | 'other') => 
-                      setManualAddress(prev => ({...prev, type: value}))
+                  <Select
+                    value={manualAddress.type}
+                    onValueChange={(value: "home" | "work" | "other") =>
+                      setManualAddress((prev) => ({ ...prev, type: value }))
                     }
                   >
                     <SelectTrigger>
@@ -384,7 +441,7 @@ export default function AddressSelector({
                       {addressTypes.map((type) => (
                         <SelectItem key={type.value} value={type.value}>
                           <div className="flex items-center gap-2">
-                            <span>{type.icon}</span>
+                            {type.icon}
                             {type.label}
                           </div>
                         </SelectItem>
@@ -398,16 +455,23 @@ export default function AddressSelector({
                   <Input
                     id="manual-street"
                     value={manualAddress.street}
-                    onChange={(e) => setManualAddress(prev => ({...prev, street: e.target.value}))}
+                    onChange={(e) =>
+                      setManualAddress((prev) => ({
+                        ...prev,
+                        street: e.target.value,
+                      }))
+                    }
                     placeholder="اسم الشارع"
                   />
                 </div>
 
                 <div className="space-y-2">
                   <Label htmlFor="manual-district">الحي *</Label>
-                  <Select 
-                    value={manualAddress.district} 
-                    onValueChange={(value) => setManualAddress(prev => ({...prev, district: value}))}
+                  <Select
+                    value={manualAddress.district}
+                    onValueChange={(value) =>
+                      setManualAddress((prev) => ({ ...prev, district: value }))
+                    }
                   >
                     <SelectTrigger>
                       <SelectValue placeholder="اختر الحي" />
@@ -428,7 +492,12 @@ export default function AddressSelector({
                     <Input
                       id="manual-building"
                       value={manualAddress.buildingNumber}
-                      onChange={(e) => setManualAddress(prev => ({...prev, buildingNumber: e.target.value}))}
+                      onChange={(e) =>
+                        setManualAddress((prev) => ({
+                          ...prev,
+                          buildingNumber: e.target.value,
+                        }))
+                      }
                       placeholder="123"
                     />
                   </div>
@@ -437,7 +506,12 @@ export default function AddressSelector({
                     <Input
                       id="manual-floor"
                       value={manualAddress.floorNumber}
-                      onChange={(e) => setManualAddress(prev => ({...prev, floorNumber: e.target.value}))}
+                      onChange={(e) =>
+                        setManualAddress((prev) => ({
+                          ...prev,
+                          floorNumber: e.target.value,
+                        }))
+                      }
                       placeholder="1"
                     />
                   </div>
@@ -446,7 +520,12 @@ export default function AddressSelector({
                     <Input
                       id="manual-apartment"
                       value={manualAddress.apartmentNumber}
-                      onChange={(e) => setManualAddress(prev => ({...prev, apartmentNumber: e.target.value}))}
+                      onChange={(e) =>
+                        setManualAddress((prev) => ({
+                          ...prev,
+                          apartmentNumber: e.target.value,
+                        }))
+                      }
                       placeholder="A"
                     />
                   </div>
@@ -457,7 +536,12 @@ export default function AddressSelector({
                   <Input
                     id="manual-landmark"
                     value={manualAddress.landmark}
-                    onChange={(e) => setManualAddress(prev => ({...prev, landmark: e.target.value}))}
+                    onChange={(e) =>
+                      setManualAddress((prev) => ({
+                        ...prev,
+                        landmark: e.target.value,
+                      }))
+                    }
                     placeholder="بجانب مسجد، قرب مول، إلخ"
                   />
                 </div>
@@ -468,20 +552,28 @@ export default function AddressSelector({
                 <Textarea
                   id="manual-notes"
                   value={manualAddress.notes}
-                  onChange={(e) => setManualAddress(prev => ({...prev, notes: e.target.value}))}
+                  onChange={(e) =>
+                    setManualAddress((prev) => ({
+                      ...prev,
+                      notes: e.target.value,
+                    }))
+                  }
                   placeholder="أي ملاحظات تساعد في الوصول للموقع"
                   rows={2}
                 />
               </div>
 
               <div className="flex gap-2">
-                <Button onClick={() => selectAddress(manualAddress)} className="flex-1">
+                <Button
+                  onClick={() => selectAddress(manualAddress)}
+                  className="flex-1"
+                >
                   <MapPin className="w-4 h-4 mr-2" />
                   اختيار هذا العنوان
                 </Button>
                 {showSavedAddresses && (
-                  <Button 
-                    variant="outline" 
+                  <Button
+                    variant="outline"
                     onClick={() => saveNewAddress(manualAddress)}
                   >
                     <Plus className="w-4 h-4 mr-2" />
@@ -531,24 +623,34 @@ export default function AddressSelector({
                             ) : (
                               <Copy className="w-4 h-4 mr-1" />
                             )}
-                            {copiedCoords ? 'تم النسخ' : 'نسخ'}
+                            {copiedCoords ? "تم النسخ" : "نسخ"}
                           </Button>
                         </div>
-                        
+
                         <div className="grid grid-cols-2 gap-4 text-sm">
                           <div>
-                            <span className="text-muted-foreground">خط العرض:</span>
-                            <p className="font-mono">{currentLocation.latitude.toFixed(6)}</p>
+                            <span className="text-muted-foreground">
+                              خط العرض:
+                            </span>
+                            <p className="font-mono">
+                              {currentLocation.latitude.toFixed(6)}
+                            </p>
                           </div>
                           <div>
-                            <span className="text-muted-foreground">خط الطول:</span>
-                            <p className="font-mono">{currentLocation.longitude.toFixed(6)}</p>
+                            <span className="text-muted-foreground">
+                              خط الطول:
+                            </span>
+                            <p className="font-mono">
+                              {currentLocation.longitude.toFixed(6)}
+                            </p>
                           </div>
                         </div>
 
                         {currentLocation.accuracy && (
                           <div className="text-sm">
-                            <span className="text-muted-foreground">دقة الموقع:</span>
+                            <span className="text-muted-foreground">
+                              دقة الموقع:
+                            </span>
                             <Badge variant="outline" className="ml-2">
                               ±{Math.round(currentLocation.accuracy)} متر
                             </Badge>
@@ -567,16 +669,26 @@ export default function AddressSelector({
                         <Input
                           id="coords-name"
                           value={coordsAddress.name}
-                          onChange={(e) => setCoordsAddress(prev => ({...prev, name: e.target.value}))}
+                          onChange={(e) =>
+                            setCoordsAddress((prev) => ({
+                              ...prev,
+                              name: e.target.value,
+                            }))
+                          }
                           placeholder="اسم الموقع"
                         />
                       </div>
 
                       <div className="space-y-2">
                         <Label htmlFor="coords-district">الحي</Label>
-                        <Select 
-                          value={coordsAddress.district} 
-                          onValueChange={(value) => setCoordsAddress(prev => ({...prev, district: value}))}
+                        <Select
+                          value={coordsAddress.district}
+                          onValueChange={(value) =>
+                            setCoordsAddress((prev) => ({
+                              ...prev,
+                              district: value,
+                            }))
+                          }
                         >
                           <SelectTrigger>
                             <SelectValue />
@@ -593,13 +705,16 @@ export default function AddressSelector({
                     </div>
 
                     <div className="flex gap-2">
-                      <Button onClick={() => selectAddress(coordsAddress)} className="flex-1">
+                      <Button
+                        onClick={() => selectAddress(coordsAddress)}
+                        className="flex-1"
+                      >
                         <Target className="w-4 h-4 mr-2" />
                         اختيار هذا الموقع
                       </Button>
                       {showSavedAddresses && (
-                        <Button 
-                          variant="outline" 
+                        <Button
+                          variant="outline"
                           onClick={() => saveNewAddress(coordsAddress)}
                         >
                           <Plus className="w-4 h-4 mr-2" />
@@ -632,7 +747,9 @@ export default function AddressSelector({
                 {savedAddresses.length === 0 ? (
                   <div className="text-center py-8">
                     <MapPin className="w-16 h-16 mx-auto text-muted-foreground mb-4" />
-                    <h3 className="text-lg font-medium mb-2">لا توجد عناوين محفوظة</h3>
+                    <h3 className="text-lg font-medium mb-2">
+                      لا توجد عناوين محفوظة
+                    </h3>
                     <p className="text-muted-foreground">
                       احفظ عناوينك المفضلة لاستخدامها لاحقاً
                     </p>
@@ -640,14 +757,21 @@ export default function AddressSelector({
                 ) : (
                   <div className="space-y-3">
                     {savedAddresses.map((address) => (
-                      <Card key={address.id} className={address.isDefault ? 'ring-2 ring-primary' : ''}>
+                      <Card
+                        key={address.id}
+                        className={
+                          address.isDefault ? "ring-2 ring-primary" : ""
+                        }
+                      >
                         <CardContent className="pt-4">
                           <div className="flex items-start justify-between">
                             <div className="flex-1">
                               <div className="flex items-center gap-2 mb-2">
-                                <span className="text-lg">
-                                  {addressTypes.find(t => t.value === address.type)?.icon}
-                                </span>
+                                {
+                                  addressTypes.find(
+                                    (t) => t.value === address.type,
+                                  )?.icon
+                                }
                                 <h4 className="font-medium">{address.name}</h4>
                                 {address.isDefault && (
                                   <Badge variant="default" className="text-xs">
@@ -655,16 +779,24 @@ export default function AddressSelector({
                                   </Badge>
                                 )}
                               </div>
-                              
+
                               <div className="text-sm text-muted-foreground space-y-1">
-                                <p>{address.street}, {address.district}</p>
+                                <p>
+                                  {address.street}, {address.district}
+                                </p>
                                 <p>{address.city}</p>
                                 {address.landmark && (
-                                  <p className="text-xs">📍 {address.landmark}</p>
+                                  <div className="flex items-center gap-1 text-xs">
+                                    <LocationIcon
+                                      size="xs"
+                                      className="text-muted-foreground"
+                                    />
+                                    <span>{address.landmark}</span>
+                                  </div>
                                 )}
                               </div>
                             </div>
-                            
+
                             <div className="flex gap-1">
                               <Button
                                 variant="outline"
@@ -677,7 +809,9 @@ export default function AddressSelector({
                                 <Button
                                   variant="ghost"
                                   size="sm"
-                                  onClick={() => address.id && setDefaultAddress(address.id)}
+                                  onClick={() =>
+                                    address.id && setDefaultAddress(address.id)
+                                  }
                                 >
                                   افتراضي
                                 </Button>
@@ -685,7 +819,9 @@ export default function AddressSelector({
                               <Button
                                 variant="ghost"
                                 size="sm"
-                                onClick={() => address.id && deleteAddress(address.id)}
+                                onClick={() =>
+                                  address.id && deleteAddress(address.id)
+                                }
                               >
                                 <Trash2 className="w-4 h-4" />
                               </Button>
@@ -706,22 +842,32 @@ export default function AddressSelector({
       {selectedAddress && (
         <Card>
           <CardHeader>
-            <CardTitle className="text-sm text-muted-foreground">العنوان المختار:</CardTitle>
+            <CardTitle className="text-sm text-muted-foreground">
+              العنوان المختار:
+            </CardTitle>
           </CardHeader>
           <CardContent>
             <div className="flex items-start gap-3">
-              <div className="text-lg">
-                {addressTypes.find(t => t.value === selectedAddress.type)?.icon}
+              <div>
+                {
+                  addressTypes.find((t) => t.value === selectedAddress.type)
+                    ?.icon
+                }
               </div>
               <div className="flex-1">
                 <h4 className="font-medium">{selectedAddress.name}</h4>
                 <p className="text-sm text-muted-foreground">
-                  {selectedAddress.street}, {selectedAddress.district}, {selectedAddress.city}
+                  {selectedAddress.street}, {selectedAddress.district},{" "}
+                  {selectedAddress.city}
                 </p>
                 {selectedAddress.coordinates && (
-                  <p className="text-xs text-muted-foreground mt-1">
-                    📍 {selectedAddress.coordinates.latitude.toFixed(6)}, {selectedAddress.coordinates.longitude.toFixed(6)}
-                  </p>
+                  <div className="flex items-center gap-1 text-xs text-muted-foreground mt-1">
+                    <LocationIcon size="xs" />
+                    <span>
+                      {selectedAddress.coordinates.latitude.toFixed(6)},{" "}
+                      {selectedAddress.coordinates.longitude.toFixed(6)}
+                    </span>
+                  </div>
                 )}
               </div>
             </div>

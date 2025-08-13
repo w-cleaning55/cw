@@ -24,6 +24,27 @@ import {
   Heart,
 } from "lucide-react";
 
+const UserAvatar: React.FC<{ variant?: string }> = ({
+  variant = "default",
+}) => {
+  const colors = {
+    default: "bg-blue-500",
+    business: "bg-purple-500",
+    teacher: "bg-green-500",
+    worker: "bg-orange-500",
+    manager: "bg-indigo-500",
+    farmer: "bg-emerald-500",
+  };
+
+  return (
+    <div
+      className={`w-12 h-12 rounded-full flex items-center justify-center text-white ${colors[variant as keyof typeof colors] || colors.default}`}
+    >
+      <User className="w-6 h-6" />
+    </div>
+  );
+};
+
 interface Review {
   id: string;
   name: string;
@@ -74,7 +95,7 @@ export default function CustomerReviews() {
       date: "2024-01-15",
       service: "Office Deep Cleaning",
       serviceAr: "تنظيف عميق ��لمكاتب",
-      avatar: "👨‍💼",
+      avatar: "business",
       verified: true,
       helpful: 23,
       images: ["office1.jpg", "office2.jpg"],
@@ -93,7 +114,7 @@ export default function CustomerReviews() {
       date: "2024-01-10",
       service: "Carpet & Upholstery Cleaning",
       serviceAr: "تنظيف السجاد والمفروشات",
-      avatar: "👩‍🏫",
+      avatar: "teacher",
       verified: true,
       helpful: 31,
       videoTestimonial: "testimonial1.mp4",
@@ -112,7 +133,7 @@ export default function CustomerReviews() {
       date: "2024-01-05",
       service: "Water Tank Cleaning",
       serviceAr: "تنظيف خزانات المياه",
-      avatar: "👨‍🔧",
+      avatar: "worker",
       verified: true,
       helpful: 18,
       images: ["tank1.jpg", "tank2.jpg", "tank3.jpg"],
@@ -131,7 +152,7 @@ export default function CustomerReviews() {
       date: "2023-12-28",
       service: "Villa Deep Cleaning",
       serviceAr: "تنظيف عميق للفلل",
-      avatar: "👩‍💼",
+      avatar: "manager",
       verified: true,
       helpful: 27,
     },
@@ -149,7 +170,7 @@ export default function CustomerReviews() {
       date: "2023-12-20",
       service: "Pest Control",
       serviceAr: "مكافحة الآفات",
-      avatar: "👨‍🌾",
+      avatar: "farmer",
       verified: true,
       helpful: 15,
     },

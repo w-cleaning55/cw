@@ -1,39 +1,28 @@
-'use client';
+import type { Metadata } from "next";
 
-import React from 'react';
-import { useAuth } from '../../hooks/useAuth';
-import { useRouter } from 'next/navigation';
-import { useEffect } from 'react';
-import AdminLayout from '../../components/admin/AdminLayout';
+export const metadata: Metadata = {
+  title: "لوحة الإدارة - عالم النظافة",
+  description: "لوحة التحكم الإدارية لإدارة خدمات التنظيف والعملاء",
+};
 
-export default function AdminLayoutWrapper({
+export default function AdminLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const { user, isLoading } = useAuth();
-  const router = useRouter();
-
-  useEffect(() => {
-    if (!isLoading && !user) {
-      router.push('/auth/login');
-    }
-  }, [user, isLoading, router]);
-
-  if (isLoading) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
-          <p className="mt-4 text-gray-600">جاري التحميل...</p>
-        </div>
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-blue-50/30 to-purple-50/20">
+      {/* Global background effects */}
+      <div className="fixed inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-r from-blue-400/10 to-purple-400/10 rounded-full blur-3xl"></div>
+        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-gradient-to-r from-pink-400/10 to-cyan-400/10 rounded-full blur-3xl"></div>
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-gradient-to-r from-indigo-400/5 to-purple-400/5 rounded-full blur-3xl"></div>
       </div>
-    );
-  }
-
-  if (!user) {
-    return null;
-  }
-
-  return <AdminLayout>{children}</AdminLayout>;
+      
+      {/* Content */}
+      <div className="relative z-10">
+        {children}
+      </div>
+    </div>
+  );
 }
