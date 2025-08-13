@@ -2,6 +2,7 @@
 
 import React from "react";
 import { TrendingUp, TrendingDown, BarChart3, PieChart, Activity } from "lucide-react";
+import { SpeedIcon, CheckIcon, UsersIcon, StarIcon } from "@/components/ui/CompactIcons";
 import SoftUICard from "./SoftUICard";
 
 interface SoftUIChartsProps {
@@ -108,7 +109,7 @@ const SoftUICharts: React.FC<SoftUIChartsProps> = ({ className = "" }) => {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
           {[
             { label: "متوسط وقت الاستجابة", value: "15 دقيقة", icon: "⚡", color: "from-yellow-400 to-orange-500" },
-            { label: "معدل إتمام المشاريع", value: "98.5%", icon: "✅", color: "from-green-400 to-emerald-500" },
+            { label: "معدل إتمام المشا��يع", value: "98.5%", icon: "✅", color: "from-green-400 to-emerald-500" },
             { label: "عملاء جدد هذا الشهر", value: "147", icon: "👥", color: "from-blue-400 to-cyan-500" },
             { label: "متوسط التقييم", value: "4.9/5", icon: "⭐", color: "from-purple-400 to-pink-500" }
           ].map((metric, index) => (
