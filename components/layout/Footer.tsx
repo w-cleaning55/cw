@@ -1,6 +1,8 @@
 "use client";
 
 import React from "react";
+import { CompanyLogo, FacebookIcon, TwitterIcon, InstagramIcon, PhoneIcon, EmailIcon, LocationIcon } from "@/components/ui/CompactIcons";
+import { MessageCircle } from "lucide-react";
 
 interface FooterLinkProps {
   href: string;
@@ -48,10 +50,10 @@ const Footer: React.FC<FooterProps> = ({ className = "" }) => {
   ];
 
   const socialMedia = [
-    { icon: "📘", href: "#", label: "Facebook" },
-    { icon: "📱", href: "#", label: "WhatsApp" },
-    { icon: "🐦", href: "#", label: "Twitter" },
-    { icon: "📷", href: "#", label: "Instagram" },
+    { icon: <FacebookIcon size="md" />, href: "#", label: "Facebook" },
+    { icon: <MessageCircle className="w-5 h-5" />, href: "#", label: "WhatsApp" },
+    { icon: <TwitterIcon size="md" />, href: "#", label: "Twitter" },
+    { icon: <InstagramIcon size="md" />, href: "#", label: "Instagram" },
   ];
 
   return (
@@ -59,9 +61,12 @@ const Footer: React.FC<FooterProps> = ({ className = "" }) => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div>
-            <h3 className="text-2xl font-bold mb-4" dir="rtl">
-              🧽 عالم النظافة
-            </h3>
+            <div className="flex items-center gap-3 mb-4">
+              <CompanyLogo size="lg" />
+              <h3 className="text-2xl font-bold" dir="rtl">
+                عالم النظافة
+              </h3>
+            </div>
             <p className="text-gray-400 mb-4" dir="rtl">
               شريككم الموثوق لخدمات التنظيف المحترفة في جدة
             </p>
@@ -106,9 +111,18 @@ const Footer: React.FC<FooterProps> = ({ className = "" }) => {
 
           <FooterSection title="تواصل معنا">
             <div className="space-y-2 text-gray-400">
-              <p>📞 0500000000</p>
-              <p>📧 info@cleaningworld.sa</p>
-              <p dir="rtl">📍 جدة، المملكة العربية السعودية</p>
+              <div className="flex items-center gap-2">
+                <PhoneIcon className="text-blue-400" />
+                <p>0500000000</p>
+              </div>
+              <div className="flex items-center gap-2">
+                <EmailIcon className="text-blue-400" />
+                <p>info@cleaningworld.sa</p>
+              </div>
+              <div className="flex items-center gap-2" dir="rtl">
+                <LocationIcon className="text-blue-400" />
+                <p>جدة، المملكة العربية السعودية</p>
+              </div>
             </div>
           </FooterSection>
         </div>
