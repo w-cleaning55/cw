@@ -2,7 +2,6 @@
 
 import React, { Suspense } from "react";
 import dynamic from "next/dynamic";
-import { ErrorBoundary } from "react-error-boundary";
 import Head from "next/head";
 
 import Header from "@/components/layout/Header";
@@ -73,7 +72,7 @@ const ErrorFallback: React.FC<{ error: Error; resetError: () => void }> = ({ err
   <div className="min-h-screen flex items-center justify-center bg-gray-50" role="alert">
     <div className="text-center p-8">
       <h2 className="text-2xl font-bold text-gray-900 mb-4" dir="rtl">
-        عذراً، حدث ��طأ غير متوقع
+        عذراً، حدث خطأ غير متوقع
       </h2>
       <p className="text-gray-600 mb-6" dir="rtl">
         نحن نعمل على حل هذه المشكلة. يرجى المحاولة مرة أخرى.
@@ -141,42 +140,30 @@ const HomePage: React.FC<BaseComponent> = () => {
           <HeroSection />
           <StatsSection />
 
-          <ErrorBoundary FallbackComponent={ErrorFallback}>
-            <Suspense fallback={<SectionSkeleton />}>
-              <ServicesSection />
-            </Suspense>
-          </ErrorBoundary>
+          <Suspense fallback={<SectionSkeleton />}>
+            <ServicesSection />
+          </Suspense>
 
-          <ErrorBoundary FallbackComponent={ErrorFallback}>
-            <Suspense fallback={<SectionSkeleton />}>
-              <FeaturesSection />
-            </Suspense>
-          </ErrorBoundary>
+          <Suspense fallback={<SectionSkeleton />}>
+            <FeaturesSection />
+          </Suspense>
 
-          <ErrorBoundary FallbackComponent={ErrorFallback}>
-            <Suspense fallback={<SectionSkeleton />}>
-              <AboutSection />
-            </Suspense>
-          </ErrorBoundary>
+          <Suspense fallback={<SectionSkeleton />}>
+            <AboutSection />
+          </Suspense>
 
-          <ErrorBoundary FallbackComponent={ErrorFallback}>
-            <Suspense fallback={<SectionSkeleton />}>
-              <TestimonialsSection />
-            </Suspense>
-          </ErrorBoundary>
+          <Suspense fallback={<SectionSkeleton />}>
+            <TestimonialsSection />
+          </Suspense>
 
-          <ErrorBoundary FallbackComponent={ErrorFallback}>
-            <Suspense fallback={<SectionSkeleton />}>
-              <ContactSection />
-            </Suspense>
-          </ErrorBoundary>
+          <Suspense fallback={<SectionSkeleton />}>
+            <ContactSection />
+          </Suspense>
         </main>
 
-        <ErrorBoundary FallbackComponent={ErrorFallback}>
-          <Suspense fallback={<div className="py-12 bg-gray-900 animate-pulse" />}>
-            <Footer />
-          </Suspense>
-        </ErrorBoundary>
+        <Suspense fallback={<div className="py-12 bg-gray-900 animate-pulse" />}>
+          <Footer />
+        </Suspense>
       </div>
     </>
   );
