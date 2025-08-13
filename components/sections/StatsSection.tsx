@@ -1,37 +1,45 @@
 "use client";
 
 import React from "react";
+import { COMPANY_STATS, GRID_LAYOUTS } from "@/lib/constants";
+import { cn, createOptimizedSection } from "@/lib/component-utils";
+import type { CompanyStat } from "@/lib/types";
 
 interface StatItemProps {
   value: string;
   label: string;
 }
 
-const StatItem: React.FC<StatItemProps> = ({ value, label }) => (
+const StatItem: React.FC<StatItemProps> = React.memo(({ value, label }) => (
   <div className="text-center">
-    <div className="text-3xl font-bold text-blue-600 mb-2">{value}</div>
+    <div className="text-3xl font-bold text-blue-600 mb-2" aria-label={`${value} ${label}`}>
+      {value}
+    </div>
     <div className="text-gray-600">{label}</div>
   </div>
-);
+));
+
+StatItem.displayName = "StatItem";
 
 interface StatsSectionProps {
   className?: string;
 }
 
 const StatsSection: React.FC<StatsSectionProps> = ({ className = "" }) => {
-  const stats = [
-    { value: "6+", label: "سنوات الخبرة" },
-    { value: "2850+", label: "مشروع مكتمل" },
-    { value: "50+", label: "موظف متخصص" },
-    { value: "98.5%", label: "رضا العملاء" },
-  ];
+  const stats: CompanyStat[] = React.useMemo(() => [
+    { value: COMPANY_STATS.experience, label: COMPANY_STATS.experienceLabel },
+    { value: COMPANY_STATS.projects, label: COMPANY_STATS.projectsLabel },
+    { value: COMPANY_STATS.employees, label: COMPANY_STATS.employeesLabel },
+    { value: COMPANY_STATS.satisfaction, label: COMPANY_STATS.satisfactionLabel },
+  ], []);
 
   return (
-    <section className={`py-16 bg-gray-50 ${className}`}>
+    <section className={cn("py-16 bg-gray-50", className)} aria-labelledby="stats-heading">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+        <h2 id="stats-heading" className="sr-only">إحصائيات الشركة</h2>
+        <div className={cn("grid gap-8", GRID_LAYOUTS.stats)}>
           {stats.map((stat, index) => (
-            <StatItem key={index} value={stat.value} label={stat.label} />
+            <StatItem key={`${stat.value}-${index}`} value={stat.value} label={stat.label} />
           ))}
         </div>
       </div>
@@ -39,4 +47,4 @@ const StatsSection: React.FC<StatsSectionProps> = ({ className = "" }) => {
   );
 };
 
-export default StatsSection;
+export default createOptimizedSection(StatsSection);
