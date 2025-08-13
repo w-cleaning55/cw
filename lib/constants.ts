@@ -1,3 +1,32 @@
+// Application Configuration
+export const APP_CONFIG = {
+  name: "عالم النظافة",
+  nameAr: "عالم النظافة جدة",
+  nameEn: "Cleaning World Jeddah",
+  domain: "https://cw.com.sa",
+  phone: "+966500000000",
+  email: "info@cleaningworld.sa",
+  version: "1.0.0",
+} as const;
+
+// SEO Configuration
+export const SEO_CONFIG = {
+  defaultTitle: "عالم النظافة جدة - شريككم الموثوق لخدمات التنظيف المحترفة",
+  description: "نستخدم أحدث المعدات العالمية مع فريق من المتخصصين المدربين لضمان أعلى معايير النظافة والجودة في جدة",
+  keywords: ["تنظيف", "تنظيف منازل", "تنظيف مكاتب", "جدة", "السعودية", "خدمات تنظيف", "شركة تنظيف"],
+  openGraph: {
+    type: "website",
+    locale: "ar_SA",
+    url: "https://cw.com.sa",
+    siteName: "عالم النظافة جدة",
+  },
+  twitter: {
+    card: "summary_large_image",
+    site: "@cleaningworld",
+    creator: "@cleaningworld",
+  },
+} as const;
+
 // Company Information
 export const COMPANY_INFO = {
   name: "عالم النظافة",
