@@ -31,20 +31,20 @@ const nextConfig = {
       "@radix-ui/react-toggle-group",
       "@radix-ui/react-tooltip"
     ],
-    turbo: {
-      rules: {
-        '*.svg': {
-          loaders: ['@svgr/webpack'],
-          as: '*.js',
-        },
+    webpackBuildWorker: true,
+  },
+
+  // Turbopack configuration (stable in Next.js 15)
+  turbopack: {
+    rules: {
+      '*.svg': {
+        loaders: ['@svgr/webpack'],
+        as: '*.js',
       },
     },
-    webpackBuildWorker: true,
-    memoryBasedWorkers: true,
   },
 
   // Performance optimizations
-  swcMinify: true,
   poweredByHeader: false,
   compress: true,
   productionBrowserSourceMaps: false,

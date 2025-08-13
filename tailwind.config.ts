@@ -147,11 +147,4 @@ export default {
     require("tailwindcss-animate"),
     require("@tailwindcss/typography"),
   ],
-  // Performance optimizations
-  future: {
-    hoverOnlyWhenSupported: true,
-  },
-  experimental: {
-    optimizeUniversalDefaults: true,
-  },
 } satisfies Config;

@@ -1,0 +1,86 @@
+{
+  "app\\page.tsx -> @/components/layout/Footer": {
+    "id": 8317,
+    "files": [
+      "static/chunks/8317.edbd2e2d85910461.js"
+    ]
+  },
+  "app\\page.tsx -> @/components/sections/AboutSection": {
+    "id": 2869,
+    "files": [
+      "static/chunks/lucide-9219a62b7361d5cd.js",
+      "static/chunks/2869.9bbfed26937b4a10.js"
+    ]
+  },
+  "app\\page.tsx -> @/components/sections/ContactSection": {
+    "id": 5984,
+    "files": [
+      "static/chunks/lucide-9219a62b7361d5cd.js",
+      "static/chunks/5984.ed397cf4a5a350da.js"
+    ]
+  },
+  "app\\page.tsx -> @/components/sections/FeaturesSection": {
+    "id": 6965,
+    "files": [
+      "static/chunks/6965.1a505de3098492c4.js"
+    ]
+  },
+  "app\\page.tsx -> @/components/sections/ServicesSection": {
+    "id": 3275,
+    "files": [
+      "static/chunks/common-a69ea57b027f63d1.js",
+      "static/chunks/3275.e79a651b9fcfa183.js"
+    ]
+  },
+  "app\\page.tsx -> @/components/sections/TestimonialsSection": {
+    "id": 5416,
+    "files": [
+      "static/chunks/common-a69ea57b027f63d1.js",
+      "static/chunks/5416.6ecf2090ed7875d3.js"
+    ]
+  },
+  "lib\\database\\DatabaseManager.ts -> ./index": {
+    "id": 3772,
+    "files": [
+      "static/chunks/3772.e3418c2b8f0518bc.js"
+    ]
+  },
+  "lib\\database\\MigrationManager.ts -> ./index": {
+    "id": 3772,
+    "files": [
+      "static/chunks/3772.e3418c2b8f0518bc.js"
+    ]
+  },
+  "lib\\database\\index.ts -> ./providers/firebase": {
+    "id": 2190,
+    "files": [
+      "static/chunks/2190.3e8d95bb2f1ebe31.js"
+    ]
+  },
+  "lib\\database\\index.ts -> ./providers/mongodb": {
+    "id": 1467,
+    "files": [
+      "static/chunks/1467.b259811f84cd0ce5.js"
+    ]
+  },
+  "lib\\database\\index.ts -> ./providers/supabase": {
+    "id": 1757,
+    "files": [
+      "static/chunks/1757.57d4e0a19dbbff13.js"
+    ]
+  },
+  "node_modules\\next\\dist\\client\\index.js -> ../pages/_app": {
+    "id": 472,
+    "files": [
+      "static/css/92bc3c43a8e17fba.css",
+      "static/chunks/vendors-b1dcb0eb658d42eb.js"
+    ]
+  },
+  "node_modules\\next\\dist\\client\\index.js -> ../pages/_error": {
+    "id": 9341,
+    "files": [
+      "static/css/92bc3c43a8e17fba.css",
+      "static/chunks/vendors-b1dcb0eb658d42eb.js"
+    ]
+  }
+}
