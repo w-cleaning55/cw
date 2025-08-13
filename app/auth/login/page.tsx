@@ -1,8 +1,13 @@
 'use client';
 
-import React, { useState } from 'react';
+import React from 'react';
 import { useRouter } from 'next/navigation';
-import LoginForm from '../../../components/LoginForm';
+import dynamic from 'next/dynamic';
+
+const LoginForm = dynamic(() => import('../../../components/LoginForm'), {
+  ssr: false,
+  loading: () => <div className="h-64 w-full animate-pulse rounded-xl bg-gray-200" />,
+});
 
 export default function LoginPage() {
   const router = useRouter();
