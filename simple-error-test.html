@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Error Test</title>
+</head>
+<body>
+    <h1>Error Scenarios Test</h1>
+    <div id="results"></div>
+    
+    <script>
+        async function test404() {
+            try {
+                const response = await fetch('/nonexistent');
+                return response.status === 404 ? 'PASS' : 'FAIL';
+            } catch (e) {
+                return 'ERROR';
+            }
+        }
+        
+        async function testInvalidLogin() {
+            try {
+                const response = await fetch('/api/auth/login', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({username: 'invalid', password: 'invalid'})
+                });
+                return response.status === 401 ? 'PASS' : 'FAIL';
+            } catch (e) {
+                return 'ERROR';
+            }
+        }
+        
+        async function runTests() {
+            const results = document.getElementById('results');
+            results.innerHTML = 'Testing...<br>';
+            
+            const test1 = await test404();
+            results.innerHTML += '404 Test: ' + test1 + '<br>';
+            
+            const test2 = await testInvalidLogin();
+            results.innerHTML += 'Invalid Login Test: ' + test2 + '<br>';
+            
+            results.innerHTML += 'Tests completed!';
+        }
+        
+        runTests();
+    </script>
+</body>
+</html>

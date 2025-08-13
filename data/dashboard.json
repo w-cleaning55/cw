@@ -1,0 +1,279 @@
+{
+  "overview": {
+    "totalCustomers": 8,
+    "activeBookings": 6,
+    "completedBookings": 2,
+    "totalRevenue": 6120.00,
+    "monthlyRevenue": 5220.00,
+    "averageRating": 4.9,
+    "responseTime": "45 دقيقة",
+    "satisfactionRate": 96.5,
+    "lastUpdated": "2025-01-09T10:30:00Z"
+  },
+  "recentActivity": [
+    {
+      "id": "activity_1",
+      "type": "booking_created",
+      "typeAr": "حجز جديد",
+      "title": "حجز جديد من عبدالرحمن الغامدي",
+      "titleAr": "حجز جديد من عبدالرحمن الغامدي",
+      "description": "خدمة تنظيف السجاد والستائر - 220 ريال",
+      "descriptionAr": "خدمة تنظيف السجاد والستائر - 220 ريال",
+      "timestamp": "2025-01-09T09:30:00Z",
+      "icon": "Calendar",
+      "color": "blue",
+      "actionUrl": "/admin/bookings/booking_1"
+    },
+    {
+      "id": "activity_2",
+      "type": "payment_received",
+      "typeAr": "دفعة مستلمة",
+      "title": "دفعة من نورا الحربي",
+      "titleAr": "دفعة من نورا الحربي",
+      "description": "450 ريال عن طريق التحويل البنكي",
+      "descriptionAr": "450 ريال عن طريق التحويل البنكي",
+      "timestamp": "2025-01-09T08:45:00Z",
+      "icon": "DollarSign",
+      "color": "green",
+      "actionUrl": "/admin/payments"
+    },
+    {
+      "id": "activity_3",
+      "type": "service_completed",
+      "typeAr": "خدمة مكتملة",
+      "title": "اكتمال خدمة جلي الرخام",
+      "titleAr": "اكتمال خدمة جلي الرخام",
+      "description": "للعميلة ريم الشهري - تقييم 5 نجوم",
+      "descriptionAr": "للعميلة ريم الشهري - تقييم 5 نجوم",
+      "timestamp": "2025-01-09T07:30:00Z",
+      "icon": "CheckCircle",
+      "color": "green",
+      "actionUrl": "/admin/bookings/booking_6"
+    },
+    {
+      "id": "activity_4",
+      "type": "customer_message",
+      "typeAr": "رسالة عميل",
+      "title": "استفسار من فاطمة العمري",
+      "titleAr": "استفسار من فاطمة العمري",
+      "description": "سؤال عن خدمات تنظيف المجالس",
+      "descriptionAr": "سؤال عن خدمات تنظيف المجالس",
+      "timestamp": "2025-01-09T06:15:00Z",
+      "icon": "MessageCircle",
+      "color": "purple",
+      "actionUrl": "/admin/messages/msg_4"
+    },
+    {
+      "id": "activity_5",
+      "type": "urgent_request",
+      "typeAr": "طلب عاجل",
+      "title": "طلب عاجل من مطاعم البحر الأحمر",
+      "titleAr": "طلب عاجل من مطاعم البحر الأحمر",
+      "description": "تنظيف قبل التفتيش - تم الترتيب",
+      "descriptionAr": "تنظيف قبل التفتيش - تم الترتيب",
+      "timestamp": "2025-01-08T14:20:00Z",
+      "icon": "AlertTriangle",
+      "color": "red",
+      "actionUrl": "/admin/messages/msg_3"
+    }
+  ],
+  "topServices": [
+    {
+      "serviceId": "service_1",
+      "name": "تنظيف وتعقيم السجاد والستائر",
+      "nameAr": "تنظيف وتعقيم السجاد والستائر",
+      "bookings": 3,
+      "revenue": 890.00,
+      "rating": 4.9,
+      "trend": "up",
+      "trendAr": "صاعد"
+    },
+    {
+      "serviceId": "service_5",
+      "name": "تنظيف المنشآت التجارية",
+      "nameAr": "تنظيف المنشآت التجارية",
+      "bookings": 2,
+      "revenue": 3000.00,
+      "rating": 4.8,
+      "trend": "up",
+      "trendAr": "صاعد"
+    },
+    {
+      "serviceId": "service_7",
+      "name": "خدمة التعقيم العميق",
+      "nameAr": "خدمة التعقيم العميق",
+      "bookings": 2,
+      "revenue": 850.00,
+      "rating": 5.0,
+      "trend": "stable",
+      "trendAr": "ثابت"
+    },
+    {
+      "serviceId": "service_3",
+      "name": "تنظيف وتلميع الأرضيات وجلي الرخام",
+      "nameAr": "تنظيف وتلميع الأرضيات وجلي الرخام",
+      "bookings": 1,
+      "revenue": 520.00,
+      "rating": 5.0,
+      "trend": "up",
+      "trendAr": "صاعد"
+    }
+  ],
+  "monthlyStats": {
+    "january2025": {
+      "month": "يناير 2025",
+      "monthAr": "يناير 2025",
+      "revenue": 5220.00,
+      "bookings": 6,
+      "customers": 8,
+      "completionRate": 100.0,
+      "averageRating": 4.9,
+      "growthRate": 15.3
+    },
+    "december2024": {
+      "month": "ديسمبر 2024",
+      "monthAr": "ديسمبر 2024",
+      "revenue": 4530.00,
+      "bookings": 8,
+      "customers": 6,
+      "completionRate": 95.0,
+      "averageRating": 4.7,
+      "growthRate": 8.2
+    },
+    "november2024": {
+      "month": "نوفمبر 2024",
+      "monthAr": "نوفمبر 2024",
+      "revenue": 4180.00,
+      "bookings": 7,
+      "customers": 5,
+      "completionRate": 100.0,
+      "averageRating": 4.8,
+      "growthRate": 12.1
+    }
+  },
+  "teamPerformance": [
+    {
+      "teamId": "team_jeddah_1",
+      "name": "فريق جدة الأول",
+      "nameAr": "فريق جدة الأول",
+      "leader": "محمد السعيد",
+      "leaderAr": "محمد السعيد",
+      "members": 4,
+      "completedJobs": 8,
+      "averageRating": 4.9,
+      "efficiency": 95.2,
+      "status": "active",
+      "statusAr": "نشط"
+    },
+    {
+      "teamId": "team_jeddah_2",
+      "name": "فريق جدة الثاني",
+      "nameAr": "فريق جدة الثاني",
+      "leader": "عبدالله المنصوري",
+      "leaderAr": "عبدالله المنصوري",
+      "members": 3,
+      "completedJobs": 5,
+      "averageRating": 4.7,
+      "efficiency": 89.1,
+      "status": "active",
+      "statusAr": "نشط"
+    },
+    {
+      "teamId": "team_sterilization",
+      "name": "فريق التعقيم المتخصص",
+      "nameAr": "فريق التعقيم المتخصص",
+      "leader": "أحمد الفارسي",
+      "leaderAr": "أحمد الفارسي",
+      "members": 2,
+      "completedJobs": 3,
+      "averageRating": 5.0,
+      "efficiency": 100.0,
+      "status": "active",
+      "statusAr": "نشط"
+    }
+  ],
+  "upcomingBookings": [
+    {
+      "bookingId": "booking_1",
+      "customerName": "عبدالرحمن الغامدي",
+      "customerNameAr": "عبدالرحمن الغامدي",
+      "serviceName": "تنظيف السجاد والستائر",
+      "serviceNameAr": "تنظيف السجاد والستائر",
+      "date": "2025-01-20T10:00:00Z",
+      "time": "10:00 ص",
+      "timeAr": "10:00 ص",
+      "district": "الزهراء",
+      "districtAr": "الزهراء",
+      "amount": 220.00,
+      "status": "confirmed",
+      "statusAr": "مؤكد",
+      "priority": "normal",
+      "priorityAr": "عادي"
+    },
+    {
+      "bookingId": "booking_4",
+      "customerName": "فاطمة العمري",
+      "customerNameAr": "فاطمة العمري",
+      "serviceName": "تنظيف المجالس والكنب",
+      "serviceNameAr": "تنظيف المجالس والكنب",
+      "date": "2025-01-22T14:00:00Z",
+      "time": "2:00 م",
+      "timeAr": "2:00 م",
+      "district": "الروضة",
+      "districtAr": "الروضة",
+      "amount": 380.00,
+      "status": "pending",
+      "statusAr": "معلق",
+      "priority": "normal",
+      "priorityAr": "عادي"
+    },
+    {
+      "bookingId": "booking_3",
+      "customerName": "خالد القحطاني",
+      "customerNameAr": "خالد القحطاني",
+      "serviceName": "تنظيف المنشآت التجارية",
+      "serviceNameAr": "تنظيف المنشآت التجارية",
+      "date": "2025-01-25T20:00:00Z",
+      "time": "8:00 م",
+      "timeAr": "8:00 م",
+      "district": "العزيزية",
+      "districtAr": "العزيزية",
+      "amount": 1200.00,
+      "status": "confirmed",
+      "statusAr": "مؤكد",
+      "priority": "normal",
+      "priorityAr": "عادي"
+    }
+  ],
+  "notifications": {
+    "unread": 4,
+    "high_priority": 1,
+    "action_required": 4,
+    "recent": [
+      {
+        "id": "notif_1",
+        "title": "حجز جديد تم إنشاؤه",
+        "message": "من عبدالرحمن الغامدي",
+        "type": "booking",
+        "priority": "normal",
+        "timestamp": "2025-01-09T09:30:00Z"
+      },
+      {
+        "id": "notif_5",
+        "title": "عميل جديد مسجل",
+        "message": "فاطمة العمري",
+        "type": "customer",
+        "priority": "normal",
+        "timestamp": "2025-01-09T08:15:00Z"
+      }
+    ]
+  },
+  "quickStats": {
+    "todayBookings": 2,
+    "weeklyRevenue": 2370.00,
+    "pendingPayments": 5150.00,
+    "customerSatisfaction": 96.5,
+    "teamUtilization": 87.3,
+    "averageJobDuration": "3.2 ساعة"
+  }
+}

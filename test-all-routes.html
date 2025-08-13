@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comprehensive Route Testing - اختبار شامل للمسارات</title>
+    <style>
+        * { box-sizing: border-box; }
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            margin: 0; 
+            padding: 20px; 
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        .container { 
+            max-width: 1200px; 
+            margin: 0 auto; 
+            background: white; 
+            border-radius: 15px; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2); 
+            overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        .header h1 { margin: 0; font-size: 2.5em; }
+        .header p { margin: 10px 0 0 0; opacity: 0.9; }
+        .content { padding: 30px; }
+        
+        .test-section {
+            margin-bottom: 40px;
+            border: 1px solid #e0e0e0;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .section-header {
+            background: #f8f9fa;
+            padding: 20px;
+            border-bottom: 1px solid #e0e0e0;
+            font-weight: bold;
+            font-size: 1.2em;
+            color: #495057;
+        }
+        .test-grid {
+            display: grid;
+            gap: 1px;
+            background: #e0e0e0;
+        }
+        .test-item {
+            background: white;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 1fr auto auto auto;
+            gap: 15px;
+            align-items: center;
+        }
+        .test-info h4 { margin: 0 0 5px 0; color: #495057; }
+        .test-info .path { font-family: monospace; background: #f8f9fa; padding: 3px 8px; border-radius: 4px; font-size: 0.9em; }
+        .test-info .description { color: #6c757d; font-size: 0.9em; margin: 5px 0 0 0; }
+        
+        .status {
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: bold;
+            min-width: 100px;
+            text-align: center;
+        }
+        .status.pending { background: #fff3cd; color: #856404; }
+        .status.testing { background: #cce5ff; color: #004085; }
+        .status.success { background: #d4edda; color: #155724; }
+        .status.error { background: #f8d7da; color: #721c24; }
+        .status.warning { background: #fff3cd; color: #856404; }
+        
+        .test-btn {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.9em;
+        }
+        .test-btn:hover { background: #0056b3; }
+        .test-btn:disabled { background: #6c757d; cursor: not-allowed; }
+        
+        .visit-btn {
+            background: #28a745;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.9em;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .visit-btn:hover { background: #1e7e34; }
+        
+        .controls {
+            text-align: center;
+            margin: 30px 0;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+        }
+        .controls button {
+            background: #28a745;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.1em;
+            margin: 0 10px;
+        }
+        .controls button:hover { background: #1e7e34; }
+        
+        .summary {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        .summary-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .summary-card h3 { margin: 0 0 10px 0; color: #495057; }
+        .summary-card .number { font-size: 2em; font-weight: bold; }
+        .summary-card.success .number { color: #28a745; }
+        .summary-card.error .number { color: #dc3545; }
+        .summary-card.warning .number { color: #ffc107; }
+        .summary-card.info .number { color: #17a2b8; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🔍 اختبار شامل للمسارات</h1>
+            <p>Comprehensive Route Testing System</p>
+        </div>
+        
+        <div class="content">
+            <div class="controls">
+                <button onclick="testAllRoutes()">🚀 اختبار جميع المسارات</button>
+                <button onclick="testPageRoutes()">📄 اختبار مسارات الصفحات</button>
+                <button onclick="testApiRoutes()">🔌 اختبار مسارات API</button>
+                <button onclick="resetAllTests()">🔄 إعادة تعيين</button>
+            </div>
+
+            <div class="summary" id="summary">
+                <div class="summary-card success">
+                    <h3>نجح</h3>
+                    <div class="number" id="success-count">0</div>
+                </div>
+                <div class="summary-card error">
+                    <h3>فشل</h3>
+                    <div class="number" id="error-count">0</div>
+                </div>
+                <div class="summary-card warning">
+                    <h3>تحذير</h3>
+                    <div class="number" id="warning-count">0</div>
+                </div>
+                <div class="summary-card info">
+                    <h3>المجموع</h3>
+                    <div class="number" id="total-count">0</div>
+                </div>
+            </div>
+
+            <!-- Page Routes -->
+            <div class="test-section">
+                <div class="section-header">
+                    📄 مسارات الصفحات - Page Routes
+                </div>
+                <div class="test-grid">
+                    <div class="test-item">
+                        <div class="test-info">
+                            <h4>الصفحة الرئيسية</h4>
+                            <div class="path">/</div>
+                            <div class="description">Home page with services showcase</div>
+                        </div>
+                        <div class="status pending" id="status-home">في الانتظار</div>
+                        <button class="test-btn" onclick="testSingleRoute('/', 'home')">اختبار</button>
+                        <a href="/" target="_blank" class="visit-btn">زيارة</a>
+                    </div>
+                    
+                    <div class="test-item">
+                        <div class="test-info">
+                            <h4>صفحة تسجيل الدخول</h4>
+                            <div class="path">/auth/login</div>
+                            <div class="description">Authentication login page</div>
+                        </div>
+                        <div class="status pending" id="status-login">في الانتظار</div>
+                        <button class="test-btn" onclick="testSingleRoute('/auth/login', 'login')">اختبار</button>
+                        <a href="/auth/login" target="_blank" class="visit-btn">زيارة</a>
+                    </div>
+                    
+                    <div class="test-item">
+                        <div class="test-info">
+                            <h4>لوحة الإدارة</h4>
+                            <div class="path">/admin</div>
+                            <div class="description">Admin dashboard</div>
+                        </div>
+                        <div class="status pending" id="status-admin">في الانتظار</div>
+                        <button class="test-btn" onclick="testSingleRoute('/admin', 'admin')">اختبار</button>
+                        <a href="/admin" target="_blank" class="visit-btn">زيارة</a>
+                    </div>
+                    
+                    <div class="test-item">
+                        <div class="test-info">
+                            <h4>إدارة المستخدمين</h4>
+                            <div class="path">/admin/users</div>
+                            <div class="description">User management page</div>
+                        </div>
+                        <div class="status pending" id="status-users">في الانتظار</div>
+                        <button class="test-btn" onclick="testSingleRoute('/admin/users', 'users')">اختبار</button>
+                        <a href="/admin/users" target="_blank" class="visit-btn">زيارة</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- API Routes -->
+            <div class="test-section">
+                <div class="section-header">
+                    🔌 مسارات API - API Routes
+                </div>
+                <div class="test-grid">
+                    <div class="test-item">
+                        <div class="test-info">
+                            <h4>Ping Test</h4>
+                            <div class="path">/api/ping</div>
+                            <div class="description">Health check endpoint</div>
+                        </div>
+                        <div class="status pending" id="status-api-ping">في الانتظار</div>
+                        <button class="test-btn" onclick="testApiRoute('/api/ping', 'api-ping')">اختبار</button>
+                        <a href="/api/ping" target="_blank" class="visit-btn">زيارة</a>
+                    </div>
+                    
+                    <div class="test-item">
+                        <div class="test-info">
+                            <h4>Color Palettes</h4>
+                            <div class="path">/api/color-palettes</div>
+                            <div class="description">Color palette data</div>
+                        </div>
+                        <div class="status pending" id="status-api-colors">في الانتظار</div>
+                        <button class="test-btn" onclick="testApiRoute('/api/color-palettes', 'api-colors')">اختبار</button>
+                        <a href="/api/color-palettes" target="_blank" class="visit-btn">زيارة</a>
+                    </div>
+                    
+                    <div class="test-item">
+                        <div class="test-info">
+                            <h4>Company Info</h4>
+                            <div class="path">/api/company-info</div>
+                            <div class="description">Company information</div>
+                        </div>
+                        <div class="status pending" id="status-api-company">في الانتظار</div>
+                        <button class="test-btn" onclick="testApiRoute('/api/company-info', 'api-company')">اختبار</button>
+                        <a href="/api/company-info" target="_blank" class="visit-btn">زيارة</a>
+                    </div>
+                    
+                    <div class="test-item">
+                        <div class="test-info">
+                            <h4>Admin Services</h4>
+                            <div class="path">/api/admin/services</div>
+                            <div class="description">Services management data</div>
+                        </div>
+                        <div class="status pending" id="status-api-services">في الانتظار</div>
+                        <button class="test-btn" onclick="testApiRoute('/api/admin/services', 'api-services')">اختبار</button>
+                        <a href="/api/admin/services" target="_blank" class="visit-btn">زيارة</a>
+                    </div>
+                    
+                    <div class="test-item">
+                        <div class="test-info">
+                            <h4>Site Content</h4>
+                            <div class="path">/api/admin/site-content</div>
+                            <div class="description">Site content management</div>
+                        </div>
+                        <div class="status pending" id="status-api-content">في الانتظار</div>
+                        <button class="test-btn" onclick="testApiRoute('/api/admin/site-content', 'api-content')">اختبار</button>
+                        <a href="/api/admin/site-content" target="_blank" class="visit-btn">زيارة</a>
+                    </div>
+                    
+                    <div class="test-item">
+                        <div class="test-info">
+                            <h4>Dashboard Stats</h4>
+                            <div class="path">/api/admin/dashboard-stats</div>
+                            <div class="description">Dashboard statistics</div>
+                        </div>
+                        <div class="status pending" id="status-api-stats">في الانتظار</div>
+                        <button class="test-btn" onclick="testApiRoute('/api/admin/dashboard-stats', 'api-stats')">اختبار</button>
+                        <a href="/api/admin/dashboard-stats" target="_blank" class="visit-btn">زيارة</a>
+                    </div>
+                    
+                    <div class="test-item">
+                        <div class="test-info">
+                            <h4>Debug Users</h4>
+                            <div class="path">/api/debug/users</div>
+                            <div class="description">Debug user information</div>
+                        </div>
+                        <div class="status pending" id="status-api-debug">في الانتظار</div>
+                        <button class="test-btn" onclick="testApiRoute('/api/debug/users', 'api-debug')">اختبار</button>
+                        <a href="/api/debug/users" target="_blank" class="visit-btn">زيارة</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Authentication Routes -->
+            <div class="test-section">
+                <div class="section-header">
+                    🔐 مسارات المصادقة - Authentication Routes
+                </div>
+                <div class="test-grid">
+                    <div class="test-item">
+                        <div class="test-info">
+                            <h4>Login API</h4>
+                            <div class="path">POST /api/auth/login</div>
+                            <div class="description">User authentication endpoint</div>
+                        </div>
+                        <div class="status pending" id="status-auth-login">في الانتظار</div>
+                        <button class="test-btn" onclick="testAuthLogin()">اختبار</button>
+                        <button class="test-btn" onclick="testAuthLoginDemo()">اختبار تجريبي</button>
+                    </div>
+                    
+                    <div class="test-item">
+                        <div class="test-info">
+                            <h4>Token Verify</h4>
+                            <div class="path">GET /api/auth/verify</div>
+                            <div class="description">Token verification endpoint</div>
+                        </div>
+                        <div class="status pending" id="status-auth-verify">في الانتظار</div>
+                        <button class="test-btn" onclick="testAuthVerify()">اختبار</button>
+                        <a href="/api/auth/verify" target="_blank" class="visit-btn">زيارة</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let testResults = {
+            success: 0,
+            error: 0,
+            warning: 0,
+            total: 0
+        };
+
+        async function testSingleRoute(path, id) {
+            const statusEl = document.getElementById(`status-${id}`);
+            statusEl.textContent = 'جاري الاختبار...';
+            statusEl.className = 'status testing';
+            
+            try {
+                const response = await fetch(path, { method: 'GET' });
+                
+                if (response.ok) {
+                    statusEl.textContent = `✅ يعمل (${response.status})`;
+                    statusEl.className = 'status success';
+                    updateTestCount('success');
+                } else if (response.status === 404) {
+                    statusEl.textContent = `❌ غير موجود (${response.status})`;
+                    statusEl.className = 'status error';
+                    updateTestCount('error');
+                } else {
+                    statusEl.textContent = `⚠️ مشكلة (${response.status})`;
+                    statusEl.className = 'status warning';
+                    updateTestCount('warning');
+                }
+            } catch (error) {
+                statusEl.textContent = `❌ خطأ في الاتصال`;
+                statusEl.className = 'status error';
+                updateTestCount('error');
+            }
+        }
+
+        async function testApiRoute(path, id) {
+            const statusEl = document.getElementById(`status-${id}`);
+            statusEl.textContent = 'جاري الاختبار...';
+            statusEl.className = 'status testing';
+            
+            try {
+                const response = await fetch(path);
+                const data = await response.json();
+                
+                if (response.ok && data) {
+                    statusEl.textContent = `✅ JSON صحيح (${response.status})`;
+                    statusEl.className = 'status success';
+                    updateTestCount('success');
+                } else {
+                    statusEl.textContent = `❌ استجابة خاطئة (${response.status})`;
+                    statusEl.className = 'status error';
+                    updateTestCount('error');
+                }
+            } catch (error) {
+                statusEl.textContent = `❌ خطأ في JSON`;
+                statusEl.className = 'status error';
+                updateTestCount('error');
+            }
+        }
+
+        async function testAuthLogin() {
+            const statusEl = document.getElementById('status-auth-login');
+            statusEl.textContent = 'جاري الاختبار...';
+            statusEl.className = 'status testing';
+            
+            try {
+                const response = await fetch('/api/auth/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ username: 'invalid', password: 'invalid' })
+                });
+                
+                if (response.status === 401) {
+                    statusEl.textContent = '✅ يرفض الدخول الخاطئ';
+                    statusEl.className = 'status success';
+                    updateTestCount('success');
+                } else {
+                    statusEl.textContent = `❌ استجابة غير متوقعة (${response.status})`;
+                    statusEl.className = 'status error';
+                    updateTestCount('error');
+                }
+            } catch (error) {
+                statusEl.textContent = '❌ خطأ في الاختبار';
+                statusEl.className = 'status error';
+                updateTestCount('error');
+            }
+        }
+
+        async function testAuthLoginDemo() {
+            try {
+                const response = await fetch('/api/auth/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ username: 'admin', password: 'admin123' })
+                });
+                
+                const data = await response.json();
+                
+                if (response.ok && data.token) {
+                    alert('✅ تم تسجيل الدخول بنجاح!\nToken: ' + data.token.substring(0, 50) + '...');
+                    localStorage.setItem('auth_token', data.token);
+                } else {
+                    alert('❌ فشل تسجيل الدخول: ' + data.error);
+                }
+            } catch (error) {
+                alert('❌ خطأ في تسجيل الدخول: ' + error.message);
+            }
+        }
+
+        async function testAuthVerify() {
+            const statusEl = document.getElementById('status-auth-verify');
+            statusEl.textContent = 'جاري الاختبار...';
+            statusEl.className = 'status testing';
+            
+            const token = localStorage.getItem('auth_token');
+            
+            try {
+                const response = await fetch('/api/auth/verify', {
+                    headers: {
+                        'Authorization': token ? `Bearer ${token}` : ''
+                    }
+                });
+                
+                if (response.status === 401 && !token) {
+                    statusEl.textContent = '✅ يطلب المصادقة';
+                    statusEl.className = 'status success';
+                    updateTestCount('success');
+                } else if (response.ok && token) {
+                    statusEl.textContent = '✅ Token صحيح';
+                    statusEl.className = 'status success';
+                    updateTestCount('success');
+                } else {
+                    statusEl.textContent = `⚠️ حالة غير متوقعة (${response.status})`;
+                    statusEl.className = 'status warning';
+                    updateTestCount('warning');
+                }
+            } catch (error) {
+                statusEl.textContent = '❌ خطأ في التحقق';
+                statusEl.className = 'status error';
+                updateTestCount('error');
+            }
+        }
+
+        function updateTestCount(type) {
+            testResults[type]++;
+            testResults.total++;
+            
+            document.getElementById('success-count').textContent = testResults.success;
+            document.getElementById('error-count').textContent = testResults.error;
+            document.getElementById('warning-count').textContent = testResults.warning;
+            document.getElementById('total-count').textContent = testResults.total;
+        }
+
+        function resetAllTests() {
+            testResults = { success: 0, error: 0, warning: 0, total: 0 };
+            document.getElementById('success-count').textContent = '0';
+            document.getElementById('error-count').textContent = '0';
+            document.getElementById('warning-count').textContent = '0';
+            document.getElementById('total-count').textContent = '0';
+            
+            document.querySelectorAll('.status').forEach(el => {
+                el.textContent = 'في الانتظار';
+                el.className = 'status pending';
+            });
+        }
+
+        async function testPageRoutes() {
+            await testSingleRoute('/', 'home');
+            await delay(500);
+            await testSingleRoute('/auth/login', 'login');
+            await delay(500);
+            await testSingleRoute('/admin', 'admin');
+            await delay(500);
+            await testSingleRoute('/admin/users', 'users');
+        }
+
+        async function testApiRoutes() {
+            await testApiRoute('/api/ping', 'api-ping');
+            await delay(500);
+            await testApiRoute('/api/color-palettes', 'api-colors');
+            await delay(500);
+            await testApiRoute('/api/company-info', 'api-company');
+            await delay(500);
+            await testApiRoute('/api/admin/services', 'api-services');
+            await delay(500);
+            await testApiRoute('/api/admin/site-content', 'api-content');
+            await delay(500);
+            await testApiRoute('/api/admin/dashboard-stats', 'api-stats');
+            await delay(500);
+            await testApiRoute('/api/debug/users', 'api-debug');
+            await delay(500);
+            await testAuthLogin();
+            await delay(500);
+            await testAuthVerify();
+        }
+
+        async function testAllRoutes() {
+            resetAllTests();
+            await testPageRoutes();
+            await delay(1000);
+            await testApiRoutes();
+        }
+
+        function delay(ms) {
+            return new Promise(resolve => setTimeout(resolve, ms));
+        }
+
+        // Auto-test on load
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                testAllRoutes();
+            }, 1000);
+        });
+    </script>
+</body>
+</html>

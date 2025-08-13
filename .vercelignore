@@ -1,0 +1,54 @@
+# Development files
+.env.local
+.env.development
+.env.test
+
+# Keep source and build config files so Vercel can build
+
+# Build artifacts we don't need
+dist/server/
+
+# Node modules
+node_modules/
+
+# Development and testing
+.git/
+.gitignore
+README.md
+AGENTS.md
+
+# Other build outputs
+netlify/
+
+# TypeScript source maps
+*.map
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Coverage directory used by tools like istanbul
+coverage/
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db

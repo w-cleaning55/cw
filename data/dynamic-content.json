@@ -1,0 +1,575 @@
+{
+  "homepage": {
+    "hero": {
+      "title": {
+        "ar": "عالم النظافة جدة",
+        "en": "Cleaning World Jeddah"
+      },
+      "subtitle": {
+        "ar": "شريككم الموثوق لخدمات التنظيف المحترفة",
+        "en": "Your trusted partner for professional cleaning services"
+      },
+      "description": {
+        "ar": "شركة تنظيف محترفة في جدة نستخدم أحدث المعدات العالمية مع خبرة تزيد عن 6 سنوات في خدمة عملائنا الكرام",
+        "en": "Professional cleaning company in Jeddah using latest international equipment with over 6 years of experience serving our valued customers"
+      },
+      "cta": {
+        "ar": "احصل على عرض مجاني",
+        "en": "Get Free Quote"
+      },
+      "ctaSecondary": {
+        "ar": "اتصل الآن",
+        "en": "Call Now"
+      },
+      "backgroundImage": "/images/hero-banner.svg",
+      "backgroundVideo": "",
+      "statsVisible": true,
+      "stats": {
+        "experience": {
+          "value": "6+",
+          "label": {
+            "ar": "سنوات الخبرة",
+            "en": "Years Experience"
+          }
+        },
+        "projects": {
+          "value": "2850+",
+          "label": {
+            "ar": "مشروع مكتمل",
+            "en": "Projects Completed"
+          }
+        },
+        "employees": {
+          "value": "50+",
+          "label": {
+            "ar": "موظف متخصص",
+            "en": "Skilled Employees"
+          }
+        },
+        "satisfaction": {
+          "value": "98.5%",
+          "label": {
+            "ar": "رضا العملاء",
+            "en": "Customer Satisfaction"
+          }
+        }
+      }
+    },
+    "services": {
+      "visible": true,
+      "title": {
+        "ar": "خدماتنا المميزة",
+        "en": "Our Featured Services"
+      },
+      "subtitle": {
+        "ar": "حلول تنظيف مهنية لجميع احتياجاتك",
+        "en": "Professional cleaning solutions for all your needs"
+      },
+      "showCount": 6,
+      "viewAllButton": {
+        "ar": "عرض جميع الخدمات",
+        "en": "View All Services"
+      },
+      "layout": "grid",
+      "cardStyle": "modern"
+    },
+    "features": {
+      "visible": true,
+      "title": {
+        "ar": "لماذا نحن الخيار الأفضل؟",
+        "en": "Why We Are The Best Choice?"
+      },
+      "subtitle": {
+        "ar": "نقدم خدمات تنظيف عالية الجودة بأحدث المعدات والتقنيات",
+        "en": "We provide high-quality cleaning services with latest equipment and technologies"
+      },
+      "layout": "3columns",
+      "items": [
+        {
+          "id": "feature1",
+          "icon": "Shield",
+          "title": {
+            "ar": "مضمونة 100%",
+            "en": "100% Guaranteed"
+          },
+          "description": {
+            "ar": "ضمان شامل على جميع الخدمات مع إمكانية الإع��دة مجاناً",
+            "en": "Full warranty on all services with free redo guarantee"
+          }
+        },
+        {
+          "id": "feature2",
+          "icon": "Clock",
+          "title": {
+            "ar": "خدمة سريعة",
+            "en": "Fast Service"
+          },
+          "description": {
+            "ar": "فريق عمل محترف ينجز المهام في الوقت المحدد",
+            "en": "Professional team that completes tasks on time"
+          }
+        },
+        {
+          "id": "feature3",
+          "icon": "Award",
+          "title": {
+            "ar": "جودة عالية",
+            "en": "High Quality"
+          },
+          "description": {
+            "ar": "استخدام أفضل المعدات والمواد الصديقة للبيئة",
+            "en": "Using best equipment and eco-friendly materials"
+          }
+        },
+        {
+          "id": "feature4",
+          "icon": "Users",
+          "title": {
+            "ar": "فريق متخصص",
+            "en": "Expert Team"
+          },
+          "description": {
+            "ar": "عمالة مدربة وذات خبرة في جميع أنواع التنظيف",
+            "en": "Trained and experienced workers in all types of cleaning"
+          }
+        },
+        {
+          "id": "feature5",
+          "icon": "Phone",
+          "title": {
+            "ar": "متاح 24/7",
+            "en": "24/7 Available"
+          },
+          "description": {
+            "ar": "خدمة عملاء متواصلة وخدمة طوارئ على مدار الساعة",
+            "en": "Continuous customer service and 24/7 emergency service"
+          }
+        },
+        {
+          "id": "feature6",
+          "icon": "DollarSign",
+          "title": {
+            "ar": "أسعار منافسة",
+            "en": "Competitive Prices"
+          },
+          "description": {
+            "ar": "أسعار عادلة ومناسبة مع خصومات للعملاء المميزين",
+            "en": "Fair and reasonable prices with discounts for valued customers"
+          }
+        }
+      ]
+    },
+    "about": {
+      "visible": true,
+      "title": {
+        "ar": "من نحن؟",
+        "en": "Who We Are?"
+      },
+      "subtitle": {
+        "ar": "شركة رائدة في مجال خدمات التنظيف بجدة",
+        "en": "Leading company in cleaning services in Jeddah"
+      },
+      "description": {
+        "ar": "عالم النظافة جدة هي شركة تنظيف احترافية تأسست عام 2018، ونفخر بتقديم خدمات تنظيف عالية الجودة باستخدام أحدث المعدات والتقنيات الأمريكية والأوروبية. نحن نخدم جميع أحياء جدة بفريق متخصص ومدرب على أعلى مستوى.",
+        "en": "Cleaning World Jeddah is a professional cleaning company established in 2018. We pride ourselves on providing high-quality cleaning services using the latest American and European equipment and technologies. We serve all districts of Jeddah with a specialized team trained to the highest standards."
+      },
+      "image": "/uploads/about/about-hero.jpg",
+      "videoUrl": "",
+      "achievements": [
+        {
+          "icon": "Trophy",
+          "number": "6+",
+          "label": {
+            "ar": "سنوات خبرة",
+            "en": "Years Experience"
+          }
+        },
+        {
+          "icon": "Users",
+          "number": "2850+",
+          "label": {
+            "ar": "عميل راضي",
+            "en": "Happy Clients"
+          }
+        },
+        {
+          "icon": "CheckCircle",
+          "number": "98.5%",
+          "label": {
+            "ar": "معدل الرضا",
+            "en": "Satisfaction Rate"
+          }
+        },
+        {
+          "icon": "Building",
+          "number": "50+",
+          "label": {
+            "ar": "موظف",
+            "en": "Employees"
+          }
+        }
+      ]
+    },
+    "testimonials": {
+      "visible": true,
+      "title": {
+        "ar": "آراء عملائنا",
+        "en": "Customer Reviews"
+      },
+      "subtitle": {
+        "ar": "ما يقوله عملاؤنا الكرام عن خدماتنا",
+        "en": "What our valued customers say about our services"
+      },
+      "showCount": 3,
+      "autoSlide": true,
+      "slideInterval": 5000,
+      "showRatings": true,
+      "showDates": true
+    },
+    "contact": {
+      "visible": true,
+      "title": {
+        "ar": "تواصل معنا اليوم",
+        "en": "Contact Us Today"
+      },
+      "subtitle": {
+        "ar": "احصل على استشارة مجانية وعرض أسعار خاص",
+        "en": "Get free consultation and special price quote"
+      },
+      "description": {
+        "ar": "فريقنا جاهز لخدمتك على مدار الساعة. تواصل معنا الآن لحجز موعد أو الحصول على عرض أسعار مخصص لاحتياجاتك.",
+        "en": "Our team is ready to serve you 24/7. Contact us now to book an appointment or get a custom quote for your needs."
+      },
+      "ctaPrimary": {
+        "ar": "اتصل الآن",
+        "en": "Call Now"
+      },
+      "ctaSecondary": {
+        "ar": "واتساب",
+        "en": "WhatsApp"
+      },
+      "backgroundImage": "/uploads/cta/contact-bg.jpg"
+    }
+  },
+  "settings": {
+    "siteName": {
+      "ar": "عالم النظافة جدة",
+      "en": "Cleaning World Jeddah"
+    },
+    "siteDescription": {
+      "ar": "شركة تنظيف احترافية في جدة تقدم خدمات تنظيف شاملة للمنازل والمكاتب والمنشآت التجارية",
+      "en": "Professional cleaning company in Jeddah providing comprehensive cleaning services for homes, offices and commercial facilities"
+    },
+    "defaultLanguage": "ar",
+    "enableMultiLanguage": true,
+    "supportedLanguages": ["ar", "en"],
+    "rtlSupport": true,
+    "theme": {
+      "primary": "#2563eb",
+      "secondary": "#059669",
+      "accent": "#dc2626",
+      "neutral": "#6b7280"
+    },
+    "layout": {
+      "headerStyle": "modern",
+      "footerStyle": "detailed",
+      "sidebarPosition": "right",
+      "containerMaxWidth": "1280px"
+    },
+    "features": {
+      "darkMode": true,
+      "animations": true,
+      "lazyLoading": true,
+      "seo": true,
+      "analytics": true,
+      "cookieConsent": true
+    }
+  },
+  "navigation": {
+    "header": {
+      "logo": {
+        "image": "/images/logo.svg",
+        "imageAr": "/images/logo-ar.svg",
+        "text": {
+          "ar": "عالم النظافة",
+          "en": "Cleaning World"
+        },
+        "showText": true
+      },
+      "menu": [
+        {
+          "id": "home",
+          "label": {
+            "ar": "الرئيسية",
+            "en": "Home"
+          },
+          "url": "/",
+          "active": true,
+          "order": 1
+        },
+        {
+          "id": "services",
+          "label": {
+            "ar": "خدماتنا",
+            "en": "Our Services"
+          },
+          "url": "/services",
+          "active": true,
+          "order": 2,
+          "submenu": [
+            {
+              "id": "carpet-cleaning",
+              "label": {
+                "ar": "تنظيف السجاد",
+                "en": "Carpet Cleaning"
+              },
+              "url": "/services/carpet-cleaning"
+            },
+            {
+              "id": "marble-polishing",
+              "label": {
+                "ar": "جلي الرخام",
+                "en": "Marble Polishing"
+              },
+              "url": "/services/marble-polishing"
+            },
+            {
+              "id": "deep-cleaning",
+              "label": {
+                "ar": "التنظيف العميق",
+                "en": "Deep Cleaning"
+              },
+              "url": "/services/deep-cleaning"
+            }
+          ]
+        },
+        {
+          "id": "about",
+          "label": {
+            "ar": "من نحن",
+            "en": "About Us"
+          },
+          "url": "/about",
+          "active": true,
+          "order": 3
+        },
+        {
+          "id": "contact",
+          "label": {
+            "ar": "اتصل بنا",
+            "en": "Contact Us"
+          },
+          "url": "/contact",
+          "active": true,
+          "order": 4
+        },
+        {
+          "id": "booking",
+          "label": {
+            "ar": "احجز الآن",
+            "en": "Book Now"
+          },
+          "url": "/booking",
+          "active": true,
+          "order": 5,
+          "style": "button"
+        }
+      ],
+      "contactInfo": {
+        "phone": "+966126543210",
+        "whatsapp": "+966556789012",
+        "showInHeader": true
+      },
+      "languageSelector": {
+        "show": true,
+        "style": "dropdown"
+      },
+      "themeSelector": {
+        "show": true,
+        "position": "header"
+      }
+    },
+    "footer": {
+      "columns": [
+        {
+          "id": "company",
+          "title": {
+            "ar": "الشركة",
+            "en": "Company"
+          },
+          "links": [
+            {
+              "label": {
+                "ar": "من نحن",
+                "en": "About Us"
+              },
+              "url": "/about"
+            },
+            {
+              "label": {
+                "ar": "خدماتنا",
+                "en": "Our Services"
+              },
+              "url": "/services"
+            },
+            {
+              "label": {
+                "ar": "المدونة",
+                "en": "Blog"
+              },
+              "url": "/blog"
+            }
+          ]
+        },
+        {
+          "id": "services",
+          "title": {
+            "ar": "الخدمات",
+            "en": "Services"
+          },
+          "links": [
+            {
+              "label": {
+                "ar": "تنظيف السجاد",
+                "en": "Carpet Cleaning"
+              },
+              "url": "/services/carpet-cleaning"
+            },
+            {
+              "label": {
+                "ar": "جلي الرخام",
+                "en": "Marble Polishing"
+              },
+              "url": "/services/marble-polishing"
+            },
+            {
+              "label": {
+                "ar": "التنظيف العميق",
+                "en": "Deep Cleaning"
+              },
+              "url": "/services/deep-cleaning"
+            }
+          ]
+        },
+        {
+          "id": "support",
+          "title": {
+            "ar": "الدعم",
+            "en": "Support"
+          },
+          "links": [
+            {
+              "label": {
+                "ar": "اتصل بنا",
+                "en": "Contact Us"
+              },
+              "url": "/contact"
+            },
+            {
+              "label": {
+                "ar": "الأسئلة الشائعة",
+                "en": "FAQ"
+              },
+              "url": "/faq"
+            },
+            {
+              "label": {
+                "ar": "الدعم الفني",
+                "en": "Technical Support"
+              },
+              "url": "/support"
+            }
+          ]
+        },
+        {
+          "id": "legal",
+          "title": {
+            "ar": "قانوني",
+            "en": "Legal"
+          },
+          "links": [
+            {
+              "label": {
+                "ar": "الشروط والأحكام",
+                "en": "Terms & Conditions"
+              },
+              "url": "/terms"
+            },
+            {
+              "label": {
+                "ar": "سياسة الخصوصية",
+                "en": "Privacy Policy"
+              },
+              "url": "/privacy"
+            },
+            {
+              "label": {
+                "ar": "سياسة الاسترداد",
+                "en": "Refund Policy"
+              },
+              "url": "/refund"
+            }
+          ]
+        }
+      ],
+      "socialMedia": {
+        "show": true,
+        "platforms": [
+          {
+            "name": "facebook",
+            "url": "https://facebook.com/CleaningWorldJeddah",
+            "icon": "Facebook"
+          },
+          {
+            "name": "twitter",
+            "url": "https://twitter.com/cleanworld_jed",
+            "icon": "Twitter"
+          },
+          {
+            "name": "instagram",
+            "url": "https://instagram.com/cleaningworld.jeddah",
+            "icon": "Instagram"
+          },
+          {
+            "name": "linkedin",
+            "url": "https://linkedin.com/company/cleaning-world-jeddah",
+            "icon": "Linkedin"
+          },
+          {
+            "name": "youtube",
+            "url": "https://youtube.com/@CleaningWorldJeddah",
+            "icon": "Youtube"
+          }
+        ]
+      },
+      "newsletter": {
+        "show": true,
+        "title": {
+          "ar": "اشترك في النشرة الإخبارية",
+          "en": "Subscribe to Newsletter"
+        },
+        "placeholder": {
+          "ar": "أدخل بريدك الإلكتروني",
+          "en": "Enter your email"
+        },
+        "button": {
+          "ar": "اشتراك",
+          "en": "Subscribe"
+        }
+      },
+      "copyright": {
+        "text": {
+          "ar": "جميع الحقوق محفوظة © 2024 عالم النظافة جدة",
+          "en": "All Rights Reserved © 2024 Cleaning World Jeddah"
+        },
+        "showYear": true
+      }
+    }
+  },
+  "metadata": {
+    "version": "1.0.0",
+    "lastModified": "2025-01-10T00:00:00Z",
+    "modifiedBy": "admin",
+    "revision": 1
+  }
+}

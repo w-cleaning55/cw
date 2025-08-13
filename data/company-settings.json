@@ -1,0 +1,530 @@
+{
+  "company": {
+    "id": "company-1",
+    "name": "عالم النظافة جدة",
+    "nameAr": "عالم النظافة جدة",
+    "nameEn": "Cleaning World Jeddah",
+    "description": "شركة تنظيف احترافية في جدة تستخدم أحدث المعدات الأمريكية والأوروبية مع أكثر من 6 سنوات من الخبرة في السوق السعودي. نقدم خدمات تنظيف شاملة للمنازل والمكاتب والمنشآت التجارية بأعلى معايير الجودة.",
+    "descriptionAr": "شركة تنظيف احترافية في جدة تستخدم أحدث المعدات الأمريكية والأوروبية مع أكثر من 6 سنوات من الخبرة في السوق السعودي. نقدم خدمات تنظيف شاملة للمنازل والمكاتب والمنشآت التجارية بأعلى معايير الجودة.",
+    "descriptionEn": "Professional cleaning company in Jeddah using the latest American and European equipment with over 6 years of experience in the Saudi market. We provide comprehensive cleaning services for homes, offices, and commercial establishments with the highest quality standards.",
+    "tagline": "شريكك الموثوق لخدمات التنظيف المهنية في جدة",
+    "taglineAr": "شريكك الموثوق لخدمات التنظيف المهنية في جدة",
+    "taglineEn": "Your trusted partner for professional cleaning services in Jeddah",
+    "slogan": "نظافة.. جودة.. ثقة",
+    "sloganAr": "نظافة.. جودة.. ثقة",
+    "sloganEn": "Cleanliness.. Quality.. Trust",
+    "website": "https://cleaningworld-jeddah.com",
+    "email": "info@cleaningworld-jeddah.com",
+    "supportEmail": "support@cleaningworld-jeddah.com",
+    "salesEmail": "sales@cleaningworld-jeddah.com",
+    "phone": "+966126543210",
+    "whatsapp": "+966556789012",
+    "emergencyPhone": "+966501234567",
+    "fax": "+966126543211",
+    "address": {
+      "street": "شارع الأمير سلطان، حي الزهراء",
+      "streetAr": "شارع الأمير سلطان، حي الزهراء",
+      "streetEn": "Prince Sultan Street, Al-Zahra District",
+      "city": "جدة",
+      "cityAr": "جدة",
+      "cityEn": "Jeddah",
+      "state": "منطقة مكة المكرمة",
+      "stateAr": "منطقة مكة المكرمة",
+      "stateEn": "Makkah Province",
+      "country": "المملكة العربية السعودية",
+      "countryAr": "المملكة العربية السعودية",
+      "countryEn": "Saudi Arabia",
+      "countryCode": "SA",
+      "zipCode": "21589",
+      "poBox": "ص.ب 12345",
+      "district": "الزهراء",
+      "districtAr": "الزهراء",
+      "districtEn": "Al-Zahra",
+      "buildingNumber": "8742",
+      "additionalNumber": "2121",
+      "coordinates": {
+        "latitude": 21.5433,
+        "longitude": 39.1728
+      }
+    },
+    "logo": "/images/company/logo.png",
+    "logoWhite": "/images/company/logo-white.png",
+    "logoDark": "/images/company/logo-dark.png",
+    "favicon": "/images/company/favicon.ico",
+    "coverImage": "/images/company/cover.jpg",
+    "foundedYear": 2018,
+    "employeesCount": 50,
+    "projectsCompleted": 2850,
+    "satisfactionRate": 98.5,
+    "serviceAreas": [
+      "الزهراء", "السلامة", "الروضة", "الشا��ئ", "العزيزية", "المروة", 
+      "النزهة", "الفيصلية", "البغدادية", "المرجان", "النهضة", "الصفا",
+      "الحمراء", "الأندلس", "الجامعة", "السامر", "الواحة", "الكورنيش"
+    ],
+    "serviceAreasAr": [
+      "الزهراء", "السلامة", "الروضة", "الشاطئ", "العزيزية", "المروة", 
+      "النزهة", "الفيصلية", "البغدادية", "المرجان", "النهضة", "الصفا",
+      "الحمراء", "الأندلس", "الجامعة", "السامر", "الواحة", "الكورنيش"
+    ],
+    "serviceAreasEn": [
+      "Al-Zahra", "Al-Salamah", "Al-Rawdah", "Al-Shati", "Al-Aziziyah", "Al-Marwah",
+      "Al-Nuzhah", "Al-Faisaliyah", "Al-Baghdadiyah", "Al-Marjan", "Al-Nahdah", "Al-Safa",
+      "Al-Hamra", "Al-Andalus", "Al-Jamiah", "Al-Samer", "Al-Wahat", "Corniche"
+    ],
+    "businessHours": {
+      "weekdays": {
+        "ar": "السبت - الخميس: 7:00 ص - 10:00 م",
+        "en": "Saturday - Thursday: 7:00 AM - 10:00 PM",
+        "open": "07:00",
+        "close": "22:00"
+      },
+      "friday": {
+        "ar": "الجمعة: 2:00 م - 10:00 م",
+        "en": "Friday: 2:00 PM - 10:00 PM",
+        "open": "14:00",
+        "close": "22:00"
+      },
+      "emergency": {
+        "ar": "خدمة طوارئ 24/7",
+        "en": "24/7 Emergency Service",
+        "available": true
+      }
+    },
+    "socialMedia": {
+      "facebook": "https://facebook.com/CleaningWorldJeddah",
+      "twitter": "https://twitter.com/cleanworld_jed",
+      "instagram": "https://instagram.com/cleaningworld.jeddah",
+      "linkedin": "https://linkedin.com/company/cleaning-world-jeddah",
+      "youtube": "https://youtube.com/@CleaningWorldJeddah",
+      "tiktok": "https://tiktok.com/@cleaningworldjed",
+      "snapchat": "https://snapchat.com/add/cleanworldjed",
+      "whatsapp": "+966556789012",
+      "telegram": "https://t.me/cleaningworldjeddah"
+    },
+    "services": {
+      "mainCategory": "خدمات التنظيف والصيانة",
+      "mainCategoryAr": "خدمات التنظيف والصيانة",
+      "mainCategoryEn": "Cleaning & Maintenance Services",
+      "specialties": [
+        "تنظيف السجاد والمفروشات",
+        "جلي الرخام والأرضيات",
+        "تنظيف خزانات المياه",
+        "تنظيف ا��منشآت التجارية",
+        "خدمات التعقيم العميق",
+        "مكافحة الحشرات والقوارض",
+        "تنظيف واجهات المباني",
+        "خدمات التنظيف بعد الإنشاء"
+      ],
+      "specialtiesAr": [
+        "تنظيف السجاد والمفروشات",
+        "جلي الرخام والأرضيات",
+        "تنظيف خزانات المياه",
+        "تنظيف المنشآت التجارية",
+        "خدمات التعقيم العميق",
+        "مكافحة الحشرات والقوارض",
+        "تنظيف واجهات المباني",
+        "خدمات التنظيف بعد الإنشاء"
+      ],
+      "specialtiesEn": [
+        "Carpet & Upholstery Cleaning",
+        "Marble & Floor Polishing",
+        "Water Tank Cleaning",
+        "Commercial Facility Cleaning",
+        "Deep Sterilization Services",
+        "Pest Control Services",
+        "Building Facade Cleaning",
+        "Post-Construction Cleaning"
+      ]
+    },
+    "certifications": [
+      "شهادة ISO 9001:2015 لنظام إدارة الجودة",
+      "شهادة ISO 14001:2015 للإدارة البيئية",
+      "شهادة HACCP لسلامة الغذاء",
+      "ترخيص وزارة الصحة السعودية",
+      "ترخيص أمانة جدة للخدمات البلدية",
+      "شهادة الغرفة التجارية بجدة",
+      "شهادة معتمدة من الهيئة السعودية للمواصفات والمقاييس والجودة"
+    ],
+    "certificationsAr": [
+      "شهادة ISO 9001:2015 لنظام إدارة الجودة",
+      "شهادة ISO 14001:2015 للإدارة البيئية",
+      "شهادة HACCP لسلامة الغذاء",
+      "ترخيص وزارة الصحة السعودية",
+      "ترخيص أمانة جدة للخدمات البلدية",
+      "شهادة الغرفة التجارية بجدة",
+      "شهادة معتمدة من الهيئة السعودية للمواصفات والمقاييس والجودة"
+    ],
+    "certificationsEn": [
+      "ISO 9001:2015 Quality Management System Certificate",
+      "ISO 14001:2015 Environmental Management Certificate",
+      "HACCP Food Safety Certificate",
+      "Saudi Ministry of Health License",
+      "Jeddah Municipality Services License",
+      "Jeddah Chamber of Commerce Certificate",
+      "Saudi Standards, Metrology and Quality Organization Certificate"
+    ],
+    "licenses": [
+      {
+        "name": "ت��خيص تجاري",
+        "nameAr": "ترخيص تجاري",
+        "nameEn": "Commercial License",
+        "number": "4030289742",
+        "issuer": "وزارة التجارة",
+        "issuerAr": "وزارة التجارة", 
+        "issuerEn": "Ministry of Commerce",
+        "issueDate": "2018-03-15",
+        "expiryDate": "2025-03-14"
+      },
+      {
+        "name": "ترخيص بلدي",
+        "nameAr": "ترخيص بلدي",
+        "nameEn": "Municipal License",
+        "number": "JED-2018-4567",
+        "issuer": "أمانة جدة",
+        "issuerAr": "أمانة جدة",
+        "issuerEn": "Jeddah Municipality",
+        "issueDate": "2018-04-20",
+        "expiryDate": "2025-04-19"
+      }
+    ],
+    "taxNumber": "310389742700003",
+    "commercialRegister": "4030289742",
+    "insurance": {
+      "provider": "شركة الاتحاد التجاري للتأمين",
+      "providerAr": "شركة الاتحاد التجاري للتأمين",
+      "providerEn": "Union Commercial Insurance Company",
+      "policyNumber": "UCO-2024-789456",
+      "coverage": "5000000",
+      "currency": "SAR",
+      "expiryDate": "2025-12-31"
+    },
+    "equipment": [
+      "مكائن تنظيف السجاد الأوروبية المتطورة",
+      "أجهزة جلي الرخام بالماس الأمريكية",
+      "معدات التعقيم بالأشعة فوق البنفسجية",
+      "أنظمة تنظيف بالبخار عالية الضغط",
+      "مكانس صناعية متطورة",
+      "معدات تنظيف النوافذ والواجهات",
+      "أجهزة قياس جودة الهواء والمياه"
+    ],
+    "equipmentAr": [
+      "مكائن تنظيف السجاد الأوروبية المتطورة",
+      "أجهزة جلي الرخام بالماس الأمريكية",
+      "معدات التعقيم بالأشعة فوق البنفسجية",
+      "أنظمة تنظيف بالبخار عالية الضغط",
+      "مكانس صناعية متطورة",
+      "معدات تنظيف النوافذ والواجهات",
+      "أجهزة قياس جودة الهواء والمياه"
+    ],
+    "equipmentEn": [
+      "Advanced European Carpet Cleaning Machines",
+      "American Diamond Marble Polishing Equipment",
+      "UV Sterilization Equipment",
+      "High-Pressure Steam Cleaning Systems",
+      "Advanced Industrial Vacuum Cleaners",
+      "Window and Facade Cleaning Equipment",
+      "Air and Water Quality Measurement Devices"
+    ],
+    "teams": [
+      {
+        "id": "team_residential",
+        "name": "فريق التنظيف السكني",
+        "nameAr": "فريق التنظيف السكني",
+        "nameEn": "Residential Cleaning Team",
+        "members": 15,
+        "leader": "محمد السعيد",
+        "specialization": "تنظيف المنازل والفلل"
+      },
+      {
+        "id": "team_commercial",
+        "name": "فريق التنظيف التجاري",
+        "nameAr": "فريق التنظيف التجاري",
+        "nameEn": "Commercial Cleaning Team",
+        "members": 12,
+        "leader": "أحمد الفارسي",
+        "specialization": "تنظيف المكاتب والمحلات"
+      },
+      {
+        "id": "team_sterilization",
+        "name": "فريق التعقيم المتخصص",
+        "nameAr": "فريق التعقيم المتخصص",
+        "nameEn": "Specialized Sterilization Team",
+        "members": 8,
+        "leader": "عبدالله المنصوري",
+        "specialization": "خدمات التعقيم العميق"
+      },
+      {
+        "id": "team_maintenance",
+        "name": "فريق الصيانة",
+        "nameAr": "فريق الصيانة",
+        "nameEn": "Maintenance Team",
+        "members": 10,
+        "leader": "سعد الزهراني",
+        "specialization": "صيانة المعدات والأجهزة"
+      }
+    ],
+    "awards": [
+      {
+        "title": "جائزة أفضل شركة تنظيف في المنطقة الغربية",
+        "titleAr": "جائزة أفضل شركة تنظيف في المنطقة الغربية",
+        "titleEn": "Best Cleaning Company in Western Region Award",
+        "year": "2023",
+        "issuer": "غرفة تجارة جدة"
+      },
+      {
+        "title": "شهادة التميز في خدمة العملاء",
+        "titleAr": "شهادة التميز في خدمة العملاء",
+        "titleEn": "Excellence in Customer Service Certificate",
+        "year": "2022",
+        "issuer": "الجمعية السعودية لجودة الخدمات"
+      }
+    ],
+    "updatedAt": "2025-01-09T05:30:00Z",
+    "version": "2.0"
+  },
+  "googleBusiness": {
+    "placeId": "ChIJY_UG8V5FwQ0RFHl8N7uB7jE",
+    "businessId": "cleaning-world-jeddah",
+    "categories": [
+      "house_cleaning_service",
+      "commercial_cleaning_service",
+      "carpet_cleaning_service",
+      "janitorial_service"
+    ],
+    "primaryCategory": "house_cleaning_service",
+    "rating": 4.9,
+    "reviewCount": 127,
+    "priceLevel": "PRICE_LEVEL_MODERATE",
+    "attributes": {
+      "wheelchair_accessible": true,
+      "accepts_credit_cards": true,
+      "accepts_cash": true,
+      "free_estimates": true,
+      "emergency_service": true,
+      "licensed": true,
+      "insured": true
+    },
+    "photos": [
+      "/images/google-business/storefront.jpg",
+      "/images/google-business/team-work-1.jpg", 
+      "/images/google-business/team-work-2.jpg",
+      "/images/google-business/equipment-1.jpg",
+      "/images/google-business/before-after-1.jpg",
+      "/images/google-business/certificates.jpg"
+    ],
+    "verified": true,
+    "lastUpdated": "2025-01-09T05:30:00Z"
+  },
+  "localBusinessSchema": {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "@id": "https://cleaningworld-jeddah.com/#business",
+    "name": "عالم النظافة جدة",
+    "alternateName": "Cleaning World Jeddah",
+    "description": "شركة تنظيف احترافية في جدة تستخدم أحدث المعدات الأمريكية والأوروبية مع أكثر من 6 سنوات من الخبرة في السوق السعودي",
+    "url": "https://cleaningworld-jeddah.com",
+    "logo": "https://cleaningworld-jeddah.com/images/company/logo.png",
+    "image": [
+      "https://cleaningworld-jeddah.com/images/company/cover.jpg",
+      "https://cleaningworld-jeddah.com/images/google-business/storefront.jpg",
+      "https://cleaningworld-jeddah.com/images/google-business/team-work-1.jpg"
+    ],
+    "telephone": "+966126543210",
+    "email": "info@cleaningworld-jeddah.com",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "شارع الأمير سلطان، حي الزهراء",
+      "addressLocality": "جدة",
+      "addressRegion": "منطقة مكة المكرمة",
+      "postalCode": "21589",
+      "addressCountry": "SA"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 21.5433,
+      "longitude": 39.1728
+    },
+    "openingHours": [
+      "Sa-Th 07:00-22:00",
+      "Fr 14:00-22:00"
+    ],
+    "paymentAccepted": ["Cash", "Credit Card", "Bank Transfer", "Mada"],
+    "currenciesAccepted": "SAR",
+    "priceRange": "$$",
+    "serviceArea": {
+      "@type": "GeoCircle",
+      "geoMidpoint": {
+        "@type": "GeoCoordinates",
+        "latitude": 21.5433,
+        "longitude": 39.1728
+      },
+      "geoRadius": "50000"
+    },
+    "areaServed": "جدة، المملكة العربية السعودية",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.9",
+      "reviewCount": "127",
+      "bestRating": "5",
+      "worstRating": "1"
+    },
+    "review": [
+      {
+        "@type": "Review",
+        "author": {
+          "@type": "Person",
+          "name": "نورا الحربي"
+        },
+        "reviewRating": {
+          "@type": "Rating",
+          "ratingValue": "5"
+        },
+        "reviewBody": "خدمة ممتازة جداً، الفريق محترف ومهذب. النتيجة فاقت التوقعات."
+      }
+    ],
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "خدمات التنظيف",
+      "itemListElement": [
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "تنظيف وتعقيم السجاد والستائر"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "تنظيف وتعقيم المجالس والكنب"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "تنظيف وتلميع الأرضي��ت وجلي الرخام"
+          }
+        }
+      ]
+    },
+    "founder": {
+      "@type": "Person",
+      "name": "خالد جمال",
+      "jobTitle": "المؤسس والمدير العام"
+    },
+    "numberOfEmployees": 50,
+    "foundingDate": "2018",
+    "slogan": "نظافة.. جودة.. ثقة",
+    "keywords": "تنظيف جدة, شركة تنظيف, جلي رخام, تنظيف سجاد, تعقيم منازل, مكافحة حشرات",
+    "sameAs": [
+      "https://facebook.com/CleaningWorldJeddah",
+      "https://twitter.com/cleanworld_jed",
+      "https://instagram.com/cleaningworld.jeddah",
+      "https://linkedin.com/company/cleaning-world-jeddah"
+    ]
+  },
+  "seoData": {
+    "title": "عالم النظافة جدة - شركة تنظيف احترافية | خدمات تنظيف شاملة",
+    "titleAr": "عالم النظافة جدة - شركة تنظيف احترافية | خدمات تنظيف شاملة",
+    "titleEn": "Cleaning World Jeddah - Professional Cleaning Company | Comprehensive Cleaning Services",
+    "description": "شركة تنظيف احترافية في جدة تقدم خدمات تنظيف شاملة للمنازل والمكاتب والمنشآت التجارية. تنظيف السجاد، جلي ��لرخام، تعقيم، مكافحة حشرات. اتصل الآن +966126543210",
+    "keywords": [
+      "شركة تنظيف جدة",
+      "تنظيف منازل جدة", 
+      "جلي رخام جدة",
+      "تنظيف سجاد جدة",
+      "تعقيم منازل جدة",
+      "مكافحة حشرات جدة",
+      "تنظيف مكاتب جدة",
+      "شركة نظافة جدة",
+      "خدمات تنظيف جدة",
+      "تنظيف فلل جدة"
+    ],
+    "canonicalUrl": "https://cleaningworld-jeddah.com",
+    "ogImage": "https://cleaningworld-jeddah.com/images/company/og-image.jpg",
+    "ogType": "business.business",
+    "robots": "index, follow",
+    "language": "ar-SA",
+    "region": "SA-02"
+  },
+  "nlpData": {
+    "businessContext": {
+      "industry": "cleaning_services",
+      "location": "جدة، المملكة العربية السعودية",
+      "serviceType": "professional_cleaning",
+      "targetMarket": "residential_commercial",
+      "languages": ["ar", "en"],
+      "primaryLanguage": "ar"
+    },
+    "keyEntities": [
+      "عالم النظافة",
+      "جدة",
+      "تنظيف",
+      "تعقيم",
+      "جلي رخام",
+      "السجاد",
+      "المفروشات",
+      "المنازل",
+      "المكاتب",
+      "التجارية"
+    ],
+    "serviceKeywords": [
+      "تنظيف عميق",
+      "تعقيم شامل",
+      "جلي وتلميع",
+      "إزالة البقع",
+      "مكافحة آفات",
+      "غسيل بالبخار",
+      "تنظيف جاف",
+      "صيانة دورية"
+    ],
+    "locationKeywords": [
+      "جدة",
+      "الزهراء",
+      "السلامة", 
+      "الروضة",
+      "الشاطئ",
+      "العزيزية",
+      "المروة",
+      "النزهة",
+      "الفيصلية",
+      "الكورنيش"
+    ],
+    "customerIntents": [
+      "حجز خدمة",
+      "استفسار عن الأسعار",
+      "طلب عرض أسعار",
+      "شكوى أو اقتراح",
+      "تعديل موعد",
+      "إلغاء حجز",
+      "متابعة خدمة",
+      "طلب ضمان"
+    ],
+    "commonQuestions": [
+      "كم سعر تنظيف السجاد؟",
+      "هل تخدمون منطقتي؟",
+      "كم مدة التنظيف؟",
+      "هل المنتجات آمنة؟",
+      "هل يوجد ضمان؟",
+      "متى أقرب موعد؟",
+      "هل تعملون في الجمعة؟",
+      "كيف الدفع؟"
+    ],
+    "responseTemplates": {
+      "greeting": "أهلاً وسهلاً بك في عالم النظافة جدة! كيف يمكنني مساعدتك اليوم؟",
+      "serviceInquiry": "نحن نقدم خدمات تنظيف شاملة في جدة. أي خدمة تهمك تحديداً؟",
+      "pricing": "أسعارنا تنافسية وتختلف حسب نوع الخدمة وحجم المكان. هل تريد عرض أسعار مخصص؟",
+      "booking": "ممتاز! سأساعدك في حجز الخدمة. ما هي الخدمة المطلوبة ومتى الموعد المناسب؟",
+      "area": "نعم نخدم جميع أحياء جدة. في أي حي تقع؟"
+    }
+  },
+  "metadata": {
+    "version": "2.0",
+    "lastModified": "2025-01-09T05:30:00Z",
+    "modifiedBy": "admin",
+    "dataStatus": "production_ready",
+    "backupDate": "2025-01-09T05:30:00Z"
+  }
+}

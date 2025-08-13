@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Route Test - اختبار المسارات</title>
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            padding: 20px; 
+            background: #f0f2f5; 
+            margin: 0;
+        }
+        .container { 
+            max-width: 800px; 
+            margin: 0 auto; 
+            background: white; 
+            padding: 30px; 
+            border-radius: 10px; 
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1); 
+        }
+        .route-test { 
+            display: grid; 
+            gap: 15px; 
+            margin: 20px 0; 
+        }
+        .route-item { 
+            background: #f8f9fa; 
+            padding: 15px; 
+            border-radius: 8px; 
+            border-left: 4px solid #007bff; 
+        }
+        .route-item h3 { 
+            margin: 0 0 10px 0; 
+            color: #495057; 
+        }
+        .route-item a { 
+            display: inline-block; 
+            background: #007bff; 
+            color: white; 
+            padding: 8px 16px; 
+            text-decoration: none; 
+            border-radius: 5px; 
+            margin: 5px 5px 5px 0; 
+        }
+        .route-item a:hover { 
+            background: #0056b3; 
+        }
+        .status { 
+            display: inline-block; 
+            padding: 4px 8px; 
+            border-radius: 3px; 
+            font-size: 12px; 
+            font-weight: bold; 
+        }
+        .success { 
+            background: #d4edda; 
+            color: #155724; 
+        }
+        .error { 
+            background: #f8d7da; 
+            color: #721c24; 
+        }
+        .loading { 
+            background: #fff3cd; 
+            color: #856404; 
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>اختبار المسارات - Route Testing</h1>
+        <p>اختبر المسارات المختلفة للتأكد من عملها بشكل صحيح</p>
+        
+        <div class="route-test">
+            <div class="route-item">
+                <h3>🏠 الصفحة الرئيسية - Home Page</h3>
+                <p>المسار: <code>/</code></p>
+                <a href="/" target="_blank">فتح الصفحة الرئيسية</a>
+                <span id="home-status" class="status loading">جاري التحقق...</span>
+            </div>
+            
+            <div class="route-item">
+                <h3>🔐 صفحة تسجيل الدخول - Login Page</h3>
+                <p>المسار: <code>/auth/login</code></p>
+                <a href="/auth/login" target="_blank">فتح صفحة تسجيل الدخول</a>
+                <span id="login-status" class="status loading">جاري التحقق...</span>
+            </div>
+            
+            <div class="route-item">
+                <h3>⚙️ لوحة الإدارة - Admin Dashboard</h3>
+                <p>المسار: <code>/admin</code></p>
+                <a href="/admin" target="_blank">فتح لوحة الإدارة</a>
+                <span id="admin-status" class="status loading">جاري التحقق...</span>
+            </div>
+            
+            <div class="route-item">
+                <h3>👥 إدارة المستخدمين - User Management</h3>
+                <p>المسار: <code>/admin/users</code></p>
+                <a href="/admin/users" target="_blank">فتح إدارة المستخدمين</a>
+                <span id="users-status" class="status loading">جاري التحقق...</span>
+            </div>
+        </div>
+
+        <div style="margin-top: 30px; padding: 20px; background: #e7f3ff; border-radius: 8px;">
+            <h3>📝 تعليمات الاختبار - Testing Instructions</h3>
+            <ol>
+                <li>انقر على كل رابط لفتحه في نافذة جديدة</li>
+                <li>تحقق من أن كل صفحة تفتح المحتوى الصحيح</li>
+                <li>إذا فتحت صفحة تسجيل الدخول، جرب الدخول بـ: admin / admin123</li>
+                <li>إذا ظهرت الصفحة الرئيسية بدلاً من الصفحة المطلوبة، فهناك مشكلة في التوجيه</li>
+            </ol>
+        </div>
+
+        <div style="margin-top: 20px; text-align: center;">
+            <button onclick="testAllRoutes()" style="background: #28a745; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; font-size: 16px;">
+                اختبار جميع المسارات تلقائياً
+            </button>
+        </div>
+    </div>
+
+    <script>
+        async function testRoute(url, statusElementId) {
+            const statusElement = document.getElementById(statusElementId);
+            
+            try {
+                const response = await fetch(url, { method: 'HEAD' });
+                
+                if (response.ok) {
+                    statusElement.textContent = 'يعمل بشكل صحيح ✅';
+                    statusElement.className = 'status success';
+                } else {
+                    statusElement.textContent = `خطأ ${response.status} ❌`;
+                    statusElement.className = 'status error';
+                }
+            } catch (error) {
+                statusElement.textContent = 'خطأ في الاتصال ❌';
+                statusElement.className = 'status error';
+            }
+        }
+
+        async function testAllRoutes() {
+            const routes = [
+                { url: '/', id: 'home-status' },
+                { url: '/auth/login', id: 'login-status' },
+                { url: '/admin', id: 'admin-status' },
+                { url: '/admin/users', id: 'users-status' }
+            ];
+
+            for (const route of routes) {
+                await testRoute(route.url, route.id);
+                await new Promise(resolve => setTimeout(resolve, 500)); // Small delay
+            }
+        }
+
+        // Test routes automatically when page loads
+        window.addEventListener('load', () => {
+            setTimeout(testAllRoutes, 1000);
+        });
+    </script>
+</body>
+</html>

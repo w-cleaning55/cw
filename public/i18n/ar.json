@@ -1,0 +1,693 @@
+{
+  "common": {
+    "loading": "جارٍ التحميل...",
+    "save": "حفظ",
+    "cancel": "إلغاء",
+    "delete": "حذف",
+    "edit": "تعديل",
+    "add": "إضافة",
+    "view": "عرض",
+    "search": "بحث",
+    "filter": "تصفية",
+    "reset": "إعادة تعيين",
+    "submit": "إرسال",
+    "confirm": "تأكيد",
+    "success": "نجح",
+    "error": "خطأ",
+    "warning": "تحذير",
+    "info": "معلومات",
+    "yes": "نعم",
+    "no": "لا",
+    "ok": "موافق",
+    "close": "إغلاق",
+    "back": "رجوع",
+    "next": "التالي",
+    "previous": "السابق",
+    "home": "الرئيسية",
+    "contact": "اتصل بنا",
+    "about": "من نحن",
+    "services": "الخدمات",
+    "more": "المزيد",
+    "less": "أقل",
+    "all": "الكل",
+    "none": "لا شيء",
+    "select": "اختر",
+    "choose": "اختيار",
+    "upload": "رفع",
+    "download": "تحميل",
+    "print": "طباعة",
+    "share": "مشاركة",
+    "copy": "نسخ",
+    "paste": "لصق",
+    "new": "جديد",
+    "old": "قديم",
+    "recent": "حديث",
+    "popular": "شائع",
+    "featured": "مميز",
+    "recommended": "موصى به"
+  },
+  "navigation": {
+    "home": "الرئيسية",
+    "services": "خدماتنا",
+    "about": "من نحن",
+    "contact": "اتصل بنا",
+    "booking": "احجز الآن",
+    "admin": "لوحة الإدارة",
+    "login": "تسجيل الدخول",
+    "logout": "تسجيل الخروج",
+    "profile": "الملف الشخصي",
+    "settings": "الإعدادات",
+    "help": "المساعدة",
+    "faq": "الأسئلة الشائعة",
+    "blog": "المدونة",
+    "news": "الأخبار",
+    "gallery": "معرض الصور",
+    "testimonials": "آراء العملاء",
+    "pricing": "الأسعار",
+    "terms": "الشروط والأحكام",
+    "privacy": "سياسة الخصوصية"
+  },
+  "hero": {
+    "title": "عالم النظافة جدة",
+    "subtitle": "شريككم الموثوق لخدمات التنظيف المحترفة",
+    "description": "شركة تنظيف محترفة في جدة نستخدم أحدث المعدات العالمية مع خبرة تزيد عن 6 سنوات في خدمة عملائنا الكرام",
+    "cta": "احصل على عرض مجاني",
+    "callNow": "اتصل الآن",
+    "whatsapp": "واتساب",
+    "features": {
+      "experience": "سنوات الخبرة",
+      "projects": "مشروع مكتمل",
+      "employees": "موظف متخصص",
+      "satisfaction": "رضا العملاء"
+    }
+  },
+  "services": {
+    "title": "خدماتنا المميزة",
+    "subtitle": "حلول تنظيف مهنية لجميع احتياجاتك",
+    "viewAll": "عرض جميع ال��دمات",
+    "bookNow": "احجز الآن",
+    "learnMore": "اعرف المزيد",
+    "startingFrom": "يبدأ من",
+    "duration": "المدة المتوقعة",
+    "includes": "يشمل",
+    "features": "المميزات",
+    "process": "خطوات العمل",
+    "guarantee": "الضمان",
+    "afterService": "ما بعد الخدمة",
+    "types": {
+      "carpet": "تنظيف السجاد والستائر",
+      "sofa": "تنظيف المجالس والكنب",
+      "marble": "جلي الرخام والأرضيات",
+      "tanks": "تنظيف خزانات المياه",
+      "commercial": "تنظيف المنشآت التجارية",
+      "sterilization": "خدمة التعقيم العميق",
+      "pestControl": "مكافحة الحشرات والقوارض",
+      "maintenance": "عقود الصيانة الدورية"
+    }
+  },
+  "booking": {
+    "title": "احجز خدمتك",
+    "subtitle": "اختر الخدمة والوقت المناسب لك",
+    "steps": {
+      "service": "اختر الخدمة",
+      "details": "تفاصيل الحجز",
+      "contact": "معلومات التواصل",
+      "payment": "الدفع",
+      "confirmation": "التأك��د"
+    },
+    "form": {
+      "service": "نوع الخدمة",
+      "date": "التاريخ",
+      "time": "الوقت",
+      "address": "العنوان",
+      "district": "الحي",
+      "city": "المدينة",
+      "area": "المساحة",
+      "notes": "ملاحظات إضافية",
+      "name": "الاسم الكامل",
+      "phone": "رقم الهاتف",
+      "email": "البريد الإلكتروني",
+      "whatsapp": "رقم الواتساب",
+      "paymentMethod": "طريقة الدفع",
+      "deposit": "العربون",
+      "total": "المبلغ الإجمالي",
+      "specialRequests": "طلبات خاصة"
+    },
+    "status": {
+      "pending": "معلق",
+      "confirmed": "مؤكد",
+      "inProgress": "جارٍ التنفيذ",
+      "completed": "مكتمل",
+      "cancelled": "ملغي",
+      "rescheduled": "تم إعادة الجدولة"
+    },
+    "messages": {
+      "success": "تم إرسال طلب الحجز بنجاح! سنتواصل معك قريباً.",
+      "error": "حدث خطأ أثناء إرسال الطلب. يرجى المحاولة مرة أخرى.",
+      "validation": "يرجى تعبئة جميع الحقول الم��لوبة.",
+      "phoneInvalid": "رقم الهاتف غير صحيح.",
+      "emailInvalid": "البريد الإلكتروني غير صحيح."
+    }
+  },
+  "contact": {
+    "title": "تواصل معنا",
+    "subtitle": "نحن هنا لخدمتك على مدار الساعة",
+    "form": {
+      "name": "الاسم",
+      "email": "البريد الإلكتروني",
+      "phone": "رقم الهاتف",
+      "subject": "الموضوع",
+      "message": "الرسالة",
+      "send": "إرسال الرسالة"
+    },
+    "info": {
+      "address": "العنوان",
+      "phone": "الهاتف",
+      "email": "البريد الإلكتروني",
+      "hours": "ساعات العمل",
+      "emergency": "الطوارئ"
+    },
+    "hours": {
+      "weekdays": "السبت - الخميس: 7:00 ص - 10:00 م",
+      "friday": "الجمعة: 2:00 م - 10:00 م",
+      "emergency": "خدمة طوارئ 24/7"
+    },
+    "social": {
+      "followUs": "تابعنا على",
+      "facebook": "فيسبوك",
+      "twitter": "تويتر",
+      "instagram": "إنستغرام",
+      "linkedin": "لينكد إن",
+      "youtube": "يوتيوب",
+      "snapchat": "سناب شات",
+      "tiktok": "تيك توك"
+    }
+  },
+  "about": {
+    "title": "من نحن",
+    "subtitle": "شركة رائدة في مجال خدمات التنظيف بجدة",
+    "description": "عالم النظافة جدة هي شركة تنظيف احترافية تأسست عام 2018، ونفخر بتقديم خدمات تنظيف عالية الجودة باستخدام أحدث المعدات والتقنيات الأمريكية والأوروبية.",
+    "vision": {
+      "title": "رؤيتنا",
+      "description": "أن نكون الشركة الرائدة في مجال خدمات التنظيف في المنطقة الغربية، ونساهم في رفع مستوى النظافة والصحة العامة."
+    },
+    "mission": {
+      "title": "رسالتنا",
+      "description": "تقديم خدمات تنظيف متميزة وموثوقة لعملائنا الكرام باستخدام أفضل المعدات والمواد الصديقة للبيئة."
+    },
+    "values": {
+      "title": "قيمنا",
+      "quality": "الجودة",
+      "trust": "الثقة",
+      "innovation": "الابتكار",
+      "service": "خدمة العملاء",
+      "environment": "البيئة",
+      "safety": "الأمان"
+    },
+    "team": {
+      "title": "فريقنا",
+      "description": "فريق من المتخصصين المدربين على أعلى مستوى",
+      "experience": "خبرة",
+      "training": "تدريب",
+      "certification": "شهادة"
+    },
+    "achievements": {
+      "title": "إنجازاتنا",
+      "awards": "الجوائز",
+      "certifications": "الشهادات",
+      "partnerships": "الشراكات"
+    }
+  },
+  "testimonials": {
+    "title": "آراء عملائنا",
+    "subtitle": "ما يقوله عملاؤنا الكرام عن خدماتنا",
+    "readMore": "اقرأ المزيد",
+    "showLess": "أقل",
+    "rating": "التقييم",
+    "verified": "عميل موثق",
+    "date": "تاريخ الخدمة"
+  },
+  "faq": {
+    "title": "الأسئلة الشائعة",
+    "subtitle": "إجابات على الأسئلة الأكثر شيوعاً",
+    "categories": {
+      "general": "عام",
+      "booking": "الحجز",
+      "payment": "الدفع",
+      "services": "الخدمات",
+      "policies": "السياسات"
+    },
+    "questions": {
+      "pricing": "كم تكلفة خدماتكم؟",
+      "coverage": "ما هي المناطق التي تخدمونها؟",
+      "duration": "كم تستغرق خدمة التنظيف؟",
+      "safety": "هل المنتجات آمنة؟",
+      "guarantee": "هل يوجد ضمان؟",
+      "booking": "كيف يمكنني الحجز؟",
+      "payment": "ما هي طرق الدفع المتاحة؟",
+      "cancellation": "ما هي سياسة الإلغاء؟"
+    }
+  },
+  "admin": {
+    "dashboard": {
+      "title": "لوحة المعلومات",
+      "welcome": "مرحباً بك في لوحة الإدارة",
+      "overview": "نظرة عامة",
+      "quickStats": "إحصائيات سريعة",
+      "recentActivity": "النشاط الأخير",
+      "upcomingBookings": "الحجوزات القادمة",
+      "notifications": "الإشعارات",
+      "recentBookings": "الحجوزات الأخيرة",
+      "latestCustomerBookings": "أحدث حجوزات العملاء",
+      "quickActions": "إجراءات سريعة",
+      "commonTasks": "المهام الشائعة",
+      "fromLastMonth": "من الشهر الماضي"
+    },
+    "stats": {
+      "totalBookings": "إجمالي الحجوزات",
+      "activeCustomers": "العملاء النشطين",
+      "monthlyRevenue": "الإيرادات الشهرية",
+      "avgRating": "متوسط التقييم"
+    },
+    "actions": {
+      "newBooking": "حجز جديد",
+      "addCustomer": "إضافة عميل",
+      "viewReports": "عرض التقارير",
+      "manageServices": "إدارة الخدمات"
+    },
+    "menu": {
+      "dashboard": "لوحة المعلومات",
+      "bookings": "إدارة الحجوزات",
+      "customers": "إدارة العملاء",
+      "services": "إدارة الخدمات",
+      "users": "إدارة المستخدمين",
+      "messages": "الرسائل",
+      "reports": "التقارير",
+      "analytics": "التحليلات",
+      "settings": "الإعدادات",
+      "systemSettings": "إعدادات النظام",
+      "companySettings": "إعدادات الشركة",
+      "aiSettings": "إعدادات الذكاء الاصطناعي",
+      "notifications": "إدارة الإشعارات",
+      "database": "قاعدة البيانات",
+      "security": "الأمان",
+      "seo": "محركات البحث",
+      "content": "إدارة المحتوى"
+    },
+    "bookings": {
+      "title": "إدارة الحجوزات",
+      "description": "إدارة وتتبع حجوزات العملاء",
+      "addNew": "حجز جديد",
+      "newBooking": "حجز جديد",
+      "allBookings": "جميع الحجوزات",
+      "manageCustomerBookings": "إدارة حجوزات العملاء",
+      "viewAll": "عرض الكل",
+      "view": "عرض",
+      "edit": "تعديل",
+      "pending": "معلقة",
+      "confirmed": "مؤكدة",
+      "completed": "مكتملة",
+      "cancelled": "ملغية",
+      "filter": "تصفية",
+      "export": "تصدير",
+      "details": "تفاصيل الحجز",
+      "customer": "العميل",
+      "service": "الخدمة",
+      "date": "التاريخ",
+      "status": "الحالة",
+      "amount": "المبلغ",
+      "actions": "الإجراءات"
+    },
+    "customers": {
+      "title": "إدارة العملاء",
+      "description": "إدارة بيانات ومعلومات العملاء",
+      "addNew": "عميل ج��يد",
+      "addCustomer": "إضافة عميل",
+      "allCustomers": "جميع العملاء",
+      "manageCustomerData": "إدارة بيانات العملاء",
+      "totalCustomers": "إجمالي العملاء",
+      "activeCustomers": "العملاء النشطين",
+      "newThisMonth": "جدد هذا الشهر",
+      "topCustomers": "أفضل العملاء",
+      "customerInfo": "معلومات العميل",
+      "bookingHistory": "تاريخ الحجوزات",
+      "totalSpent": "إجمالي الإنفاق",
+      "lastService": "آخر خدمة",
+      "rating": "التقييم",
+      "view": "عرض",
+      "edit": "تعديل",
+      "sampleName": "عميل نموذجي",
+      "status": {
+        "active": "نشط",
+        "inactive": "غير نشط"
+      }
+    },
+    "services": {
+      "title": "إدارة الخدمات",
+      "description": "إدارة وتحديث الخدمات المقدمة",
+      "addNew": "خدمة جديدة",
+      "addService": "إضافة خدمة",
+      "allServices": "جميع الخدمات",
+      "manageOfferedServices": "إدارة الخدمات المقدمة",
+      "active": "نشطة",
+      "inactive": "غير نشطة",
+      "featured": "مميزة",
+      "category": "الفئة",
+      "price": "السعر",
+      "duration": "المدة",
+      "description": "الوصف",
+      "features": "المميزات",
+      "gallery": "معرض الصور",
+      "edit": "تعديل",
+      "enable": "تفعيل",
+      "disable": "إلغاء تفعيل",
+      "status": {
+        "active": "نشطة",
+        "inactive": "غير نشطة"
+      }
+    },
+    "messages": {
+      "title": "إدارة الرسائل",
+      "inbox": "الواردة",
+      "sent": "المرسلة",
+      "unread": "غير مقروءة",
+      "priority": "أولوية",
+      "reply": "رد",
+      "forward": "إعادة توجيه",
+      "archive": "أرشفة",
+      "markAsRead": "تحديد كمقروءة",
+      "markAsUnread": "تحديد كغير مقروءة"
+    },
+    "reports": {
+      "title": "التقارير",
+      "revenue": "تقرير الإيرادات",
+      "bookings": "تقرير الحجوزات",
+      "customers": "تقرير العملاء",
+      "services": "تقرير الخدمات",
+      "performance": "تقرير الأداء",
+      "dateRange": "نطاق التاريخ",
+      "generate": "إنشاء التقرير",
+      "export": "تصدير",
+      "print": "طباعة"
+    },
+    "users": {
+      "title": "إدارة المستخدمي��",
+      "description": "إدارة مستخدمي النظام والصلاحيات",
+      "addUser": "إضافة مستخدم",
+      "allUsers": "جميع المستخدمين",
+      "manageSystemUsers": "إدارة مستخد��ي النظام",
+      "sampleName": "المستخدم",
+      "admin": "مدير",
+      "employee": "موظف",
+      "edit": "تعديل"
+    },
+    "company": {
+      "title": "إعدادات الشركة",
+      "description": "إدارة معلومات وبيانات الشركة",
+      "basicInfo": "المعلومات الأساسية",
+      "basicInfoDesc": "معلومات الشركة الأساسية",
+      "contactInfo": "معلومات التواصل",
+      "contactInfoDesc": "بيانات التواصل والعنوان",
+      "nameAr": "اسم الشركة (عربي)",
+      "nameEn": "اسم الشركة (إنجليزي)",
+      "slogan": "الشعار",
+      "description": "الوصف",
+      "phone": "الهاتف",
+      "whatsapp": "واتساب",
+      "email": "البريد الإلكتروني",
+      "address": "العنوان",
+      "saveSettings": "حفظ الإعدادات"
+    },
+    "system": {
+      "title": "إعدادات النظام",
+      "description": "إعدادات النظام العامة والأمان",
+      "general": "إعدادات عامة",
+      "generalDesc": "الإعدادات العامة للنظام",
+      "security": "إعدادات الأمان",
+      "securityDesc": "إعدادات الأمان والحماية",
+      "maintenanceMode": "وضع الصيانة",
+      "autoBackup": "النسخ الاحتياطي التلقائي",
+      "emailNotifications": "إشعارات البريد الإلكتروني",
+      "twoFactor": "المصادقة الثنائية",
+      "sessionTimeout": "انتهاء صلاحية الجلسة",
+      "auditLogs": "سجلات التدقيق",
+      "saveSettings": "حفظ الإعدادات"
+    },
+    "ai": {
+      "title": "إعدادات الذكاء الاصطناعي",
+      "description": "إعدادات المساعد الذكي والمحادثة",
+      "chatbot": "المساعد الذكي",
+      "chatbotDesc": "إعدادات المحادثة التلقائية",
+      "enableChatbot": "تفعيل المساعد الذكي",
+      "aiProvider": "مزود الذكاء الاصطناعي",
+      "responseLanguage": "لغة الاستجابة",
+      "knowledgeBase": "قاعدة المعرفة",
+      "knowledgeBaseDesc": "إدارة المعلومات والمعرفة",
+      "autoLearn": "التعلم التلقائي",
+      "feedbackLearning": "التعلم من التغذية الراجعة",
+      "updateKnowledge": "تحديث قاعدة المعرفة",
+      "saveSettings": "حفظ الإعدادات"
+    },
+    "database": {
+      "title": "إدارة قاعدة البيانات",
+      "description": "إعدادات قاعدة البيانات والنسخ الاحتياطي",
+      "connection": "الاتصال",
+      "connectionDesc": "حالة الاتصال بقاعدة البيانات",
+      "status": "الحالة",
+      "currentProvider": "المزود الحالي",
+      "connected": "متصل",
+      "backup": "النسخ الاحتياطي",
+      "backupDesc": "إنشاء واستعادة النسخ الاحتياطية",
+      "createBackup": "إنشاء نسخة احتياطية",
+      "restoreBackup": "استعادة نسخة احتياطية",
+      "migration": "ترحيل البيانات",
+      "migrationDesc": "تصدير واستيراد البيانات",
+      "exportData": "تصدير البيانات"
+    },
+    "colors": {
+      "title": "إدارة الألوان",
+      "description": "إدارة ألوان وثيمات الموقع",
+      "createPalette": "إنشاء لوحة ألوان",
+      "active": "نشطة",
+      "edit": "تعديل",
+      "activate": "تفعيل",
+      "deactivate": "إلغاء تفعيل"
+    },
+    "content": {
+      "title": "إدارة المحتوى",
+      "description": "إدارة محتوى صفحات الموقع",
+      "addContent": "إضافة محتوى",
+      "websiteContent": "محتوى الموقع",
+      "managePageContent": "إدارة محتوى الصفحات",
+      "lastModified": "آخر تعديل",
+      "edit": "تعديل",
+      "publish": "نشر",
+      "unpublish": "إلغاء النشر",
+      "status": {
+        "published": "منشور",
+        "draft": "مسودة"
+      }
+    },
+    "seo": {
+      "title": "إعدادات محركات البحث",
+      "description": "تحسين الموقع لمحركات البحث",
+      "basicSeo": "إعدادات أساسية",
+      "basicSeoDesc": "العنوان والوصف والكلمات المفتاحية",
+      "socialMedia": "وسائل التواصل الاجتماعي",
+      "socialMediaDesc": "إعدادات المشاركة الاجتماعية",
+      "siteTitle": "عنوان الموقع",
+      "metaDescription": "وصف الموقع",
+      "keywords": "الكلمات المفتاحية",
+      "ogTitle": "عنوان المشاركة",
+      "ogDescription": "وصف المشاركة",
+      "saveSettings": "حفظ الإعدادات"
+    },
+    "settings": {
+      "title": "الإعدادات",
+      "general": "عام",
+      "company": "الشركة",
+      "notifications": "الإشعارات",
+      "users": "المستخدمين",
+      "security": "الأمان",
+      "backup": "النسخ الاحتياطي",
+      "integrations": "التكاملات"
+    }
+  },
+  "auth": {
+    "login": {
+      "title": "تسجيل الدخول",
+      "subtitle": "ادخل إلى حسابك",
+      "email": "البريد الإلكتروني",
+      "password": "كلمة المرور",
+      "remember": "تذكرني",
+      "forgot": "نسيت كلمة المرور؟",
+      "submit": "دخول",
+      "noAccount": "ليس لديك حساب؟",
+      "register": "إنشاء حساب جديد"
+    },
+    "register": {
+      "title": "إنشاء حساب جديد",
+      "subtitle": "انضم إلينا",
+      "firstName": "الاسم الأول",
+      "lastName": "اسم العائلة",
+      "email": "البريد الإلكتروني",
+      "phone": "رقم الهاتف",
+      "password": "كلمة المرور",
+      "confirmPassword": "تأكيد كلمة المرور",
+      "terms": "أوافق على الشروط والأحكام",
+      "submit": "إنشاء الحساب",
+      "hasAccount": "لديك حساب بالفعل؟",
+      "login": "تسجيل الدخول"
+    },
+    "forgotPassword": {
+      "title": "نسيان كلمة المرور",
+      "subtitle": "سنرسل لك رابط إعادة تعيين كلمة المرور",
+      "email": "البريد الإلكتروني",
+      "submit": "إرسال الرابط",
+      "backToLogin": "العودة لتسجيل الدخول"
+    }
+  },
+  "notifications": {
+    "title": "الإشعارات",
+    "markAllRead": "تحديد الكل كمقروءة",
+    "clear": "مسح الكل",
+    "empty": "لا توجد إشعارات",
+    "types": {
+      "booking": "حجز",
+      "payment": "دفعة",
+      "customer": "عميل",
+      "system": "نظام",
+      "reminder": "تذكير",
+      "urgent": "عاجل"
+    }
+  },
+  "ai": {
+    "title": "المساعد الذكي",
+    "subtitle": "كيف يمكنني مساعدتك؟",
+    "placeholder": "اكتب رسالتك هنا...",
+    "send": "إرسال",
+    "listening": "أس��مع...",
+    "typing": "يكتب...",
+    "suggestions": "اقتراحات",
+    "quickActions": {
+      "bookService": "احجز خدمة",
+      "checkPrice": "استعلم عن السعر",
+      "serviceInfo": "معلومات الخدمة",
+      "contactSupport": "تواصل مع الدعم"
+    },
+    "responses": {
+      "greeting": "أهلاً وسهلاً! كيف يمكنني مساعدتك اليوم؟",
+      "booking": "سأساعدك في حجز الخدمة. ما نوع الخدمة التي تحتاجها؟",
+      "pricing": "أسعارنا تنافسية وتختلف حسب الخدمة. أي خدمة تهمك؟",
+      "thankyou": "شكراً لتواصلك معنا! هل تحتاج مساعدة أخرى؟"
+    }
+  },
+  "errors": {
+    "404": {
+      "title": "الصفحة غير موجودة",
+      "description": "عذراً، الصفحة التي تبحث عنها غير موجودة.",
+      "backHome": "العودة للرئيسية"
+    },
+    "500": {
+      "title": "خطأ في الخادم",
+      "description": "حدث خطأ في الخادم. يرجى المحاولة لاحقاً.",
+      "retry": "المحاولة مرة أخرى"
+    },
+    "networkError": "خطأ في الاتصال بالإنترنت",
+    "validationError": "يرجى التحقق من البيانات المدخلة",
+    "unauthorizedError": "غير مخول للوصول",
+    "forbiddenError": "ممنوع الوصول",
+    "timeoutError": "انتهت مهلة الطلب"
+  },
+  "success": {
+    "saved": "تم الحفظ بنجاح",
+    "deleted": "تم الحذف بنجاح",
+    "updated": "��م التحديث بنجاح",
+    "created": "تم الإنشاء بنجاح",
+    "sent": "تم الإرسال بنجاح",
+    "uploaded": "تم الرفع بنجاح",
+    "downloaded": "تم التحميل بنجاح"
+  },
+  "validation": {
+    "required": "هذا الحقل مطلوب",
+    "email": "يرجى إدخال بريد إلكتروني صحيح",
+    "phone": "يرجى إدخال رقم هاتف صحيح",
+    "minLength": "يجب أن يكون الحد الأدنى {min} أحرف",
+    "maxLength": "يجب أن يكون الحد الأقصى {max} حرف",
+    "numeric": "يجب أن يكون رقماً",
+    "positive": "يجب أن يكون رقماً موجباً",
+    "password": "كلمة المرور ضعيفة",
+    "confirmPassword": "كلمة المرور غير متطابقة",
+    "fileSize": "حجم الملف كبير جداً",
+    "fileType": "نوع الملف غير مدعوم"
+  },
+  "payment": {
+    "methods": {
+      "cash": "نقداً",
+      "card": "بطاقة ائتمان",
+      "mada": "مدى",
+      "bankTransfer": "تحويل بنكي",
+      "stcPay": "STC Pay",
+      "applePay": "Apple Pay",
+      "samsungPay": "Samsung Pay"
+    },
+    "status": {
+      "pending": "معلق",
+      "paid": "مدفوع",
+      "partial": "جزئي",
+      "refunded": "مرتجع",
+      "failed": "فشل"
+    },
+    "invoice": "الفاتورة",
+    "receipt": "الإيصال",
+    "deposit": "عربون",
+    "total": "الإجمالي",
+    "subtotal": "المجموع الفرعي",
+    "tax": "الضريبة",
+    "discount": "الخصم",
+    "processing": "جارٍ المعالجة..."
+  },
+  "time": {
+    "now": "الآن",
+    "today": "اليوم",
+    "yesterday": "أمس",
+    "tomorrow": "غداً",
+    "thisWeek": "هذا الأسبوع",
+    "nextWeek": "الأسبوع القادم",
+    "thisMonth": "هذا الشهر",
+    "nextMonth": "الشهر القادم",
+    "am": "ص",
+    "pm": "م",
+    "minutes": "دقائق",
+    "hours": "ساعات",
+    "days": "أيام",
+    "weeks": "أسابيع",
+    "months": "شهور",
+    "years": "سنوات"
+  },
+  "company": {
+    "name": "عالم النظافة جدة",
+    "slogan": "نظافة.. جودة.. ثقة",
+    "address": "شارع الأمير سلطان، حي الزهراء، جدة",
+    "phone": "+966126543210",
+    "whatsapp": "+966556789012",
+    "email": "info@cleaningworld-jeddah.com",
+    "website": "https://cleaningworld-jeddah.com",
+    "license": "ترخيص تجاري رقم: 4030289742",
+    "taxNumber": "الرقم الضريبي: 310389742700003",
+    "established": "تأسست عام 2018",
+    "experience": "خبرة تزيد عن 6 سنوات في خدمتكم"
+  },
+  "footer": {
+    "aboutUs": "من نحن",
+    "ourServices": "خدماتنا",
+    "contactInfo": "معلومات التواصل",
+    "followUs": "تابعنا",
+    "quickLinks": "روابط سريعة",
+    "workingHours": "ساعات العمل",
+    "serviceAreas": "مناطق الخدمة",
+    "allRightsReserved": "جميع الحقوق محفوظة",
+    "designedBy": "تصميم وتطوير",
+    "poweredBy": "مدعوم بتقنية"
+  }
+}

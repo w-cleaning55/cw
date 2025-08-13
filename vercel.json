@@ -1,0 +1,10 @@
+{
+  "buildCommand": "npm run build",
+  "devCommand": "npm run dev",
+  "installCommand": "npm install",
+  "framework": "nextjs",
+  "rewrites": [
+    { "source": "/test-login", "destination": "/test-login.html" },
+    { "source": "/test-login.html", "destination": "/test-login.html" }
+  ]
+}

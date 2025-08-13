@@ -1,0 +1,553 @@
+{
+  "common": {
+    "loading": "Loading...",
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "edit": "Edit",
+    "add": "Add",
+    "view": "View",
+    "search": "Search",
+    "filter": "Filter",
+    "reset": "Reset",
+    "submit": "Submit",
+    "confirm": "Confirm",
+    "success": "Success",
+    "error": "Error",
+    "warning": "Warning",
+    "info": "Information",
+    "yes": "Yes",
+    "no": "No",
+    "ok": "OK",
+    "close": "Close",
+    "back": "Back",
+    "next": "Next",
+    "previous": "Previous",
+    "home": "Home",
+    "contact": "Contact Us",
+    "about": "About Us",
+    "services": "Services",
+    "more": "More",
+    "less": "Less",
+    "all": "All",
+    "none": "None",
+    "select": "Select",
+    "choose": "Choose",
+    "upload": "Upload",
+    "download": "Download",
+    "print": "Print",
+    "share": "Share",
+    "copy": "Copy",
+    "paste": "Paste",
+    "new": "New",
+    "old": "Old",
+    "recent": "Recent",
+    "popular": "Popular",
+    "featured": "Featured",
+    "recommended": "Recommended"
+  },
+  "navigation": {
+    "home": "Home",
+    "services": "Our Services",
+    "about": "About Us",
+    "contact": "Contact Us",
+    "booking": "Book Now",
+    "admin": "Admin Panel",
+    "login": "Login",
+    "logout": "Logout",
+    "profile": "Profile",
+    "settings": "Settings",
+    "help": "Help",
+    "faq": "FAQ",
+    "blog": "Blog",
+    "news": "News",
+    "gallery": "Gallery",
+    "testimonials": "Testimonials",
+    "pricing": "Pricing",
+    "terms": "Terms & Conditions",
+    "privacy": "Privacy Policy"
+  },
+  "hero": {
+    "title": "Cleaning World Jeddah",
+    "subtitle": "Your trusted partner for professional cleaning services",
+    "description": "Professional cleaning company in Jeddah using the latest American and European equipment with over 6 years of experience in the Saudi market",
+    "cta": "Get Free Quote",
+    "callNow": "Call Now",
+    "whatsapp": "WhatsApp",
+    "features": {
+      "experience": "Years of Experience",
+      "projects": "Completed Projects",
+      "employees": "Specialized Staff",
+      "satisfaction": "Customer Satisfaction"
+    }
+  },
+  "services": {
+    "title": "Our Featured Services",
+    "subtitle": "Professional cleaning solutions for all your needs",
+    "viewAll": "View All Services",
+    "bookNow": "Book Now",
+    "learnMore": "Learn More",
+    "startingFrom": "Starting from",
+    "duration": "Estimated Duration",
+    "includes": "Includes",
+    "features": "Features",
+    "process": "Process",
+    "guarantee": "Guarantee",
+    "afterService": "After Service",
+    "types": {
+      "carpet": "Carpet & Curtain Cleaning",
+      "sofa": "Sofa & Furniture Cleaning",
+      "marble": "Marble & Floor Polishing",
+      "tanks": "Water Tank Cleaning",
+      "commercial": "Commercial Cleaning",
+      "sterilization": "Deep Sterilization Service",
+      "pestControl": "Pest Control Services",
+      "maintenance": "Maintenance Contracts"
+    }
+  },
+  "booking": {
+    "title": "Book Your Service",
+    "subtitle": "Choose the service and time that suits you",
+    "steps": {
+      "service": "Choose Service",
+      "details": "Booking Details",
+      "contact": "Contact Information",
+      "payment": "Payment",
+      "confirmation": "Confirmation"
+    },
+    "form": {
+      "service": "Service Type",
+      "date": "Date",
+      "time": "Time",
+      "address": "Address",
+      "district": "District",
+      "city": "City",
+      "area": "Area",
+      "notes": "Additional Notes",
+      "name": "Full Name",
+      "phone": "Phone Number",
+      "email": "Email Address",
+      "whatsapp": "WhatsApp Number",
+      "paymentMethod": "Payment Method",
+      "deposit": "Deposit",
+      "total": "Total Amount",
+      "specialRequests": "Special Requests"
+    },
+    "status": {
+      "pending": "Pending",
+      "confirmed": "Confirmed",
+      "inProgress": "In Progress",
+      "completed": "Completed",
+      "cancelled": "Cancelled",
+      "rescheduled": "Rescheduled"
+    },
+    "messages": {
+      "success": "Booking request sent successfully! We will contact you soon.",
+      "error": "An error occurred while sending the request. Please try again.",
+      "validation": "Please fill in all required fields.",
+      "phoneInvalid": "Invalid phone number.",
+      "emailInvalid": "Invalid email address."
+    }
+  },
+  "contact": {
+    "title": "Contact Us",
+    "subtitle": "We are here to serve you 24/7",
+    "form": {
+      "name": "Name",
+      "email": "Email",
+      "phone": "Phone",
+      "subject": "Subject",
+      "message": "Message",
+      "send": "Send Message"
+    },
+    "info": {
+      "address": "Address",
+      "phone": "Phone",
+      "email": "Email",
+      "hours": "Working Hours",
+      "emergency": "Emergency"
+    },
+    "hours": {
+      "weekdays": "Saturday - Thursday: 7:00 AM - 10:00 PM",
+      "friday": "Friday: 2:00 PM - 10:00 PM",
+      "emergency": "24/7 Emergency Service"
+    },
+    "social": {
+      "followUs": "Follow Us",
+      "facebook": "Facebook",
+      "twitter": "Twitter",
+      "instagram": "Instagram",
+      "linkedin": "LinkedIn",
+      "youtube": "YouTube",
+      "snapchat": "Snapchat",
+      "tiktok": "TikTok"
+    }
+  },
+  "about": {
+    "title": "About Us",
+    "subtitle": "Leading cleaning services company in Jeddah",
+    "description": "Cleaning World Jeddah is a professional cleaning company established in 2018, and we pride ourselves on providing high-quality cleaning services using the latest American and European equipment and technologies.",
+    "vision": {
+      "title": "Our Vision",
+      "description": "To be the leading company in cleaning services in the Western Region, and contribute to raising the level of cleanliness and public health."
+    },
+    "mission": {
+      "title": "Our Mission",
+      "description": "To provide excellent and reliable cleaning services to our valued customers using the best equipment and environmentally friendly materials."
+    },
+    "values": {
+      "title": "Our Values",
+      "quality": "Quality",
+      "trust": "Trust",
+      "innovation": "Innovation",
+      "service": "Customer Service",
+      "environment": "Environment",
+      "safety": "Safety"
+    },
+    "team": {
+      "title": "Our Team",
+      "description": "A team of specialists trained to the highest level",
+      "experience": "Experience",
+      "training": "Training",
+      "certification": "Certification"
+    },
+    "achievements": {
+      "title": "Our Achievements",
+      "awards": "Awards",
+      "certifications": "Certifications",
+      "partnerships": "Partnerships"
+    }
+  },
+  "testimonials": {
+    "title": "Customer Reviews",
+    "subtitle": "What our valued customers say about our services",
+    "readMore": "Read More",
+    "showLess": "Show Less",
+    "rating": "Rating",
+    "verified": "Verified Customer",
+    "date": "Service Date"
+  },
+  "faq": {
+    "title": "Frequently Asked Questions",
+    "subtitle": "Answers to the most commonly asked questions",
+    "categories": {
+      "general": "General",
+      "booking": "Booking",
+      "payment": "Payment",
+      "services": "Services",
+      "policies": "Policies"
+    },
+    "questions": {
+      "pricing": "How much do your services cost?",
+      "coverage": "What areas do you serve?",
+      "duration": "How long does cleaning take?",
+      "safety": "Are the products safe?",
+      "guarantee": "Is there a guarantee?",
+      "booking": "How can I book?",
+      "payment": "What payment methods are available?",
+      "cancellation": "What is the cancellation policy?"
+    }
+  },
+  "admin": {
+    "dashboard": {
+      "title": "Dashboard",
+      "welcome": "Welcome to Admin Dashboard",
+      "overview": "Overview",
+      "quickStats": "Quick Stats",
+      "recentActivity": "Recent Activity",
+      "upcomingBookings": "Upcoming Bookings",
+      "notifications": "Notifications",
+      "recentBookings": "Recent Bookings",
+      "latestCustomerBookings": "Latest Customer Bookings",
+      "quickActions": "Quick Actions",
+      "commonTasks": "Common Tasks",
+      "fromLastMonth": "from last month"
+    },
+    "stats": {
+      "totalBookings": "Total Bookings",
+      "activeCustomers": "Active Customers",
+      "monthlyRevenue": "Monthly Revenue",
+      "avgRating": "Average Rating"
+    },
+    "actions": {
+      "newBooking": "New Booking",
+      "addCustomer": "Add Customer",
+      "viewReports": "View Reports",
+      "manageServices": "Manage Services"
+    },
+    "menu": {
+      "dashboard": "Dashboard",
+      "bookings": "Bookings Management",
+      "customers": "Customers Management",
+      "services": "Services Management",
+      "users": "Users Management",
+      "messages": "Messages",
+      "reports": "Reports",
+      "analytics": "Analytics",
+      "settings": "Settings",
+      "systemSettings": "System Settings",
+      "companySettings": "Company Settings",
+      "aiSettings": "AI Settings",
+      "notifications": "Notifications Management",
+      "database": "Database",
+      "security": "Security",
+      "seo": "SEO",
+      "content": "Content Management"
+    },
+    "bookings": {
+      "title": "Bookings Management",
+      "addNew": "New Booking",
+      "viewAll": "View All",
+      "pending": "Pending",
+      "confirmed": "Confirmed",
+      "completed": "Completed",
+      "cancelled": "Cancelled",
+      "filter": "Filter",
+      "export": "Export",
+      "details": "Booking Details",
+      "customer": "Customer",
+      "service": "Service",
+      "date": "Date",
+      "status": "Status",
+      "amount": "Amount",
+      "actions": "Actions"
+    },
+    "customers": {
+      "title": "Customers Management",
+      "addNew": "New Customer",
+      "totalCustomers": "Total Customers",
+      "activeCustomers": "Active Customers",
+      "newThisMonth": "New This Month",
+      "topCustomers": "Top Customers",
+      "customerInfo": "Customer Information",
+      "bookingHistory": "Booking History",
+      "totalSpent": "Total Spent",
+      "lastService": "Last Service",
+      "rating": "Rating"
+    },
+    "services": {
+      "title": "Services Management",
+      "addNew": "New Service",
+      "active": "Active",
+      "inactive": "Inactive",
+      "featured": "Featured",
+      "category": "Category",
+      "price": "Price",
+      "duration": "Duration",
+      "description": "Description",
+      "features": "Features",
+      "gallery": "Gallery"
+    },
+    "messages": {
+      "title": "Messages Management",
+      "inbox": "Inbox",
+      "sent": "Sent",
+      "unread": "Unread",
+      "priority": "Priority",
+      "reply": "Reply",
+      "forward": "Forward",
+      "archive": "Archive",
+      "markAsRead": "Mark as Read",
+      "markAsUnread": "Mark as Unread"
+    },
+    "reports": {
+      "title": "Reports",
+      "revenue": "Revenue Report",
+      "bookings": "Bookings Report",
+      "customers": "Customers Report",
+      "services": "Services Report",
+      "performance": "Performance Report",
+      "dateRange": "Date Range",
+      "generate": "Generate Report",
+      "export": "Export",
+      "print": "Print"
+    },
+    "settings": {
+      "title": "Settings",
+      "general": "General",
+      "company": "Company",
+      "notifications": "Notifications",
+      "users": "Users",
+      "security": "Security",
+      "backup": "Backup",
+      "integrations": "Integrations"
+    }
+  },
+  "auth": {
+    "login": {
+      "title": "Login",
+      "subtitle": "Access your account",
+      "email": "Email",
+      "password": "Password",
+      "remember": "Remember me",
+      "forgot": "Forgot password?",
+      "submit": "Login",
+      "noAccount": "Don't have an account?",
+      "register": "Create new account"
+    },
+    "register": {
+      "title": "Create New Account",
+      "subtitle": "Join us",
+      "firstName": "First Name",
+      "lastName": "Last Name",
+      "email": "Email",
+      "phone": "Phone",
+      "password": "Password",
+      "confirmPassword": "Confirm Password",
+      "terms": "I agree to the terms and conditions",
+      "submit": "Create Account",
+      "hasAccount": "Already have an account?",
+      "login": "Login"
+    },
+    "forgotPassword": {
+      "title": "Forgot Password",
+      "subtitle": "We'll send you a password reset link",
+      "email": "Email",
+      "submit": "Send Link",
+      "backToLogin": "Back to Login"
+    }
+  },
+  "notifications": {
+    "title": "Notifications",
+    "markAllRead": "Mark All as Read",
+    "clear": "Clear All",
+    "empty": "No notifications",
+    "types": {
+      "booking": "Booking",
+      "payment": "Payment",
+      "customer": "Customer",
+      "system": "System",
+      "reminder": "Reminder",
+      "urgent": "Urgent"
+    }
+  },
+  "ai": {
+    "title": "AI Assistant",
+    "subtitle": "How can I help you?",
+    "placeholder": "Type your message here...",
+    "send": "Send",
+    "listening": "Listening...",
+    "typing": "Typing...",
+    "suggestions": "Suggestions",
+    "quickActions": {
+      "bookService": "Book Service",
+      "checkPrice": "Check Price",
+      "serviceInfo": "Service Info",
+      "contactSupport": "Contact Support"
+    },
+    "responses": {
+      "greeting": "Hello! How can I help you today?",
+      "booking": "I'll help you book a service. What type of service do you need?",
+      "pricing": "Our prices are competitive and vary by service. Which service interests you?",
+      "thankyou": "Thank you for contacting us! Do you need any other assistance?"
+    }
+  },
+  "errors": {
+    "404": {
+      "title": "Page Not Found",
+      "description": "Sorry, the page you are looking for does not exist.",
+      "backHome": "Back to Home"
+    },
+    "500": {
+      "title": "Server Error",
+      "description": "A server error occurred. Please try again later.",
+      "retry": "Try Again"
+    },
+    "networkError": "Network connection error",
+    "validationError": "Please check the entered data",
+    "unauthorizedError": "Unauthorized access",
+    "forbiddenError": "Access forbidden",
+    "timeoutError": "Request timeout"
+  },
+  "success": {
+    "saved": "Saved successfully",
+    "deleted": "Deleted successfully",
+    "updated": "Updated successfully",
+    "created": "Created successfully",
+    "sent": "Sent successfully",
+    "uploaded": "Uploaded successfully",
+    "downloaded": "Downloaded successfully"
+  },
+  "validation": {
+    "required": "This field is required",
+    "email": "Please enter a valid email",
+    "phone": "Please enter a valid phone number",
+    "minLength": "Minimum length should be {min} characters",
+    "maxLength": "Maximum length should be {max} characters",
+    "numeric": "Must be a number",
+    "positive": "Must be a positive number",
+    "password": "Password is weak",
+    "confirmPassword": "Passwords do not match",
+    "fileSize": "File size is too large",
+    "fileType": "File type is not supported"
+  },
+  "payment": {
+    "methods": {
+      "cash": "Cash",
+      "card": "Credit Card",
+      "mada": "Mada",
+      "bankTransfer": "Bank Transfer",
+      "stcPay": "STC Pay",
+      "applePay": "Apple Pay",
+      "samsungPay": "Samsung Pay"
+    },
+    "status": {
+      "pending": "Pending",
+      "paid": "Paid",
+      "partial": "Partial",
+      "refunded": "Refunded",
+      "failed": "Failed"
+    },
+    "invoice": "Invoice",
+    "receipt": "Receipt",
+    "deposit": "Deposit",
+    "total": "Total",
+    "subtotal": "Subtotal",
+    "tax": "Tax",
+    "discount": "Discount",
+    "processing": "Processing..."
+  },
+  "time": {
+    "now": "Now",
+    "today": "Today",
+    "yesterday": "Yesterday",
+    "tomorrow": "Tomorrow",
+    "thisWeek": "This Week",
+    "nextWeek": "Next Week",
+    "thisMonth": "This Month",
+    "nextMonth": "Next Month",
+    "am": "AM",
+    "pm": "PM",
+    "minutes": "Minutes",
+    "hours": "Hours",
+    "days": "Days",
+    "weeks": "Weeks",
+    "months": "Months",
+    "years": "Years"
+  },
+  "company": {
+    "name": "Cleaning World Jeddah",
+    "slogan": "Cleanliness.. Quality.. Trust",
+    "address": "Prince Sultan Street, Al-Zahra District, Jeddah",
+    "phone": "+966126543210",
+    "whatsapp": "+966556789012",
+    "email": "info@cleaningworld-jeddah.com",
+    "website": "https://cleaningworld-jeddah.com",
+    "license": "Commercial License No: 4030289742",
+    "taxNumber": "Tax Number: 310389742700003",
+    "established": "Established in 2018",
+    "experience": "Over 6 years of experience"
+  },
+  "footer": {
+    "aboutUs": "About Us",
+    "ourServices": "Our Services",
+    "contactInfo": "Contact Information",
+    "followUs": "Follow Us",
+    "quickLinks": "Quick Links",
+    "workingHours": "Working Hours",
+    "serviceAreas": "Service Areas",
+    "allRightsReserved": "All rights reserved",
+    "designedBy": "Designed & Developed by",
+    "poweredBy": "Powered by"
+  }
+}

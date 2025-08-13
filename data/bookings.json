@@ -1,0 +1,528 @@
+{
+  "bookings": [
+    {
+      "id": "booking_1",
+      "customerId": "customer_1",
+      "customerName": "عبدالرحمن الغامدي",
+      "customerNameAr": "عبدالرحمن الغامدي",
+      "serviceId": "service_1",
+      "serviceName": "تنظيف وتعقيم السجاد والستائر",
+      "serviceNameAr": "تنظيف وتعقيم السجاد والستائر",
+      "bookingDate": "2025-01-20T10:00:00Z",
+      "preferredTime": "10:00 ص - 2:00 م",
+      "preferredTimeAr": "10:00 ص - 2:00 م",
+      "status": "confirmed",
+      "statusAr": "مؤكد",
+      "priority": "normal",
+      "priorityAr": "عادي",
+      "totalAmount": 220.00,
+      "deposit": 60.00,
+      "remainingAmount": 160.00,
+      "paymentStatus": "partial",
+      "paymentStatusAr": "جزئي",
+      "paymentMethod": "cash",
+      "paymentMethodAr": "نقدي",
+      "address": {
+        "street": "شارع الأمير سلطان، حي الزهراء",
+        "streetAr": "شارع الأمير سلطان، حي الزهراء",
+        "city": "جدة",
+        "cityAr": "جدة",
+        "instructions": "فيلا رقم 425، باب أزرق",
+        "instructionsAr": "فيلا رقم 425، باب أزرق"
+      },
+      "services": [
+        {
+          "item": "سجادة صالة كبيرة (4×5م)",
+          "itemAr": "سجادة صالة كبيرة (4×5م)",
+          "quantity": 1,
+          "price": 150.00
+        },
+        {
+          "item": "ستائر غرف النوم (3 غرف)",
+          "itemAr": "ستائر غرف النوم (3 غرف)",
+          "quantity": 3,
+          "price": 70.00
+        }
+      ],
+      "specialRequests": "يرجى استخدام منتجات آمنة للأطفال والحيوانات الأليفة",
+      "specialRequestsAr": "يرجى استخدام منتجات آمنة للأطفال والحيوانات الأليفة",
+      "assignedTeam": "فريق جدة الأول",
+      "assignedTeamAr": "فريق جدة الأول",
+      "estimatedDuration": "3.5 ساعة",
+      "estimatedDurationAr": "3.5 ساعة",
+      "createdAt": "2025-01-15T14:30:00Z",
+      "updatedAt": "2025-01-17T09:15:00Z",
+      "notes": "العميل لديه 3 أطفال، يفضل الخدمة الصباحية"
+    },
+    {
+      "id": "booking_2",
+      "customerId": "customer_2",
+      "customerName": "نورا الحربي",
+      "customerNameAr": "نورا الحربي",
+      "serviceId": "service_7",
+      "serviceName": "خدمة التعقيم العميق",
+      "serviceNameAr": "خدمة التعقيم العميق",
+      "bookingDate": "2025-01-18T09:00:00Z",
+      "preferredTime": "9:00 ص - 1:00 م",
+      "preferredTimeAr": "9:00 ص - 1:00 م",
+      "status": "completed",
+      "statusAr": "مكتمل",
+      "priority": "high",
+      "priorityAr": "عالي",
+      "totalAmount": 450.00,
+      "deposit": 0.00,
+      "remainingAmount": 0.00,
+      "paymentStatus": "paid",
+      "paymentStatusAr": "مدفوع",
+      "paymentMethod": "bank_transfer",
+      "paymentMethodAr": "تحويل بنكي",
+      "address": {
+        "street": "شارع التحلية، حي السلامة",
+        "streetAr": "شارع التحلية، حي السلامة",
+        "city": "جدة",
+        "cityAr": "جدة",
+        "instructions": "عمارة النخيل، الطابق الثالث، شقة 8",
+        "instructionsAr": "عمارة النخيل، الطابق الثالث، شقة 8"
+      },
+      "services": [
+        {
+          "item": "تعقيم شامل للمنزل (180 متر مربع)",
+          "itemAr": "تعقيم شامل للمنزل (180 متر مربع)",
+          "quantity": 1,
+          "price": 420.00
+        },
+        {
+          "item": "تعقيم إضافي للحمامات",
+          "itemAr": "تعقيم إضافي للحمامات",
+          "quantity": 1,
+          "price": 30.00
+        }
+      ],
+      "specialRequests": "عائلة حساسة للمواد الكيميائية، استخدام منتجات طبيعية فقط",
+      "specialRequestsAr": "عائلة حساسة للمواد الكيميائية، استخدام منتجات طبيعية فقط",
+      "assignedTeam": "فريق التعقيم المتخصص",
+      "assignedTeamAr": "فريق التعقيم المتخصص",
+      "estimatedDuration": "4 ساعات",
+      "estimatedDurationAr": "4 ساعات",
+      "completedAt": "2025-01-18T13:45:00Z",
+      "rating": 5,
+      "feedback": "خدمة ممتا��ة جداً، الفريق محترف ومهذب",
+      "feedbackAr": "خدمة ممتازة جداً، الفريق محترف ومهذب",
+      "createdAt": "2025-01-12T16:45:00Z",
+      "updatedAt": "2025-01-18T14:00:00Z",
+      "notes": "العميلة راضية جداً، طلبت خدمة شهرية"
+    },
+    {
+      "id": "booking_3",
+      "customerId": "customer_3",
+      "customerName": "خالد القحطاني - مجمع تجاري",
+      "customerNameAr": "خالد القحطاني - مجمع تجاري",
+      "serviceId": "service_5",
+      "serviceName": "تنظيف المنشآت التجارية",
+      "serviceNameAr": "تنظيف المنشآت التجارية",
+      "bookingDate": "2025-01-25T20:00:00Z",
+      "preferredTime": "8:00 م - 12:00 ص",
+      "preferredTimeAr": "8:00 م - 12:00 ص",
+      "status": "confirmed",
+      "statusAr": "مؤكد",
+      "priority": "normal",
+      "priorityAr": "عادي",
+      "totalAmount": 1200.00,
+      "deposit": 300.00,
+      "remainingAmount": 900.00,
+      "paymentStatus": "partial",
+      "paymentStatusAr": "جزئي",
+      "paymentMethod": "company_account",
+      "paymentMethodAr": "حساب الشركة",
+      "address": {
+        "street": "طريق الملك عبدالله، حي العزيزية",
+        "streetAr": "طريق الملك عبدالله، حي العزيزية",
+        "city": "جدة",
+        "cityAr": "جدة",
+        "instructions": "مجمع الأعمال الذهبي، المدخل الخلفي للخدمات",
+        "instructionsAr": "مجمع الأعمال الذهبي، المدخل الخلفي للخدمات"
+      },
+      "services": [
+        {
+          "item": "تنظيف عميق للمكاتب (800 متر مربع)",
+          "itemAr": "تنظيف عميق للمكاتب (800 متر مربع)",
+          "quantity": 1,
+          "price": 700.00
+        },
+        {
+          "item": "تنظيف السجاد (15 قطعة)",
+          "itemAr": "تنظيف السجاد (15 قطعة)",
+          "quantity": 15,
+          "price": 300.00
+        },
+        {
+          "item": "تنظيف النوافذ الخارجية",
+          "itemAr": "تنظيف النوافذ الخارجية",
+          "quantity": 1,
+          "price": 200.00
+        }
+      ],
+      "specialRequests": "تنظيف ليلي فقط، عدم الإزعاج أثناء ساعات العمل، حراسة أمنية",
+      "specialRequestsAr": "تنظيف ليلي فقط، عدم الإزعاج أثناء ساعات العمل، حراسة أمنية",
+      "assignedTeam": "فريق الوردية الليلية",
+      "assignedTeamAr": "فريق الوردية الليلية",
+      "estimatedDuration": "4 ساعات",
+      "estimatedDurationAr": "4 ساعات",
+      "createdAt": "2025-01-20T11:20:00Z",
+      "updatedAt": "2025-01-22T14:10:00Z",
+      "notes": "عميل تجاري مهم، عقد شهري، ترتيبات خاصة للدخول"
+    },
+    {
+      "id": "booking_4",
+      "customerId": "customer_4",
+      "customerName": "فاطمة العمري",
+      "customerNameAr": "فاطمة العمري",
+      "serviceId": "service_2",
+      "serviceName": "تنظيف وتعقيم المجالس والكنب",
+      "serviceNameAr": "تنظيف وتعقيم المجالس والكنب",
+      "bookingDate": "2025-01-22T14:00:00Z",
+      "preferredTime": "2:00 م - 5:00 م",
+      "preferredTimeAr": "2:00 م - 5:00 م",
+      "status": "pending",
+      "statusAr": "معلق",
+      "priority": "normal",
+      "priorityAr": "عادي",
+      "totalAmount": 380.00,
+      "deposit": 0.00,
+      "remainingAmount": 380.00,
+      "paymentStatus": "pending",
+      "paymentStatusAr": "معلق",
+      "paymentMethod": "mada",
+      "paymentMethodAr": "مدى",
+      "address": {
+        "street": "شارع صاري، حي الروضة",
+        "streetAr": "شارع صاري، حي الروضة",
+        "city": "جدة",
+        "cityAr": "جدة",
+        "instructions": "فيلا زرقاء، رقم 156، يوجد مواقف أمام المنزل",
+        "instructionsAr": "فيلا زرقاء، رقم 156، يوجد مواقف أمام المنزل"
+      },
+      "services": [
+        {
+          "item": "تنظيف مجلس رجال كامل",
+          "itemAr": "تنظيف مجلس رجال كامل",
+          "quantity": 1,
+          "price": 180.00
+        },
+        {
+          "item": "تنظيف كنب صالة (7 قطع)",
+          "itemAr": "تنظيف كنب صالة (7 قطع)",
+          "quantity": 7,
+          "price": 140.00
+        },
+        {
+          "item": "حماية القماش",
+          "itemAr": "حماية القماش",
+          "quantity": 1,
+          "price": 60.00
+        }
+      ],
+      "specialRequests": "تحتاج الخدمة قبل استقبال ضيوف، دقة في التوقيت مطلوبة",
+      "specialRequestsAr": "تحتاج الخدمة قبل استقبال ضيوف، دقة في التوقيت مطلوبة",
+      "assignedTeam": "فريق جدة الثاني",
+      "assignedTeamAr": "فريق جدة الثاني",
+      "estimatedDuration": "3 ساعات",
+      "estimatedDurationAr": "3 ساعات",
+      "createdAt": "2025-01-18T10:30:00Z",
+      "updatedAt": "2025-01-20T08:45:00Z",
+      "notes": "عميلة جديدة، حجز أول معنا، مناسبة خاصة"
+    },
+    {
+      "id": "booking_5",
+      "customerId": "customer_5",
+      "customerName": "سعد الزهراني - مطاعم البحر الأحمر",
+      "customerNameAr": "سعد الزهراني - مطاعم البحر الأحمر",
+      "serviceId": "service_5",
+      "serviceName": "تنظيف المنشآت التجارية",
+      "serviceNameAr": "تنظيف المنشآت التجارية",
+      "bookingDate": "2025-01-28T04:00:00Z",
+      "preferredTime": "4:00 ص - 9:00 ص",
+      "preferredTimeAr": "4:00 ص - 9:00 ص",
+      "status": "scheduled",
+      "statusAr": "مجدول",
+      "priority": "high",
+      "priorityAr": "عالي",
+      "totalAmount": 1800.00,
+      "deposit": 450.00,
+      "remainingAmount": 1350.00,
+      "paymentStatus": "partial",
+      "paymentStatusAr": "جزئي",
+      "paymentMethod": "company_account",
+      "paymentMethodAr": "حساب الشركة",
+      "address": {
+        "street": "كورنيش جدة، حي الشاطئ",
+        "streetAr": "كورنيش جدة، حي الشاطئ",
+        "city": "جدة",
+        "cityAr": "جدة",
+        "instructions": "مطعم البحر الأحمر الرئيسي، المدخل الخلفي للمطبخ",
+        "instructionsAr": "مطعم البحر الأحمر الرئيسي، المدخل الخلفي للمطبخ"
+      },
+      "services": [
+        {
+          "item": "تنظيف عميق للمطبخ الرئيسي",
+          "itemAr": "تنظيف عميق للمطبخ الرئيسي",
+          "quantity": 1,
+          "price": 800.00
+        },
+        {
+          "item": "تنظيف صالة الطعام (400 متر مربع)",
+          "itemAr": "تنظيف صالة الطعام (400 متر مربع)",
+          "quantity": 1,
+          "price": 600.00
+        },
+        {
+          "item": "تعقيم المعدات والأدوات",
+          "itemAr": "تعقيم المعدات والأدوات",
+          "quantity": 1,
+          "price": 400.00
+        }
+      ],
+      "specialRequests": "التزام بمعايير سلامة الغذاء، تفتيش صحي الأسبوع القادم، أولوية قصوى",
+      "specialRequestsAr": "التزام بمعايير سلامة الغذاء، تفتيش صحي الأسبوع القادم، أولوية قصوى",
+      "assignedTeam": "فريق المطاعم المتخصص + فريق إضافي",
+      "assignedTeamAr": "فريق المطاعم المتخصص + فريق إضافي",
+      "estimatedDuration": "5 ساعات",
+      "estimatedDurationAr": "5 ساعات",
+      "createdAt": "2025-01-23T13:15:00Z",
+      "updatedAt": "2025-01-25T09:30:00Z",
+      "notes": "عميل أولوية، سلسلة مطاعم مهمة، التحضير للتفتيش الصحي"
+    },
+    {
+      "id": "booking_6",
+      "customerId": "customer_6",
+      "customerName": "ريم الشهري",
+      "customerNameAr": "ريم الشهري",
+      "serviceId": "service_3",
+      "serviceName": "تنظيف وتلميع الأرضيات وجلي الرخام",
+      "serviceNameAr": "تنظيف وتلميع الأرضيات وجلي الرخام",
+      "bookingDate": "2025-01-15T08:00:00Z",
+      "preferredTime": "8:00 ص - 1:00 م",
+      "preferredTimeAr": "8:00 ص - 1:00 م",
+      "status": "completed",
+      "statusAr": "مكتمل",
+      "priority": "normal",
+      "priorityAr": "عادي",
+      "totalAmount": 520.00,
+      "deposit": 0.00,
+      "remainingAmount": 0.00,
+      "paymentStatus": "paid",
+      "paymentStatusAr": "مدفوع",
+      "paymentMethod": "cash",
+      "paymentMethodAr": "نقدي",
+      "address": {
+        "street": "شارع الأندلس، حي المروة",
+        "streetAr": "شارع الأندلس، حي المروة",
+        "city": "جدة",
+        "cityAr": "جدة",
+        "instructions": "عمارة الجوهرة، الطابق الأول، شقة 4",
+        "instructionsAr": "عمارة الجوهرة، الطابق الأول، شقة 4"
+      },
+      "services": [
+        {
+          "item": "جلي أرضية رخام (120 متر مربع)",
+          "itemAr": "جلي أرضية رخام (120 متر مربع)",
+          "quantity": 1,
+          "price": 450.00
+        },
+        {
+          "item": "تنظيف الفواصل",
+          "itemAr": "تنظيف الفواصل",
+          "quantity": 1,
+          "price": 70.00
+        }
+      ],
+      "specialRequests": "لمعان عالي مطلوب، لديها طفلان صغيران فيرجى الحذر",
+      "specialRequestsAr": "لمعان عالي م��لوب، لديها طفلان صغيران فيرجى الحذر",
+      "assignedTeam": "فريق الأرضيات المتخصص",
+      "assignedTeamAr": "فريق الأرضيات المتخصص",
+      "estimatedDuration": "5 ساعات",
+      "estimatedDurationAr": "5 ساعات",
+      "completedAt": "2025-01-15T13:30:00Z",
+      "rating": 5,
+      "feedback": "نتائج رائعة! الأرضية تبدو كالجديدة تماماً",
+      "feedbackAr": "نتائج رائعة! الأرضية تبدو كالجديدة تماماً",
+      "createdAt": "2025-01-10T12:00:00Z",
+      "updatedAt": "2025-01-15T13:45:00Z",
+      "notes": "عميلة سريعة القرار، راضية جداً عن النتائج"
+    },
+    {
+      "id": "booking_7",
+      "customerId": "customer_7",
+      "customerName": "محمد البقمي",
+      "customerNameAr": "محمد البقمي",
+      "serviceId": "service_4",
+      "serviceName": "تنظيف وعزل خزانات المياه",
+      "serviceNameAr": "تنظيف وعزل خزانات المياه",
+      "bookingDate": "2025-01-30T09:00:00Z",
+      "preferredTime": "9:00 ص - 3:00 م",
+      "preferredTimeAr": "9:00 ص - 3:00 م",
+      "status": "confirmed",
+      "statusAr": "مؤكد",
+      "priority": "normal",
+      "priorityAr": "عادي",
+      "totalAmount": 650.00,
+      "deposit": 150.00,
+      "remainingAmount": 500.00,
+      "paymentStatus": "partial",
+      "paymentStatusAr": "جزئي",
+      "paymentMethod": "cash",
+      "paymentMethodAr": "نقدي",
+      "address": {
+        "street": "شارع حراء، حي النزهة",
+        "streetAr": "شارع حراء، حي النزهة",
+        "city": "جدة",
+        "cityAr": "جدة",
+        "instructions": "فيلا كبيرة، المدخل الجانبي، الخزان على السطح",
+        "instructionsAr": "فيلا كبيرة، المدخل الجانبي، الخزان على السطح"
+      },
+      "services": [
+        {
+          "item": "تنظيف خزان علوي (5000 لتر)",
+          "itemAr": "تنظيف خزان علوي (5000 لتر)",
+          "quantity": 1,
+          "price": 400.00
+        },
+        {
+          "item": "تنظيف خزان أرضي (3000 لتر)",
+          "itemAr": "تنظيف خزان أرضي (3000 لتر)",
+          "quantity": 1,
+          "price": 200.00
+        },
+        {
+          "item": "اختبار جودة المياه",
+          "itemAr": "اختبار جودة المياه",
+          "quantity": 1,
+          "price": 50.00
+        }
+      ],
+      "specialRequests": "منزل كبير، فحص شامل للمضخات والأنابيب أيضاً",
+      "specialRequestsAr": "منزل كبير، فحص شامل للمضخات والأنابيب أيضاً",
+      "assignedTeam": "فريق خزانات المياه",
+      "assignedTeamAr": "فريق خزانات المياه",
+      "estimatedDuration": "6 ساعات",
+      "estimatedDurationAr": "6 ساعات",
+      "createdAt": "2025-01-25T14:20:00Z",
+      "updatedAt": "2025-01-27T11:40:00Z",
+      "notes": "عميل منتظم، منزل كبير، دفع نقدي دائماً"
+    },
+    {
+      "id": "booking_8",
+      "customerId": "customer_8",
+      "customerName": "هناء العتيبي",
+      "customerNameAr": "هناء العتيبي",
+      "serviceId": "service_8",
+      "serviceName": "عقود الصيانة الدورية",
+      "serviceNameAr": "عقود الصيانة الدورية",
+      "bookingDate": "2025-02-01T10:00:00Z",
+      "preferredTime": "10:00 ص - 2:00 م",
+      "preferredTimeAr": "10:00 ص - 2:00 م",
+      "status": "scheduled",
+      "statusAr": "مجدول",
+      "priority": "normal",
+      "priorityAr": "عادي",
+      "totalAmount": 900.00,
+      "deposit": 0.00,
+      "remainingAmount": 900.00,
+      "paymentStatus": "monthly_contract",
+      "paymentStatusAr": "عقد شهري",
+      "paymentMethod": "bank_transfer",
+      "paymentMethodAr": "تحويل بنكي",
+      "address": {
+        "street": "شارع المدينة المنورة، حي الفيصلية",
+        "streetAr": "شارع المدينة المنورة، حي الفيصلية",
+        "city": "جدة",
+        "cityAr": "جدة",
+        "instructions": "فيلا دورين، رقم 78، بوابة ذهبية",
+        "instructionsAr": "فيلا دورين، رقم 78، بوابة ذهبية"
+      },
+      "services": [
+        {
+          "item": "تنظيف شامل شهري (250 متر مربع)",
+          "itemAr": "تنظيف شامل شهري (250 متر مربع)",
+          "quantity": 1,
+          "price": 600.00
+        },
+        {
+          "item": "تنظيف السجاد والمفروشات",
+          "itemAr": "تنظيف السجاد والمفروشات",
+          "quantity": 1,
+          "price": 200.00
+        },
+        {
+          "item": "تعقيم دوري",
+          "itemAr": "تعقيم دوري",
+          "quantity": 1,
+          "price": 100.00
+        }
+      ],
+      "specialRequests": "عقد شهري منتظم، نفس الفريق دائماً، خدمة متكاملة",
+      "specialRequestsAr": "عقد شهري منتظم، نفس الفريق دائماً، خدمة متكاملة",
+      "assignedTeam": "فريق العقود المنتظمة",
+      "assignedTeamAr": "فريق العقود المنتظمة",
+      "estimatedDuration": "4 ساعات",
+      "estimatedDurationAr": "4 ساعات",
+      "createdAt": "2025-01-28T16:15:00Z",
+      "updatedAt": "2025-01-29T14:15:00Z",
+      "notes": "عميلة منتظمة، عقد شهري، راضية جداً عن الخدمة"
+    }
+  ],
+  "summary": {
+    "total": 8,
+    "completed": 2,
+    "confirmed": 3,
+    "pending": 1,
+    "scheduled": 2,
+    "cancelled": 0,
+    "totalRevenue": 6120.00,
+    "paidAmount": 970.00,
+    "pendingAmount": 5150.00,
+    "averageRating": 5.0,
+    "lastUpdated": "2025-01-09T04:15:00Z"
+  },
+  "statistics": {
+    "byStatus": {
+      "completed": { "count": 2, "percentage": 25.0 },
+      "confirmed": { "count": 3, "percentage": 37.5 },
+      "pending": { "count": 1, "percentage": 12.5 },
+      "scheduled": { "count": 2, "percentage": 25.0 }
+    },
+    "byPriority": {
+      "normal": { "count": 6, "percentage": 75.0 },
+      "high": { "count": 2, "percentage": 25.0 }
+    },
+    "byPaymentMethod": {
+      "cash": { "count": 3, "percentage": 37.5 },
+      "bank_transfer": { "count": 2, "percentage": 25.0 },
+      "company_account": { "count": 2, "percentage": 25.0 },
+      "mada": { "count": 1, "percentage": 12.5 }
+    },
+    "byDistrict": {
+      "الزهراء": 1,
+      "السلامة": 1,
+      "العزيزية": 1,
+      "الروضة": 1,
+      "الشاطئ": 1,
+      "المروة": 1,
+      "النزهة": 1,
+      "الفيصلية": 1
+    },
+    "revenueByMonth": {
+      "2025-01": 5220.00,
+      "2025-02": 900.00
+    },
+    "topServices": [
+      { "serviceId": "service_5", "serviceName": "تنظيف المنشآت التجارية", "bookings": 2 },
+      { "serviceId": "service_1", "serviceName": "تنظيف وتعقيم السجاد والستائر", "bookings": 1 },
+      { "serviceId": "service_2", "serviceName": "تنظيف وتعقيم المجالس والكنب", "bookings": 1 },
+      { "serviceId": "service_3", "serviceName": "تنظيف وتلميع الأرضيات وجلي الرخام", "bookings": 1 },
+      { "serviceId": "service_4", "serviceName": "تنظيف وعزل خزانات المياه", "bookings": 1 },
+      { "serviceId": "service_7", "serviceName": "خدمة التعقيم العميق", "bookings": 1 },
+      { "serviceId": "service_8", "serviceName": "عقود الصيانة الدورية", "bookings": 1 }
+    ]
+  }
+}

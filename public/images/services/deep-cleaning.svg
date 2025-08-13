@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" fill="none">
+  <defs>
+    <linearGradient id="deepCleanGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#3b82f6;stop-opacity:0.1" />
+      <stop offset="100%" style="stop-color:#1e40af;stop-opacity:0.1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="400" height="300" fill="url(#deepCleanGrad)"/>
+  
+  <!-- Room outline -->
+  <g stroke="#64748b" stroke-width="2" fill="none">
+    <rect x="50" y="80" width="300" height="180" rx="5"/>
+    <!-- Floor tiles -->
+    <g stroke="#e5e7eb" stroke-width="1">
+      <line x1="50" y1="140" x2="350" y2="140"/>
+      <line x1="50" y1="200" x2="350" y2="200"/>
+      <line x1="120" y1="80" x2="120" y2="260"/>
+      <line x1="190" y1="80" x2="190" y2="260"/>
+      <line x1="260" y1="80" x2="260" y2="260"/>
+    </g>
+  </g>
+  
+  <!-- Steam cleaner -->
+  <g fill="#3b82f6">
+    <rect x="100" y="150" width="40" height="60" rx="5"/>
+    <rect x="110" y="140" width="20" height="15" rx="3"/>
+    <circle cx="120" cy="130" r="5"/>
+    <!-- Steam effects -->
+    <g fill="#60a5fa" opacity="0.6">
+      <path d="M 125 135 Q 135 125 145 135 Q 155 145 165 135" stroke="#60a5fa" stroke-width="2" fill="none"/>
+      <path d="M 130 140 Q 140 130 150 140 Q 160 150 170 140" stroke="#60a5fa" stroke-width="2" fill="none"/>
+      <path d="M 135 145 Q 145 135 155 145 Q 165 155 175 145" stroke="#60a5fa" stroke-width="2" fill="none"/>
+    </g>
+  </g>
+  
+  <!-- Cleaning supplies -->
+  <g transform="translate(250, 160)">
+    <!-- Bucket -->
+    <path d="M 10 40 L 50 40 L 45 10 L 15 10 Z" fill="#10b981"/>
+    <ellipse cx="30" cy="10" rx="15" ry="3" fill="#34d399"/>
+    <!-- Brush -->
+    <rect x="60" y="30" width="30" height="8" rx="4" fill="#f59e0b"/>
+    <rect x="55" y="32" width="10" height="4" fill="#92400e"/>
+  </g>
+  
+  <!-- Sparkles indicating cleanliness -->
+  <g fill="#fbbf24">
+    <g transform="translate(150, 100)">
+      <path d="M 0 0 L 3 6 L 0 12 L -3 6 Z"/>
+      <path d="M -6 6 L 0 9 L 6 6 L 0 3 Z"/>
+    </g>
+    <g transform="translate(280, 120)">
+      <path d="M 0 0 L 2 4 L 0 8 L -2 4 Z"/>
+      <path d="M -4 4 L 0 6 L 4 4 L 0 2 Z"/>
+    </g>
+    <g transform="translate(200, 180)">
+      <path d="M 0 0 L 2 4 L 0 8 L -2 4 Z"/>
+      <path d="M -4 4 L 0 6 L 4 4 L 0 2 Z"/>
+    </g>
+  </g>
+  
+  <!-- Before/After indicator -->
+  <g transform="translate(70, 40)">
+    <rect x="0" y="0" width="120" height="25" rx="12" fill="#10b981"/>
+    <text x="60" y="16" text-anchor="middle" fill="white" font-family="Arial" font-size="12" font-weight="bold">DEEP CLEANING</text>
+  </g>
+  
+  <!-- Quality checkmarks -->
+  <g fill="#10b981" transform="translate(320, 100)">
+    <circle cx="0" cy="0" r="12" fill="#dcfce7"/>
+    <path d="M -6 0 L -2 4 L 6 -4" stroke="#10b981" stroke-width="2" fill="none"/>
+  </g>
+  <g fill="#10b981" transform="translate(320, 130)">
+    <circle cx="0" cy="0" r="12" fill="#dcfce7"/>
+    <path d="M -6 0 L -2 4 L 6 -4" stroke="#10b981" stroke-width="2" fill="none"/>
+  </g>
+</svg>

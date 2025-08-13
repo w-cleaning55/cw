@@ -1,0 +1,174 @@
+import type { Metadata, Viewport } from "next";
+import { Inter, Tajawal } from "next/font/google";
+import "./globals.css";
+import ClientProviders from "../components/ClientProviders";
+import { ThemeProvider } from "../hooks/useTheme";
+import { SEO_CONFIG, APP_CONFIG } from "../lib/constants";
+
+const inter = Inter({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-inter",
+});
+
+const tajawal = Tajawal({
+  subsets: ["arabic"],
+  weight: ["200", "300", "400", "500", "700", "800", "900"],
+  display: "swap",
+  variable: "--font-tajawal",
+});
+
+export const metadata: Metadata = {
+  title: SEO_CONFIG.defaultTitle,
+  description: SEO_CONFIG.description,
+  keywords: [...SEO_CONFIG.keywords],
+  authors: [{ name: APP_CONFIG.name, url: APP_CONFIG.domain }],
+  creator: APP_CONFIG.name,
+  publisher: APP_CONFIG.name,
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
+  metadataBase: new URL(APP_CONFIG.domain),
+  alternates: {
+    canonical: "/",
+    languages: {
+      "ar-SA": "/ar",
+      "en-US": "/en",
+    },
+  },
+  openGraph: {
+    ...SEO_CONFIG.openGraph,
+    title: SEO_CONFIG.defaultTitle,
+    description: SEO_CONFIG.description,
+  },
+  twitter: {
+    ...SEO_CONFIG.twitter,
+    title: SEO_CONFIG.defaultTitle,
+    description: SEO_CONFIG.description,
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  verification: {
+    google: "your-google-site-verification",
+    yandex: "your-yandex-verification",
+    yahoo: "your-yahoo-verification",
+  },
+  category: "business",
+};
+
+export const viewport: Viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "white" },
+    { media: "(prefers-color-scheme: dark)", color: "black" },
+  ],
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5,
+  userScalable: true,
+};
+
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return (
+    <html
+      lang="ar"
+      dir="rtl"
+      className={`${inter.variable} ${tajawal.variable}`}
+    >
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link
+          rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossOrigin="anonymous"
+        />
+        <link rel="dns-prefetch" href="//fonts.googleapis.com" />
+        <link rel="dns-prefetch" href="//fonts.gstatic.com" />
+        <meta name="mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+        <meta name="apple-mobile-web-app-title" content={APP_CONFIG.name} />
+        <meta name="application-name" content={APP_CONFIG.name} />
+        <meta name="msapplication-TileColor" content="#2563eb" />
+        <meta name="theme-color" content="#ffffff" />
+        <link
+          rel="apple-touch-icon"
+          sizes="180x180"
+          href="/apple-touch-icon.png"
+        />
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="32x32"
+          href="/favicon-32x32.png"
+        />
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="16x16"
+          href="/favicon-16x16.png"
+        />
+        <link rel="manifest" href="/site.webmanifest" />
+        <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#2563eb" />
+      </head>
+      <body
+        className={`${inter.className} font-sans antialiased min-h-screen transition-colors duration-300`}
+      >
+        <ThemeProvider>
+          <ClientProviders>{children}</ClientProviders>
+        </ThemeProvider>
+
+        {/* Structured Data */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "LocalBusiness",
+              name: APP_CONFIG.name,
+              alternateName: APP_CONFIG.nameAr,
+              description: SEO_CONFIG.description,
+              url: APP_CONFIG.domain,
+              telephone: APP_CONFIG.phone,
+              email: APP_CONFIG.email,
+              address: {
+                "@type": "PostalAddress",
+                addressLocality: "Riyadh",
+                addressCountry: "SA",
+              },
+              geo: {
+                "@type": "GeoCoordinates",
+                latitude: "24.7136",
+                longitude: "46.6753",
+              },
+              sameAs: [
+                "https://facebook.com/cleaningworld",
+                "https://twitter.com/cleaningworld",
+                "https://instagram.com/cleaningworld",
+              ],
+              serviceType: "Cleaning Services",
+              areaServed: {
+                "@type": "Country",
+                name: "Saudi Arabia",
+              },
+            }),
+          }}
+        />
+      </body>
+    </html>
+  );
+}
