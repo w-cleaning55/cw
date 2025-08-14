@@ -9,9 +9,6 @@ export default function StunningHeroSection() {
     { Icon: Sparkles, delay: 0, x: 100, y: 50 },
     { Icon: Stars, delay: 0.5, x: -80, y: 80 },
     { Icon: Zap, delay: 1, x: 150, y: -60 },
-    { Icon: Shield, delay: 1.5, x: -120, y: -40 },
-    { Icon: Award, delay: 2, x: 80, y: 120 },
-    { Icon: Heart, delay: 2.5, x: -50, y: -80 },
   ];
 
   return (
@@ -191,7 +188,7 @@ export default function StunningHeroSection() {
                   
                   <h3 className="text-2xl font-bold mb-4">خدمة متميزة</h3>
                   <p className="text-white/80 mb-6">
-                    فريق متخصص ومدرب ع��ى أعلى مستوى من الجودة والاحترافية
+                    فريق متخصص ومدرب على أعلى مستوى من الجودة والاحترافية
                   </p>
                   
                   {/* Stats */}
