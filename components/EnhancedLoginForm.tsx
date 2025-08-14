@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from "react";
+import React, { useState, useCallback, useEffect } from "react";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import { Label } from "./ui/label";
@@ -22,13 +22,19 @@ import {
   Loader2,
   Shield,
   AlertCircle,
+  CheckCircle,
+  Info,
 } from "lucide-react";
 
-interface LoginFormProps {
+interface EnhancedLoginFormProps {
   onSuccess?: () => void;
+  redirectTo?: string;
 }
 
-export default function LoginForm({ onSuccess }: LoginFormProps) {
+export default function EnhancedLoginForm({ 
+  onSuccess, 
+  redirectTo = "/admin" 
+}: EnhancedLoginFormProps) {
   const { t, currentLanguage } = useTranslation();
   const { login, isLoading, error, clearError } = useAuth();
   const [formData, setFormData] = useState({
@@ -37,66 +43,146 @@ export default function LoginForm({ onSuccess }: LoginFormProps) {
   });
   const [showPassword, setShowPassword] = useState(false);
   const [rememberMe, setRememberMe] = useState(false);
-  const [lastAttempt, setLastAttempt] = useState<{
-    username: string;
-    password: string;
-  } | null>(null);
-  const [serverDebug, setServerDebug] = useState<any | null>(null);
+  const [validationErrors, setValidationErrors] = useState<{
+    username?: string;
+    password?: string;
+  }>({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [successMessage, setSuccessMessage] = useState<string | null>(null);
 
   const isArabic = currentLanguage === "ar";
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  // Field validation
+  const validateField = useCallback((field: string, value: string) => {
+    const errors = { ...validationErrors };
+
+    switch (field) {
+      case "username":
+        if (!value.trim()) {
+          errors.username = isArabic ? "اسم المستخدم مطلوب" : "Username is required";
+        } else if (value.length < 3) {
+          errors.username = isArabic ? "اسم المستخدم يجب أن يكون 3 أحرف على الأقل" : "Username must be at least 3 characters";
+        } else {
+          delete errors.username;
+        }
+        break;
+
+      case "password":
+        if (!value.trim()) {
+          errors.password = isArabic ? "كلمة المرور مطلوبة" : "Password is required";
+        } else if (value.length < 6) {
+          errors.password = isArabic ? "كلمة المرور يجب أن تكون 6 أحرف على الأقل" : "Password must be at least 6 characters";
+        } else {
+          delete errors.password;
+        }
+        break;
+    }
+
+    setValidationErrors(errors);
+  }, [validationErrors, isArabic]);
+
+  // Handle input changes
+  const handleChange = useCallback((field: string, value: string) => {
+    setFormData((prev) => ({ ...prev, [field]: value }));
+    
+    // Clear validation error for this field
+    if (validationErrors[field as keyof typeof validationErrors]) {
+      setValidationErrors(prev => ({ ...prev, [field]: undefined }));
+    }
+    
+    // Clear general error
+    if (error) clearError();
+    
+    // Validate field
+    validateField(field, value);
+  }, [validationErrors, error, clearError, validateField]);
+
+  // Form submission
+  const handleSubmit = useCallback(async (e: React.FormEvent) => {
     e.preventDefault();
-    clearError();
+    
+    if (isSubmitting) return;
+
+    // Validate all fields
+    validateField("username", formData.username);
+    validateField("password", formData.password);
+
+    // Check if there are any validation errors
+    if (Object.keys(validationErrors).length > 0) {
+      return;
+    }
 
     if (!formData.username.trim() || !formData.password.trim()) {
       return;
     }
 
     try {
-      // Remember last attempt so we can show it on error
-      setLastAttempt({
-        username: formData.username,
-        password: formData.password,
-      });
-      await login(formData);
-      if (onSuccess) {
-        onSuccess();
-      }
-      // Clear last attempt on success
-      setLastAttempt(null);
-      setServerDebug(null);
-    } catch (err: any) {
-      // Error is handled by the hook; capture server debug if provided
-      setServerDebug(err?.debug ?? null);
-    }
-  };
+      setIsSubmitting(true);
+      clearError();
+      setSuccessMessage(null);
 
-  const handleChange = (field: string, value: string) => {
-    setFormData((prev) => ({ ...prev, [field]: value }));
-    if (error) clearError();
-  };
+      await login(formData);
+      
+      setSuccessMessage(isArabic ? "تم تسجيل الدخول بنجاح!" : "Login successful!");
+      
+      // Store remember me preference
+      if (rememberMe) {
+        localStorage.setItem("rememberMe", "true");
+        localStorage.setItem("lastUsername", formData.username);
+      } else {
+        localStorage.removeItem("rememberMe");
+        localStorage.removeItem("lastUsername");
+      }
+
+      // Call success callback
+      if (onSuccess) {
+        setTimeout(() => {
+          onSuccess();
+        }, 1000);
+      }
+    } catch (err: any) {
+      console.error("Login error:", err);
+      // Error is handled by the auth hook
+    } finally {
+      setIsSubmitting(false);
+    }
+  }, [formData, validationErrors, isSubmitting, rememberMe, login, clearError, onSuccess, isArabic, validateField]);
 
   // Demo login function
-  const handleDemoLogin = async () => {
-    await handleChange("username", "admin");
-    await handleChange("password", "admin123");
-
+  const handleDemoLogin = useCallback(async () => {
+    setFormData({
+      username: "admin",
+      password: "admin123",
+    });
+    
+    // Clear any existing errors
+    clearError();
+    setValidationErrors({});
+    
+    // Wait a bit for state to update
     setTimeout(() => {
       handleSubmit(new Event("submit") as any);
     }, 100);
-  };
+  }, [clearError, handleSubmit]);
+
+  // Load remembered data on mount
+  useEffect(() => {
+    const remembered = localStorage.getItem("rememberMe");
+    const lastUsername = localStorage.getItem("lastUsername");
+    
+    if (remembered === "true" && lastUsername) {
+      setRememberMe(true);
+      setFormData(prev => ({ ...prev, username: lastUsername }));
+    }
+  }, []);
+
+  const isFormValid = formData.username.trim() && 
+                     formData.password.trim() && 
+                     Object.keys(validationErrors).length === 0;
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 via-white to-green-50 dark:from-gray-900 dark:via-blue-950 dark:to-green-950 p-4">
-      {/* Background Effects */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-1/4 left-1/4 w-72 h-72 bg-blue-200/20 rounded-full mix-blend-multiply filter blur-xl animate-blob"></div>
-        <div className="absolute top-1/3 right-1/4 w-72 h-72 bg-green-200/20 rounded-full mix-blend-multiply filter blur-xl animate-blob animation-delay-2000"></div>
-        <div className="absolute bottom-1/4 left-1/3 w-72 h-72 bg-purple-200/20 rounded-full mix-blend-multiply filter blur-xl animate-blob animation-delay-4000"></div>
-      </div>
-
-      <Card className="w-full max-w-md relative z-10 shadow-2xl border-0 bg-white/95 dark:bg-gray-800/95 backdrop-blur-sm">
+      <Card className="w-full max-w-md shadow-2xl border-0 bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm">
         <CardHeader className="text-center space-y-4">
           {/* Logo */}
           <div className="mx-auto w-16 h-16 bg-gradient-to-br from-blue-600 to-green-600 rounded-full flex items-center justify-center shadow-lg">
@@ -116,6 +202,16 @@ export default function LoginForm({ onSuccess }: LoginFormProps) {
         </CardHeader>
 
         <CardContent className="space-y-6">
+          {/* Success Alert */}
+          {successMessage && (
+            <Alert className="border-green-200 bg-green-50 dark:bg-green-950/20">
+              <CheckCircle className="h-4 w-4 text-green-600" />
+              <AlertDescription className="text-green-800 dark:text-green-200">
+                {successMessage}
+              </AlertDescription>
+            </Alert>
+          )}
+
           {/* Error Alert */}
           {error && (
             <Alert
@@ -126,6 +222,16 @@ export default function LoginForm({ onSuccess }: LoginFormProps) {
               <AlertDescription>{error}</AlertDescription>
             </Alert>
           )}
+
+          {/* Info Alert */}
+          <Alert className="border-blue-200 bg-blue-50 dark:bg-blue-950/20">
+            <Info className="h-4 w-4 text-blue-600" />
+            <AlertDescription className="text-blue-800 dark:text-blue-200">
+              {isArabic 
+                ? "بيانات الدخول: admin / admin123" 
+                : "Demo credentials: admin / admin123"}
+            </AlertDescription>
+          </Alert>
 
           {/* Login Form */}
           <form onSubmit={handleSubmit} className="space-y-4">
@@ -144,9 +250,11 @@ export default function LoginForm({ onSuccess }: LoginFormProps) {
                   placeholder={
                     isArabic ? "أدخل اسم المستخدم" : "Enter username"
                   }
-                  className="pl-10 pr-4"
+                  className={`pl-10 pr-4 ${
+                    validationErrors.username ? "border-red-500 focus:border-red-500" : ""
+                  }`}
                   required
-                  disabled={isLoading}
+                  disabled={isSubmitting}
                   dir={isArabic ? "rtl" : "ltr"}
                   autoComplete="username"
                   autoCapitalize="none"
@@ -154,6 +262,11 @@ export default function LoginForm({ onSuccess }: LoginFormProps) {
                   spellCheck="false"
                 />
               </div>
+              {validationErrors.username && (
+                <p className="text-sm text-red-600 dark:text-red-400">
+                  {validationErrors.username}
+                </p>
+              )}
             </div>
 
             {/* Password Field */}
@@ -169,9 +282,11 @@ export default function LoginForm({ onSuccess }: LoginFormProps) {
                   value={formData.password}
                   onChange={(e) => handleChange("password", e.target.value)}
                   placeholder={isArabic ? "أدخل كلمة المرور" : "Enter password"}
-                  className="pl-10 pr-10"
+                  className={`pl-10 pr-10 ${
+                    validationErrors.password ? "border-red-500 focus:border-red-500" : ""
+                  }`}
                   required
-                  disabled={isLoading}
+                  disabled={isSubmitting}
                   autoComplete="current-password"
                   autoCapitalize="none"
                   autoCorrect="off"
@@ -181,7 +296,7 @@ export default function LoginForm({ onSuccess }: LoginFormProps) {
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
                   className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600"
-                  disabled={isLoading}
+                  disabled={isSubmitting}
                 >
                   {showPassword ? (
                     <EyeOff className="h-4 w-4" />
@@ -190,6 +305,11 @@ export default function LoginForm({ onSuccess }: LoginFormProps) {
                   )}
                 </button>
               </div>
+              {validationErrors.password && (
+                <p className="text-sm text-red-600 dark:text-red-400">
+                  {validationErrors.password}
+                </p>
+              )}
             </div>
 
             {/* Remember Me */}
@@ -200,7 +320,7 @@ export default function LoginForm({ onSuccess }: LoginFormProps) {
                 checked={rememberMe}
                 onChange={(e) => setRememberMe(e.target.checked)}
                 className="rounded border-gray-300 text-blue-600 focus:ring-blue-500"
-                disabled={isLoading}
+                disabled={isSubmitting}
                 aria-label={isArabic ? "تذكرني" : "Remember me"}
                 title={isArabic ? "تذكرني" : "Remember me"}
               />
@@ -216,13 +336,9 @@ export default function LoginForm({ onSuccess }: LoginFormProps) {
             <Button
               type="submit"
               className="w-full bg-gradient-to-r from-blue-600 to-green-600 hover:from-blue-700 hover:to-green-700 text-white font-semibold py-3"
-              disabled={
-                isLoading ||
-                !formData.username.trim() ||
-                !formData.password.trim()
-              }
+              disabled={isSubmitting || !isFormValid}
             >
-              {isLoading ? (
+              {isSubmitting ? (
                 <>
                   <Loader2 className="w-4 h-4 mr-2 animate-spin" />
                   {isArabic ? "جاري تسجيل الدخول..." : "Signing in..."}
@@ -234,119 +350,18 @@ export default function LoginForm({ onSuccess }: LoginFormProps) {
                 </>
               )}
             </Button>
-          </form>
 
-          {/* Last Attempt Box (shown on error) */}
-          {error && lastAttempt && (
-            <div className="mt-4 rounded-lg border border-yellow-200 bg-yellow-50 p-4 text-sm dark:border-yellow-900/40 dark:bg-yellow-950/20">
-              <div className="font-semibold text-yellow-800 dark:text-yellow-200">
-                {isArabic ? "آخر محاولة تسجيل دخول" : "Last Login Attempt"}
-              </div>
-              <div className="mt-2 grid grid-cols-1 gap-1 text-gray-800 dark:text-gray-100">
-                <div>
-                  <span className="opacity-70">
-                    {isArabic ? "اسم المستخدم:" : "Username:"}{" "}
-                  </span>
-                  <code className="rounded bg-white/60 px-1 py-0.5 dark:bg-white/10">
-                    {lastAttempt.username}
-                  </code>
-                </div>
-                <div>
-                  <span className="opacity-70">
-                    {isArabic ? "كلمة المرور:" : "Password:"}{" "}
-                  </span>
-                  <code className="rounded bg-white/60 px-1 py-0.5 dark:bg-white/10">
-                    {lastAttempt.password}
-                  </code>
-                </div>
-                {serverDebug && (
-                  <>
-                    <div className="mt-3 font-semibold text-yellow-800 dark:text-yellow-200">
-                      {isArabic ? "مقارنة الخادم" : "Server Comparison"}
-                    </div>
-                    <div>
-                      <span className="opacity-70">
-                        {isArabic ? "المستخدم المطابق:" : "Matched user:"}{" "}
-                      </span>
-                      <code className="rounded bg-white/60 px-1 py-0.5 dark:bg-white/10">
-                        {serverDebug.matchedUser
-                          ? serverDebug.matchedUser.username
-                          : isArabic
-                            ? "لا يوجد"
-                            : "none"}
-                      </code>
-                    </div>
-                    {serverDebug.storedHash && (
-                      <div>
-                        <span className="opacity-70">
-                          {isArabic
-                            ? "تجزئة كلمة المرور المخزنة:"
-                            : "Stored password hash:"}{" "}
-                        </span>
-                        <code className="break-all rounded bg-white/60 px-1 py-0.5 dark:bg-white/10">
-                          {serverDebug.storedHash}
-                        </code>
-                      </div>
-                    )}
-                    <div>
-                      <span className="opacity-70">
-                        {isArabic ? "النتيجة:" : "Result:"}{" "}
-                      </span>
-                      <code className="rounded bg-white/60 px-1 py-0.5 dark:bg-white/10">
-                        {serverDebug.compare
-                          ? isArabic
-                            ? "مطابقة"
-                            : "match"
-                          : isArabic
-                            ? "غير مطابقة"
-                            : "no match"}
-                      </code>
-                    </div>
-                  </>
-                )}
-              </div>
-            </div>
-          )}
-
-          {/* Demo Login */}
-          <div className="border-t border-gray-200 dark:border-gray-700 pt-4">
+            {/* Demo Login Button */}
             <Button
               type="button"
               variant="outline"
               onClick={handleDemoLogin}
+              disabled={isSubmitting}
               className="w-full"
-              disabled={isLoading}
             >
-              {isArabic
-                ? "تسجيل دخول تجريبي (admin/admin123)"
-                : "Demo Login (admin/admin123)"}
+              {isArabic ? "تسجيل دخول تجريبي" : "Demo Login"}
             </Button>
-          </div>
-
-          {/* Help Text */}
-          <div className="text-center text-sm text-gray-500 dark:text-gray-400">
-            {isArabic ? (
-              <>
-                للحصول على المساعدة، اتصل بـ{" "}
-                <a
-                  href="mailto:admin@cleaningworld.sa"
-                  className="text-blue-600 hover:underline"
-                >
-                  admin@cleaningworld.sa
-                </a>
-              </>
-            ) : (
-              <>
-                Need help? Contact{" "}
-                <a
-                  href="mailto:admin@cleaningworld.sa"
-                  className="text-blue-600 hover:underline"
-                >
-                  admin@cleaningworld.sa
-                </a>
-              </>
-            )}
-          </div>
+          </form>
         </CardContent>
       </Card>
     </div>

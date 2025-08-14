@@ -3,6 +3,7 @@ import { Inter, Tajawal } from "next/font/google";
 import "./globals.css";
 import ClientProviders from "../components/ClientProviders";
 import { ThemeProvider } from "../hooks/useTheme";
+import PerformanceOptimizer from "../components/PerformanceOptimizer";
 import { SEO_CONFIG, APP_CONFIG } from "../lib/constants";
 
 const inter = Inter({
@@ -128,9 +129,11 @@ export default function RootLayout({
       <body
         className={`${inter.className} font-sans antialiased min-h-screen transition-colors duration-300`}
       >
-        <ThemeProvider>
-          <ClientProviders>{children}</ClientProviders>
-        </ThemeProvider>
+        <PerformanceOptimizer>
+          <ThemeProvider>
+            <ClientProviders>{children}</ClientProviders>
+          </ThemeProvider>
+        </PerformanceOptimizer>
 
         {/* Structured Data */}
         <script
