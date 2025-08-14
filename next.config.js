@@ -55,8 +55,10 @@ const nextConfig = {
   poweredByHeader: false,
   compress: true,
   productionBrowserSourceMaps: false,
-  swcMinify: true,
   reactStrictMode: true,
+
+  // External packages for server components
+  serverExternalPackages: ['bcryptjs', 'jsonwebtoken'],
 
   // Compiler optimizations
   compiler: {
