@@ -37,7 +37,7 @@ export default function EnhancedIndicators({ className = "" }: EnhancedIndicator
 			}
 			raf = requestAnimationFrame(loop);
 		};
-		rafa = requestAnimationFrame(loop);
+		raf = requestAnimationFrame(loop);
 		return () => cancelAnimationFrame(raf);
 	}, []);
 
