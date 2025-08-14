@@ -42,6 +42,7 @@ const SoftUIDashboard: React.FC<SoftUIDashboardProps> = ({ children }) => {
     { icon: <Settings className="w-5 h-5" />, label: "SEO", href: "/admin/seo" },
     { icon: <Settings className="w-5 h-5" />, label: "الإشعارات", href: "/admin/notifications" },
     { icon: <Settings className="w-5 h-5" />, label: "إدارة المحتوى", href: "/admin/content" },
+    { icon: <MessageSquare className="w-5 h-5" />, label: "طلبات التواصل", href: "/admin/contact-requests" },
   ];
 
   const stats = [
