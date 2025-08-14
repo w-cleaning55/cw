@@ -10,7 +10,7 @@ import { createLoadingSkeleton } from "@/lib/component-utils";
 import { usePerformanceMonitor } from "@/lib/performance";
 import type { BaseComponent } from "@/lib/types";
 
-const StunningHeroSection = dynamic(() => import("@/components/sections/StunningHeroSection"), { ssr: true, loading: () => createLoadingSkeleton("section") });
+const FastHeroSection = dynamic(() => import("@/components/sections/FastHeroSection"), { ssr: true, loading: () => createLoadingSkeleton("section") });
 const StunningStatsSection = dynamic(() => import("@/components/sections/StunningStatsSection"), { ssr: true, loading: () => createLoadingSkeleton("section") });
 const PremiumServicesSection = dynamic(() => import("@/components/sections/PremiumServicesSection"), { ssr: true, loading: () => createLoadingSkeleton("section") });
 const FeaturesSection = dynamic(() => import("@/components/sections/FeaturesSection"), { ssr: true, loading: () => createLoadingSkeleton("section") });
