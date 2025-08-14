@@ -71,9 +71,12 @@ const HomeClient: React.FC<BaseComponent> = () => {
   const getText = (obj?: { ar?: string; en?: string }) => obj?.ar || obj?.en || undefined;
 
   return (
-    <div className="min-h-screen bg-white">
-      <StunningHeader />
-      <main id="main-content" tabIndex={-1}>
+    <SmoothScrollProvider>
+      <BackgroundPatterns>
+        <div className="min-h-screen">
+          <ScrollProgress />
+          <StunningHeader />
+          <main id="main-content" tabIndex={-1}>
         <Suspense fallback={<SectionSkeleton />}>
           {order.map((secId) => {
             if (!visible(secId)) return null;
@@ -146,10 +149,12 @@ const HomeClient: React.FC<BaseComponent> = () => {
         </Suspense>
       </main>
 
-      <Suspense fallback={<div className="py-12 bg-gray-900 animate-pulse" />}>
-        <Footer />
-      </Suspense>
-    </div>
+          <Suspense fallback={<div className="py-12 bg-gray-900 animate-pulse" />}>
+            <Footer />
+          </Suspense>
+        </div>
+      </BackgroundPatterns>
+    </SmoothScrollProvider>
   );
 };
 
