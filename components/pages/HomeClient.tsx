@@ -66,6 +66,7 @@ const HomeClient: React.FC<BaseComponent> = () => {
   };
   const heroVariant = content?.homepage?.hero?.component || 'modern';
   const servicesVariant = content?.homepage?.services?.component || 'premium';
+  const getText = (obj?: { ar?: string; en?: string }) => obj?.ar || obj?.en || undefined;
 
   return (
     <div className="min-h-screen bg-white">
@@ -85,7 +86,11 @@ const HomeClient: React.FC<BaseComponent> = () => {
             if (secId === 'services') {
               return (
                 <Suspense key="services" fallback={<SectionSkeleton />}>
-                  {servicesVariant === 'premium' ? <PremiumServicesSection /> : <PremiumServicesSection />}
+                  {servicesVariant === 'premium' ? (
+                    <PremiumServicesSection />
+                  ) : (
+                    <PremiumServicesSection />
+                  )}
                 </Suspense>
               );
             }
@@ -113,7 +118,11 @@ const HomeClient: React.FC<BaseComponent> = () => {
             if (secId === 'contact') {
               return (
                 <Suspense key="contact" fallback={<SectionSkeleton />}>
-                  <ContactSection />
+                  <ContactSection
+                    title={getText(content?.homepage?.contact?.title)}
+                    subtitle={getText(content?.homepage?.contact?.subtitle)}
+                    description={getText(content?.homepage?.contact?.description)}
+                  />
                 </Suspense>
               );
             }
