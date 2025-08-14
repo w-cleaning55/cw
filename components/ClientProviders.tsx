@@ -4,8 +4,11 @@ import React from 'react';
 import { NotificationProvider, NotificationDisplay } from './NotificationSystem';
 import { AnimationController } from './AnimationController';
 import { AuthProvider } from './AuthProvider';
-import AIAssistant from './AIAssistant';
-import AnalyticsMount from './AnalyticsMount';
+import LazyWrapper from './LazyWrapper';
+
+// Lazy load heavy components
+const AIAssistant = React.lazy(() => import('./AIAssistant'));
+const AnalyticsMount = React.lazy(() => import('./AnalyticsMount'));
 
 function AIWidgetMount() {
   const [enabled, setEnabled] = React.useState(false);
