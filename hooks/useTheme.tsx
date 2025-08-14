@@ -24,6 +24,7 @@ interface ThemeContextType {
   // الثيم الحالي
   currentTheme: string;
   setCurrentTheme: (themeId: string) => void;
+  toggleTheme: () => void;
 
   // الدارك مود
   isDarkMode: boolean;
@@ -48,6 +49,7 @@ interface ThemeContextType {
 
   // دوال مساعدة
   getAvailableThemes: () => Record<string, Theme>;
+  themes: Record<string, Theme>;
   resetToDefaults: () => void;
   exportSettings: () => string;
   importSettings: (settings: string) => boolean;
@@ -116,6 +118,13 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
     setDarkMode(!settings.darkMode);
   }, [settings.darkMode, setDarkMode]);
 
+  const toggleTheme = useCallback(() => {
+    const themeIds = Object.keys(THEMES);
+    const currentIndex = themeIds.indexOf(settings.currentTheme);
+    const nextIndex = (currentIndex + 1) % themeIds.length;
+    setCurrentTheme(themeIds[nextIndex]);
+  }, [settings.currentTheme, setCurrentTheme]);
+
   const setAutoTheme = useCallback((auto: boolean) => {
     setSettings((prev) => ({ ...prev, autoTheme: auto }));
   }, []);
@@ -167,6 +176,7 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
     isDarkMode,
     setDarkMode,
     toggleDarkMode,
+    toggleTheme,
     autoTheme: settings.autoTheme,
     setAutoTheme,
     colors,

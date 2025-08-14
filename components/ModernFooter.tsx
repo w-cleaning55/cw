@@ -546,7 +546,7 @@ export default function ModernFooter() {
             {/* Copyright */}
             <div className="text-center md:text-left">
               <p className="text-gray-400">
-                © 2024 {isArabic ? "عالم النظافة" : "Cleaning World"}.
+                © 2025 {isArabic ? "عالم النظافة" : "Cleaning World"}.
                 {isArabic ? " جميع الحقوق محفوظة." : " All rights reserved."}
               </p>
               <p className="text-sm text-gray-500 mt-1">

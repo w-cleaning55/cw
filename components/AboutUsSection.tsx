@@ -102,7 +102,7 @@ export default function AboutUsSection() {
       color: "text-indigo-600",
     },
     {
-      year: "2024",
+              year: "2025",
       title: "Industry Leader",
       titleAr: "رائد الصناعة",
       description: "Recognized as the leading cleaning service provider",

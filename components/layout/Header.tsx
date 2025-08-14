@@ -2,14 +2,20 @@
 
 import React from "react";
 import Link from "next/link";
+import { Globe, Palette } from "lucide-react";
 import { CompanyLogo } from "@/components/ui/CompactIcons";
 import { APP_CONFIG } from "@/lib/constants";
+import { useTranslation } from "@/hooks/useTranslation";
+import { useTheme } from "@/hooks/useTheme";
 
 interface HeaderProps {
   className?: string;
 }
 
 const Header: React.FC<HeaderProps> = ({ className = "" }) => {
+  const { currentLanguage, toggleLanguage } = useTranslation();
+  const { theme, toggleTheme } = useTheme();
+  
   return (
     <header className={`bg-white shadow-sm sticky top-0 z-50 ${className}`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -56,8 +62,32 @@ const Header: React.FC<HeaderProps> = ({ className = "" }) => {
               لوحة الإدارة
             </Link>
           </nav>
+          
+          {/* Language and Theme Switchers */}
+          <div className="flex items-center gap-2">
+            {/* Language Toggle */}
+            <button
+              onClick={toggleLanguage}
+              className="p-2 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors"
+              title={currentLanguage === "ar" ? "Switch to English" : "التبديل إلى العربية"}
+            >
+              <Globe className="w-5 h-5 text-gray-600" />
+            </button>
+            
+            {/* Theme Toggle */}
+            <button
+              onClick={toggleTheme}
+              className="p-2 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors"
+              title={currentLanguage === "ar" ? "تغيير الثيم" : "Change Theme"}
+            >
+              <Palette className="w-5 h-5 text-gray-600" />
+            </button>
+          </div>
           <div className="md:hidden">
-            <button className="text-gray-500 hover:text-gray-600 transition-colors">
+            <button 
+              className="text-gray-500 hover:text-gray-600 transition-colors"
+              title={currentLanguage === "ar" ? "القائمة" : "Menu"}
+            >
               <svg className="h-6 w-6 fill-current" viewBox="0 0 24 24">
                 <path d="M4 6h16v2H4zm0 5h16v2H4zm0 5h16v2H4z" />
               </svg>

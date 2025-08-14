@@ -145,7 +145,7 @@ const Footer: React.FC<FooterProps> = ({ className = "" }) => {
         </div>
 
         <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
-          <p dir="rtl">© 2024 عالم النظافة جدة. جميع الحقوق محفوظة.</p>
+          <p dir="rtl">© 2025 عالم النظافة جدة. جميع الحقوق محفوظة.</p>
         </div>
       </div>
     </footer>

@@ -2,8 +2,9 @@
 
 import React, { useState } from "react";
 import { useAuth } from "../hooks/useAuth";
-import { Eye, EyeOff, Lock, User, AlertCircle, CheckCircle } from "lucide-react";
+import { Eye, EyeOff, Lock, User, AlertCircle, CheckCircle, Globe, Palette } from "lucide-react";
 import { useTranslation } from "../hooks/useTranslation";
+import { useTheme } from "../hooks/useTheme";
 
 export default function LoginForm() {
   const [showPassword, setShowPassword] = useState(false);
@@ -12,7 +13,8 @@ export default function LoginForm() {
     password: "",
   });
   const { login, isLoading, error } = useAuth();
-  const { t, currentLanguage } = useTranslation();
+  const { t, currentLanguage, toggleLanguage } = useTranslation();
+  const { theme, toggleTheme, themes } = useTheme();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -41,6 +43,29 @@ export default function LoginForm() {
       </div>
 
       <div className="relative z-10 w-full max-w-md">
+        {/* Language and Theme Switchers */}
+        <div className="flex justify-end gap-2 mb-4">
+          {/* Language Toggle */}
+          <button
+            onClick={toggleLanguage}
+            className="p-2 bg-white/80 backdrop-blur-sm rounded-lg shadow-sm hover:bg-white/90 transition-colors"
+            title={currentLanguage === "ar" ? "Switch to English" : "التبديل إلى العربية"}
+          >
+            <Globe className="w-5 h-5 text-gray-600" />
+          </button>
+          
+          {/* Theme Toggle */}
+          <div className="relative">
+            <button
+              onClick={toggleTheme}
+              className="p-2 bg-white/80 backdrop-blur-sm rounded-lg shadow-sm hover:bg-white/90 transition-colors"
+              title={currentLanguage === "ar" ? "تغيير الثيم" : "Change Theme"}
+            >
+              <Palette className="w-5 h-5 text-gray-600" />
+            </button>
+          </div>
+        </div>
+
         {/* Logo and Header */}
         <div className="text-center mb-8">
           <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-purple-600 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg">
@@ -161,23 +186,14 @@ export default function LoginForm() {
             </button>
           </form>
 
-          {/* Demo Credentials */}
-          <div className="mt-6 p-4 bg-blue-50 border border-blue-200 rounded-lg">
-            <h3 className="text-sm font-medium text-blue-900 mb-2">
-              {currentLanguage === "ar" ? "بيانات تجريبية:" : "Demo Credentials:"}
-            </h3>
-            <div className="space-y-1 text-sm text-blue-800">
-              <p><strong>{currentLanguage === "ar" ? "اسم المستخدم:" : "Username:"}</strong> admin</p>
-              <p><strong>{currentLanguage === "ar" ? "كلمة المرور:" : "Password:"}</strong> admin123</p>
-              </div>
-            </div>
+
 
           {/* Footer */}
           <div className="mt-8 text-center">
             <p className="text-sm text-gray-500">
               {currentLanguage === "ar" 
-                ? "© 2024 عالم النظافة. جميع الحقوق محفوظة." 
-                : "© 2024 Cleaning World. All rights reserved."
+                ? "© 2025 عالم النظافة. جميع الحقوق محفوظة." 
+                : "© 2025 Cleaning World. All rights reserved."
               }
             </p>
           </div>
