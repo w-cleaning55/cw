@@ -128,7 +128,7 @@ export default function LoginForm({ onSuccess }: LoginFormProps) {
           )}
 
           {/* Login Form */}
-          <form onSubmit={handleSubmit} className="space-y-4">
+          <form onSubmit={handleSubmit} className="space-y-4" autoComplete="on">
             {/* Username Field */}
             <div className="space-y-2">
               <Label htmlFor="username" className="text-sm font-medium">
@@ -145,6 +145,8 @@ export default function LoginForm({ onSuccess }: LoginFormProps) {
                     isArabic ? "أدخل اسم المستخدم" : "Enter username"
                   }
                   className="pl-10 pr-4"
+                  name="username"
+                  autoComplete="username"
                   required
                   disabled={isLoading}
                   dir={isArabic ? "rtl" : "ltr"}
@@ -170,6 +172,8 @@ export default function LoginForm({ onSuccess }: LoginFormProps) {
                   onChange={(e) => handleChange("password", e.target.value)}
                   placeholder={isArabic ? "أدخل كلمة المرور" : "Enter password"}
                   className="pl-10 pr-10"
+                  name="password"
+                  autoComplete="current-password"
                   required
                   disabled={isLoading}
                   autoComplete="current-password"
@@ -203,6 +207,8 @@ export default function LoginForm({ onSuccess }: LoginFormProps) {
                 disabled={isLoading}
                 aria-label={isArabic ? "تذكرني" : "Remember me"}
                 title={isArabic ? "تذكرني" : "Remember me"}
+                name="remember"
+                autoComplete="on"
               />
               <Label
                 htmlFor="remember"

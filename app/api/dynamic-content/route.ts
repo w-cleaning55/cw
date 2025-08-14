@@ -11,6 +11,7 @@ export async function GET(request: NextRequest) {
       const defaultContent = {
         homepage: {
           hero: {
+            component: "modern",
             title: { ar: "عالم النظافة جدة", en: "Cleaning World Jeddah" },
             subtitle: {
               ar: "شريككم الموثوق لخدمات التنظيف المحترفة",
@@ -43,7 +44,9 @@ export async function GET(request: NextRequest) {
               },
             },
           },
+          order: ["hero","services","features","about","testimonials","contact"],
           services: {
+            component: "premium",
             visible: true,
             title: { ar: "خدماتنا المميزة", en: "Our Featured Services" },
             subtitle: {
@@ -56,6 +59,7 @@ export async function GET(request: NextRequest) {
             cardStyle: "modern",
           },
           features: {
+            component: "standard",
             visible: true,
             title: {
               ar: "لماذا نحن الخيار الأفضل؟",
@@ -69,6 +73,7 @@ export async function GET(request: NextRequest) {
             items: [],
           },
           about: {
+            component: "standard",
             visible: true,
             title: { ar: "من نحن؟", en: "Who We Are?" },
             subtitle: {
@@ -84,6 +89,7 @@ export async function GET(request: NextRequest) {
             achievements: [],
           },
           testimonials: {
+            component: "standard",
             visible: true,
             title: { ar: "آراء عملائنا", en: "Customer Reviews" },
             subtitle: {
@@ -97,6 +103,7 @@ export async function GET(request: NextRequest) {
             showDates: true,
           },
           contact: {
+            component: "formMap",
             visible: true,
             title: { ar: "تواصل معنا اليوم", en: "Contact Us Today" },
             subtitle: {

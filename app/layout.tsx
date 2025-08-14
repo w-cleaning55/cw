@@ -5,6 +5,7 @@ import ClientProviders from "../components/ClientProviders";
 import { ThemeProvider } from "../hooks/useTheme";
 import PerformanceOptimizer from "../components/PerformanceOptimizer";
 import { SEO_CONFIG, APP_CONFIG } from "../lib/constants";
+import { generateCleaningServiceStructuredData } from "../lib/seo";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -106,25 +107,8 @@ export default function RootLayout({
         <meta name="application-name" content={APP_CONFIG.name} />
         <meta name="msapplication-TileColor" content="#2563eb" />
         <meta name="theme-color" content="#ffffff" />
-        <link
-          rel="apple-touch-icon"
-          sizes="180x180"
-          href="/apple-touch-icon.png"
-        />
-        <link
-          rel="icon"
-          type="image/png"
-          sizes="32x32"
-          href="/favicon-32x32.png"
-        />
-        <link
-          rel="icon"
-          type="image/png"
-          sizes="16x16"
-          href="/favicon-16x16.png"
-        />
+        <link rel="icon" href="/favicon.ico" />
         <link rel="manifest" href="/site.webmanifest" />
-        <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#2563eb" />
       </head>
       <body
         className={`${inter.className} font-sans antialiased min-h-screen transition-colors duration-300`}
@@ -139,36 +123,7 @@ export default function RootLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "LocalBusiness",
-              name: APP_CONFIG.name,
-              alternateName: APP_CONFIG.nameAr,
-              description: SEO_CONFIG.description,
-              url: APP_CONFIG.domain,
-              telephone: APP_CONFIG.phone,
-              email: APP_CONFIG.email,
-              address: {
-                "@type": "PostalAddress",
-                addressLocality: "Riyadh",
-                addressCountry: "SA",
-              },
-              geo: {
-                "@type": "GeoCoordinates",
-                latitude: "24.7136",
-                longitude: "46.6753",
-              },
-              sameAs: [
-                "https://facebook.com/cleaningworld",
-                "https://twitter.com/cleaningworld",
-                "https://instagram.com/cleaningworld",
-              ],
-              serviceType: "Cleaning Services",
-              areaServed: {
-                "@type": "Country",
-                name: "Saudi Arabia",
-              },
-            }),
+            __html: JSON.stringify(generateCleaningServiceStructuredData()),
           }}
         />
       </body>

@@ -11,6 +11,7 @@ import {
   LocationIcon,
 } from "@/components/ui/CompactIcons";
 import { MessageCircle } from "lucide-react";
+import { APP_CONFIG } from "@/lib/constants";
 
 interface FooterLinkProps {
   href: string;
@@ -80,7 +81,7 @@ const Footer: React.FC<FooterProps> = ({ className = "" }) => {
             <div className="flex items-center gap-3 mb-4">
               <CompanyLogo size="lg" />
               <h3 className="text-2xl font-bold" dir="rtl">
-                عالم النظافة
+                {APP_CONFIG.name}
               </h3>
             </div>
             <p className="text-gray-400 mb-4" dir="rtl">

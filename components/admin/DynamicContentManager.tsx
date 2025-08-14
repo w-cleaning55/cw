@@ -585,6 +585,57 @@ export default function DynamicContentManager() {
 
         {/* محتوى الصفحة الرئيسية */}
         <TabsContent value="homepage" className="space-y-6">
+          {/* ترتيب الأقسام بالسحب والإفلات */}
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center space-x-2 rtl:space-x-reverse">
+                <Layout className="w-5 h-5" />
+                <span>ترتيب الأقسام</span>
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-2" dir="rtl">
+                {(content?.homepage?.order || ["hero","services","features","about","testimonials","contact"]).map((secId: string, idx: number) => (
+                  <div key={secId} className="flex items-center justify-between p-3 bg-white rounded-lg border">
+                    <div className="flex items-center gap-3">
+                      <span className="cursor-grab">≡</span>
+                      <span className="font-medium">
+                        {secId === 'hero' ? 'البانر' : secId === 'services' ? 'الخدمات' : secId === 'features' ? 'المميزات' : secId === 'about' ? 'من نحن' : secId === 'testimonials' ? 'الآراء' : 'التواصل'}
+                      </span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        onClick={() => {
+                          const arr = [...content.homepage.order];
+                          if (idx > 0) {
+                            [arr[idx - 1], arr[idx]] = [arr[idx], arr[idx - 1]];
+                            updateContent(["homepage","order"], arr);
+                          }
+                        }}
+                      >
+                        ↑
+                      </Button>
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        onClick={() => {
+                          const arr = [...content.homepage.order];
+                          if (idx < arr.length - 1) {
+                            [arr[idx + 1], arr[idx]] = [arr[idx], arr[idx + 1]];
+                            updateContent(["homepage","order"], arr);
+                          }
+                        }}
+                      >
+                        ↓
+                      </Button>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </CardContent>
+          </Card>
           {/* قسم البانر الرئيسي */}
           <Card>
             <CardHeader>
@@ -602,6 +653,18 @@ export default function DynamicContentManager() {
               </div>
             </CardHeader>
             <CardContent className="space-y-6">
+              <div>
+                <Label className="text-sm font-medium">نمط المكوّن</Label>
+                <select
+                  value={content.homepage.hero.component || 'modern'}
+                  onChange={(e) => updateContent(["homepage","hero","component"], e.target.value)}
+                  className="w-full p-2 border rounded-md mt-1"
+                >
+                  <option value="modern">عصري (Modern)</option>
+                  <option value="simple">بسيط (Simple)</option>
+                  <option value="premium">مميز (Premium)</option>
+                </select>
+              </div>
               <MultiLanguageInput
                 path={["homepage", "hero", "title"]}
                 label="العنوان الرئيسي"
@@ -737,6 +800,18 @@ export default function DynamicContentManager() {
               </div>
             </CardHeader>
             <CardContent className="space-y-6">
+              <div>
+                <Label className="text-sm font-medium">نمط المكوّن</Label>
+                <select
+                  value={content.homepage.services.component || 'premium'}
+                  onChange={(e) => updateContent(["homepage","services","component"], e.target.value)}
+                  className="w-full p-2 border rounded-md mt-1"
+                >
+                  <option value="premium">بطاقات مميزة (Premium)</option>
+                  <option value="standard">قياسي (Standard)</option>
+                  <option value="minimal">بسيط (Minimal)</option>
+                </select>
+              </div>
               <MultiLanguageInput
                 path={["homepage", "services", "title"]}
                 label="العنوان"
@@ -829,6 +904,18 @@ export default function DynamicContentManager() {
               </div>
             </CardHeader>
             <CardContent className="space-y-6">
+              <div>
+                <Label className="text-sm font-medium">نمط المكوّن</Label>
+                <select
+                  value={content.homepage.features.component || 'standard'}
+                  onChange={(e) => updateContent(["homepage","features","component"], e.target.value)}
+                  className="w-full p-2 border rounded-md mt-1"
+                >
+                  <option value="standard">قياسي</option>
+                  <option value="icons">أيقونات كبيرة</option>
+                  <option value="compact">مضغوط</option>
+                </select>
+              </div>
               <MultiLanguageInput
                 path={["homepage", "features", "title"]}
                 label="العنوان"
@@ -873,6 +960,18 @@ export default function DynamicContentManager() {
               </div>
             </CardHeader>
             <CardContent className="space-y-6">
+              <div>
+                <Label className="text-sm font-medium">نمط المكوّن</Label>
+                <select
+                  value={content.homepage.about.component || 'standard'}
+                  onChange={(e) => updateContent(["homepage","about","component"], e.target.value)}
+                  className="w-full p-2 border rounded-md mt-1"
+                >
+                  <option value="standard">صورة ونص</option>
+                  <option value="split">صورة مقسومة</option>
+                  <option value="cards">بطاقات</option>
+                </select>
+              </div>
               <MultiLanguageInput
                 path={["homepage", "about", "title"]}
                 label="العنوان"
@@ -929,6 +1028,18 @@ export default function DynamicContentManager() {
               </div>
             </CardHeader>
             <CardContent className="space-y-6">
+              <div>
+                <Label className="text-sm font-medium">نمط المكوّن</Label>
+                <select
+                  value={content.homepage.testimonials.component || 'standard'}
+                  onChange={(e) => updateContent(["homepage","testimonials","component"], e.target.value)}
+                  className="w-full p-2 border rounded-md mt-1"
+                >
+                  <option value="standard">بطاقات</option>
+                  <option value="carousel">كاروسيل</option>
+                  <option value="minimal">قائمة بسيطة</option>
+                </select>
+              </div>
               <MultiLanguageInput
                 path={["homepage", "testimonials", "title"]}
                 label="العنوان"
@@ -1033,6 +1144,18 @@ export default function DynamicContentManager() {
               </div>
             </CardHeader>
             <CardContent className="space-y-6">
+              <div>
+                <Label className="text-sm font-medium">نمط المكوّن</Label>
+                <select
+                  value={content.homepage.contact.component || 'formMap'}
+                  onChange={(e) => updateContent(["homepage","contact","component"], e.target.value)}
+                  className="w-full p-2 border rounded-md mt-1"
+                >
+                  <option value="formMap">نموذج + خريطة</option>
+                  <option value="cards">بطاقات تواصل</option>
+                  <option value="cta">دعوة لاتصال</option>
+                </select>
+              </div>
               <MultiLanguageInput
                 path={["homepage", "contact", "title"]}
                 label="العنوان"

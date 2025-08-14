@@ -1,19 +1,19 @@
 // Application Configuration
 export const APP_CONFIG = {
   name: "عالم النظافة",
-  nameAr: "عالم النظافة جدة",
-  nameEn: "Cleaning World Jeddah",
-  domain: "https://cw.com.sa",
-  phone: "+966500000000",
-  email: "info@cleaningworld.sa",
+  nameAr: "عالم النظافة",
+  nameEn: "CLEANING WORLD",
+  domain: "https://www.cw.com.sa",
+  phone: "+966559061065",
+  email: "admin@cw.com.sa",
   version: "1.0.0",
 } as const;
 
 // SEO Configuration
 export const SEO_CONFIG = {
-  defaultTitle: "عالم النظافة جدة - شريككم الموثوق لخدمات التنظيف المحترفة",
+  defaultTitle: "عالم النظافة - شريككم الموثوق لخدمات التنظيف المحترفة",
   description:
-    "نستخدم أحدث المعدات العالمية مع فريق من المتخصصين المدربين لضمان أعلى معايير النظافة والجودة في جدة",
+    "شركة خدمات تنظيف محترفة في جدة متخصصة في تنظيف وتعقيم الستائر والسجاد، المجالس والكنب، الأرضيات، خزانات المياه، المطاعم، مكافحة الحشرات.",
   keywords: [
     "تنظيف",
     "تنظيف منازل",
@@ -26,8 +26,8 @@ export const SEO_CONFIG = {
   openGraph: {
     type: "website",
     locale: "ar_SA",
-    url: "https://cw.com.sa",
-    siteName: "عالم النظافة جدة",
+    url: "https://www.cw.com.sa",
+    siteName: "عالم النظافة",
   },
   twitter: {
     card: "summary_large_image",
@@ -39,20 +39,58 @@ export const SEO_CONFIG = {
 // Company Information
 export const COMPANY_INFO = {
   name: "عالم النظافة",
-  fullName: "عالم النظافة جدة",
+  fullName: "عالم النظافة",
   tagline: "شريككم الموثوق لخدمات التنظيف المحترفة في جدة",
   description:
-    "نستخدم أحدث المعدات العالمية مع فريق من المتخصصين المدربين لضمان أعلى معايير النظافة والجودة",
+    "شركة خدمات تنظيف محترفة في جدة متخصصة في تنظيف وتعقيم الستائر والسجاد، المجالس والكنب، الأرضيات، خزانات المياه، المطاعم، مكافحة الحشرات.",
   foundedYear: 2018,
   location: {
+    streetAddress: "حي البشائر، شارع أبي فراس الحمداني",
     city: "جدة",
+    postalCode: "23762",
     country: "المملكة العربية السعودية",
-    address: "حي الزهراء، شارع الملك عبدالعزيز",
+    countryCode: "SA",
   },
   contact: {
-    phones: ["0500000000", "0112345678"],
-    emails: ["info@cleaningworld.sa", "booking@cleaningworld.sa"],
+    phones: ["+966559061065"],
+    emails: ["admin@cw.com.sa"],
   },
+} as const;
+
+// Centralized structured data extras
+export const BUSINESS_SCHEMA = {
+  images: [
+    "https://www.cw.com.sa/images/cleaning1.jpg",
+    "https://www.cw.com.sa/images/cleaning2.jpg",
+  ],
+  sameAs: [
+    "https://www.snapchat.com/@c_world0",
+    "https://www.instagram.com/c.world.sa/?hl=",
+    "https://x.com/C_world0",
+  ],
+  openingHours: {
+    dayOfWeek: [
+      "Saturday",
+      "Sunday",
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+    ],
+    opens: "08:00",
+    closes: "17:00",
+  },
+  serviceAreaName: "جدة",
+  aggregateRating: { ratingValue: "4.9", reviewCount: "120" },
+  priceRange: "$$$",
+  services: [
+    "تنظيف وتعقيم الستائر والسجاد",
+    "تنظيف وتعقيم المجالس والكنب",
+    "تنظيف وتلميع الأرضيات وجلي الرخام",
+    "تنظيف وعزل خزانات المياه والمسابح",
+    "تنظيف الكافيهات والمطاعم والمنشآت التجارية",
+    "مكافحة الحشرات والقوارض",
+  ],
 } as const;
 
 // Company Statistics
@@ -130,7 +168,7 @@ export const FEATURES = [
     id: "speed",
     title: "خدمة سريعة",
     description:
-      "فريق عمل محترف ينجز المهام في الوقت المحدد بأعلى معايي�� الجودة",
+      "فريق عمل محترف ينجز المهام في الوقت المحدد بأعلى معايير الجودة",
     iconType: "clock",
   },
   {

@@ -1,4 +1,4 @@
-import { COMPANY_INFO } from "./constants";
+import { COMPANY_INFO, APP_CONFIG, BUSINESS_SCHEMA } from "./constants";
 import type { SEOConfig } from "./types";
 
 // Generate structured data for cleaning service
@@ -6,67 +6,43 @@ export function generateCleaningServiceStructuredData() {
   return {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
-    "@id": "https://m-clean.net/#organization",
-    name: COMPANY_INFO.fullName,
-    description: COMPANY_INFO.description,
-    url: "https://m-clean.net",
-    logo: "https://m-clean.net/logo.svg",
-    image: "https://m-clean.net/hero-banner.svg",
-    telephone: COMPANY_INFO.contact.phones[0],
-    email: COMPANY_INFO.contact.emails[0],
+    name: APP_CONFIG.nameEn,
+    alternateName: COMPANY_INFO.name,
+    image: BUSINESS_SCHEMA.images,
+    email: APP_CONFIG.email,
+    telephone: APP_CONFIG.phone,
     address: {
       "@type": "PostalAddress",
+      streetAddress: COMPANY_INFO.location.streetAddress,
       addressLocality: COMPANY_INFO.location.city,
-      addressCountry: COMPANY_INFO.location.country,
-      streetAddress: COMPANY_INFO.location.address,
+      postalCode: COMPANY_INFO.location.postalCode,
+      addressCountry: COMPANY_INFO.location.countryCode,
     },
-    geo: {
-      "@type": "GeoCoordinates",
-      latitude: "21.4858",
-      longitude: "39.1925",
-    },
-    openingHours: "Mo-Su 00:00-23:59",
-    priceRange: "$$",
+    url: APP_CONFIG.domain,
+    description: COMPANY_INFO.description,
+    openingHoursSpecification: [
+      {
+        "@type": "OpeningHoursSpecification",
+        dayOfWeek: BUSINESS_SCHEMA.openingHours.dayOfWeek,
+        opens: BUSINESS_SCHEMA.openingHours.opens,
+        closes: BUSINESS_SCHEMA.openingHours.closes,
+      },
+    ],
+    serviceArea: { "@type": "Place", name: BUSINESS_SCHEMA.serviceAreaName },
     aggregateRating: {
       "@type": "AggregateRating",
-      ratingValue: "4.9",
-      ratingCount: "150",
-      bestRating: "5",
-      worstRating: "1",
+      ratingValue: BUSINESS_SCHEMA.aggregateRating.ratingValue,
+      reviewCount: BUSINESS_SCHEMA.aggregateRating.reviewCount,
     },
-    serviceArea: {
-      "@type": "City",
-      name: "جدة",
-    },
+    sameAs: BUSINESS_SCHEMA.sameAs,
+    priceRange: BUSINESS_SCHEMA.priceRange,
     hasOfferCatalog: {
       "@type": "OfferCatalog",
       name: "خدمات التنظيف",
-      itemListElement: [
-        {
-          "@type": "Offer",
-          itemOffered: {
-            "@type": "Service",
-            name: "تنظيف المنازل والفلل",
-            description: "خدمة تنظيف شاملة للمنازل والفلل مع ضمان الجودة",
-          },
-        },
-        {
-          "@type": "Offer",
-          itemOffered: {
-            "@type": "Service",
-            name: "تنظيف المكاتب والشركات",
-            description: "حلول تنظيف احترافية للمكاتب والمباني التجارية",
-          },
-        },
-        {
-          "@type": "Offer",
-          itemOffered: {
-            "@type": "Service",
-            name: "تنظيف السجاد والستائر",
-            description: "خدمة تنظيف وتعقيم السجاد والستائر بأحدث التقنيات",
-          },
-        },
-      ],
+      itemListElement: BUSINESS_SCHEMA.services.map((s) => ({
+        "@type": "Offer",
+        itemOffered: { "@type": "Service", name: s },
+      })),
     },
   };
 }
@@ -82,23 +58,8 @@ export function generateFAQStructuredData() {
         name: "ما هي أنواع الخدمات التي تقدمونها؟",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "نقدم خدمات تنظيف شاملة تشمل تنظيف المنازل والفلل، تنظيف المكاتب والشركات، تنظيف السجاد والستائر، جلي وتلميع الرخام، تنظيف خزانات المياه، ومكافحة الحشرات.",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "هل تقدمون ضمان على خدماتكم؟",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "نعم، نقدم ضمان 100% على جميع خدماتنا مع إمكانية الإعادة في حالة عدم الرضا التام عن الخدمة.",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "كم تستغرق عملية التنظيف؟",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "يعتمد وقت التنظيف على نوع الخدمة وحجم المكان. فريقنا المحترف ينجز المهام في الوقت المحدد بأعلى معايير الجودة.",
+          text:
+            "نقدم خدمات تنظيف شاملة تشمل تنظيف وتعقيم الستائر والسجاد، المجالس والكنب، الأرضيات، خزانات المياه، المطاعم، مكافحة الحشرات.",
         },
       },
     ],
@@ -114,7 +75,7 @@ export function generateBreadcrumbStructuredData(path: string[]) {
       "@type": "ListItem",
       position: index + 1,
       name: item,
-      item: `https://m-clean.net${index === 0 ? "" : `/${item.toLowerCase()}`}`,
+      item: `${APP_CONFIG.domain}${index === 0 ? "" : `/${item.toLowerCase()}`}`,
     })),
   };
 }
@@ -132,14 +93,14 @@ export const DEFAULT_SEO: SEOConfig = {
     "مكافحة حشرات",
     "جدة",
     "السعودية",
-    "خدمات تن��يف",
+    "خدمات تنظيف",
     "شركة تنظيف",
   ],
   openGraph: {
     title: COMPANY_INFO.fullName,
     description: COMPANY_INFO.tagline,
-    image: "https://m-clean.net/hero-banner.svg",
-    url: "https://m-clean.net",
+    image: `${APP_CONFIG.domain}/images/hero.jpg`,
+    url: APP_CONFIG.domain,
   },
   twitter: {
     card: "summary_large_image",
@@ -192,7 +153,7 @@ export function generateMetaTags(seo: SEOConfig) {
 
 // Canonical URL generator
 export function generateCanonicalUrl(pathname: string): string {
-  const baseUrl = "https://m-clean.net";
+  const baseUrl = APP_CONFIG.domain;
   return `${baseUrl}${pathname === "/" ? "" : pathname}`;
 }
 
@@ -200,11 +161,18 @@ export function generateCanonicalUrl(pathname: string): string {
 export function generateSitemapEntry(
   url: string,
   lastModified: Date = new Date(),
-  changeFrequency: "always" | "hourly" | "daily" | "weekly" | "monthly" | "yearly" | "never" = "weekly",
+  changeFrequency:
+    | "always"
+    | "hourly"
+    | "daily"
+    | "weekly"
+    | "monthly"
+    | "yearly"
+    | "never" = "weekly",
   priority: number = 0.5
 ) {
   return {
-    url: `https://m-clean.net${url}`,
+    url: `${APP_CONFIG.domain}${url}`,
     lastModified: lastModified.toISOString().split("T")[0],
     changeFrequency,
     priority,
