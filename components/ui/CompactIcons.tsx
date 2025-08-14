@@ -136,11 +136,11 @@ export const CompanyLogo: React.FC<CompactIconProps> = ({
   size = "md",
   className = "",
 }) => (
-  <div
-    className={`${sizes[size]} bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg flex items-center justify-center ${className}`}
-  >
-    <Sparkles
-      className={`${size === "xs" ? "w-2 h-2" : size === "sm" ? "w-3 h-3" : size === "md" ? "w-4 h-4" : "w-5 h-5"} text-white`}
-    />
-  </div>
+  <img
+    src="/images/logo.svg"
+    alt="شعار عالم النظافة"
+    className={`${className}`}
+    width={size === "xs" ? 16 : size === "sm" ? 20 : size === "md" ? 24 : 28}
+    height={size === "xs" ? 16 : size === "sm" ? 20 : size === "md" ? 24 : 28}
+  />
 );
