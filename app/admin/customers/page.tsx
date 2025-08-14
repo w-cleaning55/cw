@@ -1,7 +1,14 @@
-import SoftUIDashboard from "../../../components/dashboard/SoftUIDashboard";
-import SoftUITable from "../../../components/dashboard/SoftUITable";
-import SoftUICard from "../../../components/dashboard/SoftUICard";
+'use client';
+
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
+import dynamic from "next/dynamic";
 import { Phone, Mail, MapPin, Star } from "lucide-react";
+
+const SoftUIDashboard = dynamic(() => import("../../../components/dashboard/SoftUIDashboard"), { ssr: false });
+const SoftUITable = dynamic(() => import("../../../components/dashboard/SoftUITable"), { ssr: false });
+const SoftUICard = dynamic(() => import("../../../components/dashboard/SoftUICard"), { ssr: false });
 
 export default function CustomersPage() {
   const customers = [
