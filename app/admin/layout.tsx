@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import ProtectedRoute from "@/components/ProtectedRoute";
 
 export const metadata: Metadata = {
   title: "لوحة الإدارة - عالم النظافة",
@@ -21,7 +22,7 @@ export default function AdminLayout({
       
       {/* Content */}
       <div className="relative z-10">
-        {children}
+        <ProtectedRoute requiredRole="admin">{children}</ProtectedRoute>
       </div>
     </div>
   );
