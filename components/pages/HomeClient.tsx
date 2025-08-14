@@ -72,9 +72,8 @@ const HomeClient: React.FC<BaseComponent> = () => {
 
   return (
     <SmoothScrollProvider>
-      <BackgroundPatterns>
-        <div className="min-h-screen">
-          <ScrollProgress />
+      <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50/20">
+        <ScrollProgress />
           <StunningHeader />
           <main id="main-content" tabIndex={-1}>
         <Suspense fallback={<SectionSkeleton />}>
@@ -153,7 +152,6 @@ const HomeClient: React.FC<BaseComponent> = () => {
             <Footer />
           </Suspense>
         </div>
-      </BackgroundPatterns>
     </SmoothScrollProvider>
   );
 };
