@@ -89,6 +89,9 @@ export default function PerformanceOptimizer({ children }: PerformanceOptimizerP
   }, []);
 
   useEffect(() => {
+    // Only run on client side
+    if (typeof window === 'undefined') return;
+
     // Override global setTimeout
     window.setTimeout = optimizedSetTimeout;
 
