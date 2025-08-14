@@ -5,6 +5,7 @@ import { NotificationProvider, NotificationDisplay } from './NotificationSystem'
 import { AnimationController } from './AnimationController';
 import { AuthProvider } from './AuthProvider';
 import AIAssistant from './AIAssistant';
+import AnalyticsMount from './AnalyticsMount';
 
 function AIWidgetMount() {
   const [enabled, setEnabled] = React.useState(false);
@@ -41,6 +42,7 @@ export default function ClientProviders({ children }: ClientProvidersProps) {
           {children}
           <NotificationDisplay />
           <AIWidgetMount />
+          <AnalyticsMount />
         </NotificationProvider>
       </AnimationController>
     </AuthProvider>
