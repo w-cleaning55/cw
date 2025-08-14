@@ -30,7 +30,11 @@ function AIWidgetMount() {
     return () => { active = false; };
   }, []);
   if (!enabled) return null;
-  return <AIAssistant context={context} />;
+  return (
+    <LazyWrapper>
+      <AIAssistant context={context} />
+    </LazyWrapper>
+  );
 }
 
 interface ClientProvidersProps {
