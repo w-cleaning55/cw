@@ -38,10 +38,7 @@ const nextConfig = {
       "tailwind-merge"
     ],
     webpackBuildWorker: true,
-    serverComponentsExternalPackages: ['bcryptjs', 'jsonwebtoken'],
     esmExternals: true,
-    serverSourceMaps: false,
-    instrumentationHook: false,
   },
 
   // Turbopack configuration (stable in Next.js 15)
