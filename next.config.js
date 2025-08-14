@@ -60,6 +60,13 @@ const nextConfig = {
   // External packages for server components
   serverExternalPackages: ['bcryptjs', 'jsonwebtoken'],
 
+  // Allow dev origins for Builder.io
+  allowedDevOrigins: [
+    'https://d048913a85204922993c175bcbb2967c-eca3e9ec47ce47b4980cc4e12.fly.dev',
+    'https://projects.builder.codes',
+    'https://builder.io',
+  ],
+
   // Compiler optimizations
   compiler: {
     removeConsole: process.env.NODE_ENV === "production" ? {
