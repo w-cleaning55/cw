@@ -97,21 +97,34 @@ const HomeClient: React.FC<BaseComponent> = () => {
             if (secId === 'features') {
               return (
                 <Suspense key="features" fallback={<SectionSkeleton />}>
-                  <FeaturesSection />
+                  <FeaturesSection
+                    title={getText(content?.homepage?.features?.title)}
+                    subtitle={getText(content?.homepage?.features?.subtitle)}
+                    items={content?.homepage?.features?.items}
+                  />
                 </Suspense>
               );
             }
             if (secId === 'about') {
               return (
                 <Suspense key="about" fallback={<SectionSkeleton />}>
-                  <AboutSection />
+                  <AboutSection
+                    title={getText(content?.homepage?.about?.title)}
+                    subtitle={getText(content?.homepage?.about?.subtitle)}
+                    description={getText(content?.homepage?.about?.description)}
+                    image={content?.homepage?.about?.image}
+                  />
                 </Suspense>
               );
             }
             if (secId === 'testimonials') {
               return (
                 <Suspense key="testimonials" fallback={<SectionSkeleton />}>
-                  <TestimonialsSection />
+                  <TestimonialsSection
+                    title={getText(content?.homepage?.testimonials?.title)}
+                    subtitle={getText(content?.homepage?.testimonials?.subtitle)}
+                    items={content?.homepage?.testimonials?.items}
+                  />
                 </Suspense>
               );
             }

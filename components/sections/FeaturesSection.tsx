@@ -3,6 +3,12 @@
 import React from "react";
 import { Shield, Clock, Award } from "lucide-react";
 
+interface FeatureItemInput {
+  icon?: string;
+  title?: string;
+  description?: string;
+}
+
 interface Feature {
   icon: React.ReactNode;
   title: string;
@@ -29,10 +35,27 @@ const FeatureCard: React.FC<FeatureCardProps> = ({ feature }) => (
 
 interface FeaturesSectionProps {
   className?: string;
+  title?: string;
+  subtitle?: string;
+  items?: FeatureItemInput[];
 }
 
-const FeaturesSection: React.FC<FeaturesSectionProps> = ({ className = "" }) => {
-  const features: Feature[] = [
+const mapIcon = (key?: string) => {
+  const size = "w-8 h-8";
+  switch (key) {
+    case "shield":
+      return <Shield className={size} />;
+    case "clock":
+      return <Clock className={size} />;
+    case "award":
+      return <Award className={size} />;
+    default:
+      return <Shield className={size} />;
+  }
+};
+
+const FeaturesSection: React.FC<FeaturesSectionProps> = ({ className = "", title, subtitle, items }) => {
+  const defaultFeatures: Feature[] = [
     {
       icon: <Shield className="w-8 h-8" />,
       title: "ضمان 100%",
@@ -50,15 +73,23 @@ const FeaturesSection: React.FC<FeaturesSectionProps> = ({ className = "" }) => 
     },
   ];
 
+  const features: Feature[] = (items && items.length > 0)
+    ? items.map((it) => ({
+        icon: mapIcon(it.icon),
+        title: it.title || "",
+        description: it.description || "",
+      }))
+    : defaultFeatures;
+
   return (
     <section className={`py-20 bg-blue-50 ${className}`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4" dir="rtl">
-            لماذا نحن الخيار الأفضل؟
+            {title || "لماذا نحن الخيار الأفضل؟"}
           </h2>
           <p className="text-gray-600 max-w-2xl mx-auto" dir="rtl">
-            نتميز بالجودة والمصداقية في تقديم خدمات التنظيف لأكثر من 6 سنوات
+            {subtitle || "نتميز بالجودة والمصداقية في تقديم خدمات التنظيف لأكثر من 6 سنوات"}
           </p>
         </div>
 
