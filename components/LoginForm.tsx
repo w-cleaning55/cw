@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import { Label } from "./ui/label";
@@ -29,6 +30,9 @@ interface LoginFormProps {
 }
 
 export default function LoginForm({ onSuccess }: LoginFormProps) {
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const nextUrl = searchParams?.get("next") || "/admin";
   const { t, currentLanguage } = useTranslation();
   const { login, isLoading, error, clearError } = useAuth();
   const [formData, setFormData] = useState({
@@ -60,9 +64,7 @@ export default function LoginForm({ onSuccess }: LoginFormProps) {
         password: formData.password,
       });
       await login(formData);
-      if (onSuccess) {
-        onSuccess();
-      }
+      if (onSuccess) { onSuccess(); } else { router.push(nextUrl); }
       // Clear last attempt on success
       setLastAttempt(null);
       setServerDebug(null);
