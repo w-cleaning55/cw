@@ -97,7 +97,7 @@ export async function GET() {
       const fileContent = fs.readFileSync(BOOKINGS_FILE, 'utf-8');
       bookings = JSON.parse(fileContent);
     } else {
-      bookings = getDefaultBookings();
+      bookings = [];
       fs.writeFileSync(BOOKINGS_FILE, JSON.stringify(bookings, null, 2));
     }
     

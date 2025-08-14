@@ -135,13 +135,15 @@ export function useAuthState() {
 
   // Permission check
   const hasPermission = useCallback((module: string, action: 'create' | 'read' | 'update' | 'delete') => {
-    return authService.hasPermission(module, action);
-  }, []);
+    if (!user) return false;
+    const perms = user.permissions || [];
+    return perms.some(p => p.module === module && p.actions?.includes(action));
+  }, [user]);
 
   // Role check
   const hasRole = useCallback((role: 'admin' | 'manager' | 'operator') => {
-    return authService.hasRole(role);
-  }, []);
+    return !!user && user.role === role;
+  }, [user]);
 
   // Clear error
   const clearError = useCallback(() => {
