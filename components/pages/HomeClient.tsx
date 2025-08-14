@@ -64,24 +64,22 @@ const HomeClient: React.FC<BaseComponent> = () => {
     const v = content?.homepage?.[secId]?.visible;
     return v === undefined ? true : !!v;
   };
-  const heroVariant = content?.homepage?.hero?.component || 'modern';
+  const heroVariant = content?.homepage?.hero?.component || 'professional';
   const servicesVariant = content?.homepage?.services?.component || 'premium';
   const getText = (obj?: { ar?: string; en?: string }) => obj?.ar || obj?.en || undefined;
 
   return (
-    <SmoothScrollProvider>
-      <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50/20">
-        <ScrollProgress />
-          <StunningHeader />
-          <main id="main-content" tabIndex={-1}>
+    <div className="min-h-screen bg-white">
+      <ProfessionalHeader />
+      <main id="main-content" tabIndex={-1}>
         <Suspense fallback={<SectionSkeleton />}>
           {order.map((secId) => {
             if (!visible(secId)) return null;
             if (secId === 'hero') {
               return (
                 <React.Fragment key="hero">
-                  <FastHeroSection />
-                  <StunningStatsSection />
+                  <ProfessionalHeroSection />
+                  <ProfessionalStatsSection />
                 </React.Fragment>
               );
             }
@@ -146,11 +144,10 @@ const HomeClient: React.FC<BaseComponent> = () => {
         </Suspense>
       </main>
 
-          <Suspense fallback={<div className="py-12 bg-gray-900 animate-pulse" />}>
-            <Footer />
-          </Suspense>
-        </div>
-    </SmoothScrollProvider>
+      <Suspense fallback={<div className="py-12 bg-gray-900 animate-pulse" />}>
+        <Footer />
+      </Suspense>
+    </div>
   );
 };
 
