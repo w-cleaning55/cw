@@ -4,6 +4,7 @@ import "./globals.css";
 import ClientProviders from "../components/ClientProviders";
 import { ThemeProvider } from "../hooks/useTheme";
 import { SEO_CONFIG, APP_CONFIG } from "../lib/constants";
+import { generateCleaningServiceStructuredData } from "../lib/seo";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -119,36 +120,7 @@ export default function RootLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "LocalBusiness",
-              name: APP_CONFIG.name,
-              alternateName: APP_CONFIG.nameAr,
-              description: SEO_CONFIG.description,
-              url: APP_CONFIG.domain,
-              telephone: APP_CONFIG.phone,
-              email: APP_CONFIG.email,
-              address: {
-                "@type": "PostalAddress",
-                addressLocality: "Riyadh",
-                addressCountry: "SA",
-              },
-              geo: {
-                "@type": "GeoCoordinates",
-                latitude: "24.7136",
-                longitude: "46.6753",
-              },
-              sameAs: [
-                "https://facebook.com/cleaningworld",
-                "https://twitter.com/cleaningworld",
-                "https://instagram.com/cleaningworld",
-              ],
-              serviceType: "Cleaning Services",
-              areaServed: {
-                "@type": "Country",
-                name: "Saudi Arabia",
-              },
-            }),
+            __html: JSON.stringify(generateCleaningServiceStructuredData()),
           }}
         />
       </body>
