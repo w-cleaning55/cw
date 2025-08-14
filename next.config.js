@@ -58,6 +58,25 @@ const nextConfig = {
   poweredByHeader: false,
   compress: true,
   productionBrowserSourceMaps: false,
+  swcMinify: true,
+  reactStrictMode: true,
+
+  // Compiler optimizations
+  compiler: {
+    removeConsole: process.env.NODE_ENV === "production" ? {
+      exclude: ["error"]
+    } : false,
+  },
+
+  // Output optimizations
+  output: 'standalone',
+  generateEtags: false,
+
+  // Performance hints
+  onDemandEntries: {
+    maxInactiveAge: 25 * 1000,
+    pagesBufferLength: 2,
+  },
   
   // ESLint configuration
   eslint: {
