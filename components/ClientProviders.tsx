@@ -49,7 +49,9 @@ export default function ClientProviders({ children }: ClientProvidersProps) {
           {children}
           <NotificationDisplay />
           <AIWidgetMount />
-          <AnalyticsMount />
+          <LazyWrapper>
+            <AnalyticsMount />
+          </LazyWrapper>
         </NotificationProvider>
       </AnimationController>
     </AuthProvider>
