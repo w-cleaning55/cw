@@ -28,37 +28,20 @@ const SoftUIDashboard: React.FC<SoftUIDashboardProps> = ({ children }) => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   const sidebarItems = [
-    {
-      icon: <Home className="w-5 h-5" />,
-      label: "لوحة التحكم",
-      href: "/admin",
-      active: true,
-    },
-    {
-      icon: <BarChart3 className="w-5 h-5" />,
-      label: "التحليلات",
-      href: "/admin/analytics",
-    },
-    {
-      icon: <Users className="w-5 h-5" />,
-      label: "العملاء",
-      href: "/admin/customers",
-    },
-    {
-      icon: <Calendar className="w-5 h-5" />,
-      label: "المواعيد",
-      href: "/admin/bookings",
-    },
-    {
-      icon: <MessageSquare className="w-5 h-5" />,
-      label: "الرسائل",
-      href: "/admin/messages",
-    },
-    {
-      icon: <Settings className="w-5 h-5" />,
-      label: "الإعدادات",
-      href: "/admin/settings",
-    },
+    { icon: <Home className="w-5 h-5" />, label: "لوحة التحكم", href: "/admin", active: true },
+    { icon: <BarChart3 className="w-5 h-5" />, label: "التحليلات", href: "/admin/analytics" },
+    { icon: <Users className="w-5 h-5" />, label: "العملاء", href: "/admin/customers" },
+    { icon: <Calendar className="w-5 h-5" />, label: "المواعيد", href: "/admin/bookings" },
+    { icon: <MessageSquare className="w-5 h-5" />, label: "الرسائل", href: "/admin/messages" },
+    { icon: <Settings className="w-5 h-5" />, label: "الإعدادات", href: "/admin/settings" },
+    { icon: <BarChart3 className="w-5 h-5" />, label: "تحليلات فورية", href: "/admin/real-time-analytics" },
+    { icon: <BarChart3 className="w-5 h-5" />, label: "محتوى ديناميكي", href: "/admin/dynamic-content" },
+    { icon: <BarChart3 className="w-5 h-5" />, label: "التقارير", href: "/admin/reports" },
+    { icon: <Settings className="w-5 h-5" />, label: "إدارة قاعدة البيانات", href: "/admin/database" },
+    { icon: <Users className="w-5 h-5" />, label: "المستخدمون", href: "/admin/users" },
+    { icon: <Settings className="w-5 h-5" />, label: "SEO", href: "/admin/seo" },
+    { icon: <Settings className="w-5 h-5" />, label: "الإشعارات", href: "/admin/notifications" },
+    { icon: <Settings className="w-5 h-5" />, label: "إدارة المحتوى", href: "/admin/content" },
   ];
 
   const stats = [
