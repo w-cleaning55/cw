@@ -7,6 +7,7 @@ import PerformanceOptimizer from "../components/PerformanceOptimizer";
 import { SEO_CONFIG, APP_CONFIG } from "../lib/constants";
 import { generateCleaningServiceStructuredData } from "../lib/seo";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { Analytics } from "@vercel/analytics/next";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -127,6 +128,7 @@ export default function RootLayout({
           }}
         />
         <SpeedInsights />
+        <Analytics />
       </body>
     </html>
   );
