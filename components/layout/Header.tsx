@@ -3,6 +3,7 @@
 import React from "react";
 import Link from "next/link";
 import { CompanyLogo } from "@/components/ui/CompactIcons";
+import { APP_CONFIG } from "@/lib/constants";
 
 interface HeaderProps {
   className?: string;
@@ -18,7 +19,7 @@ const Header: React.FC<HeaderProps> = ({ className = "" }) => {
               <div className="flex items-center gap-3">
                 <CompanyLogo size="lg" />
                 <h1 className="text-2xl font-bold text-blue-600">
-                  عالم النظافة
+                  {APP_CONFIG.name}
                 </h1>
               </div>
             </div>
