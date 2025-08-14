@@ -2,6 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Import stunning design enhancements */
+@import '../styles/stunning-design.css';
+
 /* Performance optimizations */
 * {
   box-sizing: border-box;
