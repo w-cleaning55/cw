@@ -173,9 +173,6 @@ export function FloatingElements() {
     { size: 'w-4 h-4', color: 'bg-blue-400/20', x: '10%', y: '20%' },
     { size: 'w-6 h-6', color: 'bg-purple-400/20', x: '80%', y: '30%' },
     { size: 'w-3 h-3', color: 'bg-cyan-400/20', x: '20%', y: '70%' },
-    { size: 'w-5 h-5', color: 'bg-green-400/20', x: '90%', y: '80%' },
-    { size: 'w-4 h-4', color: 'bg-pink-400/20', x: '60%', y: '15%' },
-    { size: 'w-7 h-7', color: 'bg-indigo-400/20', x: '30%', y: '85%' },
   ];
 
   return (
