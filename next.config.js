@@ -155,7 +155,7 @@ const nextConfig = {
     return config;
   },
 
-  // Headers for performance
+  // Headers for performance and security
   async headers() {
     return [
       {
@@ -165,12 +165,48 @@ const nextConfig = {
           { key: "Referrer-Policy", value: "origin-when-cross-origin" },
           { key: "X-Frame-Options", value: "DENY" },
           { key: "X-XSS-Protection", value: "1; mode=block" },
+          { key: "Permissions-Policy", value: "camera=(), microphone=(), geolocation=()" },
         ],
       },
       {
         source: "/static/:path*",
         headers: [
           { key: "Cache-Control", value: "public, max-age=31536000, immutable" },
+        ],
+      },
+      {
+        source: "/_next/static/css/:path*",
+        headers: [
+          { key: "Content-Type", value: "text/css" },
+          { key: "Cache-Control", value: "public, max-age=31536000, immutable" },
+        ],
+      },
+      {
+        source: "/_next/static/js/:path*",
+        headers: [
+          { key: "Content-Type", value: "application/javascript" },
+          { key: "Cache-Control", value: "public, max-age=31536000, immutable" },
+        ],
+      },
+      {
+        source: "/favicon.ico",
+        headers: [
+          { key: "Content-Type", value: "image/x-icon" },
+          { key: "Cache-Control", value: "public, max-age=31536000, immutable" },
+        ],
+      },
+      {
+        source: "/favicon-:size.png",
+        headers: [
+          { key: "Content-Type", value: "image/png" },
+          { key: "Cache-Control", value: "public, max-age=31536000, immutable" },
+        ],
+      },
+      {
+        source: "/site.webmanifest",
+        headers: [
+          { key: "Content-Type", value: "application/manifest+json" },
+          { key: "Cache-Control", value: "public, max-age=86400" },
         ],
       },
     ];

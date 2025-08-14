@@ -152,6 +152,10 @@ export default function LoginForm({ onSuccess }: LoginFormProps) {
                   required
                   disabled={isLoading}
                   dir={isArabic ? "rtl" : "ltr"}
+                  autoComplete="username"
+                  autoCapitalize="none"
+                  autoCorrect="off"
+                  spellCheck="false"
                 />
               </div>
             </div>
@@ -174,6 +178,10 @@ export default function LoginForm({ onSuccess }: LoginFormProps) {
                   autoComplete="current-password"
                   required
                   disabled={isLoading}
+                  autoComplete="current-password"
+                  autoCapitalize="none"
+                  autoCorrect="off"
+                  spellCheck="false"
                 />
                 <button
                   type="button"
