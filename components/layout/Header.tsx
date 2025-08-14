@@ -4,6 +4,9 @@ import React from "react";
 import Link from "next/link";
 import { CompanyLogo } from "@/components/ui/CompactIcons";
 import { useSystemSettings } from "@/hooks/useSystemSettings";
+import QuickThemeSwitcher from "@/components/QuickThemeSwitcher";
+import DatabaseIndicator from "@/components/DatabaseIndicator";
+import EnhancedIndicators from "@/components/EnhancedIndicators";
 
 interface HeaderProps {
   className?: string;
@@ -63,6 +66,11 @@ const Header: React.FC<HeaderProps> = ({ className = "" }) => {
                 <path d="M4 6h16v2H4zm0 5h16v2H4zm0 5h16v2H4z" />
               </svg>
             </button>
+          </div>
+          <div className="hidden md:flex items-center gap-3">
+            <DatabaseIndicator />
+            <QuickThemeSwitcher />
+            <EnhancedIndicators />
           </div>
         </div>
       </div>
