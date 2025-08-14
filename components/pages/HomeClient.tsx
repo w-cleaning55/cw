@@ -70,7 +70,7 @@ const HomeClient: React.FC<BaseComponent> = () => {
 
   return (
     <div className="min-h-screen bg-white">
-      <Header />
+      <StunningHeader />
       <main id="main-content" tabIndex={-1}>
         <Suspense fallback={<SectionSkeleton />}>
           {order.map((secId) => {
@@ -78,8 +78,8 @@ const HomeClient: React.FC<BaseComponent> = () => {
             if (secId === 'hero') {
               return (
                 <React.Fragment key="hero">
-                  <ModernHeroSection />
-                  <AdvancedStatsSection />
+                  <StunningHeroSection />
+                  <StunningStatsSection />
                 </React.Fragment>
               );
             }
