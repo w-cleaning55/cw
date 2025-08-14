@@ -11,9 +11,16 @@ export default function PerformanceOptimizer({ children }: PerformanceOptimizerP
   const animationFrameRefs = useRef<Set<number>>(new Set());
   const intervalRefs = useRef<Set<number>>(new Set());
 
+  // Store original functions to prevent infinite recursion
+  const originalFunctions = useRef({
+    setTimeout: window.setTimeout,
+    setInterval: window.setInterval,
+    requestAnimationFrame: window.requestAnimationFrame
+  });
+
   // Optimized setTimeout wrapper
   const optimizedSetTimeout = useCallback((callback: () => void, delay: number) => {
-    const timeoutId = window.setTimeout(() => {
+    const timeoutId = originalFunctions.current.setTimeout(() => {
       try {
         callback();
       } catch (error) {
@@ -22,28 +29,28 @@ export default function PerformanceOptimizer({ children }: PerformanceOptimizerP
         timeoutRefs.current.delete(timeoutId);
       }
     }, delay);
-    
+
     timeoutRefs.current.add(timeoutId);
     return timeoutId;
   }, []);
 
   // Optimized setInterval wrapper
   const optimizedSetInterval = useCallback((callback: () => void, delay: number) => {
-    const intervalId = window.setInterval(() => {
+    const intervalId = originalFunctions.current.setInterval(() => {
       try {
         callback();
       } catch (error) {
         console.error('setInterval handler error:', error);
       }
     }, delay);
-    
+
     intervalRefs.current.add(intervalId);
     return intervalId;
   }, []);
 
   // Optimized requestAnimationFrame wrapper
   const optimizedRequestAnimationFrame = useCallback((callback: () => void) => {
-    const animationFrameId = window.requestAnimationFrame(() => {
+    const animationFrameId = originalFunctions.current.requestAnimationFrame(() => {
       try {
         callback();
       } catch (error) {
@@ -52,7 +59,7 @@ export default function PerformanceOptimizer({ children }: PerformanceOptimizerP
         animationFrameRefs.current.delete(animationFrameId);
       }
     });
-    
+
     animationFrameRefs.current.add(animationFrameId);
     return animationFrameId;
   }, []);
