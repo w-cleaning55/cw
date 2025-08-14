@@ -4,6 +4,8 @@ import React, { Suspense } from "react";
 import dynamic from "next/dynamic";
 
 import StunningHeader from "@/components/layout/StunningHeader";
+import BackgroundPatterns from "@/components/ui/BackgroundPatterns";
+import { SmoothScrollProvider, ScrollProgress } from "@/components/ui/SmoothScrolling";
 import { createLoadingSkeleton } from "@/lib/component-utils";
 import { usePerformanceMonitor } from "@/lib/performance";
 import type { BaseComponent } from "@/lib/types";
