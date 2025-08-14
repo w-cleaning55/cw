@@ -13,9 +13,9 @@ export default function PerformanceOptimizer({ children }: PerformanceOptimizerP
 
   // Store original functions to prevent infinite recursion
   const originalFunctions = useRef({
-    setTimeout: typeof window !== 'undefined' ? window.setTimeout : setTimeout,
-    setInterval: typeof window !== 'undefined' ? window.setInterval : setInterval,
-    requestAnimationFrame: typeof window !== 'undefined' ? window.requestAnimationFrame : ((cb: () => void) => setTimeout(cb, 16))
+    setTimeout: typeof window !== 'undefined' ? window.setTimeout.bind(window) : setTimeout,
+    setInterval: typeof window !== 'undefined' ? window.setInterval.bind(window) : setInterval,
+    requestAnimationFrame: typeof window !== 'undefined' ? window.requestAnimationFrame.bind(window) : ((cb: () => void) => setTimeout(cb, 16))
   });
 
   // Optimized setTimeout wrapper
