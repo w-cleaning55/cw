@@ -3,13 +3,13 @@
 import React, { Suspense } from "react";
 import dynamic from "next/dynamic";
 
-import Header from "@/components/layout/Header";
+import StunningHeader from "@/components/layout/StunningHeader";
 import { createLoadingSkeleton } from "@/lib/component-utils";
 import { usePerformanceMonitor } from "@/lib/performance";
 import type { BaseComponent } from "@/lib/types";
 
-const ModernHeroSection = dynamic(() => import("@/components/sections/ModernHeroSection"), { ssr: true, loading: () => createLoadingSkeleton("section") });
-const AdvancedStatsSection = dynamic(() => import("@/components/sections/AdvancedStatsSection"), { ssr: true, loading: () => createLoadingSkeleton("section") });
+const StunningHeroSection = dynamic(() => import("@/components/sections/StunningHeroSection"), { ssr: true, loading: () => createLoadingSkeleton("section") });
+const StunningStatsSection = dynamic(() => import("@/components/sections/StunningStatsSection"), { ssr: true, loading: () => createLoadingSkeleton("section") });
 const PremiumServicesSection = dynamic(() => import("@/components/sections/PremiumServicesSection"), { ssr: true, loading: () => createLoadingSkeleton("section") });
 const FeaturesSection = dynamic(() => import("@/components/sections/FeaturesSection"), { ssr: true, loading: () => createLoadingSkeleton("section") });
 const AboutSection = dynamic(() => import("@/components/sections/AboutSection"), { ssr: true, loading: () => createLoadingSkeleton("section") });
