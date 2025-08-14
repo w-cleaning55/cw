@@ -11,52 +11,6 @@ export default function PerformanceOptimizer({ children }: PerformanceOptimizerP
   const animationFrameRefs = useRef<Set<number>>(new Set());
   const intervalRefs = useRef<Set<number>>(new Set());
 
-  // Optimized setTimeout wrapper
-  const optimizedSetTimeout = useCallback((callback: () => void, delay: number) => {
-    const timeoutId = window.setTimeout(() => {
-      try {
-        callback();
-      } catch (error) {
-        console.error('setTimeout handler error:', error);
-      } finally {
-        timeoutRefs.current.delete(timeoutId);
-      }
-    }, delay);
-    
-    timeoutRefs.current.add(timeoutId);
-    return timeoutId;
-  }, []);
-
-  // Optimized setInterval wrapper
-  const optimizedSetInterval = useCallback((callback: () => void, delay: number) => {
-    const intervalId = window.setInterval(() => {
-      try {
-        callback();
-      } catch (error) {
-        console.error('setInterval handler error:', error);
-      }
-    }, delay);
-    
-    intervalRefs.current.add(intervalId);
-    return intervalId;
-  }, []);
-
-  // Optimized requestAnimationFrame wrapper
-  const optimizedRequestAnimationFrame = useCallback((callback: () => void) => {
-    const animationFrameId = window.requestAnimationFrame(() => {
-      try {
-        callback();
-      } catch (error) {
-        console.error('requestAnimationFrame handler error:', error);
-      } finally {
-        animationFrameRefs.current.delete(animationFrameId);
-      }
-    });
-    
-    animationFrameRefs.current.add(animationFrameId);
-    return animationFrameId;
-  }, []);
-
   // Optimized visibility change handler
   const handleVisibilityChange = useCallback(() => {
     if (document.hidden) {
@@ -82,29 +36,12 @@ export default function PerformanceOptimizer({ children }: PerformanceOptimizerP
   }, []);
 
   useEffect(() => {
-    // Override global setTimeout
-    const originalSetTimeout = window.setTimeout;
-    window.setTimeout = optimizedSetTimeout;
-
-    // Override global setInterval
-    const originalSetInterval = window.setInterval;
-    window.setInterval = optimizedSetInterval;
-
-    // Override global requestAnimationFrame
-    const originalRequestAnimationFrame = window.requestAnimationFrame;
-    window.requestAnimationFrame = optimizedRequestAnimationFrame;
-
     // Add optimized event listeners
     document.addEventListener('visibilitychange', handleVisibilityChange, { passive: true });
     window.addEventListener('message', handleMessage, { passive: true });
 
     // Cleanup function
     return () => {
-      // Restore original functions
-      window.setTimeout = originalSetTimeout;
-      window.setInterval = originalSetInterval;
-      window.requestAnimationFrame = originalRequestAnimationFrame;
-
       // Clear all timeouts and intervals
       timeoutRefs.current.forEach(id => clearTimeout(id));
       intervalRefs.current.forEach(id => clearInterval(id));
@@ -114,7 +51,7 @@ export default function PerformanceOptimizer({ children }: PerformanceOptimizerP
       document.removeEventListener('visibilitychange', handleVisibilityChange);
       window.removeEventListener('message', handleMessage);
     };
-  }, [optimizedSetTimeout, optimizedSetInterval, optimizedRequestAnimationFrame, handleVisibilityChange, handleMessage]);
+  }, [handleVisibilityChange, handleMessage]);
 
   // Performance monitoring
   useEffect(() => {

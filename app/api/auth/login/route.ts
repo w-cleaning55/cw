@@ -45,9 +45,13 @@ const embeddedUsers = [
 
 async function getUsers() {
   try {
-    const users = await dataManager.readData('users');
-    return Array.isArray(users) ? users : embeddedUsers;
+    const data = await dataManager.readData('users');
+    if (data && data.users && Array.isArray(data.users)) {
+      return data.users;
+    }
+    return embeddedUsers;
   } catch (error) {
+    console.error('Error reading users:', error);
     return embeddedUsers;
   }
 }

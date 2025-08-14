@@ -83,6 +83,7 @@ interface NotificationContextType {
   subscribe: (callback: (notification: Notification) => void) => () => void;
   settings: NotificationSettings;
   updateSettings: (settings: Partial<NotificationSettings>) => void;
+  requestNotificationPermission: () => Promise<boolean>;
 }
 
 interface NotificationSettings {
@@ -165,11 +166,6 @@ export function NotificationProvider({
       } catch (error) {
         console.error("خطأ في تحميل إعدادات الإشعارات:", error);
       }
-    }
-
-    // Request notification permission
-    if ("Notification" in window && settings.desktopNotifications) {
-      Notification.requestPermission();
     }
   }, []);
 
@@ -305,7 +301,45 @@ export function NotificationProvider({
   };
 
   const updateSettings = (newSettings: Partial<NotificationSettings>) => {
-    setSettings((prev) => ({ ...prev, ...newSettings }));
+    setSettings((prev) => {
+      const updatedSettings = { ...prev, ...newSettings };
+      
+      // Request notification permission only when user explicitly enables desktop notifications
+      if (newSettings.desktopNotifications && 
+          "Notification" in window && 
+          Notification.permission === "default") {
+        // Only request permission if it hasn't been requested before
+        // This will be handled by user interaction in the settings UI
+        console.log("Desktop notifications enabled - permission will be requested on user interaction");
+      }
+      
+      return updatedSettings;
+    });
+  };
+
+  // Method to request notification permission (should be called on user interaction)
+  const requestNotificationPermission = async (): Promise<boolean> => {
+    if (!("Notification" in window)) {
+      console.warn("Notifications not supported in this browser");
+      return false;
+    }
+
+    if (Notification.permission === "granted") {
+      return true;
+    }
+
+    if (Notification.permission === "denied") {
+      console.warn("Notification permission denied");
+      return false;
+    }
+
+    try {
+      const permission = await Notification.requestPermission();
+      return permission === "granted";
+    } catch (error) {
+      console.error("Error requesting notification permission:", error);
+      return false;
+    }
   };
 
   const unreadCount = notifications.filter((n) => !n.read).length;
@@ -380,6 +414,7 @@ export function NotificationProvider({
     subscribe,
     settings,
     updateSettings,
+    requestNotificationPermission,
   };
 
   return (

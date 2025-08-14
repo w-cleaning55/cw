@@ -98,8 +98,6 @@ export default function RootLayout({
           href="https://fonts.gstatic.com"
           crossOrigin="anonymous"
         />
-        <link rel="dns-prefetch" href="//fonts.googleapis.com" />
-        <link rel="dns-prefetch" href="//fonts.gstatic.com" />
         <meta name="mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
@@ -108,10 +106,11 @@ export default function RootLayout({
         <meta name="msapplication-TileColor" content="#2563eb" />
         <meta name="theme-color" content="#ffffff" />
         <link rel="icon" href="/favicon.ico" />
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
         <link rel="manifest" href="/site.webmanifest" />
       </head>
       <body
-        className={`${inter.className} font-sans antialiased min-h-screen transition-colors duration-300`}
+        className={`${inter.className} ${tajawal.className} font-sans antialiased min-h-screen transition-colors duration-300`}
       >
         <PerformanceOptimizer>
           <ThemeProvider>

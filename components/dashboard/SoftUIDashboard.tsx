@@ -1,325 +1,572 @@
 "use client";
 
-import React, { useState } from "react";
-import {
-  Home,
-  BarChart3,
-  Users,
-  Settings,
-  Calendar,
-  MessageSquare,
-  Bell,
+import React, { useState, useEffect } from "react";
+import { 
+  Users, 
+  Calendar, 
+  DollarSign, 
+  TrendingUp, 
+  Settings, 
+  Bell, 
   Search,
-  Menu,
-  X,
-  TrendingUp,
-  DollarSign,
-  User,
-  Activity,
+  Filter,
+  Download,
+  Eye,
+  Edit,
+  Trash2,
+  Plus,
+  ChevronDown,
+  ChevronUp,
+  MoreHorizontal
 } from "lucide-react";
-import SoftUICard from "./SoftUICard";
-import SoftUIButton from "./SoftUIButton";
+import Sidebar from "../ui/sidebar";
+import {
+  Table,
+  TableHeader,
+  TableBody,
+  TableHead,
+  TableRow,
+  TableCell,
+  TableCaption,
+  SortableTableHead,
+  TableActions,
+  TableActionButton,
+  TableToolbar,
+  TableSearch,
+  TablePagination,
+  TableExport,
+  TableFilter,
+  TableRowActions,
+} from "../ui/table";
+import { useTranslation } from "../../hooks/useTranslation";
 
-interface SoftUIDashboardProps {
-  children?: React.ReactNode;
+interface DashboardStats {
+  totalUsers: number;
+  totalBookings: number;
+  totalRevenue: number;
+  growthRate: number;
 }
 
-const SoftUIDashboard: React.FC<SoftUIDashboardProps> = ({ children }) => {
+interface User {
+  id: string;
+  name: string;
+  email: string;
+  role: string;
+  status: "active" | "inactive" | "pending";
+  lastLogin: string;
+  createdAt: string;
+}
+
+interface Booking {
+  id: string;
+  customerName: string;
+  service: string;
+  date: string;
+  status: "confirmed" | "pending" | "cancelled" | "completed";
+  amount: number;
+  paymentStatus: "paid" | "pending" | "failed";
+}
+
+export default function SoftUIDashboard({ children }: { children?: React.ReactNode }) {
+  const [stats, setStats] = useState<DashboardStats>({
+    totalUsers: 0,
+    totalBookings: 0,
+    totalRevenue: 0,
+    growthRate: 0,
+  });
+  const [users, setUsers] = useState<User[]>([]);
+  const [bookings, setBookings] = useState<Booking[]>([]);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
+  const [sortField, setSortField] = useState<string>("");
+  const [sortDirection, setSortDirection] = useState<"asc" | "desc" | null>(null);
+  const [activeTab, setActiveTab] = useState<"users" | "bookings">("users");
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const { currentLanguage } = useTranslation();
+  const isRTL = currentLanguage === "ar";
 
-  const sidebarItems = [
-    { icon: <Home className="w-5 h-5" />, label: "لوحة التحكم", href: "/admin", active: true },
-    { icon: <BarChart3 className="w-5 h-5" />, label: "التحليلات", href: "/admin/analytics" },
-    { icon: <Users className="w-5 h-5" />, label: "العملاء", href: "/admin/customers" },
-    { icon: <Calendar className="w-5 h-5" />, label: "المواعيد", href: "/admin/bookings" },
-    { icon: <MessageSquare className="w-5 h-5" />, label: "الرسائل", href: "/admin/messages" },
-    { icon: <Settings className="w-5 h-5" />, label: "الإعدادات", href: "/admin/settings" },
-    { icon: <BarChart3 className="w-5 h-5" />, label: "تحليلات فورية", href: "/admin/real-time-analytics" },
-    { icon: <BarChart3 className="w-5 h-5" />, label: "محتوى ديناميكي", href: "/admin/dynamic-content" },
-    { icon: <BarChart3 className="w-5 h-5" />, label: "التقارير", href: "/admin/reports" },
-    { icon: <Settings className="w-5 h-5" />, label: "إدارة قاعدة البيانات", href: "/admin/database" },
-    { icon: <Users className="w-5 h-5" />, label: "المستخدمون", href: "/admin/users" },
-    { icon: <Settings className="w-5 h-5" />, label: "SEO", href: "/admin/seo" },
-    { icon: <Settings className="w-5 h-5" />, label: "الإشعارات", href: "/admin/notifications" },
-    { icon: <Settings className="w-5 h-5" />, label: "إدارة المحتوى", href: "/admin/content" },
-    { icon: <MessageSquare className="w-5 h-5" />, label: "طلبات التواصل", href: "/admin/contact-requests" },
-  ];
+  // Load data
+  useEffect(() => {
+    // Simulate API call
+    setTimeout(() => {
+      setStats({
+        totalUsers: 1247,
+        totalBookings: 892,
+        totalRevenue: 45678,
+        growthRate: 12.5,
+      });
 
-  const stats = [
-    {
-      title: "إجمالي العملاء",
-      value: "2,850",
-      change: "+12%",
-      icon: <Users className="w-6 h-6" />,
-      color: "from-blue-500 to-cyan-500",
-    },
-    {
-      title: "الإيرادات الشهرية",
-      value: "45,200 ريال",
-      change: "+8%",
-      icon: <DollarSign className="w-6 h-6" />,
-      color: "from-green-500 to-emerald-500",
-    },
-    {
-      title: "المشاريع المكتملة",
-      value: "156",
-      change: "+15%",
-      icon: <TrendingUp className="w-6 h-6" />,
-      color: "from-purple-500 to-pink-500",
-    },
-    {
-      title: "معدل الرضا",
-      value: "98.5%",
-      change: "+2%",
-      icon: <Activity className="w-6 h-6" />,
-      color: "from-orange-500 to-red-500",
-    },
-  ];
+      setUsers([
+        {
+          id: "1",
+          name: "أحمد محمد",
+          email: "ahmed@example.com",
+          role: "مدير",
+          status: "active",
+          lastLogin: "2024-01-15 10:30",
+          createdAt: "2023-06-15",
+        },
+        {
+          id: "2",
+          name: "فاطمة علي",
+          email: "fatima@example.com",
+          role: "مشرف",
+          status: "active",
+          lastLogin: "2024-01-14 15:45",
+          createdAt: "2023-08-20",
+        },
+        {
+          id: "3",
+          name: "محمد حسن",
+          email: "mohammed@example.com",
+          role: "مشغل",
+          status: "pending",
+          lastLogin: "2024-01-10 09:15",
+          createdAt: "2024-01-05",
+        },
+        {
+          id: "4",
+          name: "سارة أحمد",
+          email: "sara@example.com",
+          role: "مشغل",
+          status: "inactive",
+          lastLogin: "2023-12-20 14:20",
+          createdAt: "2023-09-10",
+        },
+        {
+          id: "5",
+          name: "علي محمود",
+          email: "ali@example.com",
+          role: "مدير",
+          status: "active",
+          lastLogin: "2024-01-15 11:00",
+          createdAt: "2023-07-01",
+        },
+      ]);
+
+      setBookings([
+        {
+          id: "1",
+          customerName: "عائلة محمد",
+          service: "تنظيف منزل شامل",
+          date: "2024-01-20",
+          status: "confirmed",
+          amount: 450,
+          paymentStatus: "paid",
+        },
+        {
+          id: "2",
+          customerName: "شركة التقنية المتقدمة",
+          service: "تنظيف مكاتب",
+          date: "2024-01-22",
+          status: "pending",
+          amount: 1200,
+          paymentStatus: "pending",
+        },
+        {
+          id: "3",
+          customerName: "فندق الشرق",
+          service: "تنظيف فنادق",
+          date: "2024-01-18",
+          status: "completed",
+          amount: 2800,
+          paymentStatus: "paid",
+        },
+        {
+          id: "4",
+          customerName: "مطعم الأصالة",
+          service: "تنظيف مطاعم",
+          date: "2024-01-25",
+          status: "cancelled",
+          amount: 800,
+          paymentStatus: "failed",
+        },
+        {
+          id: "5",
+          customerName: "عائلة أحمد",
+          service: "تنظيف سجاد",
+          date: "2024-01-21",
+          status: "confirmed",
+          amount: 300,
+          paymentStatus: "paid",
+        },
+      ]);
+    }, 1000);
+  }, []);
+
+  // Filter and sort data
+  const filteredData = (activeTab === "users" ? users : bookings).filter(item => {
+    if (activeTab === "users") {
+      const user = item as User;
+      return user.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+             user.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
+             user.role.toLowerCase().includes(searchTerm.toLowerCase());
+    } else {
+      const booking = item as Booking;
+      return booking.customerName.toLowerCase().includes(searchTerm.toLowerCase()) ||
+             booking.service.toLowerCase().includes(searchTerm.toLowerCase());
+    }
+  });
+
+  const sortedData = [...filteredData].sort((a, b) => {
+    if (!sortField || !sortDirection) return 0;
+    
+    let aValue: any, bValue: any;
+    
+    if (activeTab === "users") {
+      const userA = a as User;
+      const userB = b as User;
+      aValue = userA[sortField as keyof User];
+      bValue = userB[sortField as keyof User];
+    } else {
+      const bookingA = a as Booking;
+      const bookingB = b as Booking;
+      aValue = bookingA[sortField as keyof Booking];
+      bValue = bookingB[sortField as keyof Booking];
+    }
+
+    if (typeof aValue === "string" && typeof bValue === "string") {
+      return sortDirection === "asc" 
+        ? aValue.localeCompare(bValue, 'ar')
+        : bValue.localeCompare(aValue, 'ar');
+    }
+
+    return sortDirection === "asc" ? aValue - bValue : bValue - aValue;
+  });
+
+  const handleSort = (field: string) => {
+    if (sortField === field) {
+      setSortDirection(sortDirection === "asc" ? "desc" : sortDirection === "desc" ? null : "asc");
+    } else {
+      setSortField(field);
+      setSortDirection("asc");
+    }
+  };
+
+  const getStatusBadge = (status: string) => {
+    const statusConfig = {
+      active: { class: "badge-success", text: "نشط" },
+      inactive: { class: "badge-error", text: "غير نشط" },
+      pending: { class: "badge-warning", text: "في الانتظار" },
+      confirmed: { class: "badge-success", text: "مؤكد" },
+      cancelled: { class: "badge-error", text: "ملغي" },
+      completed: { class: "badge-primary", text: "مكتمل" },
+      paid: { class: "badge-success", text: "مدفوع" },
+      failed: { class: "badge-error", text: "فشل" },
+    };
+
+    const config = statusConfig[status as keyof typeof statusConfig] || { class: "badge-secondary", text: status };
+    return <span className={`badge ${config.class}`}>{config.text}</span>;
+  };
+
+  const formatNumber = (num: number) => {
+    if (isRTL) {
+      // Convert to Arabic numerals
+      return num.toString().replace(/\d/g, (d) => '٠١٢٣٤٥٦٧٨٩'[parseInt(d)]);
+    }
+    return num.toString();
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-blue-50/30 to-purple-50/20">
-      {/* Background decoration */}
-      <div className="fixed inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-r from-blue-400/20 to-purple-400/20 rounded-full blur-3xl"></div>
-        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-gradient-to-r from-pink-400/20 to-cyan-400/20 rounded-full blur-3xl"></div>
-      </div>
-
       {/* Sidebar */}
-      <aside
-        className={`fixed inset-y-0 left-0 z-50 w-64 transform transition-transform duration-300 ${
-          sidebarOpen ? "translate-x-0" : "-translate-x-full"
-        } md:translate-x-0`}
-      >
-        <div className="h-full bg-white/70 backdrop-blur-lg border-r border-white/20">
-          {/* Logo */}
-          <div className="p-6 border-b border-white/20">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-600 rounded-xl flex items-center justify-center text-white">
-                <Home className="w-6 h-6" />
-              </div>
-              <div>
-                <h2 className="text-xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-                  عالم النظافة
-                </h2>
-                <p className="text-sm text-gray-500" dir="rtl">
-                  لوحة التحكم
-                </p>
-              </div>
-            </div>
-          </div>
+      <Sidebar 
+        isOpen={sidebarOpen} 
+        onToggle={() => setSidebarOpen(!sidebarOpen)} 
+      />
 
-          {/* Navigation */}
-          <nav className="p-4 space-y-2">
-            {sidebarItems.map((item, index) => (
-              <a
-                key={index}
-                href={item.href}
-                className={`flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-300 ${
-                  item.active
-                    ? "bg-gradient-to-r from-blue-500 to-purple-600 text-white shadow-lg"
-                    : "text-gray-600 hover:bg-white/50 hover:text-blue-600"
-                }`}
-                dir="rtl"
-              >
-                {item.icon}
-                <span className="font-medium">{item.label}</span>
-              </a>
-            ))}
-          </nav>
-        </div>
-      </aside>
-
-      {/* Mobile sidebar overlay */}
-      {sidebarOpen && (
-        <div
-          className="fixed inset-0 bg-black/20 backdrop-blur-sm z-40 md:hidden"
-          onClick={() => setSidebarOpen(false)}
-        />
-      )}
-
-      {/* Main content */}
-      <main className="md:ml-64 relative z-10">
-        {/* Top header */}
-        <header className="bg-white/70 backdrop-blur-lg border-b border-white/20 p-4">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-4">
-              <button
-                className="md:hidden p-2 rounded-lg hover:bg-white/50 transition-colors"
-                onClick={() => setSidebarOpen(!sidebarOpen)}
-              >
-                {sidebarOpen ? (
-                  <X className="w-6 h-6" />
-                ) : (
-                  <Menu className="w-6 h-6" />
-                )}
-              </button>
-              <h1 className="text-2xl font-bold text-gray-900" dir="rtl">
-                مرحباً بك في لوحة التحكم
-              </h1>
-            </div>
-
-            <div className="flex items-center gap-4">
-              {/* Search */}
-              <div className="relative">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
-                <input
-                  type="text"
-                  placeholder="البحث..."
-                  className="pl-10 pr-4 py-2 bg-white/50 backdrop-blur-sm border border-white/30 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/20 text-right"
-                  dir="rtl"
-                />
-              </div>
-
-              {/* Notifications */}
-              <button className="relative p-2 rounded-xl bg-white/50 backdrop-blur-sm hover:bg-white/70 transition-colors">
-                <Bell className="w-5 h-5 text-gray-600" />
-                <span className="absolute -top-1 -right-1 w-3 h-3 bg-red-500 rounded-full"></span>
-              </button>
-
-              {/* Profile */}
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-600 rounded-xl flex items-center justify-center text-white">
-                  <User className="w-5 h-5" />
+      {/* Main Content */}
+      <div className={`lg:mr-64 transition-all duration-300 ${isRTL ? 'lg:mr-0 lg:ml-64' : ''}`}>
+        {/* Header */}
+        <header className="bg-white/80 backdrop-blur-sm border-b border-gray-200 sticky top-0 z-40">
+          <div className="px-6 py-4">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center space-x-4">
+                <button
+                  onClick={() => setSidebarOpen(!sidebarOpen)}
+                  className="lg:hidden p-2 rounded-md hover:bg-gray-100"
+                  title={isRTL ? "القائمة" : "Menu"}
+                >
+                  <Settings className="w-6 h-6 text-gray-600" />
+                </button>
+                <div>
+                  <h1 className="text-2xl font-bold text-gray-900">
+                    {isRTL ? "لوحة التحكم" : "Dashboard"}
+                  </h1>
+                  <p className="text-sm text-gray-600">
+                    {isRTL ? "إدارة النظام والخدمات" : "System and Services Management"}
+                  </p>
                 </div>
-                <div className="text-right hidden sm:block">
-                  <div className="font-medium text-gray-900">المدير</div>
-                  <div className="text-sm text-gray-500">admin@cw.com.sa</div>
+              </div>
+              
+              <div className="flex items-center space-x-4">
+                <button className="relative p-2 text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-colors">
+                  <Bell className="w-6 h-6" />
+                  <span className="absolute -top-1 -right-1 w-3 h-3 bg-red-500 rounded-full"></span>
+                </button>
+                <div className="w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center">
+                  <span className="text-white text-sm font-medium">أ</span>
                 </div>
               </div>
             </div>
           </div>
         </header>
 
-        {/* Dashboard content */}
         <div className="p-6">
-          {/* Stats grid */}
+          {/* Stats Cards */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-            {stats.map((stat, index) => (
-              <SoftUICard
-                key={index}
-                variant="glass"
-                className="relative overflow-hidden"
-              >
-                <div
-                  className={`absolute top-0 right-0 w-20 h-20 bg-gradient-to-br ${stat.color} opacity-10 rounded-bl-3xl`}
-                ></div>
-                <div className="relative">
-                  <div className="flex items-center justify-between mb-4">
-                    <div
-                      className={`p-3 rounded-2xl bg-gradient-to-r ${stat.color} text-white shadow-lg`}
-                    >
-                      {stat.icon}
-                    </div>
-                    <div className="text-green-500 text-sm font-semibold">
-                      {stat.change}
-                    </div>
-                  </div>
-                  <div className="text-right" dir="rtl">
-                    <h3 className="text-2xl font-bold text-gray-900 mb-1">
-                      {stat.value}
-                    </h3>
-                    <p className="text-gray-600 text-sm">{stat.title}</p>
-                  </div>
-                </div>
-              </SoftUICard>
-            ))}
-          </div>
-
-          {/* Chart section */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
-            <SoftUICard variant="glass">
-              <h3 className="text-xl font-bold text-gray-900 mb-4" dir="rtl">
-                الإيرادات الشهرية
-              </h3>
-              <div className="h-64 bg-gradient-to-r from-blue-100/50 to-purple-100/50 rounded-2xl flex items-center justify-center">
-                <div className="text-center">
-                  <BarChart3 className="w-16 h-16 text-blue-500 mx-auto mb-2" />
-                  <p className="text-gray-600" dir="rtl">
-                    رسم بياني للإيرادات
+            <div className="card p-6">
+              <div className="flex items-center justify-between">
+                <div>
+                  <p className="text-sm font-medium text-gray-600">
+                    {isRTL ? "إجمالي المستخدمين" : "Total Users"}
+                  </p>
+                  <p className="text-3xl font-bold text-gray-900">
+                    {formatNumber(stats.totalUsers)}
                   </p>
                 </div>
-              </div>
-            </SoftUICard>
-
-            <SoftUICard variant="glass">
-              <h3 className="text-xl font-bold text-gray-900 mb-4" dir="rtl">
-                نشاط العملاء
-              </h3>
-              <div className="space-y-4">
-                {[
-                  {
-                    name: "أحمد محمد",
-                    action: "طلب خدمة تنظيف",
-                    time: "قبل 5 دقائق",
-                  },
-                  {
-                    name: "فاطمة الأحمدي",
-                    action: "أكمل الدفع",
-                    time: "قبل 15 دقيقة",
-                  },
-                  {
-                    name: "محمد العتيبي",
-                    action: "قيّم الخدمة 5 نجوم",
-                    time: "قبل 30 دقيقة",
-                  },
-                ].map((activity, index) => (
-                  <div
-                    key={index}
-                    className="flex items-center gap-3 p-3 bg-white/30 rounded-xl backdrop-blur-sm"
-                  >
-                    <div className="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center text-white text-sm">
-                      {activity.name.charAt(0)}
-                    </div>
-                    <div className="flex-1 text-right" dir="rtl">
-                      <div className="font-medium text-gray-900">
-                        {activity.name}
-                      </div>
-                      <div className="text-sm text-gray-600">
-                        {activity.action}
-                      </div>
-                    </div>
-                    <div className="text-xs text-gray-500">{activity.time}</div>
-                  </div>
-                ))}
-              </div>
-            </SoftUICard>
-          </div>
-
-          {/* Quick actions */}
-          <SoftUICard variant="gradient">
-            <div className="text-center">
-              <h3 className="text-2xl font-bold text-gray-900 mb-4" dir="rtl">
-                إجراءات سريعة
-              </h3>
-              <div className="flex flex-wrap justify-center gap-4">
-                <SoftUIButton
-                  variant="primary"
-                  icon={<Users className="w-4 h-4" />}
-                >
-                  إضافة عميل جديد
-                </SoftUIButton>
-                <SoftUIButton
-                  variant="secondary"
-                  icon={<Calendar className="w-4 h-4" />}
-                >
-                  جدولة موعد
-                </SoftUIButton>
-                <SoftUIButton
-                  variant="glass"
-                  icon={<BarChart3 className="w-4 h-4" />}
-                >
-                  عرض التقارير
-                </SoftUIButton>
+                <div className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center">
+                  <Users className="w-6 h-6 text-blue-600" />
+                </div>
               </div>
             </div>
-          </SoftUICard>
 
-          {/* Custom content */}
+            <div className="card p-6">
+              <div className="flex items-center justify-between">
+                <div>
+                  <p className="text-sm font-medium text-gray-600">
+                    {isRTL ? "إجمالي الحجوزات" : "Total Bookings"}
+                  </p>
+                  <p className="text-3xl font-bold text-gray-900">
+                    {formatNumber(stats.totalBookings)}
+                  </p>
+                </div>
+                <div className="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center">
+                  <Calendar className="w-6 h-6 text-green-600" />
+                </div>
+              </div>
+            </div>
+
+            <div className="card p-6">
+              <div className="flex items-center justify-between">
+                <div>
+                  <p className="text-sm font-medium text-gray-600">
+                    {isRTL ? "إجمالي الإيرادات" : "Total Revenue"}
+                  </p>
+                  <p className="text-3xl font-bold text-gray-900">
+                    {formatNumber(stats.totalRevenue)} {isRTL ? "ريال" : "SAR"}
+                  </p>
+                </div>
+                <div className="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center">
+                  <DollarSign className="w-6 h-6 text-purple-600" />
+                </div>
+              </div>
+            </div>
+
+            <div className="card p-6">
+              <div className="flex items-center justify-between">
+                <div>
+                  <p className="text-sm font-medium text-gray-600">
+                    {isRTL ? "معدل النمو" : "Growth Rate"}
+                  </p>
+                  <p className="text-3xl font-bold text-gray-900">
+                    +{formatNumber(stats.growthRate)}%
+                  </p>
+                </div>
+                <div className="w-12 h-12 bg-orange-100 rounded-xl flex items-center justify-center">
+                  <TrendingUp className="w-6 h-6 text-orange-600" />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Tabs */}
+          <div className="flex space-x-1 mb-6">
+            <button
+              onClick={() => setActiveTab("users")}
+              className={`px-6 py-3 rounded-lg font-medium transition-colors ${
+                activeTab === "users"
+                  ? "bg-blue-600 text-white"
+                  : "bg-white text-gray-600 hover:bg-gray-50"
+              }`}
+            >
+              {isRTL ? "المستخدمين" : "Users"}
+            </button>
+            <button
+              onClick={() => setActiveTab("bookings")}
+              className={`px-6 py-3 rounded-lg font-medium transition-colors ${
+                activeTab === "bookings"
+                  ? "bg-blue-600 text-white"
+                  : "bg-white text-gray-600 hover:bg-gray-50"
+              }`}
+            >
+              {isRTL ? "الحجوزات" : "Bookings"}
+            </button>
+          </div>
+
+          {/* Table */}
+          <div className="card">
+            <TableToolbar>
+              <div className="flex items-center space-x-4">
+                <TableSearch
+                  placeholder={activeTab === "users" 
+                    ? (isRTL ? "البحث في المستخدمين..." : "Search users...")
+                    : (isRTL ? "البحث في الحجوزات..." : "Search bookings...")
+                  }
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  className="w-80"
+                />
+                <TableFilter />
+                <TableExport />
+              </div>
+              <button className="btn-primary">
+                <Plus className="w-4 h-4 ml-2" />
+                {isRTL ? "إضافة " : "Add "}
+                {activeTab === "users" ? (isRTL ? "مستخدم" : "User") : (isRTL ? "حجز" : "Booking")}
+              </button>
+            </TableToolbar>
+
+            <Table>
+              <TableHeader>
+                {activeTab === "users" ? (
+                  <>
+                    <SortableTableHead
+                      sortable
+                      sortDirection={sortField === "name" ? sortDirection : null}
+                      onSort={() => handleSort("name")}
+                    >
+                      {isRTL ? "الاسم" : "Name"}
+                    </SortableTableHead>
+                    <SortableTableHead
+                      sortable
+                      sortDirection={sortField === "email" ? sortDirection : null}
+                      onSort={() => handleSort("email")}
+                    >
+                      {isRTL ? "البريد الإلكتروني" : "Email"}
+                    </SortableTableHead>
+                    <SortableTableHead
+                      sortable
+                      sortDirection={sortField === "role" ? sortDirection : null}
+                      onSort={() => handleSort("role")}
+                    >
+                      {isRTL ? "الدور" : "Role"}
+                    </SortableTableHead>
+                    <SortableTableHead
+                      sortable
+                      sortDirection={sortField === "status" ? sortDirection : null}
+                      onSort={() => handleSort("status")}
+                    >
+                      {isRTL ? "الحالة" : "Status"}
+                    </SortableTableHead>
+                    <SortableTableHead
+                      sortable
+                      sortDirection={sortField === "lastLogin" ? sortDirection : null}
+                      onSort={() => handleSort("lastLogin")}
+                    >
+                      {isRTL ? "آخر تسجيل دخول" : "Last Login"}
+                    </SortableTableHead>
+                    <TableHead>{isRTL ? "الإجراءات" : "Actions"}</TableHead>
+                  </>
+                ) : (
+                  <>
+                    <SortableTableHead
+                      sortable
+                      sortDirection={sortField === "customerName" ? sortDirection : null}
+                      onSort={() => handleSort("customerName")}
+                    >
+                      {isRTL ? "اسم العميل" : "Customer Name"}
+                    </SortableTableHead>
+                    <SortableTableHead
+                      sortable
+                      sortDirection={sortField === "service" ? sortDirection : null}
+                      onSort={() => handleSort("service")}
+                    >
+                      {isRTL ? "الخدمة" : "Service"}
+                    </SortableTableHead>
+                    <SortableTableHead
+                      sortable
+                      sortDirection={sortField === "date" ? sortDirection : null}
+                      onSort={() => handleSort("date")}
+                    >
+                      {isRTL ? "التاريخ" : "Date"}
+                    </SortableTableHead>
+                    <SortableTableHead
+                      sortable
+                      sortDirection={sortField === "status" ? sortDirection : null}
+                      onSort={() => handleSort("status")}
+                    >
+                      {isRTL ? "الحالة" : "Status"}
+                    </SortableTableHead>
+                    <SortableTableHead
+                      sortable
+                      sortDirection={sortField === "amount" ? sortDirection : null}
+                      onSort={() => handleSort("amount")}
+                    >
+                      {isRTL ? "المبلغ" : "Amount"}
+                    </SortableTableHead>
+                    <SortableTableHead
+                      sortable
+                      sortDirection={sortField === "paymentStatus" ? sortDirection : null}
+                      onSort={() => handleSort("paymentStatus")}
+                    >
+                      {isRTL ? "حالة الدفع" : "Payment Status"}
+                    </SortableTableHead>
+                    <TableHead>{isRTL ? "الإجراءات" : "Actions"}</TableHead>
+                  </>
+                )}
+              </TableHeader>
+              <TableBody>
+                {sortedData.map((item) => (
+                  <TableRow key={item.id}>
+                    {activeTab === "users" ? (
+                      <>
+                        <TableCell className="font-medium">{(item as User).name}</TableCell>
+                        <TableCell>{(item as User).email}</TableCell>
+                        <TableCell>{(item as User).role}</TableCell>
+                        <TableCell>{getStatusBadge((item as User).status)}</TableCell>
+                        <TableCell>{(item as User).lastLogin}</TableCell>
+                        <TableCell>
+                          <TableRowActions
+                            onView={() => console.log("View user:", item.id)}
+                            onEdit={() => console.log("Edit user:", item.id)}
+                            onDelete={() => console.log("Delete user:", item.id)}
+                          />
+                        </TableCell>
+                      </>
+                    ) : (
+                      <>
+                        <TableCell className="font-medium">{(item as Booking).customerName}</TableCell>
+                        <TableCell>{(item as Booking).service}</TableCell>
+                        <TableCell>{(item as Booking).date}</TableCell>
+                        <TableCell>{getStatusBadge((item as Booking).status)}</TableCell>
+                        <TableCell>{formatNumber((item as Booking).amount)} {isRTL ? "ريال" : "SAR"}</TableCell>
+                        <TableCell>{getStatusBadge((item as Booking).paymentStatus)}</TableCell>
+                        <TableCell>
+                          <TableRowActions
+                            onView={() => console.log("View booking:", item.id)}
+                            onEdit={() => console.log("Edit booking:", item.id)}
+                            onDelete={() => console.log("Delete booking:", item.id)}
+                          />
+                        </TableCell>
+                      </>
+                    )}
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+
+            <TablePagination
+              currentPage={currentPage}
+              totalPages={Math.ceil(sortedData.length / 10)}
+              onPageChange={setCurrentPage}
+            />
+          </div>
+
+          {/* Additional Content */}
           {children}
         </div>
-      </main>
+      </div>
     </div>
   );
-};
-
-export default SoftUIDashboard;
+}

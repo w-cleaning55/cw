@@ -1,360 +1,188 @@
-'use client';
+"use client";
 
 import React, { useState } from "react";
-import { Button } from "./ui/button";
-import { Input } from "./ui/input";
-import { Label } from "./ui/label";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "./ui/card";
-import { Alert, AlertDescription } from "./ui/alert";
 import { useAuth } from "../hooks/useAuth";
+import { Eye, EyeOff, Lock, User, AlertCircle, CheckCircle } from "lucide-react";
 import { useTranslation } from "../hooks/useTranslation";
-import {
-  Eye,
-  EyeOff,
-  Lock,
-  User,
-  Loader2,
-  Shield,
-  AlertCircle,
-} from "lucide-react";
 
-interface LoginFormProps {
-  onSuccess?: () => void;
-}
-
-export default function LoginForm({ onSuccess }: LoginFormProps) {
-  const { t, currentLanguage } = useTranslation();
-  const { login, isLoading, error, clearError } = useAuth();
+export default function LoginForm() {
+  const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({
     username: "",
     password: "",
   });
-  const [showPassword, setShowPassword] = useState(false);
-  const [rememberMe, setRememberMe] = useState(false);
-  const [lastAttempt, setLastAttempt] = useState<{
-    username: string;
-    password: string;
-  } | null>(null);
-  const [serverDebug, setServerDebug] = useState<any | null>(null);
-
-  const isArabic = currentLanguage === "ar";
+  const { login, isLoading, error } = useAuth();
+  const { t, currentLanguage } = useTranslation();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    clearError();
-
-    if (!formData.username.trim() || !formData.password.trim()) {
-      return;
-    }
-
     try {
-      // Remember last attempt so we can show it on error
-      setLastAttempt({
-        username: formData.username,
-        password: formData.password,
-      });
       await login(formData);
-      if (onSuccess) {
-        onSuccess();
-      }
-      // Clear last attempt on success
-      setLastAttempt(null);
-      setServerDebug(null);
-    } catch (err: any) {
-      // Error is handled by the hook; capture server debug if provided
-      setServerDebug(err?.debug ?? null);
+    } catch (err) {
+      console.error("Login failed:", err);
     }
   };
 
-  const handleChange = (field: string, value: string) => {
-    setFormData((prev) => ({ ...prev, [field]: value }));
-    if (error) clearError();
-  };
-
-  // Demo login function
-  const handleDemoLogin = async () => {
-    await handleChange("username", "admin");
-    await handleChange("password", "admin123");
-
-    setTimeout(() => {
-      handleSubmit(new Event("submit") as any);
-    }, 100);
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 via-white to-green-50 dark:from-gray-900 dark:via-blue-950 dark:to-green-950 p-4">
-      {/* Background Effects */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-1/4 left-1/4 w-72 h-72 bg-blue-200/20 rounded-full mix-blend-multiply filter blur-xl animate-blob"></div>
-        <div className="absolute top-1/3 right-1/4 w-72 h-72 bg-green-200/20 rounded-full mix-blend-multiply filter blur-xl animate-blob animation-delay-2000"></div>
-        <div className="absolute bottom-1/4 left-1/3 w-72 h-72 bg-purple-200/20 rounded-full mix-blend-multiply filter blur-xl animate-blob animation-delay-4000"></div>
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-50 via-blue-50/30 to-purple-50/20 p-4">
+      {/* Background decoration */}
+      <div className="fixed inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-r from-blue-400/20 to-purple-400/20 rounded-full blur-3xl"></div>
+        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-gradient-to-r from-pink-400/20 to-cyan-400/20 rounded-full blur-3xl"></div>
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-gradient-to-r from-indigo-400/10 to-purple-400/10 rounded-full blur-3xl"></div>
       </div>
 
-      <Card className="w-full max-w-md relative z-10 shadow-2xl border-0 bg-white/95 dark:bg-gray-800/95 backdrop-blur-sm">
-        <CardHeader className="text-center space-y-4">
-          {/* Logo */}
-          <div className="mx-auto w-16 h-16 bg-gradient-to-br from-blue-600 to-green-600 rounded-full flex items-center justify-center shadow-lg">
-            <Shield className="w-8 h-8 text-white" />
+      <div className="relative z-10 w-full max-w-md">
+        {/* Logo and Header */}
+        <div className="text-center mb-8">
+          <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-purple-600 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg">
+            <Lock className="w-8 h-8 text-white" />
           </div>
+          <h1 className="text-3xl font-bold text-gray-900 mb-2">
+            {currentLanguage === "ar" ? "تسجيل الدخول" : "Login"}
+          </h1>
+          <p className="text-gray-600">
+            {currentLanguage === "ar" 
+              ? "مرحباً بك في لوحة التحكم الإدارية" 
+              : "Welcome to the Admin Dashboard"
+            }
+          </p>
+        </div>
 
-          <div>
-            <CardTitle className="text-2xl font-bold text-gray-900 dark:text-white">
-              {isArabic ? "تسجيل الدخول" : "Admin Login"}
-            </CardTitle>
-            <CardDescription className="text-gray-600 dark:text-gray-400">
-              {isArabic
-                ? "قم بتسجيل الدخول للوصول إلى لوحة الإدارة"
-                : "Sign in to access the admin dashboard"}
-            </CardDescription>
-          </div>
-        </CardHeader>
-
-        <CardContent className="space-y-6">
-          {/* Error Alert */}
-          {error && (
-            <Alert
-              variant="destructive"
-              className="border-red-200 bg-red-50 dark:bg-red-950/20"
-            >
-              <AlertCircle className="h-4 w-4" />
-              <AlertDescription>{error}</AlertDescription>
-            </Alert>
-          )}
-
-          {/* Login Form */}
-          <form onSubmit={handleSubmit} className="space-y-4" autoComplete="on">
+        {/* Login Form */}
+        <div className="card-elevated p-8">
+          <form onSubmit={handleSubmit} className="space-y-6">
             {/* Username Field */}
             <div className="space-y-2">
-              <Label htmlFor="username" className="text-sm font-medium">
-                {isArabic ? "اسم المستخدم" : "Username"}
-              </Label>
+              <label 
+                htmlFor="username" 
+                className="block text-sm font-medium text-gray-700"
+              >
+                {currentLanguage === "ar" ? "اسم المستخدم" : "Username"}
+              </label>
               <div className="relative">
-                <User className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
-                <Input
+                <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+                  <User className="h-5 w-5 text-gray-400" />
+                </div>
+                <input
                   id="username"
-                  type="text"
-                  value={formData.username}
-                  onChange={(e) => handleChange("username", e.target.value)}
-                  placeholder={
-                    isArabic ? "أدخل اسم المستخدم" : "Enter username"
-                  }
-                  className="pl-10 pr-4"
                   name="username"
-                  autoComplete="username"
+                  type="text"
                   required
-                  disabled={isLoading}
-                  dir={isArabic ? "rtl" : "ltr"}
-                  autoComplete="username"
-                  autoCapitalize="none"
-                  autoCorrect="off"
-                  spellCheck="false"
+                  value={formData.username}
+                  onChange={handleInputChange}
+                  className="input pr-10 w-full"
+                  placeholder={currentLanguage === "ar" ? "أدخل اسم المستخدم" : "Enter username"}
+                  dir={currentLanguage === "ar" ? "rtl" : "ltr"}
                 />
               </div>
             </div>
 
             {/* Password Field */}
             <div className="space-y-2">
-              <Label htmlFor="password" className="text-sm font-medium">
-                {isArabic ? "كلمة المرور" : "Password"}
-              </Label>
+              <label 
+                htmlFor="password" 
+                className="block text-sm font-medium text-gray-700"
+              >
+                {currentLanguage === "ar" ? "كلمة المرور" : "Password"}
+              </label>
               <div className="relative">
-                <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
-                <Input
+                <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+                  <Lock className="h-5 w-5 text-gray-400" />
+                </div>
+                <input
                   id="password"
-                  type={showPassword ? "text" : "password"}
-                  value={formData.password}
-                  onChange={(e) => handleChange("password", e.target.value)}
-                  placeholder={isArabic ? "أدخل كلمة المرور" : "Enter password"}
-                  className="pl-10 pr-10"
                   name="password"
-                  autoComplete="current-password"
+                  type={showPassword ? "text" : "password"}
                   required
-                  disabled={isLoading}
-                  autoComplete="current-password"
-                  autoCapitalize="none"
-                  autoCorrect="off"
-                  spellCheck="false"
+                  value={formData.password}
+                  onChange={handleInputChange}
+                  className="input pr-10 w-full"
+                  placeholder={currentLanguage === "ar" ? "أدخل كلمة المرور" : "Enter password"}
+                  dir={currentLanguage === "ar" ? "rtl" : "ltr"}
                 />
                 <button
                   type="button"
+                  className="absolute inset-y-0 left-0 pl-3 flex items-center"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600"
-                  disabled={isLoading}
                 >
                   {showPassword ? (
-                    <EyeOff className="h-4 w-4" />
+                    <EyeOff className="h-5 w-5 text-gray-400 hover:text-gray-600" />
                   ) : (
-                    <Eye className="h-4 w-4" />
+                    <Eye className="h-5 w-5 text-gray-400 hover:text-gray-600" />
                   )}
                 </button>
               </div>
             </div>
 
-            {/* Remember Me */}
-            <div className="flex items-center space-x-2">
-              <input
-                id="remember"
-                type="checkbox"
-                checked={rememberMe}
-                onChange={(e) => setRememberMe(e.target.checked)}
-                className="rounded border-gray-300 text-blue-600 focus:ring-blue-500"
-                disabled={isLoading}
-                aria-label={isArabic ? "تذكرني" : "Remember me"}
-                title={isArabic ? "تذكرني" : "Remember me"}
-                name="remember"
-                autoComplete="on"
-              />
-              <Label
-                htmlFor="remember"
-                className="text-sm text-gray-600 dark:text-gray-400"
-              >
-                {isArabic ? "تذكرني" : "Remember me"}
-              </Label>
-            </div>
+            {/* Error Message */}
+            {error && (
+              <div className="flex items-center gap-2 p-3 bg-red-50 border border-red-200 rounded-lg">
+                <AlertCircle className="h-5 w-5 text-red-500 flex-shrink-0" />
+                <p className="text-sm text-red-700">{error}</p>
+              </div>
+            )}
 
-            {/* Login Button */}
-            <Button
+            {/* Success Message */}
+            {!error && !isLoading && (
+              <div className="flex items-center gap-2 p-3 bg-green-50 border border-green-200 rounded-lg">
+                <CheckCircle className="h-5 w-5 text-green-500 flex-shrink-0" />
+                <p className="text-sm text-green-700">
+                  {currentLanguage === "ar" 
+                    ? "أدخل بياناتك للدخول" 
+                    : "Enter your credentials to login"
+                  }
+                </p>
+              </div>
+            )}
+
+            {/* Submit Button */}
+            <button
               type="submit"
-              className="w-full bg-gradient-to-r from-blue-600 to-green-600 hover:from-blue-700 hover:to-green-700 text-white font-semibold py-3"
-              disabled={
-                isLoading ||
-                !formData.username.trim() ||
-                !formData.password.trim()
-              }
+              disabled={isLoading}
+              className="btn-primary w-full h-12 text-base font-medium"
             >
               {isLoading ? (
-                <>
-                  <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-                  {isArabic ? "جاري تسجيل الدخول..." : "Signing in..."}
-                </>
+                <div className="flex items-center gap-2">
+                  <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white"></div>
+                  {currentLanguage === "ar" ? "جاري الدخول..." : "Signing in..."}
+                </div>
               ) : (
-                <>
-                  <Shield className="w-4 h-4 mr-2" />
-                  {isArabic ? "تسجيل الدخول" : "Sign In"}
-                </>
+                currentLanguage === "ar" ? "تسجيل الدخول" : "Sign In"
               )}
-            </Button>
+            </button>
           </form>
 
-          {/* Last Attempt Box (shown on error) */}
-          {error && lastAttempt && (
-            <div className="mt-4 rounded-lg border border-yellow-200 bg-yellow-50 p-4 text-sm dark:border-yellow-900/40 dark:bg-yellow-950/20">
-              <div className="font-semibold text-yellow-800 dark:text-yellow-200">
-                {isArabic ? "آخر محاولة تسجيل دخول" : "Last Login Attempt"}
-              </div>
-              <div className="mt-2 grid grid-cols-1 gap-1 text-gray-800 dark:text-gray-100">
-                <div>
-                  <span className="opacity-70">
-                    {isArabic ? "اسم المستخدم:" : "Username:"}{" "}
-                  </span>
-                  <code className="rounded bg-white/60 px-1 py-0.5 dark:bg-white/10">
-                    {lastAttempt.username}
-                  </code>
-                </div>
-                <div>
-                  <span className="opacity-70">
-                    {isArabic ? "كلمة المرور:" : "Password:"}{" "}
-                  </span>
-                  <code className="rounded bg-white/60 px-1 py-0.5 dark:bg-white/10">
-                    {lastAttempt.password}
-                  </code>
-                </div>
-                {serverDebug && (
-                  <>
-                    <div className="mt-3 font-semibold text-yellow-800 dark:text-yellow-200">
-                      {isArabic ? "مقارنة الخادم" : "Server Comparison"}
-                    </div>
-                    <div>
-                      <span className="opacity-70">
-                        {isArabic ? "المستخدم المطابق:" : "Matched user:"}{" "}
-                      </span>
-                      <code className="rounded bg-white/60 px-1 py-0.5 dark:bg-white/10">
-                        {serverDebug.matchedUser
-                          ? serverDebug.matchedUser.username
-                          : isArabic
-                            ? "لا يوجد"
-                            : "none"}
-                      </code>
-                    </div>
-                    {serverDebug.storedHash && (
-                      <div>
-                        <span className="opacity-70">
-                          {isArabic
-                            ? "تجزئة كلمة المرور المخزنة:"
-                            : "Stored password hash:"}{" "}
-                        </span>
-                        <code className="break-all rounded bg-white/60 px-1 py-0.5 dark:bg-white/10">
-                          {serverDebug.storedHash}
-                        </code>
-                      </div>
-                    )}
-                    <div>
-                      <span className="opacity-70">
-                        {isArabic ? "النتيجة:" : "Result:"}{" "}
-                      </span>
-                      <code className="rounded bg-white/60 px-1 py-0.5 dark:bg-white/10">
-                        {serverDebug.compare
-                          ? isArabic
-                            ? "مطابقة"
-                            : "match"
-                          : isArabic
-                            ? "غير مطابقة"
-                            : "no match"}
-                      </code>
-                    </div>
-                  </>
-                )}
-              </div>
+          {/* Demo Credentials */}
+          <div className="mt-6 p-4 bg-blue-50 border border-blue-200 rounded-lg">
+            <h3 className="text-sm font-medium text-blue-900 mb-2">
+              {currentLanguage === "ar" ? "بيانات تجريبية:" : "Demo Credentials:"}
+            </h3>
+            <div className="space-y-1 text-sm text-blue-800">
+              <p><strong>{currentLanguage === "ar" ? "اسم المستخدم:" : "Username:"}</strong> admin</p>
+              <p><strong>{currentLanguage === "ar" ? "كلمة المرور:" : "Password:"}</strong> admin123</p>
             </div>
-          )}
-
-          {/* Demo Login */}
-          <div className="border-t border-gray-200 dark:border-gray-700 pt-4">
-            <Button
-              type="button"
-              variant="outline"
-              onClick={handleDemoLogin}
-              className="w-full"
-              disabled={isLoading}
-            >
-              {isArabic
-                ? "تسجيل دخول تجريبي (admin/admin123)"
-                : "Demo Login (admin/admin123)"}
-            </Button>
           </div>
 
-          {/* Help Text */}
-          <div className="text-center text-sm text-gray-500 dark:text-gray-400">
-            {isArabic ? (
-              <>
-                للحصول على المساعدة، اتصل بـ{" "}
-                <a
-                  href="mailto:admin@cleaningworld.sa"
-                  className="text-blue-600 hover:underline"
-                >
-                  admin@cleaningworld.sa
-                </a>
-              </>
-            ) : (
-              <>
-                Need help? Contact{" "}
-                <a
-                  href="mailto:admin@cleaningworld.sa"
-                  className="text-blue-600 hover:underline"
-                >
-                  admin@cleaningworld.sa
-                </a>
-              </>
-            )}
+          {/* Footer */}
+          <div className="mt-8 text-center">
+            <p className="text-sm text-gray-500">
+              {currentLanguage === "ar" 
+                ? "© 2024 عالم النظافة. جميع الحقوق محفوظة." 
+                : "© 2024 Cleaning World. All rights reserved."
+              }
+            </p>
           </div>
-        </CardContent>
-      </Card>
+        </div>
+      </div>
     </div>
   );
 }
