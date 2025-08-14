@@ -135,12 +135,18 @@ export const YoutubeIcon: React.FC<CompactIconProps> = ({
 export const CompanyLogo: React.FC<CompactIconProps> = ({
   size = "md",
   className = "",
-}) => (
-  <img
-    src="/images/logo.svg"
-    alt="شعار عالم النظافة"
-    className={`${className}`}
-    width={size === "xs" ? 16 : size === "sm" ? 20 : size === "md" ? 24 : 28}
-    height={size === "xs" ? 16 : size === "sm" ? 20 : size === "md" ? 24 : 28}
-  />
-);
+}) => {
+  const [src, setSrc] = React.useState<string>("/images/logo.png");
+  const dimension = size === "xs" ? 16 : size === "sm" ? 20 : size === "md" ? 24 : 28;
+
+  return (
+    <img
+      src={src}
+      alt="شعار عالم النظافة"
+      className={`${className}`}
+      width={dimension}
+      height={dimension}
+      onError={() => setSrc("/images/logo.svg")}
+    />
+  );
+};
