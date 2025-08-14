@@ -89,6 +89,8 @@ const nextConfig = {
       '@testing-library/react': false,
       '@testing-library/user-event': false,
       '@vitejs/plugin-react': false,
+      openai: false,
+      '@google/generative-ai': false,
     };
 
     // Production optimizations

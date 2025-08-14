@@ -6,7 +6,7 @@ import {
   parseRequestBody
 } from '../../../../lib/api-utils';
 import { aiManager, defaultAIConfigs } from '../../../../lib/ai';
-import { smartChatbot } from '../../../../lib/ai/smart-chatbot';
+import { smartChatbot, ensureSmartChatbotInitialized } from '../../../../lib/ai/smart-chatbot';
 
 const SETTINGS_FILE = path.join(process.cwd(), 'data', 'system-settings.json');
 
@@ -47,7 +47,7 @@ export const POST = withErrorHandler(async (request: NextRequest) => {
     await aiManager.initialize(cfg).catch(() => false);
   }
 
-  // Use smartChatbot (will fallback automatically if AI not connected)
+  await ensureSmartChatbotInitialized();
   const sessionId = await smartChatbot.createSession(
     context === 'support' ? 'customerService' : context === 'content' ? 'technical' : context === 'booking' ? 'booking' : 'sales'
   );
@@ -57,6 +57,7 @@ export const POST = withErrorHandler(async (request: NextRequest) => {
 });
 
 export const GET = withErrorHandler(async () => {
+  await ensureSmartChatbotInitialized();
   const analytics = await smartChatbot.getAnalytics();
   return NextResponse.json(createSuccessResponse(analytics, 'ok'));
 });

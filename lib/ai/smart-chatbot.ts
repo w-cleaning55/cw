@@ -555,6 +555,13 @@ ${promotionsInfo}
 
 // Global smart chatbot instance
 export const smartChatbot = new SmartChatbot();
-
-// Initialize chatbot
-smartChatbot.initialize().catch(console.error);
+let __smartChatbotInitialized = false;
+export async function ensureSmartChatbotInitialized(): Promise<void> {
+  if (__smartChatbotInitialized) return;
+  try {
+    await smartChatbot.initialize();
+  } catch (e) {
+    // noop
+  }
+  __smartChatbotInitialized = true;
+}
