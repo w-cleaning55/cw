@@ -55,9 +55,9 @@ export default function LoginForm() {
               : "Welcome to the Admin Dashboard"
             }
           </p>
-        </div>
+          </div>
 
-        {/* Login Form */}
+          {/* Login Form */}
         <div className="card-elevated p-8">
           <form onSubmit={handleSubmit} className="space-y-6">
             {/* Username Field */}
@@ -141,7 +141,7 @@ export default function LoginForm() {
                     : "Enter your credentials to login"
                   }
                 </p>
-              </div>
+            </div>
             )}
 
             {/* Submit Button */}
@@ -169,8 +169,8 @@ export default function LoginForm() {
             <div className="space-y-1 text-sm text-blue-800">
               <p><strong>{currentLanguage === "ar" ? "اسم المستخدم:" : "Username:"}</strong> admin</p>
               <p><strong>{currentLanguage === "ar" ? "كلمة المرور:" : "Password:"}</strong> admin123</p>
+              </div>
             </div>
-          </div>
 
           {/* Footer */}
           <div className="mt-8 text-center">
@@ -181,8 +181,8 @@ export default function LoginForm() {
               }
             </p>
           </div>
-        </div>
-      </div>
+          </div>
+          </div>
     </div>
   );
 }

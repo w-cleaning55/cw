@@ -1,13 +1,13 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { 
-  Users, 
+import {
+  Users,
   Calendar, 
   DollarSign, 
   TrendingUp, 
-  Settings, 
-  Bell, 
+  Settings,
+  Bell,
   Search,
   Filter,
   Download,
@@ -280,30 +280,30 @@ export default function SoftUIDashboard({ children }: { children?: React.ReactNo
         {/* Header */}
         <header className="bg-white/80 backdrop-blur-sm border-b border-gray-200 sticky top-0 z-40">
           <div className="px-6 py-4">
-            <div className="flex items-center justify-between">
+          <div className="flex items-center justify-between">
               <div className="flex items-center space-x-4">
-                <button
-                  onClick={() => setSidebarOpen(!sidebarOpen)}
+              <button
+                onClick={() => setSidebarOpen(!sidebarOpen)}
                   className="lg:hidden p-2 rounded-md hover:bg-gray-100"
                   title={isRTL ? "القائمة" : "Menu"}
                 >
                   <Settings className="w-6 h-6 text-gray-600" />
-                </button>
+              </button>
                 <div>
                   <h1 className="text-2xl font-bold text-gray-900">
                     {isRTL ? "لوحة التحكم" : "Dashboard"}
-                  </h1>
+              </h1>
                   <p className="text-sm text-gray-600">
                     {isRTL ? "إدارة النظام والخدمات" : "System and Services Management"}
                   </p>
-                </div>
+            </div>
               </div>
-              
+
               <div className="flex items-center space-x-4">
                 <button className="relative p-2 text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-colors">
                   <Bell className="w-6 h-6" />
-                  <span className="absolute -top-1 -right-1 w-3 h-3 bg-red-500 rounded-full"></span>
-                </button>
+                <span className="absolute -top-1 -right-1 w-3 h-3 bg-red-500 rounded-full"></span>
+              </button>
                 <div className="w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center">
                   <span className="text-white text-sm font-medium">أ</span>
                 </div>
@@ -327,9 +327,9 @@ export default function SoftUIDashboard({ children }: { children?: React.ReactNo
                 </div>
                 <div className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center">
                   <Users className="w-6 h-6 text-blue-600" />
-                </div>
-              </div>
-            </div>
+                    </div>
+                    </div>
+                  </div>
 
             <div className="card p-6">
               <div className="flex items-center justify-between">
@@ -343,9 +343,9 @@ export default function SoftUIDashboard({ children }: { children?: React.ReactNo
                 </div>
                 <div className="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center">
                   <Calendar className="w-6 h-6 text-green-600" />
+                  </div>
                 </div>
-              </div>
-            </div>
+          </div>
 
             <div className="card p-6">
               <div className="flex items-center justify-between">
@@ -360,8 +360,8 @@ export default function SoftUIDashboard({ children }: { children?: React.ReactNo
                 <div className="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center">
                   <DollarSign className="w-6 h-6 text-purple-600" />
                 </div>
+                </div>
               </div>
-            </div>
 
             <div className="card p-6">
               <div className="flex items-center justify-between">
@@ -372,13 +372,13 @@ export default function SoftUIDashboard({ children }: { children?: React.ReactNo
                   <p className="text-3xl font-bold text-gray-900">
                     +{formatNumber(stats.growthRate)}%
                   </p>
-                </div>
+                    </div>
                 <div className="w-12 h-12 bg-orange-100 rounded-xl flex items-center justify-center">
                   <TrendingUp className="w-6 h-6 text-orange-600" />
-                </div>
-              </div>
-            </div>
-          </div>
+                      </div>
+                      </div>
+                    </div>
+                  </div>
 
           {/* Tabs */}
           <div className="flex space-x-1 mb-6">
@@ -561,7 +561,7 @@ export default function SoftUIDashboard({ children }: { children?: React.ReactNo
               totalPages={Math.ceil(sortedData.length / 10)}
               onPageChange={setCurrentPage}
             />
-          </div>
+            </div>
 
           {/* Additional Content */}
           {children}

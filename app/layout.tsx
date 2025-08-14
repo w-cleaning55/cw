@@ -6,6 +6,7 @@ import { ThemeProvider } from "../hooks/useTheme";
 import PerformanceOptimizer from "../components/PerformanceOptimizer";
 import { SEO_CONFIG, APP_CONFIG } from "../lib/constants";
 import { generateCleaningServiceStructuredData } from "../lib/seo";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -125,6 +126,7 @@ export default function RootLayout({
             __html: JSON.stringify(generateCleaningServiceStructuredData()),
           }}
         />
+        <SpeedInsights />
       </body>
     </html>
   );

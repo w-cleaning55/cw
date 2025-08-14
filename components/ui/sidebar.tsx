@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { 
+import {
   Home, 
   Users, 
   Calendar, 
@@ -144,7 +144,7 @@ export default function Sidebar({ isOpen, onToggle, className }: SidebarProps) {
                 {isRTL ? "إدارة النظام" : "System Management"}
               </p>
             </div>
-          </div>
+    </div>
           
           {/* Close button for mobile */}
           <button
