@@ -3,15 +3,13 @@
 import React, { Suspense } from "react";
 import dynamic from "next/dynamic";
 
-import StunningHeader from "@/components/layout/StunningHeader";
-import BackgroundPatterns from "@/components/ui/BackgroundPatterns";
-import { SmoothScrollProvider, ScrollProgress } from "@/components/ui/SmoothScrolling";
+import ProfessionalHeader from "@/components/layout/ProfessionalHeader";
 import { createLoadingSkeleton } from "@/lib/component-utils";
 import { usePerformanceMonitor } from "@/lib/performance";
 import type { BaseComponent } from "@/lib/types";
 
-const FastHeroSection = dynamic(() => import("@/components/sections/FastHeroSection"), { ssr: true, loading: () => createLoadingSkeleton("section") });
-const StunningStatsSection = dynamic(() => import("@/components/sections/StunningStatsSection"), { ssr: true, loading: () => createLoadingSkeleton("section") });
+const ProfessionalHeroSection = dynamic(() => import("@/components/sections/ProfessionalHeroSection"), { ssr: true, loading: () => createLoadingSkeleton("section") });
+const ProfessionalStatsSection = dynamic(() => import("@/components/sections/ProfessionalStatsSection"), { ssr: true, loading: () => createLoadingSkeleton("section") });
 const PremiumServicesSection = dynamic(() => import("@/components/sections/PremiumServicesSection"), { ssr: true, loading: () => createLoadingSkeleton("section") });
 const FeaturesSection = dynamic(() => import("@/components/sections/FeaturesSection"), { ssr: true, loading: () => createLoadingSkeleton("section") });
 const AboutSection = dynamic(() => import("@/components/sections/AboutSection"), { ssr: true, loading: () => createLoadingSkeleton("section") });
