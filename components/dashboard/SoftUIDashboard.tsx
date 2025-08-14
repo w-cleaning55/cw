@@ -26,6 +26,13 @@ interface SoftUIDashboardProps {
 
 const SoftUIDashboard: React.FC<SoftUIDashboardProps> = ({ children }) => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [isRTL, setIsRTL] = useState(true);
+
+  React.useEffect(() => {
+    if (typeof document !== 'undefined') {
+      setIsRTL(document.documentElement.dir === 'rtl');
+    }
+  }, []);
 
   const sidebarItems = [
     { icon: <Home className="w-5 h-5" />, label: "لوحة التحكم", href: "/admin", active: true },
@@ -86,8 +93,8 @@ const SoftUIDashboard: React.FC<SoftUIDashboardProps> = ({ children }) => {
 
       {/* Sidebar */}
       <aside
-        className={`fixed inset-y-0 left-0 z-50 w-64 transform transition-transform duration-300 ${
-          sidebarOpen ? "translate-x-0" : "-translate-x-full"
+        className={`fixed inset-y-0 ${isRTL ? 'right-0' : 'left-0'} z-50 w-64 transform transition-transform duration-300 ${
+          sidebarOpen ? "translate-x-0" : isRTL ? "translate-x-full" : "-translate-x-full"
         } md:translate-x-0`}
       >
         <div className="h-full bg-white/70 backdrop-blur-lg border-r border-white/20">
@@ -138,7 +145,7 @@ const SoftUIDashboard: React.FC<SoftUIDashboardProps> = ({ children }) => {
       )}
 
       {/* Main content */}
-      <main className="md:ml-64 relative z-10">
+      <main className={`${isRTL ? 'md:mr-64' : 'md:ml-64'} relative z-10`}>
         {/* Top header */}
         <header className="bg-white/70 backdrop-blur-lg border-b border-white/20 p-4">
           <div className="flex items-center justify-between">
