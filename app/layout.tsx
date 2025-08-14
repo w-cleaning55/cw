@@ -105,25 +105,8 @@ export default function RootLayout({
         <meta name="application-name" content={APP_CONFIG.name} />
         <meta name="msapplication-TileColor" content="#2563eb" />
         <meta name="theme-color" content="#ffffff" />
-        <link
-          rel="apple-touch-icon"
-          sizes="180x180"
-          href="/apple-touch-icon.png"
-        />
-        <link
-          rel="icon"
-          type="image/png"
-          sizes="32x32"
-          href="/favicon-32x32.png"
-        />
-        <link
-          rel="icon"
-          type="image/png"
-          sizes="16x16"
-          href="/favicon-16x16.png"
-        />
+        <link rel="icon" href="/favicon.ico" />
         <link rel="manifest" href="/site.webmanifest" />
-        <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#2563eb" />
       </head>
       <body
         className={`${inter.className} font-sans antialiased min-h-screen transition-colors duration-300`}

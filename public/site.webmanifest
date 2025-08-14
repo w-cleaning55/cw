@@ -1,0 +1,17 @@
+{
+  "name": "Cleaning World",
+  "short_name": "CW",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#2563eb",
+  "dir": "rtl",
+  "lang": "ar-SA",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "any",
+      "type": "image/x-icon"
+    }
+  ]
+}
