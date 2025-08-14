@@ -122,14 +122,28 @@ const nextConfig = {
       '@google/generative-ai': false,
     };
 
+    // Performance optimizations for both dev and production
+    config.resolve.alias = {
+      ...config.resolve.alias,
+      '@': '.',
+    };
+
     // Production optimizations
     if (!dev && !isServer) {
       config.optimization.usedExports = true;
       config.optimization.sideEffects = false;
-      
+      config.optimization.minimize = true;
+
       config.optimization.splitChunks = {
         chunks: 'all',
+        minSize: 20000,
+        maxSize: 244000,
         cacheGroups: {
+          default: {
+            minChunks: 2,
+            priority: -20,
+            reuseExistingChunk: true,
+          },
           vendor: {
             test: /[\\/]node_modules[\\/]/,
             name: 'vendors',
@@ -137,22 +151,27 @@ const nextConfig = {
             priority: 10,
             enforce: true,
           },
-          common: {
-            name: 'common',
-            minChunks: 2,
+          react: {
+            test: /[\\/]node_modules[\\/](react|react-dom)[\\/]/,
+            name: 'react',
             chunks: 'all',
-            priority: 5,
-            reuseExistingChunk: true,
+            priority: 40,
           },
           radix: {
             test: /[\\/]node_modules[\\/]@radix-ui[\\/]/,
             name: 'radix',
             chunks: 'all',
-            priority: 20,
+            priority: 30,
           },
           lucide: {
             test: /[\\/]node_modules[\\/]lucide-react[\\/]/,
             name: 'lucide',
+            chunks: 'all',
+            priority: 25,
+          },
+          utils: {
+            test: /[\\/]node_modules[\\/](clsx|tailwind-merge|class-variance-authority)[\\/]/,
+            name: 'utils',
             chunks: 'all',
             priority: 20,
           },
@@ -161,6 +180,8 @@ const nextConfig = {
 
       config.optimization.concatenateModules = true;
       config.optimization.runtimeChunk = 'single';
+      config.optimization.moduleIds = 'deterministic';
+      config.optimization.chunkIds = 'deterministic';
     }
 
     if (dev) {
