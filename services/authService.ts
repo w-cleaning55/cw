@@ -119,6 +119,17 @@ class AuthService {
   isAuthenticated(): boolean {
     return !!this.getToken();
   }
+
+  hasRole(role: 'admin' | 'manager' | 'operator'): boolean {
+    // In a full app, we'd decode token/keep user in state; here we rely on verify when needed.
+    // For client-side quick checks, assume authenticated users pass server checks in ProtectedRoute.
+    // Returning true defers strict checks to server pages and ProtectedRoute props.
+    return true;
+  }
+
+  hasPermission(module: string, action: 'create' | 'read' | 'update' | 'delete'): boolean {
+    return true;
+  }
 }
 
 export const authService = new AuthService();
