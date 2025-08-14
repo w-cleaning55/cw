@@ -25,9 +25,12 @@ const ContactInfo: React.FC<ContactInfoProps> = ({ icon, title, details }) => (
 
 interface ContactSectionProps {
   className?: string;
+  title?: string;
+  subtitle?: string;
+  description?: string;
 }
 
-const ContactSection: React.FC<ContactSectionProps> = ({ className = "" }) => {
+const ContactSection: React.FC<ContactSectionProps> = ({ className = "", title, subtitle, description }) => {
   const [form, setForm] = React.useState({ name: "", email: "", phone: "", message: "" });
   const [loading, setLoading] = React.useState(false);
   const [success, setSuccess] = React.useState<string | null>(null);
@@ -90,11 +93,14 @@ const ContactSection: React.FC<ContactSectionProps> = ({ className = "" }) => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold mb-4" dir="rtl">
-            تواصل معنا اليوم
+            {title || "تواصل معنا اليوم"}
           </h2>
           <p className="text-blue-100 max-w-2xl mx-auto" dir="rtl">
-            احصل على استشارة مجانية وعرض أسعار مخصص لاحتياجاتك
+            {subtitle || "احصل على استشارة مجانية وعرض أسعار مخصص لاحتياجاتك"}
           </p>
+          {description && (
+            <p className="text-blue-100/90 max-w-3xl mx-auto mt-3" dir="rtl">{description}</p>
+          )}
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
