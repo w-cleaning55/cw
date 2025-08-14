@@ -3,7 +3,7 @@ const nextConfig = {
   // Enable experimental performance features
   experimental: {
     optimizePackageImports: [
-      "lucide-react", 
+      "lucide-react",
       "@radix-ui/react-icons",
       "@radix-ui/react-accordion",
       "@radix-ui/react-alert-dialog",
@@ -29,9 +29,19 @@ const nextConfig = {
       "@radix-ui/react-toast",
       "@radix-ui/react-toggle",
       "@radix-ui/react-toggle-group",
-      "@radix-ui/react-tooltip"
+      "@radix-ui/react-tooltip",
+      "react-hook-form",
+      "@hookform/resolvers",
+      "zod",
+      "date-fns",
+      "clsx",
+      "tailwind-merge"
     ],
     webpackBuildWorker: true,
+    serverComponentsExternalPackages: ['bcryptjs', 'jsonwebtoken'],
+    esmExternals: true,
+    serverSourceMaps: false,
+    instrumentationHook: false,
   },
 
   // Turbopack configuration (stable in Next.js 15)
