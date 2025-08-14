@@ -90,15 +90,12 @@ export default function PerformanceOptimizer({ children }: PerformanceOptimizerP
 
   useEffect(() => {
     // Override global setTimeout
-    const originalSetTimeout = window.setTimeout;
     window.setTimeout = optimizedSetTimeout;
 
     // Override global setInterval
-    const originalSetInterval = window.setInterval;
     window.setInterval = optimizedSetInterval;
 
     // Override global requestAnimationFrame
-    const originalRequestAnimationFrame = window.requestAnimationFrame;
     window.requestAnimationFrame = optimizedRequestAnimationFrame;
 
     // Add optimized event listeners
@@ -108,12 +105,12 @@ export default function PerformanceOptimizer({ children }: PerformanceOptimizerP
     // Cleanup function
     return () => {
       // Restore original functions
-      window.setTimeout = originalSetTimeout;
-      window.setInterval = originalSetInterval;
-      window.requestAnimationFrame = originalRequestAnimationFrame;
+      window.setTimeout = originalFunctions.current.setTimeout;
+      window.setInterval = originalFunctions.current.setInterval;
+      window.requestAnimationFrame = originalFunctions.current.requestAnimationFrame;
 
       // Clear all timeouts and intervals
-      timeoutRefs.current.forEach(id => clearTimeout(id));
+      timeoutRefs.current.forEach(id => originalFunctions.current.setTimeout(() => clearTimeout(id), 0));
       intervalRefs.current.forEach(id => clearInterval(id));
       animationFrameRefs.current.forEach(id => cancelAnimationFrame(id));
 
