@@ -48,9 +48,9 @@ export default function StunningHeroSection() {
           className="absolute -bottom-1/2 -left-1/2 w-full h-full bg-gradient-to-tr from-emerald-400/30 via-blue-400/20 to-violet-400/30 rounded-full blur-3xl"
         />
 
-        {/* Particle Effects */}
+        {/* Particle Effects - Reduced for performance */}
         <div className="absolute inset-0">
-          {[...Array(50)].map((_, i) => (
+          {[...Array(10)].map((_, i) => (
             <motion.div
               key={i}
               className="absolute w-1 h-1 bg-white/20 rounded-full"
@@ -191,7 +191,7 @@ export default function StunningHeroSection() {
                   
                   <h3 className="text-2xl font-bold mb-4">خدمة متميزة</h3>
                   <p className="text-white/80 mb-6">
-                    فريق متخصص ومدرب على أعلى مستوى من الجودة والاحترافية
+                    فريق متخصص ومدرب ع��ى أعلى مستوى من الجودة والاحترافية
                   </p>
                   
                   {/* Stats */}
