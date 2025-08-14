@@ -110,7 +110,7 @@ export default function PerformanceOptimizer({ children }: PerformanceOptimizerP
       window.requestAnimationFrame = originalFunctions.current.requestAnimationFrame;
 
       // Clear all timeouts and intervals
-      timeoutRefs.current.forEach(id => originalFunctions.current.setTimeout(() => clearTimeout(id), 0));
+      timeoutRefs.current.forEach(id => clearTimeout(id));
       intervalRefs.current.forEach(id => clearInterval(id));
       animationFrameRefs.current.forEach(id => cancelAnimationFrame(id));
 
