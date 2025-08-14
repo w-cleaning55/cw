@@ -2,7 +2,16 @@
 
 import React from "react";
 import { motion, useInView } from "framer-motion";
-import { TrendingUp, Users, Award, Star, Zap, Shield, Heart, Target } from "lucide-react";
+import {
+  TrendingUp,
+  Users,
+  Award,
+  Star,
+  Zap,
+  Shield,
+  Heart,
+  Target,
+} from "lucide-react";
 
 export default function StunningStatsSection() {
   const ref = React.useRef(null);
@@ -66,9 +75,9 @@ export default function StunningStatsSection() {
 
   const item = {
     hidden: { opacity: 0, y: 50, scale: 0.8 },
-    show: { 
-      opacity: 1, 
-      y: 0, 
+    show: {
+      opacity: 1,
+      y: 0,
       scale: 1,
       transition: {
         type: "spring",
@@ -83,7 +92,7 @@ export default function StunningStatsSection() {
       {/* Background */}
       <div className="absolute inset-0">
         <div className="absolute inset-0 bg-gradient-to-br from-slate-50 to-blue-50/50" />
-        
+
         {/* Animated Background Elements */}
         <motion.div
           animate={{
@@ -93,11 +102,11 @@ export default function StunningStatsSection() {
           transition={{
             duration: 20,
             repeat: Infinity,
-            ease: "linear"
+            ease: "linear",
           }}
           className="absolute top-1/4 right-1/4 w-96 h-96 bg-gradient-to-br from-blue-200/30 to-purple-200/30 rounded-full blur-3xl"
         />
-        
+
         <motion.div
           animate={{
             rotate: [360, 0],
@@ -106,7 +115,7 @@ export default function StunningStatsSection() {
           transition={{
             duration: 25,
             repeat: Infinity,
-            ease: "linear"
+            ease: "linear",
           }}
           className="absolute bottom-1/4 left-1/4 w-80 h-80 bg-gradient-to-br from-cyan-200/30 to-green-200/30 rounded-full blur-3xl"
         />
@@ -129,14 +138,14 @@ export default function StunningStatsSection() {
             <TrendingUp className="w-4 h-4" />
             <span>إحصائيات مذهلة</span>
           </motion.div>
-          
+
           <h2 className="text-4xl lg:text-5xl font-bold text-gray-800 mb-4">
             أرقام تتحدث عن
             <span className="block bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
               تميزنا وإنجازاتنا
             </span>
           </h2>
-          
+
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
             نفخر بالثقة التي منحها لنا عملاؤنا وبالإنجازات التي حققناها معاً
           </p>
@@ -153,18 +162,20 @@ export default function StunningStatsSection() {
             <motion.div
               key={index}
               variants={item}
-              whileHover={{ 
-                scale: 1.05, 
+              whileHover={{
+                scale: 1.05,
                 y: -10,
-                transition: { type: "spring", stiffness: 300 }
+                transition: { type: "spring", stiffness: 300 },
               }}
               className="group relative"
             >
               {/* Main Card */}
               <div className="relative p-8 bg-white/70 backdrop-blur-xl rounded-3xl border border-white/50 shadow-xl overflow-hidden">
                 {/* Background Gradient */}
-                <div className={`absolute inset-0 bg-gradient-to-br ${stat.bgColor} opacity-50 group-hover:opacity-70 transition-opacity duration-300`} />
-                
+                <div
+                  className={`absolute inset-0 bg-gradient-to-br ${stat.bgColor} opacity-50 group-hover:opacity-70 transition-opacity duration-300`}
+                />
+
                 {/* Content */}
                 <div className="relative text-center">
                   {/* Icon */}
@@ -183,8 +194,8 @@ export default function StunningStatsSection() {
                     transition={{ delay: index * 0.2 + 0.5, type: "spring" }}
                     className="text-4xl font-bold text-gray-800 mb-2"
                   >
-                    <CountingNumber 
-                      end={stat.number} 
+                    <CountingNumber
+                      end={stat.number}
                       suffix={stat.suffix}
                       isInView={isInView}
                       delay={index * 0.2 + 0.5}
@@ -195,11 +206,9 @@ export default function StunningStatsSection() {
                   <h3 className="text-lg font-semibold text-gray-700 mb-2">
                     {stat.label}
                   </h3>
-                  
+
                   {/* Description */}
-                  <p className="text-sm text-gray-600">
-                    {stat.description}
-                  </p>
+                  <p className="text-sm text-gray-600">{stat.description}</p>
                 </div>
 
                 {/* Floating Elements */}
@@ -237,7 +246,9 @@ export default function StunningStatsSection() {
               className="flex items-center gap-3 px-6 py-3 bg-white/60 backdrop-blur-sm rounded-2xl border border-white/50 shadow-lg"
             >
               <achievement.icon className={`w-5 h-5 ${achievement.color}`} />
-              <span className="font-medium text-gray-700">{achievement.label}</span>
+              <span className="font-medium text-gray-700">
+                {achievement.label}
+              </span>
             </motion.div>
           ))}
         </motion.div>
@@ -247,16 +258,16 @@ export default function StunningStatsSection() {
 }
 
 // Counting Animation Component
-function CountingNumber({ 
-  end, 
-  suffix, 
-  isInView, 
-  delay 
-}: { 
-  end: number; 
-  suffix: string; 
-  isInView: boolean; 
-  delay: number; 
+function CountingNumber({
+  end,
+  suffix,
+  isInView,
+  delay,
+}: {
+  end: number;
+  suffix: string;
+  isInView: boolean;
+  delay: number;
 }) {
   const [count, setCount] = React.useState(0);
 
@@ -287,7 +298,7 @@ function CountingNumber({
 
   return (
     <span>
-      {count.toLocaleString('ar-SA')}
+      {count.toLocaleString("ar-SA")}
       {suffix}
     </span>
   );

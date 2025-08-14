@@ -8,7 +8,7 @@ export default function FastHeroSection() {
     <section className="relative min-h-screen overflow-hidden">
       {/* Simple Background */}
       <div className="absolute inset-0 bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900" />
-      
+
       {/* Simple animated gradient overlay */}
       <div className="absolute inset-0 bg-gradient-to-br from-cyan-400/30 via-purple-400/20 to-pink-400/30 animate-pulse" />
 
@@ -31,7 +31,8 @@ export default function FastHeroSection() {
             </h1>
 
             <p className="text-xl text-white/80 mb-8 leading-relaxed max-w-lg">
-              شريكتكم الموثوق لخدمات التنظيف المحترفة مع ضمان الجودة والتميز في كل مشروع
+              شريكتكم الموثوق لخدمات التنظيف المحترفة مع ضمان الجودة والتميز في
+              كل مشروع
             </p>
 
             {/* CTA Buttons */}
@@ -74,12 +75,12 @@ export default function FastHeroSection() {
                 <div className="w-24 h-24 mx-auto mb-6 bg-gradient-to-br from-cyan-400 to-purple-600 rounded-full flex items-center justify-center">
                   <Sparkles className="w-12 h-12" />
                 </div>
-                
+
                 <h3 className="text-2xl font-bold mb-4">خدمة متميزة</h3>
                 <p className="text-white/80 mb-6">
                   فريق متخصص ومدرب على أعلى مستوى من الجودة والاحترافية
                 </p>
-                
+
                 {/* Stats */}
                 <div className="grid grid-cols-3 gap-4 text-center">
                   <div>
@@ -87,11 +88,15 @@ export default function FastHeroSection() {
                     <div className="text-sm text-white/70">تقييم</div>
                   </div>
                   <div>
-                    <div className="text-2xl font-bold text-purple-400">2850+</div>
+                    <div className="text-2xl font-bold text-purple-400">
+                      2850+
+                    </div>
                     <div className="text-sm text-white/70">عميل</div>
                   </div>
                   <div>
-                    <div className="text-2xl font-bold text-green-400">100%</div>
+                    <div className="text-2xl font-bold text-green-400">
+                      100%
+                    </div>
                     <div className="text-sm text-white/70">ضمان</div>
                   </div>
                 </div>
@@ -103,8 +108,16 @@ export default function FastHeroSection() {
 
       {/* Simple Wave */}
       <div className="absolute bottom-0 left-0 right-0">
-        <svg viewBox="0 0 1200 120" fill="none" className="w-full h-20 text-white">
-          <path d="M0,60 C300,120 900,0 1200,60 L1200,120 L0,120 Z" fill="currentColor" fillOpacity="0.1" />
+        <svg
+          viewBox="0 0 1200 120"
+          fill="none"
+          className="w-full h-20 text-white"
+        >
+          <path
+            d="M0,60 C300,120 900,0 1200,60 L1200,120 L0,120 Z"
+            fill="currentColor"
+            fillOpacity="0.1"
+          />
         </svg>
       </div>
     </section>

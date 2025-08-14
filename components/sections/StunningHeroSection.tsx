@@ -17,7 +17,7 @@ export default function StunningHeroSection() {
       <div className="absolute inset-0">
         {/* Main Gradient */}
         <div className="absolute inset-0 bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900" />
-        
+
         {/* Animated Gradients */}
         <motion.div
           animate={{
@@ -27,11 +27,11 @@ export default function StunningHeroSection() {
           transition={{
             duration: 20,
             repeat: Infinity,
-            ease: "linear"
+            ease: "linear",
           }}
           className="absolute -top-1/2 -right-1/2 w-full h-full bg-gradient-to-br from-cyan-400/30 via-purple-400/20 to-pink-400/30 rounded-full blur-3xl"
         />
-        
+
         <motion.div
           animate={{
             scale: [1.2, 1, 1.2],
@@ -40,7 +40,7 @@ export default function StunningHeroSection() {
           transition={{
             duration: 25,
             repeat: Infinity,
-            ease: "linear"
+            ease: "linear",
           }}
           className="absolute -bottom-1/2 -left-1/2 w-full h-full bg-gradient-to-tr from-emerald-400/30 via-blue-400/20 to-violet-400/30 rounded-full blur-3xl"
         />
@@ -108,7 +108,8 @@ export default function StunningHeroSection() {
               transition={{ delay: 0.4 }}
               className="text-xl text-white/80 mb-8 leading-relaxed max-w-lg"
             >
-              شريكتكم الموثوق لخدمات التنظيف المحترفة مع ضمان الجودة والتميز في كل مشروع
+              شريكتكم الموثوق لخدمات التنظيف المحترفة مع ضمان الجودة والتميز في
+              كل مشروع
             </motion.p>
 
             {/* CTA Buttons */}
@@ -175,34 +176,44 @@ export default function StunningHeroSection() {
                 className="relative p-8 bg-white/10 backdrop-blur-xl rounded-3xl border border-white/20 shadow-2xl"
               >
                 <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-white/5 rounded-3xl" />
-                
+
                 {/* Content inside glass card */}
                 <div className="relative text-center text-white">
                   <motion.div
                     animate={{ rotate: 360 }}
-                    transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+                    transition={{
+                      duration: 20,
+                      repeat: Infinity,
+                      ease: "linear",
+                    }}
                     className="w-24 h-24 mx-auto mb-6 bg-gradient-to-br from-cyan-400 to-purple-600 rounded-full flex items-center justify-center"
                   >
                     <Sparkles className="w-12 h-12" />
                   </motion.div>
-                  
+
                   <h3 className="text-2xl font-bold mb-4">خدمة متميزة</h3>
                   <p className="text-white/80 mb-6">
                     فريق متخصص ومدرب على أعلى مستوى من الجودة والاحترافية
                   </p>
-                  
+
                   {/* Stats */}
                   <div className="grid grid-cols-3 gap-4 text-center">
                     <div>
-                      <div className="text-2xl font-bold text-cyan-400">4.9</div>
+                      <div className="text-2xl font-bold text-cyan-400">
+                        4.9
+                      </div>
                       <div className="text-sm text-white/70">تقييم</div>
                     </div>
                     <div>
-                      <div className="text-2xl font-bold text-purple-400">2850+</div>
+                      <div className="text-2xl font-bold text-purple-400">
+                        2850+
+                      </div>
                       <div className="text-sm text-white/70">عميل</div>
                     </div>
                     <div>
-                      <div className="text-2xl font-bold text-green-400">100%</div>
+                      <div className="text-2xl font-bold text-green-400">
+                        100%
+                      </div>
                       <div className="text-sm text-white/70">ضمان</div>
                     </div>
                   </div>
@@ -214,7 +225,7 @@ export default function StunningHeroSection() {
                 <motion.div
                   key={index}
                   initial={{ opacity: 0, scale: 0 }}
-                  animate={{ 
+                  animate={{
                     opacity: [0, 1, 0],
                     scale: [0, 1, 0],
                     y: [0, -20, 0],
@@ -227,8 +238,8 @@ export default function StunningHeroSection() {
                   }}
                   className="absolute w-12 h-12 bg-white/20 backdrop-blur-sm rounded-full border border-white/30 flex items-center justify-center text-white"
                   style={{
-                    left: `${50 + (x * 0.5)}%`,
-                    top: `${50 + (y * 0.5)}%`,
+                    left: `${50 + x * 0.5}%`,
+                    top: `${50 + y * 0.5}%`,
                   }}
                 >
                   <Icon className="w-6 h-6" />

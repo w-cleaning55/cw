@@ -35,7 +35,7 @@ const nextConfig = {
       "zod",
       "date-fns",
       "clsx",
-      "tailwind-merge"
+      "tailwind-merge",
     ],
     webpackBuildWorker: true,
     esmExternals: true,
@@ -44,9 +44,9 @@ const nextConfig = {
   // Turbopack configuration (stable in Next.js 15)
   turbopack: {
     rules: {
-      '*.svg': {
-        loaders: ['@svgr/webpack'],
-        as: '*.js',
+      "*.svg": {
+        loaders: ["@svgr/webpack"],
+        as: "*.js",
       },
     },
   },
@@ -58,24 +58,27 @@ const nextConfig = {
   reactStrictMode: true,
 
   // External packages for server components
-  serverExternalPackages: ['bcryptjs', 'jsonwebtoken'],
+  serverExternalPackages: ["bcryptjs", "jsonwebtoken"],
 
   // Allow dev origins for Builder.io
   allowedDevOrigins: [
-    'https://d048913a85204922993c175bcbb2967c-eca3e9ec47ce47b4980cc4e12.fly.dev',
-    'https://projects.builder.codes',
-    'https://builder.io',
+    "https://d048913a85204922993c175bcbb2967c-eca3e9ec47ce47b4980cc4e12.fly.dev",
+    "https://projects.builder.codes",
+    "https://builder.io",
   ],
 
   // Compiler optimizations
   compiler: {
-    removeConsole: process.env.NODE_ENV === "production" ? {
-      exclude: ["error"]
-    } : false,
+    removeConsole:
+      process.env.NODE_ENV === "production"
+        ? {
+            exclude: ["error"],
+          }
+        : false,
   },
 
   // Output optimizations
-  output: 'standalone',
+  output: "standalone",
   generateEtags: false,
 
   // Performance hints
@@ -83,17 +86,17 @@ const nextConfig = {
     maxInactiveAge: 25 * 1000,
     pagesBufferLength: 2,
   },
-  
+
   // ESLint configuration
   eslint: {
     ignoreDuringBuilds: true,
   },
-  
+
   // TypeScript configuration
   typescript: {
     ignoreBuildErrors: true,
   },
-  
+
   // Image optimization
   images: {
     remotePatterns: [
@@ -115,23 +118,23 @@ const nextConfig = {
     config.resolve.fallback = {
       ...(config.resolve.fallback || {}),
       firebase: false,
-      'firebase/app': false,
-      'firebase/firestore': false,
+      "firebase/app": false,
+      "firebase/firestore": false,
       mongodb: false,
-      '@supabase/supabase-js': false,
-      'serverless-http': false,
+      "@supabase/supabase-js": false,
+      "serverless-http": false,
       cors: false,
-      '@testing-library/react': false,
-      '@testing-library/user-event': false,
-      '@vitejs/plugin-react': false,
+      "@testing-library/react": false,
+      "@testing-library/user-event": false,
+      "@vitejs/plugin-react": false,
       openai: false,
-      '@google/generative-ai': false,
+      "@google/generative-ai": false,
     };
 
     // Performance optimizations for both dev and production
     config.resolve.alias = {
       ...config.resolve.alias,
-      '@': '.',
+      "@": ".",
     };
 
     // Production optimizations
@@ -141,7 +144,7 @@ const nextConfig = {
       config.optimization.minimize = true;
 
       config.optimization.splitChunks = {
-        chunks: 'all',
+        chunks: "all",
         minSize: 20000,
         maxSize: 244000,
         cacheGroups: {
@@ -152,59 +155,59 @@ const nextConfig = {
           },
           vendor: {
             test: /[\\/]node_modules[\\/]/,
-            name: 'vendors',
-            chunks: 'all',
+            name: "vendors",
+            chunks: "all",
             priority: 10,
             enforce: true,
           },
           react: {
             test: /[\\/]node_modules[\\/](react|react-dom)[\\/]/,
-            name: 'react',
-            chunks: 'all',
+            name: "react",
+            chunks: "all",
             priority: 40,
           },
           radix: {
             test: /[\\/]node_modules[\\/]@radix-ui[\\/]/,
-            name: 'radix',
-            chunks: 'all',
+            name: "radix",
+            chunks: "all",
             priority: 30,
           },
           lucide: {
             test: /[\\/]node_modules[\\/]lucide-react[\\/]/,
-            name: 'lucide',
-            chunks: 'all',
+            name: "lucide",
+            chunks: "all",
             priority: 25,
           },
           utils: {
             test: /[\\/]node_modules[\\/](clsx|tailwind-merge|class-variance-authority)[\\/]/,
-            name: 'utils',
-            chunks: 'all',
+            name: "utils",
+            chunks: "all",
             priority: 20,
           },
         },
       };
 
       config.optimization.concatenateModules = true;
-      config.optimization.runtimeChunk = 'single';
-      config.optimization.moduleIds = 'deterministic';
-      config.optimization.chunkIds = 'deterministic';
+      config.optimization.runtimeChunk = "single";
+      config.optimization.moduleIds = "deterministic";
+      config.optimization.chunkIds = "deterministic";
     }
 
     if (dev) {
       config.watchOptions = {
         poll: 1000,
         aggregateTimeout: 300,
-        ignored: ['**/node_modules', '**/.next', '**/dist'],
+        ignored: ["**/node_modules", "**/.next", "**/dist"],
       };
     }
 
-    if (process.env.ANALYZE === 'true') {
-      const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
+    if (process.env.ANALYZE === "true") {
+      const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer");
       config.plugins.push(
         new BundleAnalyzerPlugin({
-          analyzerMode: 'static',
+          analyzerMode: "static",
           openAnalyzer: false,
-        })
+        }),
       );
     }
 
@@ -220,50 +223,74 @@ const nextConfig = {
           { key: "X-Content-Type-Options", value: "nosniff" },
           { key: "Referrer-Policy", value: "origin-when-cross-origin" },
           { key: "X-XSS-Protection", value: "1; mode=block" },
-          { key: "Permissions-Policy", value: "camera=(), microphone=(), geolocation=()" },
+          {
+            key: "Permissions-Policy",
+            value: "camera=(), microphone=(), geolocation=()",
+          },
           { key: "X-DNS-Prefetch-Control", value: "on" },
-          { key: "Strict-Transport-Security", value: "max-age=31536000; includeSubDomains" },
+          {
+            key: "Strict-Transport-Security",
+            value: "max-age=31536000; includeSubDomains",
+          },
         ],
       },
       {
         source: "/static/:path*",
         headers: [
-          { key: "Cache-Control", value: "public, max-age=31536000, immutable" },
+          {
+            key: "Cache-Control",
+            value: "public, max-age=31536000, immutable",
+          },
           { key: "X-Content-Type-Options", value: "nosniff" },
         ],
       },
       {
         source: "/_next/image/:path*",
         headers: [
-          { key: "Cache-Control", value: "public, max-age=31536000, immutable" },
+          {
+            key: "Cache-Control",
+            value: "public, max-age=31536000, immutable",
+          },
         ],
       },
       {
         source: "/_next/static/css/:path*",
         headers: [
           { key: "Content-Type", value: "text/css" },
-          { key: "Cache-Control", value: "public, max-age=31536000, immutable" },
+          {
+            key: "Cache-Control",
+            value: "public, max-age=31536000, immutable",
+          },
         ],
       },
       {
         source: "/_next/static/js/:path*",
         headers: [
           { key: "Content-Type", value: "application/javascript" },
-          { key: "Cache-Control", value: "public, max-age=31536000, immutable" },
+          {
+            key: "Cache-Control",
+            value: "public, max-age=31536000, immutable",
+          },
         ],
       },
       {
         source: "/favicon.ico",
         headers: [
           { key: "Content-Type", value: "image/x-icon" },
-          { key: "Cache-Control", value: "public, max-age=31536000, immutable" },
+          {
+            key: "Cache-Control",
+            value: "public, max-age=31536000, immutable",
+          },
         ],
       },
       {
         source: "/favicon-:size.png",
         headers: [
           { key: "Content-Type", value: "image/png" },
-          { key: "Cache-Control", value: "public, max-age=31536000, immutable" },
+          {
+            key: "Cache-Control",
+            value: "public, max-age=31536000, immutable",
+          },
         ],
       },
       {

@@ -8,7 +8,7 @@ export function AnimatedBackground() {
     <div className="fixed inset-0 -z-10 overflow-hidden">
       {/* Base gradient */}
       <div className="absolute inset-0 bg-gradient-to-br from-slate-50 via-blue-50/30 to-purple-50/20" />
-      
+
       {/* Floating geometric shapes */}
       <div className="absolute inset-0">
         {/* Large circles */}
@@ -21,11 +21,11 @@ export function AnimatedBackground() {
           transition={{
             duration: 20,
             repeat: Infinity,
-            ease: "linear"
+            ease: "linear",
           }}
           className="absolute top-1/4 left-1/4 w-96 h-96 bg-gradient-to-br from-blue-200/20 to-purple-200/20 rounded-full blur-3xl"
         />
-        
+
         <motion.div
           animate={{
             x: [0, -80, 0],
@@ -35,7 +35,7 @@ export function AnimatedBackground() {
           transition={{
             duration: 25,
             repeat: Infinity,
-            ease: "linear"
+            ease: "linear",
           }}
           className="absolute top-3/4 right-1/4 w-80 h-80 bg-gradient-to-br from-cyan-200/20 to-green-200/20 rounded-full blur-3xl"
         />
@@ -68,14 +68,14 @@ export function AnimatedBackground() {
 
       {/* Grid pattern */}
       <div className="absolute inset-0 opacity-[0.02]">
-        <div 
-          className="h-full w-full" 
+        <div
+          className="h-full w-full"
           style={{
             backgroundImage: `
               linear-gradient(rgba(0,0,0,0.1) 1px, transparent 1px),
               linear-gradient(90deg, rgba(0,0,0,0.1) 1px, transparent 1px)
             `,
-            backgroundSize: '50px 50px'
+            backgroundSize: "50px 50px",
           }}
         />
       </div>
@@ -136,9 +136,24 @@ export function GeometricPatterns() {
         className="absolute bottom-32 left-32 opacity-5"
       >
         <svg width="150" height="150" viewBox="0 0 150 150">
-          <polygon points="75,10 140,130 10,130" fill="none" stroke="currentColor" strokeWidth="2" />
-          <polygon points="75,30 120,110 30,110" fill="none" stroke="currentColor" strokeWidth="1" />
-          <polygon points="75,50 100,90 50,90" fill="none" stroke="currentColor" strokeWidth="1" />
+          <polygon
+            points="75,10 140,130 10,130"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+          />
+          <polygon
+            points="75,30 120,110 30,110"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1"
+          />
+          <polygon
+            points="75,50 100,90 50,90"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1"
+          />
         </svg>
       </motion.div>
 
@@ -157,9 +172,9 @@ export function GeometricPatterns() {
             animate={{ pathLength: 1 }}
             transition={{ duration: 2, delay: i * 0.2 }}
             style={{
-              position: 'absolute',
-              width: '100px',
-              height: '100px',
+              position: "absolute",
+              width: "100px",
+              height: "100px",
             }}
           />
         ))}
@@ -170,9 +185,9 @@ export function GeometricPatterns() {
 
 export function FloatingElements() {
   const elements = [
-    { size: 'w-4 h-4', color: 'bg-blue-400/20', x: '10%', y: '20%' },
-    { size: 'w-6 h-6', color: 'bg-purple-400/20', x: '80%', y: '30%' },
-    { size: 'w-3 h-3', color: 'bg-cyan-400/20', x: '20%', y: '70%' },
+    { size: "w-4 h-4", color: "bg-blue-400/20", x: "10%", y: "20%" },
+    { size: "w-6 h-6", color: "bg-purple-400/20", x: "80%", y: "30%" },
+    { size: "w-3 h-3", color: "bg-cyan-400/20", x: "20%", y: "70%" },
   ];
 
   return (
@@ -202,7 +217,11 @@ export function FloatingElements() {
   );
 }
 
-export default function BackgroundPatterns({ children }: { children: React.ReactNode }) {
+export default function BackgroundPatterns({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <div className="relative">
       <AnimatedBackground />

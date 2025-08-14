@@ -7,7 +7,7 @@ import { Menu, X, Phone, Mail, MapPin, Star, Sparkles } from "lucide-react";
 export default function StunningHeader() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
   const { scrollY } = useScroll();
-  
+
   const headerOpacity = useTransform(scrollY, [0, 100], [0.95, 1]);
   const headerScale = useTransform(scrollY, [0, 100], [1, 0.95]);
   const headerBlur = useTransform(scrollY, [0, 100], [10, 20]);
@@ -75,7 +75,11 @@ export default function StunningHeader() {
                 <div className="relative">
                   <motion.div
                     animate={{ rotate: 360 }}
-                    transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
+                    transition={{
+                      duration: 10,
+                      repeat: Infinity,
+                      ease: "linear",
+                    }}
                     className="w-12 h-12 bg-gradient-to-br from-cyan-400 to-purple-600 rounded-xl flex items-center justify-center shadow-lg"
                   >
                     <Sparkles className="w-6 h-6 text-white" />
@@ -137,7 +141,11 @@ export default function StunningHeader() {
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
                 className="lg:hidden p-2 rounded-xl bg-white/10 backdrop-blur-sm border border-white/20 text-white"
               >
-                {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+                {isMenuOpen ? (
+                  <X className="w-6 h-6" />
+                ) : (
+                  <Menu className="w-6 h-6" />
+                )}
               </motion.button>
             </div>
           </div>

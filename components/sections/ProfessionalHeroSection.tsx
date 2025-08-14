@@ -8,11 +8,10 @@ export default function ProfessionalHeroSection() {
     <section className="relative bg-white">
       {/* Clean geometric background */}
       <div className="absolute inset-0 bg-gradient-to-br from-gray-50 to-blue-50/30"></div>
-      
+
       {/* Content */}
       <div className="relative container mx-auto px-6 py-20">
         <div className="grid lg:grid-cols-2 gap-16 items-center min-h-[70vh]">
-          
           {/* Text Content */}
           <div className="text-right space-y-8">
             {/* Professional Badge */}
@@ -33,8 +32,9 @@ export default function ProfessionalHeroSection() {
 
             {/* Description */}
             <p className="text-lg text-gray-600 leading-relaxed max-w-xl">
-              نقدم خدمات تنظيف شاملة للمنازل والمكاتب والمنشآت التجارية بأعلى معايير الجودة 
-              والاحترافية، مع فريق مدرب وخبرة تزيد عن 10 سنوات في المملكة العربية السعودية.
+              نقدم خدمات تنظيف شاملة للمنازل والمكاتب والمنشآت التجارية بأعلى
+              معايير الجودة والاحترافية، مع فريق مدرب وخبرة تزيد عن 10 سنوات في
+              المملكة العربية السعودية.
             </p>
 
             {/* Features List */}
@@ -43,9 +43,12 @@ export default function ProfessionalHeroSection() {
                 "ضمان شامل على جميع الخدمات",
                 "فريق محترف ومدر��",
                 "مواد تنظيف آمنة ومعتمدة",
-                "خدمة عملاء 24/7"
+                "خدمة عملاء 24/7",
               ].map((feature, index) => (
-                <div key={index} className="flex items-center gap-3 text-gray-700">
+                <div
+                  key={index}
+                  className="flex items-center gap-3 text-gray-700"
+                >
                   <CheckCircle className="w-5 h-5 text-green-600 flex-shrink-0" />
                   <span className="font-medium">{feature}</span>
                 </div>
@@ -67,32 +70,43 @@ export default function ProfessionalHeroSection() {
           {/* Professional Stats Card */}
           <div className="lg:text-center">
             <div className="bg-white rounded-2xl shadow-lg border border-gray-100 p-8 space-y-8">
-              
               {/* Company Badge */}
               <div className="text-center">
                 <div className="w-20 h-20 bg-blue-700 rounded-full flex items-center justify-center mx-auto mb-4">
                   <Shield className="w-10 h-10 text-white" />
                 </div>
-                <h3 className="text-xl font-bold text-gray-900">شركة معتمدة ومرخصة</h3>
-                <p className="text-gray-600 mt-2">خدمات تنظيف احترافية منذ 2014</p>
+                <h3 className="text-xl font-bold text-gray-900">
+                  شركة معتمدة ومرخصة
+                </h3>
+                <p className="text-gray-600 mt-2">
+                  خدمات تنظيف احترافية منذ 2014
+                </p>
               </div>
 
               {/* Stats */}
               <div className="grid grid-cols-3 gap-6 text-center">
                 <div className="space-y-2">
                   <div className="text-3xl font-bold text-blue-700">2850+</div>
-                  <div className="text-sm text-gray-600 font-medium">عميل راضي</div>
+                  <div className="text-sm text-gray-600 font-medium">
+                    عميل راضي
+                  </div>
                 </div>
                 <div className="space-y-2">
                   <div className="flex items-center justify-center gap-1">
-                    <span className="text-3xl font-bold text-yellow-600">4.9</span>
+                    <span className="text-3xl font-bold text-yellow-600">
+                      4.9
+                    </span>
                     <Star className="w-6 h-6 text-yellow-500 fill-current" />
                   </div>
-                  <div className="text-sm text-gray-600 font-medium">تقييم العملاء</div>
+                  <div className="text-sm text-gray-600 font-medium">
+                    تقييم العملاء
+                  </div>
                 </div>
                 <div className="space-y-2">
                   <div className="text-3xl font-bold text-green-600">100%</div>
-                  <div className="text-sm text-gray-600 font-medium">ضمان الجودة</div>
+                  <div className="text-sm text-gray-600 font-medium">
+                    ضمان الجودة
+                  </div>
                 </div>
               </div>
 
@@ -101,7 +115,9 @@ export default function ProfessionalHeroSection() {
                 <div className="flex items-center justify-center gap-6 text-gray-500">
                   <div className="flex items-center gap-2">
                     <Award className="w-5 h-5" />
-                    <span className="text-sm font-medium">معتمد من وزارة التجارة</span>
+                    <span className="text-sm font-medium">
+                      معتمد من وزارة التجارة
+                    </span>
                   </div>
                 </div>
               </div>
@@ -109,8 +125,12 @@ export default function ProfessionalHeroSection() {
               {/* Contact Info */}
               <div className="bg-gray-50 rounded-xl p-4">
                 <div className="text-center">
-                  <div className="text-2xl font-bold text-blue-700 mb-1">+966 50 000 0000</div>
-                  <div className="text-sm text-gray-600">للاستفسار والحجز المباشر</div>
+                  <div className="text-2xl font-bold text-blue-700 mb-1">
+                    +966 50 000 0000
+                  </div>
+                  <div className="text-sm text-gray-600">
+                    للاستفسار والحجز المباشر
+                  </div>
                 </div>
               </div>
             </div>

@@ -3,7 +3,11 @@
 import React from "react";
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 
-export function SmoothScrollProvider({ children }: { children: React.ReactNode }) {
+export function SmoothScrollProvider({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   React.useEffect(() => {
     // Enable smooth scrolling for anchor links
     const handleAnchorClick = (e: Event) => {
@@ -13,15 +17,15 @@ export function SmoothScrollProvider({ children }: { children: React.ReactNode }
         const element = document.querySelector(target.hash);
         if (element) {
           element.scrollIntoView({
-            behavior: 'smooth',
-            block: 'start',
+            behavior: "smooth",
+            block: "start",
           });
         }
       }
     };
 
-    document.addEventListener('click', handleAnchorClick);
-    return () => document.removeEventListener('click', handleAnchorClick);
+    document.addEventListener("click", handleAnchorClick);
+    return () => document.removeEventListener("click", handleAnchorClick);
   }, []);
 
   return <>{children}</>;
@@ -32,7 +36,7 @@ export function ScrollProgress() {
   const scaleX = useSpring(scrollYProgress, {
     stiffness: 100,
     damping: 30,
-    restDelta: 0.001
+    restDelta: 0.001,
   });
 
   return (
@@ -43,11 +47,11 @@ export function ScrollProgress() {
   );
 }
 
-export function ParallaxContainer({ 
-  children, 
+export function ParallaxContainer({
+  children,
   offset = 50,
-  className = "" 
-}: { 
+  className = "",
+}: {
   children: React.ReactNode;
   offset?: number;
   className?: string;
@@ -55,27 +59,23 @@ export function ParallaxContainer({
   const ref = React.useRef(null);
   const { scrollYProgress } = useScroll({
     target: ref,
-    offset: ["start end", "end start"]
+    offset: ["start end", "end start"],
   });
-  
+
   const y = useTransform(scrollYProgress, [0, 1], [offset, -offset]);
 
   return (
-    <motion.div
-      ref={ref}
-      style={{ y }}
-      className={className}
-    >
+    <motion.div ref={ref} style={{ y }} className={className}>
       {children}
     </motion.div>
   );
 }
 
-export function FadeInWhenVisible({ 
+export function FadeInWhenVisible({
   children,
   delay = 0,
   direction = "up",
-  className = ""
+  className = "",
 }: {
   children: React.ReactNode;
   delay?: number;
@@ -84,16 +84,20 @@ export function FadeInWhenVisible({
 }) {
   const getInitialPosition = () => {
     switch (direction) {
-      case "up": return { y: 50, x: 0 };
-      case "down": return { y: -50, x: 0 };
-      case "left": return { y: 0, x: 50 };
-      case "right": return { y: 0, x: -50 };
+      case "up":
+        return { y: 50, x: 0 };
+      case "down":
+        return { y: -50, x: 0 };
+      case "left":
+        return { y: 0, x: 50 };
+      case "right":
+        return { y: 0, x: -50 };
     }
   };
 
   const initial = {
     opacity: 0,
-    ...getInitialPosition()
+    ...getInitialPosition(),
   };
 
   return (
@@ -101,12 +105,12 @@ export function FadeInWhenVisible({
       initial={initial}
       whileInView={{ opacity: 1, y: 0, x: 0 }}
       viewport={{ once: true, margin: "-100px" }}
-      transition={{ 
-        duration: 0.6, 
+      transition={{
+        duration: 0.6,
         delay,
         type: "spring",
         stiffness: 100,
-        damping: 20
+        damping: 20,
       }}
       className={className}
     >
@@ -115,11 +119,11 @@ export function FadeInWhenVisible({
   );
 }
 
-export function HoverCard({ 
+export function HoverCard({
   children,
   className = "",
   hoverScale = 1.05,
-  hoverRotate = 0
+  hoverRotate = 0,
 }: {
   children: React.ReactNode;
   className?: string;
@@ -128,11 +132,11 @@ export function HoverCard({
 }) {
   return (
     <motion.div
-      whileHover={{ 
+      whileHover={{
         scale: hoverScale,
         rotate: hoverRotate,
         y: -5,
-        transition: { type: "spring", stiffness: 300, damping: 20 }
+        transition: { type: "spring", stiffness: 300, damping: 20 },
       }}
       whileTap={{ scale: 0.95 }}
       className={className}
@@ -142,10 +146,10 @@ export function HoverCard({
   );
 }
 
-export function StaggerContainer({ 
+export function StaggerContainer({
   children,
   staggerDelay = 0.1,
-  className = ""
+  className = "",
 }: {
   children: React.ReactNode;
   staggerDelay?: number;
@@ -174,23 +178,23 @@ export function StaggerContainer({
   );
 }
 
-export function StaggerItem({ 
+export function StaggerItem({
   children,
-  className = ""
+  className = "",
 }: {
   children: React.ReactNode;
   className?: string;
 }) {
   const item = {
     hidden: { opacity: 0, y: 20 },
-    show: { 
-      opacity: 1, 
+    show: {
+      opacity: 1,
       y: 0,
       transition: {
         type: "spring",
         stiffness: 100,
-        damping: 20
-      }
+        damping: 20,
+      },
     },
   };
 
@@ -201,9 +205,9 @@ export function StaggerItem({
   );
 }
 
-export function MagneticButton({ 
+export function MagneticButton({
   children,
-  className = ""
+  className = "",
 }: {
   children: React.ReactNode;
   className?: string;
@@ -213,18 +217,18 @@ export function MagneticButton({
 
   const handleMouseMove = (e: React.MouseEvent) => {
     if (!ref.current) return;
-    
+
     const rect = ref.current.getBoundingClientRect();
     const centerX = rect.left + rect.width / 2;
     const centerY = rect.top + rect.height / 2;
-    
+
     const maxDistance = 30;
     const deltaX = (e.clientX - centerX) * 0.1;
     const deltaY = (e.clientY - centerY) * 0.1;
-    
-    setPosition({ 
-      x: Math.max(-maxDistance, Math.min(maxDistance, deltaX)), 
-      y: Math.max(-maxDistance, Math.min(maxDistance, deltaY))
+
+    setPosition({
+      x: Math.max(-maxDistance, Math.min(maxDistance, deltaX)),
+      y: Math.max(-maxDistance, Math.min(maxDistance, deltaY)),
     });
   };
 
@@ -249,7 +253,7 @@ export function MagneticButton({
 export function FloatingElement({
   children,
   intensity = 1,
-  className = ""
+  className = "",
 }: {
   children: React.ReactNode;
   intensity?: number;
@@ -264,7 +268,7 @@ export function FloatingElement({
       transition={{
         duration: 4,
         repeat: Infinity,
-        ease: "easeInOut"
+        ease: "easeInOut",
       }}
       className={className}
     >
@@ -273,10 +277,10 @@ export function FloatingElement({
   );
 }
 
-export function TextReveal({ 
+export function TextReveal({
   text,
   className = "",
-  delay = 0
+  delay = 0,
 }: {
   text: string;
   className?: string;
@@ -322,11 +326,7 @@ export function TextReveal({
       viewport={{ once: true }}
     >
       {words.map((word, index) => (
-        <motion.span
-          variants={child}
-          key={index}
-          className="inline-block mr-1"
-        >
+        <motion.span variants={child} key={index} className="inline-block mr-1">
           {word}
         </motion.span>
       ))}

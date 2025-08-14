@@ -48,7 +48,6 @@ export default function ProfessionalHeader() {
       <header className="bg-white border-b border-gray-200 sticky top-0 z-50">
         <div className="container mx-auto px-6">
           <div className="flex items-center justify-between h-20">
-            
             {/* Logo */}
             <div className="flex items-center gap-4">
               <div className="w-12 h-12 bg-blue-700 rounded-lg flex items-center justify-center">
@@ -57,7 +56,9 @@ export default function ProfessionalHeader() {
                 </div>
               </div>
               <div className="text-right">
-                <h1 className="text-2xl font-bold text-gray-900">عالم النظافة</h1>
+                <h1 className="text-2xl font-bold text-gray-900">
+                  عالم النظافة
+                </h1>
                 <p className="text-sm text-gray-600">خدمات تنظيف احترافية</p>
               </div>
             </div>
@@ -89,7 +90,11 @@ export default function ProfessionalHeader() {
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               className="lg:hidden p-2 rounded-lg border border-gray-300 text-gray-700 hover:bg-gray-50 transition-colors duration-200"
             >
-              {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              {isMenuOpen ? (
+                <X className="w-6 h-6" />
+              ) : (
+                <Menu className="w-6 h-6" />
+              )}
             </button>
           </div>
         </div>

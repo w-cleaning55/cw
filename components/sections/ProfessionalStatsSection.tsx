@@ -43,36 +43,36 @@ export default function ProfessionalStatsSection() {
     {
       icon: Shield,
       title: "ضمان شامل",
-      description: "نضمن جودة العمل 100%"
+      description: "نضمن جودة العمل 100%",
     },
     {
       icon: Clock,
       title: "خدمة سريعة",
-      description: "استجابة فورية لطلباتكم"
+      description: "استجابة فورية لطلباتكم",
     },
     {
       icon: Award,
       title: "جودة معتمدة",
-      description: "معايير عالمية في التنظيف"
+      description: "معايير عالمية في التنظيف",
     },
     {
       icon: Users,
       title: "فريق محترف",
-      description: "مدربون على أعلى مستوى"
+      description: "مدربون على أعلى مستوى",
     },
   ];
 
   return (
     <section className="py-20 bg-gray-50">
       <div className="container mx-auto px-6">
-        
         {/* Section Header */}
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold text-gray-900 mb-4">
             أرقام تتحدث عن تميزنا
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            نفخر بالثقة التي وضعها عملاؤنا فينا وبالإنجازات التي حققناها معاً عبر السنوات
+            نفخر بالثقة التي وضعها عملاؤنا فينا وبالإنجازات التي حققناها معاً
+            عبر السنوات
           </p>
         </div>
 
@@ -84,7 +84,9 @@ export default function ProfessionalStatsSection() {
               className="bg-white rounded-xl shadow-sm border border-gray-100 p-8 text-center hover:shadow-md transition-shadow duration-200"
             >
               {/* Icon */}
-              <div className={`w-16 h-16 mx-auto mb-6 ${stat.bgColor} rounded-full flex items-center justify-center`}>
+              <div
+                className={`w-16 h-16 mx-auto mb-6 ${stat.bgColor} rounded-full flex items-center justify-center`}
+              >
                 <stat.icon className={`w-8 h-8 ${stat.color}`} />
               </div>
 
@@ -97,11 +99,9 @@ export default function ProfessionalStatsSection() {
               <h3 className="text-xl font-semibold text-gray-900 mb-3">
                 {stat.label}
               </h3>
-              
+
               {/* Description */}
-              <p className="text-gray-600 text-sm">
-                {stat.description}
-              </p>
+              <p className="text-gray-600 text-sm">{stat.description}</p>
             </div>
           ))}
         </div>
@@ -113,7 +113,8 @@ export default function ProfessionalStatsSection() {
               لماذا نحن الخيار الأمثل؟
             </h3>
             <p className="text-gray-600 max-w-2xl mx-auto">
-              نقدم خدمات تنظيف متكاملة تلبي جميع احتياجاتكم بأعلى معايير الجودة والاحترافية
+              نقدم خدمات تنظيف متكاملة تلبي جميع احتياجاتكم بأعلى معايير الجودة
+              والاحترافية
             </p>
           </div>
 
@@ -129,9 +130,7 @@ export default function ProfessionalStatsSection() {
                 <h4 className="text-lg font-semibold text-gray-900 mb-2">
                   {feature.title}
                 </h4>
-                <p className="text-gray-600 text-sm">
-                  {feature.description}
-                </p>
+                <p className="text-gray-600 text-sm">{feature.description}</p>
               </div>
             ))}
           </div>
