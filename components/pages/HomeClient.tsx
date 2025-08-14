@@ -83,7 +83,7 @@ const HomeClient: React.FC<BaseComponent> = () => {
             if (secId === 'hero') {
               return (
                 <React.Fragment key="hero">
-                  <StunningHeroSection />
+                  <FastHeroSection />
                   <StunningStatsSection />
                 </React.Fragment>
               );
