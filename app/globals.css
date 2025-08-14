@@ -735,43 +735,4 @@
   text-align: left;
 }
 
-/* ===== BUTTON RTL ICON POSITIONING ===== */
-[dir="rtl"] .btn-icon {
-  flex-direction: row-reverse;
-}
 
-[dir="rtl"] .btn-icon svg {
-  margin-left: 0;
-  margin-right: 0.5rem;
-}
-
-/* ===== SIDEBAR RTL POSITIONING ===== */
-[dir="rtl"] .sidebar-container {
-  right: 0;
-  left: auto;
-}
-
-[dir="rtl"] .sidebar-container.closed {
-  transform: translateX(100%);
-}
-
-[dir="rtl"] .main-content {
-  margin-right: 0;
-  margin-left: 16rem;
-}
-
-/* ===== TABLE RTL ALIGNMENT ===== */
-[dir="rtl"] .table th,
-[dir="rtl"] .table td {
-  text-align: right;
-}
-
-[dir="rtl"] .table th:last-child,
-[dir="rtl"] .table td:last-child {
-  text-align: left;
-}
-
-/* ===== ARABIC NUMERALS FOR ALL NUMBERS ===== */
-[dir="rtl"] * {
-  font-variant-numeric: arabic-indic;
-}
