@@ -5,12 +5,16 @@ import { CheckCircle, Users, Award, Star, Clock } from "lucide-react";
 
 interface AboutSectionProps {
   className?: string;
+  title?: string;
+  subtitle?: string;
+  description?: string;
+  image?: string;
 }
 
-const AboutSection: React.FC<AboutSectionProps> = ({ className = "" }) => {
+const AboutSection: React.FC<AboutSectionProps> = ({ className = "", title, subtitle, description, image }) => {
   const benefits = [
     "معدات حديثة ومتطورة",
-    "فريق مدرب ��مؤهل",
+    "فريق مدرب ومؤهل",
     "أسعار تنافسية وعادلة",
   ];
 
@@ -26,18 +30,14 @@ const AboutSection: React.FC<AboutSectionProps> = ({ className = "" }) => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div>
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6" dir="rtl">
-              من نحن؟
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-2" dir="rtl">
+              {title || "من نحن؟"}
             </h2>
-            <p className="text-gray-600 mb-6" dir="rtl">
-              عالم النظافة جدة هي شركة رائدة في مجال خدمات التنظيف المحترفة،
-              تأسست عام 2018 بهدف تقديم خدمات تنظيف عالية الجودة للمنازل
-              والمكاتب والمن��آت التجارية في مدينة جدة.
+            <p className="text-gray-700 mb-4" dir="rtl">
+              {subtitle || "شركة رائدة في مجال خدمات التنظيف بجدة"}
             </p>
             <p className="text-gray-600 mb-6" dir="rtl">
-              نحن نفخر بامتلاك فريق من المتخصصين المدربين على أعلى مستوى،
-              ونستخدم أحدث المعدات والتقنيات الأمريكية والأوروبية لضمان تحقيق
-              أفضل النتائج.
+              {description || "شركة تنظيف احترافية تأسست عام 2018"}
             </p>
             {benefits.map((benefit, index) => (
               <div key={index} className="flex items-center gap-4 mb-4">

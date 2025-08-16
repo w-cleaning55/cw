@@ -42,6 +42,7 @@ import {
   Save,
   X,
 } from "lucide-react";
+import AIGenerateButton from "@/components/admin/AIGenerateButton";
 
 interface Service {
   id: string;
@@ -432,29 +433,36 @@ export default function ServicesManagement() {
 
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-2">
-                <Label htmlFor="description">
-                  {isArabic ? "الوصف (إنجليزي)" : "Description (English)"}
-                </Label>
-                <Textarea
-                  id="description"
-                  value={formData.description}
-                  onChange={(e) =>
-                    setFormData({ ...formData, description: e.target.value })
-                  }
-                  placeholder="Service description in English"
-                />
-              </div>
-              <div className="space-y-2">
-                <Label htmlFor="descriptionAr">
-                  {isArabic ? "الوصف (عربي)" : "Description (Arabic)"}
+                <Label htmlFor="descriptionAr" className="flex items-center justify-between">
+                  <span>{isArabic ? "الوصف (عربي)" : "Description (Arabic)"}</span>
+                  <AIGenerateButton mode="description" language="ar" context={formData.titleAr || ''} onApply={(val)=> setFormData(prev=> ({...prev, descriptionAr: val}))} />
                 </Label>
                 <Textarea
                   id="descriptionAr"
                   value={formData.descriptionAr}
                   onChange={(e) =>
-                    setFormData({ ...formData, descriptionAr: e.target.value })
+                    setFormData((prev) => ({ ...prev, descriptionAr: e.target.value }))
                   }
-                  placeholder="وصف الخدمة بالعربية"
+                  placeholder={
+                    isArabic
+                      ? "أدخل وصف الخدمة باللغة العربية"
+                      : "Enter service description in Arabic"
+                  }
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="description" className="flex items-center justify-between"><span>{isArabic? 'الوصف (إنجليزي)':'Description (English)'}</span> <AIGenerateButton mode="description" language="en" context={formData.title || ''} onApply={(val)=> setFormData(prev=> ({...prev, description: val}))} /></Label>
+                <Textarea
+                  id="description"
+                  value={formData.description}
+                  onChange={(e) =>
+                    setFormData((prev) => ({ ...prev, description: e.target.value }))
+                  }
+                  placeholder={
+                    isArabic
+                      ? "أدخل وصف الخدمة باللغة الإنجليزية"
+                      : "Enter service description in English"
+                  }
                 />
               </div>
             </div>

@@ -665,11 +665,13 @@ export class DatabaseManager {
 
   private async saveConnections(): Promise<void> {
     const connectionsData = Array.from(this.connections.values());
-    localStorage.setItem('database-connections', JSON.stringify(connectionsData));
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('database-connections', JSON.stringify(connectionsData));
+    }
   }
 
   private loadConnections(): void {
-    const saved = localStorage.getItem('database-connections');
+    const saved = typeof window !== 'undefined' ? localStorage.getItem('database-connections') : null;
     if (saved) {
       try {
         const connectionsData = JSON.parse(saved);
@@ -690,7 +692,9 @@ export class DatabaseManager {
   private async saveBackupMetadata(backup: BackupMetadata): Promise<void> {
     const backups = this.getBackups();
     backups.push(backup);
-    localStorage.setItem('database-backups', JSON.stringify(backups));
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('database-backups', JSON.stringify(backups));
+    }
   }
 
   private async getBackupMetadata(backupId: string): Promise<BackupMetadata | null> {
@@ -699,7 +703,7 @@ export class DatabaseManager {
   }
 
   private getBackups(): BackupMetadata[] {
-    const saved = localStorage.getItem('database-backups');
+    const saved = typeof window !== 'undefined' ? localStorage.getItem('database-backups') : null;
     if (saved) {
       try {
         return JSON.parse(saved);
@@ -746,7 +750,9 @@ export class DatabaseManager {
 
   async deleteBackup(backupId: string): Promise<void> {
     const backups = this.getBackups().filter(b => b.id !== backupId);
-    localStorage.setItem('database-backups', JSON.stringify(backups));
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('database-backups', JSON.stringify(backups));
+    }
   }
 }
 

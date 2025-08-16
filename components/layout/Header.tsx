@@ -4,7 +4,10 @@ import React from "react";
 import Link from "next/link";
 import { Globe, Palette } from "lucide-react";
 import { CompanyLogo } from "@/components/ui/CompactIcons";
-import { APP_CONFIG } from "@/lib/constants";
+import { useSystemSettings } from "@/hooks/useSystemSettings";
+import QuickThemeSwitcher from "@/components/QuickThemeSwitcher";
+import DatabaseIndicator from "@/components/DatabaseIndicator";
+import EnhancedIndicators from "@/components/EnhancedIndicators";
 import { useTranslation } from "@/hooks/useTranslation";
 import { useTheme } from "@/hooks/useTheme";
 
@@ -13,9 +16,11 @@ interface HeaderProps {
 }
 
 const Header: React.FC<HeaderProps> = ({ className = "" }) => {
-  const { currentLanguage, toggleLanguage } = useTranslation();
+  const { settings } = useSystemSettings();
+  const companyName = settings?.company?.name || "عالم النظافة";
+  const logo = settings?.company?.logo || settings?.theme?.logoUrl;
+  const { currentLanguage, switchLanguage } = useTranslation();
   const { theme, toggleTheme } = useTheme();
-  
   return (
     <header className={`bg-white shadow-sm sticky top-0 z-50 ${className}`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -23,10 +28,8 @@ const Header: React.FC<HeaderProps> = ({ className = "" }) => {
           <div className="flex items-center">
             <div className="flex-shrink-0">
               <div className="flex items-center gap-3">
-                <CompanyLogo size="lg" />
-                <h1 className="text-2xl font-bold text-blue-600">
-                  {APP_CONFIG.name}
-                </h1>
+                <CompanyLogo size="lg" src={logo || undefined} />
+                <h1 className="text-2xl font-bold text-blue-600">{companyName}</h1>
               </div>
             </div>
           </div>
@@ -67,7 +70,7 @@ const Header: React.FC<HeaderProps> = ({ className = "" }) => {
           <div className="flex items-center gap-2">
             {/* Language Toggle */}
             <button
-              onClick={toggleLanguage}
+              onClick={() => switchLanguage(currentLanguage === "ar" ? "en" : "ar")}
               className="p-2 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors"
               title={currentLanguage === "ar" ? "Switch to English" : "التبديل إلى العربية"}
             >
@@ -92,6 +95,11 @@ const Header: React.FC<HeaderProps> = ({ className = "" }) => {
                 <path d="M4 6h16v2H4zm0 5h16v2H4zm0 5h16v2H4z" />
               </svg>
             </button>
+          </div>
+          <div className="hidden md:flex items-center gap-3">
+            <DatabaseIndicator />
+            <QuickThemeSwitcher />
+            <EnhancedIndicators />
           </div>
         </div>
       </div>

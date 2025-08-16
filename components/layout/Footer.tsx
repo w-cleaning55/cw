@@ -11,7 +11,7 @@ import {
   LocationIcon,
 } from "@/components/ui/CompactIcons";
 import { MessageCircle } from "lucide-react";
-import { APP_CONFIG } from "@/lib/constants";
+import { useSystemSettings } from "@/hooks/useSystemSettings";
 
 interface FooterLinkProps {
   href: string;
@@ -48,6 +48,10 @@ interface FooterProps {
 }
 
 const Footer: React.FC<FooterProps> = ({ className = "" }) => {
+  const { settings } = useSystemSettings();
+  const companyName = settings?.company?.name || "عالم النظافة";
+  const phone = settings?.company?.phone || "";
+  const email = settings?.company?.email || "";
   const services = [
     { name: "تنظيف المنازل", href: "#" },
     { name: "تنظيف المكاتب", href: "#" },
@@ -79,9 +83,9 @@ const Footer: React.FC<FooterProps> = ({ className = "" }) => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div>
             <div className="flex items-center gap-3 mb-4">
-              <CompanyLogo size="lg" />
+              <CompanyLogo size="lg" src={settings?.company?.logo || settings?.theme?.logoUrl || undefined} />
               <h3 className="text-2xl font-bold" dir="rtl">
-                {APP_CONFIG.name}
+                {companyName}
               </h3>
             </div>
             <p className="text-gray-400 mb-4" dir="rtl">
@@ -130,11 +134,11 @@ const Footer: React.FC<FooterProps> = ({ className = "" }) => {
             <div className="space-y-2 text-gray-400">
               <div className="flex items-center gap-2">
                 <PhoneIcon className="text-blue-400" />
-                <p>0500000000</p>
+                <p>{phone || '-'}</p>
               </div>
               <div className="flex items-center gap-2">
                 <EmailIcon className="text-blue-400" />
-                <p>info@cleaningworld.sa</p>
+                <p>{email || '-'}</p>
               </div>
               <div className="flex items-center gap-2" dir="rtl">
                 <LocationIcon className="text-blue-400" />

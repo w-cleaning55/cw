@@ -127,6 +127,7 @@ class AuthService {
     return !!this.getToken();
   }
 
+<<<<<<< HEAD
   // Get current user (from cache or verify token)
   async getCurrentUser(): Promise<User | null> {
     if (this.currentUser) {
@@ -252,6 +253,17 @@ class AuthService {
       console.error('Change password error:', error);
       throw error;
     }
+=======
+  hasRole(role: 'admin' | 'manager' | 'operator'): boolean {
+    // In a full app, we'd decode token/keep user in state; here we rely on verify when needed.
+    // For client-side quick checks, assume authenticated users pass server checks in ProtectedRoute.
+    // Returning true defers strict checks to server pages and ProtectedRoute props.
+    return true;
+  }
+
+  hasPermission(module: string, action: 'create' | 'read' | 'update' | 'delete'): boolean {
+    return true;
+>>>>>>> fb18c5bbbf23c971b798267d7f2097abf3a270a1
   }
 }
 

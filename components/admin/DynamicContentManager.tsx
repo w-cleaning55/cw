@@ -78,6 +78,7 @@ export default function DynamicContentManager() {
   const [editMode, setEditMode] = useState<string | null>(null);
   const [previewMode, setPreviewMode] = useState(false);
   const [unsavedChanges, setUnsavedChanges] = useState(false);
+  const [dragIndex, setDragIndex] = useState<number | null>(null);
 
   // تحميل المحتوى
   useEffect(() => {
@@ -596,7 +597,21 @@ export default function DynamicContentManager() {
             <CardContent>
               <div className="space-y-2" dir="rtl">
                 {(content?.homepage?.order || ["hero","services","features","about","testimonials","contact"]).map((secId: string, idx: number) => (
-                  <div key={secId} className="flex items-center justify-between p-3 bg-white rounded-lg border">
+                  <div
+                    key={secId}
+                    className="flex items-center justify-between p-3 bg-white rounded-lg border"
+                    draggable
+                    onDragStart={() => setDragIndex(idx)}
+                    onDragOver={(e) => e.preventDefault()}
+                    onDrop={() => {
+                      if (dragIndex === null || dragIndex === idx) return;
+                      const arr = [...content.homepage.order];
+                      const [moved] = arr.splice(dragIndex, 1);
+                      arr.splice(idx, 0, moved);
+                      updateContent(["homepage","order"], arr);
+                      setDragIndex(null);
+                    }}
+                  >
                     <div className="flex items-center gap-3">
                       <span className="cursor-grab">≡</span>
                       <span className="font-medium">
@@ -943,7 +958,7 @@ export default function DynamicContentManager() {
             </CardContent>
           </Card>
 
-          {/* قسم من ��حن */}
+          {/* قسم من نحن */}
           <Card>
             <CardHeader>
               <div className="flex items-center justify-between">

@@ -4,6 +4,13 @@ import React from "react";
 import { Star } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 
+interface TestimonialInput {
+  name?: string;
+  rating?: number;
+  comment?: string;
+  service?: string;
+}
+
 interface Testimonial {
   name: string;
   rating: number;
@@ -44,10 +51,13 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({ testimonial }) => (
 
 interface TestimonialsSectionProps {
   className?: string;
+  title?: string;
+  subtitle?: string;
+  items?: TestimonialInput[];
 }
 
-const TestimonialsSection: React.FC<TestimonialsSectionProps> = ({ className = "" }) => {
-  const testimonials: Testimonial[] = [
+const TestimonialsSection: React.FC<TestimonialsSectionProps> = ({ className = "", title, subtitle, items }) => {
+  const defaultTestimonials: Testimonial[] = [
     {
       name: "أحمد محمد",
       rating: 5,
@@ -68,15 +78,24 @@ const TestimonialsSection: React.FC<TestimonialsSectionProps> = ({ className = "
     },
   ];
 
+  const testimonials: Testimonial[] = (items && items.length > 0)
+    ? items.map((t) => ({
+        name: t.name || "عميل",
+        rating: Math.min(5, Math.max(1, t.rating || 5)),
+        comment: t.comment || "",
+        service: t.service || "",
+      }))
+    : defaultTestimonials;
+
   return (
     <section className={`py-20 bg-gray-50 ${className}`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4" dir="rtl">
-            آراء عملائنا
+            {title || "آراء عملائنا"}
           </h2>
           <p className="text-gray-600 max-w-2xl mx-auto" dir="rtl">
-            ما يقوله عملاؤنا الكرام عن خدماتنا وجودة العمل
+            {subtitle || "ما يقوله عملاؤنا الكرام عن خدماتنا وجودة العمل"}
           </p>
         </div>
 

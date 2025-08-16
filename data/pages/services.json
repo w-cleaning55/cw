@@ -1,0 +1,186 @@
+{
+  "title": "Our Services - Cleaning World",
+  "description": "Explore our comprehensive cleaning services for homes, offices, and commercial facilities",
+  "metadata": {
+    "title": "Our Services - Cleaning World | Professional Cleaning Services",
+    "description": "Comprehensive cleaning services including home cleaning, office cleaning, carpet cleaning, and more. Professional cleaning solutions for all your needs.",
+    "keywords": "cleaning services, home cleaning, office cleaning, carpet cleaning, professional cleaning, cleaning company"
+  },
+  "sections": [
+    {
+      "type": "hero",
+      "headline": "Our Services",
+      "subtitle": "Comprehensive cleaning solutions for all your needs",
+      "description": "From residential homes to large commercial facilities, we provide professional cleaning services that exceed expectations.",
+      "button": "Get Quote",
+      "backgroundImage": "/images/office-cleaning.jpg"
+    },
+    {
+      "type": "services-grid",
+      "title": "Residential Cleaning",
+      "subtitle": "Professional home cleaning services",
+      "layout": "grid",
+      "columns": 3,
+      "showPrices": true,
+      "showBadges": true,
+      "items": [
+        {
+          "name": "Regular Home Cleaning",
+          "description": "Comprehensive cleaning of all rooms including kitchen, bathrooms, living areas, and bedrooms",
+          "price": "Starting from 200 SAR",
+          "featured": true
+        },
+        {
+          "name": "Deep Cleaning",
+          "description": "Thorough cleaning including hard-to-reach areas, appliances, and detailed attention to every corner",
+          "price": "Starting from 350 SAR",
+          "popular": true
+        },
+        {
+          "name": "Move-in/Move-out Cleaning",
+          "description": "Complete cleaning service for new tenants or when moving out of a property",
+          "price": "Starting from 400 SAR"
+        },
+        {
+          "name": "Kitchen Deep Cleaning",
+          "description": "Specialized cleaning of kitchen appliances, cabinets, and surfaces",
+          "price": "Starting from 150 SAR"
+        },
+        {
+          "name": "Bathroom Cleaning",
+          "description": "Thorough cleaning and sanitization of all bathroom areas",
+          "price": "Starting from 100 SAR"
+        },
+        {
+          "name": "Window Cleaning",
+          "description": "Professional window cleaning for crystal clear views",
+          "price": "Starting from 80 SAR"
+        }
+      ]
+    },
+    {
+      "type": "content",
+      "title": "Commercial Cleaning",
+      "text": "<p>We provide comprehensive commercial cleaning services for offices, retail spaces, restaurants, and other business facilities. Our commercial cleaning services are designed to maintain a professional and healthy environment for your employees and customers.</p>",
+      "style": "centered",
+      "maxWidth": "xl"
+    },
+    {
+      "type": "services-grid",
+      "title": "Commercial Services",
+      "subtitle": "Professional business cleaning solutions",
+      "layout": "grid",
+      "columns": 2,
+      "showPrices": true,
+      "showBadges": false,
+      "items": [
+        {
+          "name": "Office Cleaning",
+          "description": "Daily, weekly, or monthly office cleaning including workstations, common areas, and restrooms",
+          "price": "Custom Quote"
+        },
+        {
+          "name": "Retail Store Cleaning",
+          "description": "Specialized cleaning for retail environments including display areas and customer spaces",
+          "price": "Custom Quote"
+        },
+        {
+          "name": "Restaurant Cleaning",
+          "description": "Deep cleaning of kitchen areas, dining spaces, and food preparation areas",
+          "price": "Custom Quote"
+        },
+        {
+          "name": "Warehouse Cleaning",
+          "description": "Industrial cleaning services for warehouses and storage facilities",
+          "price": "Custom Quote"
+        }
+      ]
+    },
+    {
+      "type": "content",
+      "title": "Specialized Services",
+      "text": "<p>In addition to our standard cleaning services, we offer specialized cleaning solutions for specific needs and requirements.</p>",
+      "style": "centered",
+      "maxWidth": "lg"
+    },
+    {
+      "type": "services-grid",
+      "title": "Specialized Cleaning",
+      "subtitle": "Expert solutions for specific needs",
+      "layout": "list",
+      "showPrices": true,
+      "showBadges": false,
+      "items": [
+        {
+          "name": "Carpet Cleaning",
+          "description": "Professional deep carpet cleaning and stain removal using advanced equipment",
+          "price": "Starting from 120 SAR"
+        },
+        {
+          "name": "Upholstery Cleaning",
+          "description": "Deep cleaning of sofas, chairs, and other upholstered furniture",
+          "price": "Starting from 100 SAR"
+        },
+        {
+          "name": "Curtain Cleaning",
+          "description": "Professional curtain cleaning and maintenance services",
+          "price": "Starting from 80 SAR"
+        },
+        {
+          "name": "Post-Construction Cleaning",
+          "description": "Comprehensive cleaning after construction or renovation projects",
+          "price": "Custom Quote"
+        },
+        {
+          "name": "Event Cleaning",
+          "description": "Pre and post-event cleaning services for venues and event spaces",
+          "price": "Custom Quote"
+        }
+      ]
+    },
+    {
+      "type": "features",
+      "title": "Why Choose Our Services",
+      "subtitle": "What makes us the best choice",
+      "items": [
+        {
+          "title": "Professional Team",
+          "description": "Trained and experienced cleaning professionals",
+          "icon": "Users"
+        },
+        {
+          "title": "Quality Guarantee",
+          "description": "100% satisfaction guarantee on all services",
+          "icon": "Shield"
+        },
+        {
+          "title": "Flexible Scheduling",
+          "description": "Available 7 days a week with flexible timing",
+          "icon": "Clock"
+        },
+        {
+          "title": "Eco-Friendly",
+          "description": "Using environmentally safe cleaning products",
+          "icon": "Leaf"
+        },
+        {
+          "title": "Insured Service",
+          "description": "Fully insured for your peace of mind",
+          "icon": "Shield"
+        },
+        {
+          "title": "Competitive Pricing",
+          "description": "Fair and transparent pricing with no hidden costs",
+          "icon": "DollarSign"
+        }
+      ]
+    },
+    {
+      "type": "contact",
+      "title": "Ready to Get Started?",
+      "subtitle": "Contact us for a free consultation and quote",
+      "description": "Let's discuss your cleaning needs and find the perfect solution for you.",
+      "showForm": true
+    }
+  ]
+}

@@ -132,21 +132,22 @@ export const YoutubeIcon: React.FC<CompactIconProps> = ({
 }) => <Youtube className={`${sizes[size]} ${className}`} />;
 
 // Company Logo Component (simplified)
-export const CompanyLogo: React.FC<CompactIconProps> = ({
+export const CompanyLogo: React.FC<CompactIconProps & { src?: string }> = ({
   size = "md",
   className = "",
+  src,
 }) => {
-  const [src, setSrc] = React.useState<string>("/images/logo.png");
+  const [imgSrc, setImgSrc] = React.useState<string>(src || "/images/logo.png");
   const dimension = size === "xs" ? 16 : size === "sm" ? 20 : size === "md" ? 24 : 28;
 
   return (
     <img
-      src={src}
+      src={imgSrc}
       alt="شعار عالم النظافة"
       className={`${className}`}
       width={dimension}
       height={dimension}
-      onError={() => setSrc("/images/logo.svg")}
+      onError={() => setImgSrc("/images/logo.svg")}
     />
   );
 };

@@ -271,3 +271,9 @@ local-config/
 development-config/
 
 .vercel
+
+# App data (keep repo clean)
+# Ignore runtime data JSON files and backups; keep the folder
+/data/*.json
+/data/backups/
+!data/.gitkeep

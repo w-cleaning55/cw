@@ -1,0 +1,111 @@
+{
+  "title": "Cleaning World - Professional Cleaning Services",
+  "description": "Professional cleaning services for homes and offices",
+  "metadata": {
+    "title": "Cleaning World - Professional Cleaning Services",
+    "description": "Professional cleaning services for homes and offices in Jeddah. Perfect cleanliness at competitive prices.",
+    "keywords": "cleaning, professional cleaning, home cleaning, office cleaning, Jeddah cleaning, cleaning company"
+  },
+  "sections": [
+    {
+      "type": "modern-hero",
+      "headline": "Professional Cleaning Services",
+      "subtitle": "Perfect cleanliness for a better life",
+      "description": "We provide comprehensive and professional cleaning services with international standards",
+      "button": "Book Now",
+      "backgroundImage": "/images/hero-banner.svg",
+      "showRating": true,
+      "rating": 4.9,
+      "reviewCount": 2850
+    },
+    {
+      "type": "stats",
+      "title": "Our Achievements",
+      "items": [
+        { "label": "Happy Clients", "value": "5000+", "icon": "Users" },
+        { "label": "Projects Completed", "value": "15000+", "icon": "CheckCircle" },
+        { "label": "Years Experience", "value": "10+", "icon": "Award" },
+        { "label": "Satisfaction Rate", "value": "98%", "icon": "Heart" }
+      ]
+    },
+    {
+      "type": "premium-services",
+      "title": "Our Featured Services",
+      "subtitle": "Professional cleaning solutions for all your needs",
+      "showPrices": true,
+      "showBadges": true,
+      "columns": 3
+    },
+    {
+      "type": "features",
+      "title": "Why Choose Us",
+      "subtitle": "Discover what makes us different",
+      "items": [
+        {
+          "title": "Professional Team",
+          "description": "Highly trained and experienced cleaning professionals",
+          "icon": "Users"
+        },
+        {
+          "title": "Quality Guarantee",
+          "description": "100% satisfaction guarantee on all our services",
+          "icon": "Shield"
+        },
+        {
+          "title": "Eco-Friendly",
+          "description": "Using environmentally safe cleaning products",
+          "icon": "Leaf"
+        }
+      ]
+    },
+    {
+      "type": "about",
+      "title": "About Cleaning World",
+      "subtitle": "Your trusted cleaning partner",
+      "description": "We are a professional cleaning company dedicated to providing the best service with over 10 years of experience.",
+      "image": "/images/professional-team.jpg"
+    },
+    {
+      "type": "testimonials",
+      "title": "What Our Clients Say",
+      "subtitle": "Real feedback from satisfied customers",
+      "items": [
+        {
+          "name": "Ahmed Mohammed",
+          "title": "Company Manager",
+          "company": "Advanced Technology Co.",
+          "location": "Jeddah",
+          "rating": 5,
+          "comment": "Excellent service and high quality",
+          "service": "Office Cleaning"
+        },
+        {
+          "name": "Fatima Ali",
+          "title": "Homeowner",
+          "company": "",
+          "location": "Riyadh",
+          "rating": 5,
+          "comment": "Professional team and amazing results",
+          "service": "Home Cleaning"
+        },
+        {
+          "name": "Khalid Abdullah",
+          "title": "Hotel Manager",
+          "company": "East Hotel",
+          "location": "Makkah",
+          "rating": 5,
+          "comment": "Fast and accurate service",
+          "service": "Hotel Cleaning"
+        }
+      ]
+    },
+    {
+      "type": "contact",
+      "title": "Get In Touch",
+      "subtitle": "Ready to start your cleaning project?",
+      "description": "Contact us today for a free consultation and quote",
+      "showForm": true,
+      "showMap": true
+    }
+  ]
+}

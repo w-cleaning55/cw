@@ -3,6 +3,7 @@
 import React from 'react';
 import { useAuth } from '../hooks/useAuth';
 import LoginForm from './LoginForm';
+import { usePathname } from 'next/navigation';
 import { Loader2 } from 'lucide-react';
 
 interface ProtectedRouteProps {
@@ -20,6 +21,7 @@ export default function ProtectedRoute({
   requiredPermission 
 }: ProtectedRouteProps) {
   const { isAuthenticated, isLoading, hasRole, hasPermission } = useAuth();
+  const pathname = usePathname();
 
   // Show loading while checking authentication
   if (isLoading) {

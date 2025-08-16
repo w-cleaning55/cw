@@ -1,0 +1,84 @@
+{
+  "title": "About Us - Cleaning World",
+  "description": "Learn more about our professional cleaning services and company history",
+  "metadata": {
+    "title": "About Us - Cleaning World | Professional Cleaning Services",
+    "description": "Learn about Cleaning World's 10+ years of experience in professional cleaning services. Our story, mission, and commitment to excellence.",
+    "keywords": "about us, cleaning company, professional cleaning, cleaning services, company history"
+  },
+  "sections": [
+    {
+      "type": "hero",
+      "headline": "About Cleaning World",
+      "subtitle": "Your trusted cleaning partner since 2014",
+      "description": "We are a professional cleaning company dedicated to providing the best service with over 10 years of experience in the industry.",
+      "button": "Our Services",
+      "backgroundImage": "/images/professional-team.jpg"
+    },
+    {
+      "type": "content",
+      "title": "Our Story",
+      "text": "<p>Founded in 2014, Cleaning World has grown from a small local cleaning service to one of the leading professional cleaning companies in Jeddah. Our journey began with a simple mission: to provide exceptional cleaning services that exceed customer expectations.</p><p>Over the years, we have served thousands of satisfied customers, from residential homes to large commercial facilities. Our commitment to quality, reliability, and customer satisfaction has been the cornerstone of our success.</p>",
+      "style": "default",
+      "maxWidth": "2xl"
+    },
+    {
+      "type": "stats",
+      "title": "Our Numbers",
+      "items": [
+        { "label": "Years Experience", "value": "10+", "icon": "Award" },
+        { "label": "Happy Clients", "value": "5000+", "icon": "Users" },
+        { "label": "Projects Completed", "value": "15000+", "icon": "CheckCircle" },
+        { "label": "Team Members", "value": "50+", "icon": "Users" }
+      ]
+    },
+    {
+      "type": "content",
+      "title": "Our Mission",
+      "text": "<p>Our mission is to provide professional, reliable, and eco-friendly cleaning services that create healthier and more comfortable environments for our clients. We believe that a clean space is essential for productivity, health, and well-being.</p>",
+      "style": "centered",
+      "maxWidth": "xl"
+    },
+    {
+      "type": "features",
+      "title": "Our Values",
+      "subtitle": "What drives us forward",
+      "items": [
+        {
+          "title": "Quality",
+          "description": "We never compromise on quality and always deliver the best results",
+          "icon": "Award"
+        },
+        {
+          "title": "Reliability",
+          "description": "You can count on us to be there when you need us",
+          "icon": "Clock"
+        },
+        {
+          "title": "Integrity",
+          "description": "Honest pricing and transparent communication",
+          "icon": "Shield"
+        },
+        {
+          "title": "Innovation",
+          "description": "Using the latest cleaning technologies and methods",
+          "icon": "Zap"
+        }
+      ]
+    },
+    {
+      "type": "content",
+      "title": "Our Team",
+      "text": "<p>Our team consists of highly trained and experienced cleaning professionals who are passionate about their work. Each team member undergoes rigorous training and background checks to ensure the highest standards of service and security.</p><p>We invest in continuous training and development to keep our team updated with the latest cleaning techniques, safety protocols, and customer service standards.</p>",
+      "style": "default",
+      "maxWidth": "2xl"
+    },
+    {
+      "type": "contact",
+      "title": "Ready to Work With Us?",
+      "subtitle": "Get in touch for a free consultation",
+      "description": "Let's discuss your cleaning needs and how we can help you maintain a clean and healthy environment.",
+      "showForm": true
+    }
+  ]
+}

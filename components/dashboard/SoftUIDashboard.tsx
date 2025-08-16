@@ -82,8 +82,18 @@ export default function SoftUIDashboard({ children }: { children?: React.ReactNo
   const [sortDirection, setSortDirection] = useState<"asc" | "desc" | null>(null);
   const [activeTab, setActiveTab] = useState<"users" | "bookings">("users");
   const [sidebarOpen, setSidebarOpen] = useState(false);
+<<<<<<< HEAD
   const { currentLanguage } = useTranslation();
   const isRTL = currentLanguage === "ar";
+=======
+  const [isRTL, setIsRTL] = useState(true);
+
+  React.useEffect(() => {
+    if (typeof document !== 'undefined') {
+      setIsRTL(document.documentElement.dir === 'rtl');
+    }
+  }, []);
+>>>>>>> fb18c5bbbf23c971b798267d7f2097abf3a270a1
 
   // Load data
   useEffect(() => {
@@ -270,6 +280,7 @@ export default function SoftUIDashboard({ children }: { children?: React.ReactNo
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-blue-50/30 to-purple-50/20">
       {/* Sidebar */}
+<<<<<<< HEAD
       <Sidebar 
         isOpen={sidebarOpen} 
         onToggle={() => setSidebarOpen(!sidebarOpen)} 
@@ -280,6 +291,64 @@ export default function SoftUIDashboard({ children }: { children?: React.ReactNo
         {/* Header */}
         <header className="bg-white/80 backdrop-blur-sm border-b border-gray-200 sticky top-0 z-40">
           <div className="px-6 py-4">
+=======
+      <aside
+        className={`fixed inset-y-0 ${isRTL ? 'right-0' : 'left-0'} z-50 w-64 transform transition-transform duration-300 ${
+          sidebarOpen ? "translate-x-0" : isRTL ? "translate-x-full" : "-translate-x-full"
+        } md:translate-x-0`}
+      >
+        <div className="h-full bg-white/70 backdrop-blur-lg border-r border-white/20">
+          {/* Logo */}
+          <div className="p-6 border-b border-white/20">
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-600 rounded-xl flex items-center justify-center text-white">
+                <Home className="w-6 h-6" />
+              </div>
+              <div>
+                <h2 className="text-xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                  عالم النظافة
+                </h2>
+                <p className="text-sm text-gray-500" dir="rtl">
+                  لوحة التحكم
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Navigation */}
+          <nav className="p-4 space-y-2">
+            {sidebarItems.map((item, index) => (
+              <a
+                key={index}
+                href={item.href}
+                className={`flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-300 ${
+                  item.active
+                    ? "bg-gradient-to-r from-blue-500 to-purple-600 text-white shadow-lg"
+                    : "text-gray-600 hover:bg-white/50 hover:text-blue-600"
+                }`}
+                dir="rtl"
+              >
+                {item.icon}
+                <span className="font-medium">{item.label}</span>
+              </a>
+            ))}
+          </nav>
+        </div>
+      </aside>
+
+      {/* Mobile sidebar overlay */}
+      {sidebarOpen && (
+        <div
+          className="fixed inset-0 bg-black/20 backdrop-blur-sm z-40 md:hidden"
+          onClick={() => setSidebarOpen(false)}
+        />
+      )}
+
+      {/* Main content */}
+      <main className={`${isRTL ? 'md:mr-64' : 'md:ml-64'} relative z-10`}>
+        {/* Top header */}
+        <header className="bg-white/70 backdrop-blur-lg border-b border-white/20 p-4">
+>>>>>>> fb18c5bbbf23c971b798267d7f2097abf3a270a1
           <div className="flex items-center justify-between">
               <div className="flex items-center space-x-4">
               <button

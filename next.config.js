@@ -35,9 +35,24 @@ const nextConfig = {
     config.resolve = config.resolve || {};
     config.resolve.fallback = {
       ...(config.resolve.fallback || {}),
+<<<<<<< HEAD
       fs: false,
       net: false,
       tls: false,
+=======
+      firebase: false,
+      'firebase/app': false,
+      'firebase/firestore': false,
+      mongodb: false,
+      '@supabase/supabase-js': false,
+      'serverless-http': false,
+      cors: false,
+      '@testing-library/react': false,
+      '@testing-library/user-event': false,
+      '@vitejs/plugin-react': false,
+      openai: false,
+      '@google/generative-ai': false,
+>>>>>>> fb18c5bbbf23c971b798267d7f2097abf3a270a1
     };
 
     // Development optimizations

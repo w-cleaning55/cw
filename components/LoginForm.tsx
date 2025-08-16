@@ -1,12 +1,31 @@
 "use client";
 
 import React, { useState } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
+import { Button } from "./ui/button";
+import { Input } from "./ui/input";
+import { Label } from "./ui/label";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "./ui/card";
+import { Alert, AlertDescription } from "./ui/alert";
 import { useAuth } from "../hooks/useAuth";
 import { Eye, EyeOff, Lock, User, AlertCircle, CheckCircle, Globe, Palette } from "lucide-react";
 import { useTranslation } from "../hooks/useTranslation";
 import { useTheme } from "../hooks/useTheme";
 
-export default function LoginForm() {
+interface LoginFormProps {
+  onSuccess?: () => void;
+}
+
+export default function LoginForm({ onSuccess }: LoginFormProps) {
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const nextUrl = searchParams?.get("next") || "/admin";
   const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({
     username: "",
@@ -20,7 +39,12 @@ export default function LoginForm() {
     e.preventDefault();
     try {
       await login(formData);
-    } catch (err) {
+      if (onSuccess) { 
+        onSuccess(); 
+      } else { 
+        router.push(nextUrl); 
+      }
+    } catch (err: any) {
       console.error("Login failed:", err);
     }
   };
