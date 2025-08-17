@@ -7,7 +7,7 @@ import { CompanyLogo } from "@/components/ui/CompactIcons";
 import { useSystemSettings } from "@/hooks/useSystemSettings";
 import QuickThemeSwitcher from "@/components/QuickThemeSwitcher";
 import DatabaseIndicator from "@/components/DatabaseIndicator";
-import EnhancedIndicators from "@/components/EnhancedIndicators";
+// import EnhancedIndicators from "@/components/EnhancedIndicators";
 import { useTranslation } from "@/hooks/useTranslation";
 import { useTheme } from "@/hooks/useTheme";
 
@@ -96,11 +96,11 @@ const Header: React.FC<HeaderProps> = ({ className = "" }) => {
               </svg>
             </button>
           </div>
-          <div className="hidden md:flex items-center gap-3">
-            <DatabaseIndicator />
-            <QuickThemeSwitcher />
-            <EnhancedIndicators />
-          </div>
+                     <div className="hidden md:flex items-center gap-3">
+             <DatabaseIndicator />
+             <QuickThemeSwitcher />
+             {/* <EnhancedIndicators /> */}
+           </div>
         </div>
       </div>
     </header>

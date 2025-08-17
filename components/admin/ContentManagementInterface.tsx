@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react";
 import { useTranslation } from "@/hooks/useTranslation";
 import { useTheme } from "@/hooks/useTheme";
+import { getLocalizedText } from "@/lib/utils";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -244,7 +245,7 @@ export default function ContentManagementInterface() {
                 </div>
                 <div className="text-center">
                   <div className="font-semibold">
-                    {action.title[isArabic ? "ar" : "en"]}
+                    {getLocalizedText(action.title, isArabic, "إجراء")}
                   </div>
                   <div className="text-xs text-gray-500">
                     {action.description[isArabic ? "ar" : "en"]}

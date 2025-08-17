@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react";
 import { useTranslation } from "@/hooks/useTranslation";
 import { useThemeColors, useThemeClasses } from "@/hooks/useTheme";
+import { getLocalizedText } from "@/lib/utils";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -828,7 +829,7 @@ export default function DynamicTestimonialsSection({
                 className="text-3xl md:text-4xl font-bold mb-4"
                 style={{ color: colors.text }}
               >
-                {data.title[isArabic ? "ar" : "en"]}
+                {getLocalizedText(data.title, isArabic, "آراء العملاء")}
               </h2>
             )}
             {data.subtitle && (
@@ -836,7 +837,7 @@ export default function DynamicTestimonialsSection({
                 className="text-xl md:text-2xl mb-6"
                 style={{ color: colors.textSecondary }}
               >
-                {data.subtitle[isArabic ? "ar" : "en"]}
+                {getLocalizedText(data.subtitle, isArabic, "تعرف على آراء عملائنا")}
               </h3>
             )}
             {data.description && (

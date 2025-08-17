@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import { useTranslation } from "@/hooks/useTranslation";
+import { getLocalizedText } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
@@ -117,20 +118,20 @@ export default function DynamicSimpleHero({
 
           {/* العنوان الر��يسي */}
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
-            {data.title[isArabic ? "ar" : "en"]}
+            {getLocalizedText(data.title, isArabic, "عنوان البانر")}
           </h1>
 
           {/* العنوان الفرعي */}
           {data.subtitle && (
             <h2 className="text-xl md:text-2xl lg:text-3xl mb-6 text-gray-100">
-              {data.subtitle[isArabic ? "ar" : "en"]}
+              {getLocalizedText(data.subtitle, isArabic, "نص فرعي")}
             </h2>
           )}
 
           {/* الوصف */}
           {data.description && (
             <p className="text-lg md:text-xl mb-8 text-gray-200 max-w-3xl mx-auto">
-              {data.description[isArabic ? "ar" : "en"]}
+              {getLocalizedText(data.description, isArabic, "وصف البانر")}
             </p>
           )}
 
@@ -168,7 +169,7 @@ export default function DynamicSimpleHero({
                 >
                   <CheckCircle className="w-4 h-4 text-green-400" />
                   <span className="text-sm">
-                    {feature.text[isArabic ? "ar" : "en"]}
+                    {getLocalizedText(feature.text, isArabic, "ميزة")}
                   </span>
                 </div>
               ))}
@@ -182,7 +183,7 @@ export default function DynamicSimpleHero({
                 size="lg"
                 className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 text-lg"
               >
-                {data.cta[isArabic ? "ar" : "en"]}
+                {getLocalizedText(data.cta, isArabic, "ابدأ الآن")}
                 <ArrowRight className="w-5 h-5 ml-2" />
               </Button>
             )}
@@ -193,7 +194,7 @@ export default function DynamicSimpleHero({
                 className="border-white text-white hover:bg-white hover:text-gray-900 px-8 py-4 text-lg"
               >
                 <Phone className="w-5 h-5 mr-2" />
-                {data.ctaSecondary[isArabic ? "ar" : "en"]}
+                {getLocalizedText(data.ctaSecondary, isArabic, "اتصل بنا")}
               </Button>
             )}
             {hasVideo && !isVideoPlaying && (

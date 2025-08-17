@@ -37,25 +37,25 @@ export default function EnhancedIndicators({ className = "" }: EnhancedIndicator
 			}
 			raf = requestAnimationFrame(loop);
 		};
-		rafa = requestAnimationFrame(loop);
+		raf = requestAnimationFrame(loop);
 		return () => cancelAnimationFrame(raf);
 	}, []);
 
-	const ping = React.useCallback(async () => {
-		try {
-			const start = performance.now();
-			await fetch("/api/ping", { cache: "no-store" });
-			setLatencyMs(Math.round(performance.now() - start));
-		} catch {
-			setLatencyMs(null);
-		}
-	}, []);
-
+	// Simplified ping without API call to avoid chunk loading issues
 	React.useEffect(() => {
+		const ping = async () => {
+			try {
+				const start = performance.now();
+				await fetch("/api/ping", { cache: "no-store" });
+				setLatencyMs(Math.round(performance.now() - start));
+			} catch {
+				setLatencyMs(null);
+			}
+		};
+		
+		// Only ping once on mount, not continuously
 		ping();
-		const id = setInterval(ping, 15000);
-		return () => clearInterval(id);
-	}, [ping]);
+	}, []);
 
 	return (
 		<div className={`flex items-center gap-3 ${className}`}>
