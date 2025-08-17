@@ -30,7 +30,7 @@ if (fs.existsSync(devCachePath)) {
 // Start optimized development server
 console.log('⚡ Starting Next.js development server with optimizations...');
 
-const devProcess = spawn('next', ['dev'], {
+const devProcess = spawn('next', ['dev', '-p', '3000'], {
   stdio: 'inherit',
   env: { ...process.env },
   shell: true

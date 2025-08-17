@@ -108,11 +108,12 @@ export default function RootLayout({
         <meta name="msapplication-TileColor" content="#2563eb" />
         <meta name="theme-color" content="#ffffff" />
         <link rel="icon" href="/favicon.ico" />
-        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+        <link rel="apple-touch-icon" href="/favicon.ico" />
         <link rel="manifest" href="/site.webmanifest" />
       </head>
       <body
         className={`${inter.className} ${tajawal.className} font-sans antialiased min-h-screen transition-colors duration-300`}
+        suppressHydrationWarning={true}
       >
         <PerformanceOptimizer>
           <ThemeProvider>

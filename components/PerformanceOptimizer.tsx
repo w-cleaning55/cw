@@ -56,20 +56,22 @@ export default function PerformanceOptimizer({ children }: PerformanceOptimizerP
   // Performance monitoring
   useEffect(() => {
     if (typeof window !== 'undefined' && 'performance' in window) {
-      // Monitor long tasks
-      const observer = new PerformanceObserver((list) => {
-        for (const entry of list.getEntries()) {
-          if (entry.duration > 50) { // Tasks longer than 50ms
-            console.warn('Long task detected:', {
-              name: entry.name,
-              duration: entry.duration,
-              startTime: entry.startTime,
-            });
+      // Monitor long tasks (only in development)
+      if (process.env.NODE_ENV === 'development') {
+        const observer = new PerformanceObserver((list) => {
+          for (const entry of list.getEntries()) {
+            if (entry.duration > 50) { // Tasks longer than 50ms
+              console.warn('Long task detected:', {
+                name: entry.name,
+                duration: entry.duration,
+                startTime: entry.startTime,
+              });
+            }
           }
-        }
-      });
+        });
 
-      observer.observe({ entryTypes: ['longtask'] });
+        observer.observe({ entryTypes: ['longtask'] });
+      }
 
       return () => observer.disconnect();
     }
