@@ -71,7 +71,8 @@ interface ContentSection {
 }
 
 export default function DynamicContentManager() {
-  const { t, language, isArabic } = useTranslation();
+  const { t, currentLanguage, isRTL } = useTranslation();
+  const isArabic = isRTL;
   const [content, setContent] = useState<DynamicContent | null>(null);
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);

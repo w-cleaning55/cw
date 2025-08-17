@@ -20,7 +20,7 @@ export const GET = withErrorHandler(async (request: NextRequest) => {
   const category = url.searchParams.get('category');
   const featured = url.searchParams.get('featured');
   
-  const servicesData = await safeFileRead(SERVICES_FILE, { services: getDefaultResponse('services') });
+  const servicesData = await safeFileRead(SERVICES_FILE, { services: getDefaultResponse('array') });
   let services = servicesData.services || [];
   
   // Apply filters
@@ -53,7 +53,7 @@ export const POST = withErrorHandler(async (request: NextRequest) => {
   validateRequired(body.category, 'category');
   validateRequired(body.price, 'price');
   
-  const servicesData = await safeFileRead(SERVICES_FILE, { services: [] });
+  const servicesData = await safeFileRead(SERVICES_FILE, { services: getDefaultResponse('array') });
   
   // Create new service with proper structure
   const service = {
@@ -82,7 +82,7 @@ export const PUT = withErrorHandler(async (request: NextRequest) => {
   
   validateRequired(body.id, 'id');
   
-  const servicesData = await safeFileRead(SERVICES_FILE, { services: [] });
+  const servicesData = await safeFileRead(SERVICES_FILE, { services: getDefaultResponse('array') });
   const serviceIndex = servicesData.services.findIndex((s: any) => s.id === body.id);
   
   if (serviceIndex === -1) {
@@ -112,7 +112,7 @@ export const DELETE = withErrorHandler(async (request: NextRequest) => {
   
   validateRequired(id, 'id');
   
-  const servicesData = await safeFileRead(SERVICES_FILE, { services: [] });
+  const servicesData = await safeFileRead(SERVICES_FILE, { services: getDefaultResponse('array') });
   const originalLength = servicesData.services.length;
   
   servicesData.services = servicesData.services.filter((s: any) => s.id !== id);

@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { useTranslation } from "@/hooks/useTranslation";
-import { useTheme, useDarkMode, useThemeControl } from "@/hooks/useTheme";
+import { useTheme } from "@/hooks/useTheme";
 import { getLocalizedText } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
@@ -39,20 +39,9 @@ export default function ThemeSelector({
   compact = false,
   position = "popup",
 }: ThemeSelectorProps) {
-  const { t, isArabic } = useTranslation();
-  const { isDarkMode, setDarkMode, toggleDarkMode, autoTheme, setAutoTheme } =
-    useDarkMode();
-
-  const {
-    currentTheme,
-    setCurrentTheme,
-    availableThemes,
-    resetToDefaults,
-    exportSettings,
-    importSettings,
-  } = useThemeControl();
-
-  const { colors, customization, setCustomization } = useTheme();
+  const { t, isRTL } = useTranslation();
+  const isArabic = isRTL;
+  const { theme, setTheme, isDark, toggleTheme } = useTheme();
 
   const [activeTab, setActiveTab] = useState("themes");
   const [showPreview, setShowPreview] = useState(false);
@@ -64,13 +53,17 @@ export default function ThemeSelector({
       const reader = new FileReader();
       reader.onload = (e) => {
         const content = e.target?.result as string;
-        if (importSettings(content)) {
-          alert(
-            isArabic
-              ? "تم استيراد الإعدادات بنجاح"
-              : "Settings imported successfully",
-          );
-        } else {
+        try {
+          const settings = JSON.parse(content);
+          if (settings.theme) {
+            setTheme(settings.theme);
+            alert(
+              isArabic
+                ? "تم استيراد الإعدادات بنجاح"
+                : "Settings imported successfully",
+            );
+          }
+        } catch (error) {
           alert(
             isArabic ? "فشل في استيراد الإعدادات" : "Failed to import settings",
           );
@@ -82,8 +75,8 @@ export default function ThemeSelector({
 
   // تصدير الإعدادات
   const handleExportSettings = () => {
-    const settings = exportSettings();
-    const blob = new Blob([settings], { type: "application/json" });
+    const settings = { theme };
+    const blob = new Blob([JSON.stringify(settings, null, 2)], { type: "application/json" });
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
     a.href = url;
@@ -94,68 +87,38 @@ export default function ThemeSelector({
     URL.revokeObjectURL(url);
   };
 
-  // الثيمات مع معاينة
-  const renderThemeCard = (themeId: string, theme: any) => (
+  // الثيمات الأساسية
+  const themes: Array<{ id: "light" | "dark" | "system"; name: string; nameEn: string; icon: any }> = [
+    { id: "light", name: "فاتح", nameEn: "Light", icon: Sun },
+    { id: "dark", name: "داكن", nameEn: "Dark", icon: Moon },
+    { id: "system", name: "تلقائي", nameEn: "System", icon: Monitor },
+  ];
+
+  const renderThemeCard = (themeOption: any) => (
     <Card
-      key={themeId}
+      key={themeOption.id}
       className={`cursor-pointer transition-all hover:scale-105 ${
-        currentTheme === themeId
+        theme === themeOption.id
           ? "ring-2 ring-blue-500 shadow-lg"
           : "hover:shadow-md"
       }`}
-      onClick={() => setCurrentTheme(themeId)}
+      onClick={() => setTheme(themeOption.id)}
     >
       <CardContent className="p-4">
-        {/* معاينة الألوان */}
-        <div className="flex gap-1 mb-3">
-          <div
-            className="w-6 h-6 rounded-full"
-            style={{
-              backgroundColor: isDarkMode
-                ? theme.dark.primary
-                : theme.light.primary,
-            }}
-          />
-          <div
-            className="w-6 h-6 rounded-full"
-            style={{
-              backgroundColor: isDarkMode
-                ? theme.dark.secondary
-                : theme.light.secondary,
-            }}
-          />
-          <div
-            className="w-6 h-6 rounded-full"
-            style={{
-              backgroundColor: isDarkMode
-                ? theme.dark.accent
-                : theme.light.accent,
-            }}
-          />
-          <div
-            className="w-6 h-6 rounded-full"
-            style={{
-              backgroundColor: isDarkMode
-                ? theme.dark.neutral
-                : theme.light.neutral,
-            }}
-          />
+        <div className="flex items-center gap-3">
+          <themeOption.icon className="w-6 h-6" />
+          <div>
+            <h3 className="font-semibold text-sm">
+              {isArabic ? themeOption.name : themeOption.nameEn}
+            </h3>
+            {theme === themeOption.id && (
+              <Badge variant="default" className="text-xs mt-1">
+                <Check className="w-3 h-3 mr-1" />
+                {isArabic ? "مفعل" : "Active"}
+              </Badge>
+            )}
+          </div>
         </div>
-
-        <h3 className="font-semibold text-sm mb-1">
-          {getLocalizedText(theme.name, isArabic, "اسم الثيم")}
-        </h3>
-
-        <p className="text-xs text-gray-600 mb-2">
-          {getLocalizedText(theme.description, isArabic, "وصف الثيم")}
-        </p>
-
-        {currentTheme === themeId && (
-          <Badge variant="default" className="text-xs">
-            <Check className="w-3 h-3 mr-1" />
-            {isArabic ? "مفعل" : "Active"}
-          </Badge>
-        )}
       </CardContent>
     </Card>
   );
@@ -173,75 +136,14 @@ export default function ThemeSelector({
         <div className="space-y-4">
           <div className="flex items-center justify-between">
             <Label className="text-sm">
-              {isArabic ? "تفعيل الحركات" : "Enable Animations"}
+              {isArabic ? "الوضع المظلم" : "Dark Mode"}
             </Label>
             <Switch
-              checked={customization.enableAnimations}
-              onCheckedChange={(checked) =>
-                setCustomization({ enableAnimations: checked })
-              }
+              checked={isDark}
+              onCheckedChange={() => toggleTheme()}
             />
           </div>
 
-          <div className="flex items-center justify-between">
-            <Label className="text-sm">
-              {isArabic ? "تفعيل الظلال" : "Enable Shadows"}
-            </Label>
-            <Switch
-              checked={customization.enableShadows}
-              onCheckedChange={(checked) =>
-                setCustomization({ enableShadows: checked })
-              }
-            />
-          </div>
-
-          <div className="flex items-center justify-between">
-            <Label className="text-sm">
-              {isArabic ? "تفعيل التدرجات" : "Enable Gradients"}
-            </Label>
-            <Switch
-              checked={customization.enableGradients}
-              onCheckedChange={(checked) =>
-                setCustomization({ enableGradients: checked })
-              }
-            />
-          </div>
-
-          <div className="flex items-center justify-between">
-            <Label className="text-sm">
-              {isArabic ? "تفعيل الضبابية" : "Enable Blur Effects"}
-            </Label>
-            <Switch
-              checked={customization.enableBlur}
-              onCheckedChange={(checked) =>
-                setCustomization({ enableBlur: checked })
-              }
-            />
-          </div>
-
-          <div className="flex items-center justify-between">
-            <Label className="text-sm">
-              {isArabic ? "الوضع المضغوط" : "Compact Mode"}
-            </Label>
-            <Switch
-              checked={customization.compactMode}
-              onCheckedChange={(checked) =>
-                setCustomization({ compactMode: checked })
-              }
-            />
-          </div>
-
-          <div className="flex items-center justify-between">
-            <Label className="text-sm">
-              {isArabic ? "التباين العالي" : "High Contrast"}
-            </Label>
-            <Switch
-              checked={customization.highContrast}
-              onCheckedChange={(checked) =>
-                setCustomization({ highContrast: checked })
-              }
-            />
-          </div>
         </div>
       </div>
 
@@ -289,7 +191,7 @@ export default function ThemeSelector({
           <Button
             variant="outline"
             size="sm"
-            onClick={resetToDefaults}
+            onClick={() => setTheme("system")}
             className="justify-start"
           >
             <RotateCcw className="w-4 h-4 mr-2" />
@@ -308,10 +210,10 @@ export default function ThemeSelector({
         <Button
           variant="ghost"
           size="sm"
-          onClick={toggleDarkMode}
+          onClick={() => toggleTheme()}
           className="p-2"
         >
-          {isDarkMode ? (
+                      {isDark ? (
             <Sun className="w-4 h-4" />
           ) : (
             <Moon className="w-4 h-4" />
@@ -320,21 +222,19 @@ export default function ThemeSelector({
 
         {/* اختيار الثيم */}
         <div className="flex gap-1">
-          {Object.entries(availableThemes).map(([themeId, theme]) => (
+          {themes.map((themeOption) => (
             <button
-              key={themeId}
-              onClick={() => setCurrentTheme(themeId)}
+              key={themeOption.id}
+              onClick={() => setTheme(themeOption.id)}
               className={`w-6 h-6 rounded-full border-2 transition-all ${
-                currentTheme === themeId
+                theme === themeOption.id
                   ? "border-gray-400 scale-110"
                   : "border-gray-200 hover:scale-105"
               }`}
               style={{
-                backgroundColor: isDarkMode
-                  ? theme.dark.primary
-                  : theme.light.primary,
+                backgroundColor: themeOption.id === "dark" ? "#1f2937" : themeOption.id === "light" ? "#ffffff" : "#6b7280",
               }}
-              title={getLocalizedText(theme.name, isArabic, "اسم الثيم")}
+              title={isArabic ? themeOption.name : themeOption.nameEn}
             />
           ))}
         </div>
@@ -360,7 +260,7 @@ export default function ThemeSelector({
               {isArabic ? "الثيمات" : "Themes"}
             </TabsTrigger>
             <TabsTrigger value="dark-mode" className="flex items-center gap-2">
-              {isDarkMode ? (
+              {isDark ? (
                 <Moon className="w-4 h-4" />
               ) : (
                 <Sun className="w-4 h-4" />
@@ -381,10 +281,8 @@ export default function ThemeSelector({
               <h3 className="font-semibold mb-3">
                 {isArabic ? "اختر الثيم المفضل" : "Choose Your Preferred Theme"}
               </h3>
-              <div className="grid grid-cols-2 gap-3">
-                {Object.entries(availableThemes).map(([themeId, theme]) =>
-                  renderThemeCard(themeId, theme),
-                )}
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+                {themes.map((themeOption) => renderThemeCard(themeOption))}
               </div>
             </div>
 
@@ -395,41 +293,25 @@ export default function ThemeSelector({
                 {isArabic ? "معاينة الثيم الحالي" : "Current Theme Preview"}
               </h3>
 
-              <Card
-                className="p-4"
-                style={{
-                  backgroundColor: colors.background,
-                  color: colors.text,
-                  borderColor: colors.border,
-                }}
-              >
+              <Card className="p-4">
                 <div className="space-y-3">
                   <div className="flex items-center gap-2">
-                    <div
-                      className="w-4 h-4 rounded-full"
-                      style={{ backgroundColor: colors.primary }}
-                    />
+                    <div className="w-4 h-4 rounded-full bg-blue-500" />
                     <span className="font-semibold">
-                                              {getLocalizedText(availableThemes[currentTheme]?.name, isArabic, "اسم الثيم")}
+                      {isArabic ? "الثيم الحالي" : "Current Theme"}
                     </span>
                   </div>
 
                   <div className="flex gap-2">
-                    <div
-                      className="px-3 py-1 rounded text-white text-sm"
-                      style={{ backgroundColor: colors.primary }}
-                    >
+                    <div className="px-3 py-1 rounded text-white text-sm bg-blue-500">
                       {isArabic ? "زر أساسي" : "Primary Button"}
                     </div>
-                    <div
-                      className="px-3 py-1 rounded text-white text-sm"
-                      style={{ backgroundColor: colors.secondary }}
-                    >
+                    <div className="px-3 py-1 rounded text-white text-sm bg-gray-500">
                       {isArabic ? "زر ثانوي" : "Secondary Button"}
                     </div>
                   </div>
 
-                  <p style={{ color: colors.textSecondary }}>
+                  <p className="text-gray-600">
                     {isArabic
                       ? "هذا مثال على النص الثانوي في الثيم المحدد"
                       : "This is an example of secondary text in the selected theme"}
@@ -443,7 +325,7 @@ export default function ThemeSelector({
           <TabsContent value="dark-mode" className="space-y-6">
             <div>
               <h3 className="font-semibold mb-4 flex items-center gap-2">
-                {isDarkMode ? (
+                {isDark ? (
                   <Moon className="w-5 h-5" />
                 ) : (
                   <Sun className="w-5 h-5" />
@@ -455,14 +337,14 @@ export default function ThemeSelector({
                 {/* التبديل اليدوي */}
                 <div className="flex items-center justify-between p-4 bg-gray-50 dark:bg-gray-800 rounded-lg">
                   <div className="flex items-center gap-3">
-                    {isDarkMode ? (
+                    {isDark ? (
                       <Moon className="w-5 h-5" />
                     ) : (
                       <Sun className="w-5 h-5" />
                     )}
                     <div>
                       <Label className="font-medium">
-                        {isDarkMode
+                        {isDark
                           ? isArabic
                             ? "الوضع الليلي"
                             : "Dark Mode"
@@ -471,7 +353,7 @@ export default function ThemeSelector({
                             : "Light Mode"}
                       </Label>
                       <p className="text-sm text-gray-600 dark:text-gray-400">
-                        {isDarkMode
+                        {isDark
                           ? isArabic
                             ? "الوضع الليلي مفعل حالياً"
                             : "Dark mode is currently active"
@@ -482,28 +364,9 @@ export default function ThemeSelector({
                     </div>
                   </div>
                   <Switch
-                    checked={isDarkMode}
-                    onCheckedChange={setDarkMode}
-                    disabled={autoTheme}
+                    checked={isDark}
+                    onCheckedChange={() => toggleTheme()}
                   />
-                </div>
-
-                {/* التبديل التلقائي */}
-                <div className="flex items-center justify-between p-4 bg-gray-50 dark:bg-gray-800 rounded-lg">
-                  <div className="flex items-center gap-3">
-                    <Monitor className="w-5 h-5" />
-                    <div>
-                      <Label className="font-medium">
-                        {isArabic ? "التبديل التلقائي" : "Auto Switch"}
-                      </Label>
-                      <p className="text-sm text-gray-600 dark:text-gray-400">
-                        {isArabic
-                          ? "تبديل تلقائي حسب إعدادات النظام"
-                          : "Automatically switch based on system settings"}
-                      </p>
-                    </div>
-                  </div>
-                  <Switch checked={autoTheme} onCheckedChange={setAutoTheme} />
                 </div>
 
                 {/* معلومات إضافية */}

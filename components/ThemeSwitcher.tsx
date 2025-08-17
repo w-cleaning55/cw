@@ -5,7 +5,7 @@ import { Palette, ChevronDown, Check } from "lucide-react";
 import { useTheme } from "@/hooks/useTheme";
 import { useTranslation } from "@/hooks/useTranslation";
 import { getLocalizedText } from "@/lib/utils";
-import { THEMES } from "@/lib/theme-system";
+
 
 interface ThemeSwitcherProps {
   className?: string;
@@ -18,7 +18,7 @@ export default function ThemeSwitcher({
   showLabel = false,
   variant = "dropdown" 
 }: ThemeSwitcherProps) {
-  const { currentTheme, setCurrentTheme, themes } = useTheme();
+  const { theme, setTheme } = useTheme();
   const { currentLanguage } = useTranslation();
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
@@ -36,11 +36,16 @@ export default function ThemeSwitcher({
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  const currentThemeData = THEMES[currentTheme];
-  const themeEntries = Object.entries(THEMES);
+  const themes: Array<{ id: "light" | "dark" | "system"; name: { ar: string; en: string }; icon: string }> = [
+    { id: "light", name: { ar: "فاتح", en: "Light" }, icon: "☀️" },
+    { id: "dark", name: { ar: "داكن", en: "Dark" }, icon: "🌙" },
+    { id: "system", name: { ar: "تلقائي", en: "System" }, icon: "🖥️" },
+  ];
 
-  const handleThemeChange = (themeId: string) => {
-    setCurrentTheme(themeId);
+  const currentThemeData = themes.find(t => t.id === theme);
+
+  const handleThemeChange = (themeId: "light" | "dark" | "system") => {
+    setTheme(themeId);
     setIsOpen(false);
   };
 
@@ -54,7 +59,7 @@ export default function ThemeSwitcher({
         <Palette className="w-4 h-4 text-gray-600" />
         {showLabel && (
           <span className="text-sm font-medium text-gray-700">
-            {currentThemeData?.name[currentLanguage] || currentTheme}
+            {currentThemeData?.name[currentLanguage] || theme}
           </span>
         )}
         <ChevronDown className={`w-4 h-4 text-gray-600 transition-transform ${isOpen ? "rotate-180" : ""}`} />
@@ -82,15 +87,11 @@ export default function ThemeSwitcher({
         className="flex items-center gap-2 px-4 py-2 bg-white/80 backdrop-blur-sm rounded-lg shadow-sm hover:bg-white/90 transition-colors border border-gray-200"
         title={currentLanguage === "ar" ? "تغيير الثيم" : "Change Theme"}
       >
-        <div 
-          className="w-4 h-4 rounded-full border-2 border-gray-300"
-          style={{ 
-            backgroundColor: currentThemeData?.light.primary || "#2563eb",
-            borderColor: currentThemeData?.light.primary || "#2563eb"
-          }}
-        />
+        <span className="text-lg">
+          {currentThemeData?.icon || "🎨"}
+        </span>
         <span className="text-sm font-medium text-gray-700">
-          {currentThemeData?.name[currentLanguage] || currentTheme}
+          {currentThemeData?.name[currentLanguage] || theme}
         </span>
         <ChevronDown className={`w-4 h-4 text-gray-600 transition-transform ${isOpen ? "rotate-180" : ""}`} />
       </button>
@@ -104,37 +105,30 @@ export default function ThemeSwitcher({
             </div>
             
             <div className="space-y-1 mt-2">
-              {themeEntries.map(([themeId, theme]) => (
+              {themes.map((themeOption) => (
                 <button
-                  key={themeId}
-                  onClick={() => handleThemeChange(themeId)}
+                  key={themeOption.id}
+                  onClick={() => handleThemeChange(themeOption.id)}
                   className={`w-full flex items-center gap-3 px-3 py-2 rounded-md text-left transition-colors ${
-                    currentTheme === themeId
+                    theme === themeOption.id
                       ? "bg-blue-50 text-blue-700 border border-blue-200"
                       : "hover:bg-gray-50 text-gray-700"
                   }`}
                 >
-                  {/* مؤشر اللون */}
-                  <div 
-                    className="w-4 h-4 rounded-full border-2 border-gray-300 flex-shrink-0"
-                    style={{ 
-                      backgroundColor: theme.light.primary,
-                      borderColor: theme.light.primary
-                    }}
-                  />
+                  {/* أيقونة الثيم */}
+                  <span className="text-lg flex-shrink-0">
+                    {themeOption.icon}
+                  </span>
                   
                   {/* معلومات الثيم */}
                   <div className="flex-1 min-w-0">
                     <div className="text-sm font-medium">
-                      {theme.name[currentLanguage]}
-                    </div>
-                    <div className="text-xs text-gray-500 truncate">
-                      {theme.description[currentLanguage]}
+                      {themeOption.name[currentLanguage]}
                     </div>
                   </div>
                   
                   {/* علامة الاختيار */}
-                  {currentTheme === themeId && (
+                  {theme === themeOption.id && (
                     <Check className="w-4 h-4 text-blue-600 flex-shrink-0" />
                   )}
                 </button>

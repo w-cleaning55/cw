@@ -516,7 +516,7 @@ export function NotificationDisplay({
             <Card
               key={notification.id}
               className={`${colorClass} shadow-lg transition-all duration-300 ${
-                isAnimationEnabled() ? "animate-slide-left" : ""
+                isAnimationEnabled ? "animate-slide-left" : ""
               }`}
             >
               <CardContent className="p-4">
@@ -753,3 +753,5 @@ export function useNotify() {
 
   return notify;
 }
+
+export default NotificationProvider;

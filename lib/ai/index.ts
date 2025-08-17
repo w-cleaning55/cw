@@ -1,5 +1,5 @@
-import { OpenAIProvider } from './providers/openai';
-import { GeminiProvider } from './providers/gemini';
+import { OpenAI } from './providers/openai';
+import { GeminiAI } from './providers/gemini';
 
 export type AIProvider = 'openai' | 'gemini';
 
@@ -50,10 +50,10 @@ class AIManager {
       
       switch (config.provider) {
         case 'openai':
-          this.currentProvider = new OpenAIProvider(config);
+          this.currentProvider = new OpenAI(config);
           break;
         case 'gemini':
-          this.currentProvider = new GeminiProvider(config);
+          this.currentProvider = new GeminiAI(config);
           break;
         default:
           throw new Error(`Unsupported AI provider: ${config.provider}`);
@@ -209,4 +209,4 @@ export const systemPrompts = {
 تأكد من أن المعلومات دقيقة وعملية وسهلة الفهم.`
 };
 
-export { OpenAIProvider, GeminiProvider };
+export { OpenAI, GeminiAI };

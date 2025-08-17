@@ -128,7 +128,8 @@ export default function AdvancedImageUploader({
   category = "general",
   showLibrary = true,
 }: AdvancedImageUploaderProps) {
-  const { t, isArabic } = useTranslation();
+  const { t, isRTL } = useTranslation();
+  const isArabic = isRTL;
   const [activeTab, setActiveTab] = useState("upload");
   const [uploading, setUploading] = useState(false);
   const [uploadProgress, setUploadProgress] = useState(0);
@@ -1036,7 +1037,10 @@ export default function AdvancedImageUploader({
                             prev
                               ? {
                                   ...prev,
-                                  title: { ...prev.title, ar: e.target.value },
+                                  title: { 
+                                    ar: e.target.value,
+                                    en: prev.title?.en || ""
+                                  },
                                 }
                               : null,
                           )
@@ -1051,7 +1055,10 @@ export default function AdvancedImageUploader({
                             prev
                               ? {
                                   ...prev,
-                                  title: { ...prev.title, en: e.target.value },
+                                  title: { 
+                                    ar: prev.title?.ar || "",
+                                    en: e.target.value
+                                  },
                                 }
                               : null,
                           )
@@ -1093,8 +1100,8 @@ export default function AdvancedImageUploader({
                               ? {
                                   ...prev,
                                   description: {
-                                    ...prev.description,
                                     ar: e.target.value,
+                                    en: prev.description?.en || ""
                                   },
                                 }
                               : null,
@@ -1112,8 +1119,8 @@ export default function AdvancedImageUploader({
                               ? {
                                   ...prev,
                                   description: {
-                                    ...prev.description,
-                                    en: e.target.value,
+                                    ar: prev.description?.ar || "",
+                                    en: e.target.value
                                   },
                                 }
                               : null,
@@ -1159,8 +1166,8 @@ export default function AdvancedImageUploader({
                               ? {
                                   ...prev,
                                   altText: {
-                                    ...prev.altText,
                                     ar: e.target.value,
+                                    en: prev.altText?.en || ""
                                   },
                                 }
                               : null,
@@ -1177,8 +1184,8 @@ export default function AdvancedImageUploader({
                               ? {
                                   ...prev,
                                   altText: {
-                                    ...prev.altText,
-                                    en: e.target.value,
+                                    ar: prev.altText?.ar || "",
+                                    en: e.target.value
                                   },
                                 }
                               : null,

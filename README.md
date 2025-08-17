@@ -1,376 +1,308 @@
-# Cleaning World | عالم التنظيف
+# عالم النظافة - Cleaning World Pro
 
-[![Next.js](https://img.shields.io/badge/Next.js-14.0-blue)](https://nextjs.org/)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue)](https://www.typescriptlang.org/)
-[![Tailwind CSS](https://img.shields.io/badge/Tailwind%20CSS-3.4-blue)](https://tailwindcss.com/)
-[![Build Status](https://img.shields.io/badge/Build-Passing-green)](https://github.com/your-username/cleaning-world)
+شركة تنظيف محترفة في جدة تقدم خدمات تنظيف شاملة للمنازل والمكاتب والمنشآت التجارية.
 
-> Professional cleaning services platform built with Next.js, TypeScript, and modern web technologies.  
-> منصة خدمات التنظيف المهنية مبنية باستخدام Next.js وTypeScript وأحدث تقنيات الويب.
+## 🚀 المميزات
 
-## 🌟 Features | المميزات
+- **تصميم عصري ومتجاوب** - يعمل على جميع الأجهزة
+- **دعم متعدد اللغات** - العربية والإنجليزية مع دعم RTL/LTR
+- **نظام ثيمات متقدم** - الوضع الفاتح والداكن والتلقائي
+- **لوحة إدارة شاملة** - إدارة المحتوى والخدمات والعملاء
+- **نظام مصادقة آمن** - JWT مع إدارة الصلاحيات
+- **نموذج اتصال تفاعلي** - مع التحقق من صحة البيانات
+- **تحسين محركات البحث** - SEO محسن مع البيانات المنظمة
+- **أداء عالي** - تحسينات متقدمة للسرعة والأداء
 
-### Core Features | المميزات الأساسية
-- **Bilingual Support** - دعم اللغتين العربية والإنجليزية
-- **Responsive Design** - تصميم متجاوب لجميع الأجهزة
-- **Dark/Light Mode** - وضع مظلم وفاتح
-- **Admin Dashboard** - لوحة تحكم إدارية متكاملة
-- **Booking System** - نظام حجز متطور
-- **Customer Management** - إدارة العملاء
-- **Service Management** - إدارة الخدمات
-- **Real-time Notifications** - إشعارات فورية
+## 🛠️ التقنيات المستخدمة
 
-### Technical Features | المميزات التقنية
-- **Server-Side Rendering (SSR)** - العرض من جانب الخادم
-- **API Routes** - مسارات API متكاملة
-- **File-based Database** - قاعدة بيانات قائمة على الملفات
-- **Type Safety** - أمان الأنواع مع TypeScript
-- **Modern UI Components** - مكونات واجهة مستخدم حديثة
-- **Accessibility (a11y)** - إمكانية الوصول
-- **SEO Optimized** - محسن لمحركات البحث
-- **Performance Optimized** - محسن للأداء
+- **Frontend**: Next.js 15, React 18, TypeScript
+- **Styling**: Tailwind CSS, Radix UI
+- **Authentication**: JWT, bcryptjs
+- **Validation**: Zod
+- **Icons**: Lucide React
+- **Deployment**: Vercel/Netlify ready
 
-## 🚀 Quick Start | البداية السريعة
+## 📋 المتطلبات
 
-### Prerequisites | المتطلبات الأساسية
-- Node.js 18+ 
-- npm or yarn
-- Git
+- Node.js 18.17.0 أو أحدث
+- npm 9.0.0 أو أحدث
 
-### Installation | التثبيت
+## 🚀 التثبيت والتشغيل
+
+### 1. استنساخ المشروع
 
 ```bash
-# Clone the repository | استنساخ المستودع
-git clone https://github.com/your-username/cleaning-world.git
-cd cleaning-world
-
-# Install dependencies | تثبيت التبعيات
-npm install
-
-# Set up environment variables | إعداد متغيرات البيئة
-cp .env.example .env.local
-
-# Run development server | تشغيل خادم التطوير
-npm run dev
-
-# Open browser to http://localhost:3000
+git clone https://github.com/cleaning-world/cleaning-world-pro.git
+cd cleaning-world-pro
 ```
 
-### Environment Setup | إعداد البيئة
+### 2. تثبيت التبعيات
 
-Create `.env.local` file:
+```bash
+npm install
+```
+
+### 3. إعداد متغيرات البيئة
+
+أنشئ ملف `.env.local` في المجلد الجذر:
 
 ```env
-# Required | مطلوب
-NODE_ENV=development
-JWT_SECRET=your-super-secret-jwt-key-change-this-in-production
+# Authentication
+JWT_SECRET=your-super-secret-jwt-key-change-in-production
 
-# Optional | اختياري
-DATABASE_TYPE=file
-DATABASE_URL=
-OPENAI_API_KEY=
-EMAIL_SERVICE_API_KEY=
-WHATSAPP_API_KEY=
-TELEGRAM_BOT_TOKEN=
-SMS_API_KEY=
+# Database (for future use)
+DATABASE_URL=your-database-url
+
+# Email (for future use)
+SMTP_HOST=your-smtp-host
+SMTP_PORT=587
+SMTP_USER=your-smtp-user
+SMTP_PASS=your-smtp-password
+
+# Analytics
+NEXT_PUBLIC_GA_ID=your-google-analytics-id
+
+# Social Media
+NEXT_PUBLIC_FACEBOOK_APP_ID=your-facebook-app-id
+NEXT_PUBLIC_TWITTER_HANDLE=@cleaningworld
 ```
 
-## 📁 Project Structure | هيكل المشروع
-
-```
-cleaning-world/
-├── 📁 app/                     # Next.js App Router
-│   ├── 📁 admin/              # Admin pages
-│   ├── 📁 api/                # API routes
-│   ├── 📁 auth/               # Authentication pages
-│   ├── 📄 layout.tsx          # Root layout
-│   └── 📄 page.tsx            # Home page
-├── 📁 components/             # React components
-│   ├── 📁 ui/                 # Base UI components
-│   └── 📄 Header.tsx          # Header component
-├── 📁 client/                 # Client-side code
-│   ├── 📁 components/         # Client components
-│   ├── 📁 hooks/              # Custom hooks
-│   ├── 📁 pages/              # Page components
-│   └── 📁 services/           # API services
-├── 📁 data/                   # JSON data files
-│   ├── 📄 services.json       # Services data
-│   ├── 📄 bookings.json       # Bookings data
-│   └── 📄 customers.json      # Customers data
-├── 📁 lib/                    # Utilities
-│   ├── 📄 constants.ts        # App constants
-│   ├── 📄 api-utils.ts        # API utilities
-│   └── 📄 test-utils.tsx      # Testing utilities
-├── 📁 public/                 # Static assets
-├── 📁 scripts/                # Build scripts
-├── 📁 __tests__/              # Test files
-└── 📁 reports/                # Documentation
-```
-
-## 🛠 Development | التطوير
-
-### Available Scripts | الأوامر المتاحة
+### 4. تشغيل المشروع في وضع التطوير
 
 ```bash
-# Development | التطوير
-npm run dev          # Start development server
-npm run build        # Build for production
-npm run start        # Start production server
-npm run lint         # Run ESLint
-npm run typecheck    # Check TypeScript types
-
-# Testing | الاختبار
-npm run test         # Run tests
-npm run test:watch   # Run tests in watch mode
-npm run test:coverage # Run tests with coverage
-
-# Production Check | فحص الإنتاج
-node scripts/build-check.js  # Comprehensive build verification
+npm run dev
 ```
 
-### Code Quality | جودة الكود
+افتح [http://localhost:3000](http://localhost:3000) في المتصفح.
 
-The project includes:
-- **TypeScript** for type safety
-- **ESLint** for code linting
-- **Prettier** for code formatting
-- **Vitest** for testing
-- **Accessibility checks** built into components
+### 5. بناء المشروع للإنتاج
 
-## 🎨 UI/UX Design | تصميم الواجهة
-
-### Design System | نظام التصميم
-- **Tailwind CSS** for styling
-- **Radix UI** for accessible components
-- **Lucide React** for icons
-- **Inter & Tajawal** fonts for Arabic/English support
-- **Responsive breakpoints**: sm, md, lg, xl, 2xl
-
-### Color Palette | لوحة الألوان
-```css
---primary: 221 83% 53%        /* Blue */
---secondary: 210 40% 98%      /* Light Gray */
---success: 142 76% 36%        /* Green */
---warning: 38 92% 50%         /* Orange */
---error: 0 84% 60%            /* Red */
-```
-
-### Arabic/RTL Support | دعم العربية والاتجاه من اليمين
-- Automatic RTL layout
-- Arabic fonts (Tajawal)
-- Proper text alignment
-- Cultural color preferences
-
-## 🔌 API Documentation | توثيق الـ API
-
-### Authentication | المصادقة
-```typescript
-POST /api/auth/login
-{
-  "email": "user@example.com",
-  "password": "password"
-}
-```
-
-### Services | الخدمات
-```typescript
-GET /api/admin/services
-GET /api/admin/services?page=1&limit=10&category=home
-POST /api/admin/services
-PUT /api/admin/services
-DELETE /api/admin/services?id=service_id
-```
-
-### Bookings | الحجوزات
-```typescript
-GET /api/admin/bookings
-POST /api/admin/bookings
-PUT /api/admin/bookings
-DELETE /api/admin/bookings?id=booking_id
-```
-
-### Response Format | تنسيق الاستجابة
-```typescript
-{
-  "success": boolean,
-  "data": any,
-  "message": string,
-  "timestamp": string,
-  "pagination": {
-    "page": number,
-    "limit": number,
-    "total": number,
-    "totalPages": number
-  }
-}
-```
-
-## 🧪 Testing | الاختبار
-
-### Test Coverage | تغطية الاختبارات
-- **Components**: Unit tests for all major components
-- **API Routes**: Integration tests for all endpoints
-- **Utilities**: Unit tests for helper functions
-- **Accessibility**: Automated a11y testing
-
-### Running Tests | تشغيل الاختبارات
 ```bash
-# Run all tests
-npm test
-
-# Run specific test file
-npm test Header.test.tsx
-
-# Run tests with coverage
-npm run test:coverage
-
-# Run tests in watch mode
-npm run test:watch
+npm run build
+npm start
 ```
 
-## 🚀 Deployment | النشر
+## 📁 هيكل المشروع
 
-### Vercel (Recommended) | فيرسل (مُوصى به)
-```bash
-# Install Vercel CLI
-npm i -g vercel
-
-# Deploy
-vercel
-
-# Set environment variables in Vercel dashboard
 ```
+cw/
+├── app/                    # Next.js App Router
+│   ├── admin/             # لوحة الإدارة
+│   ├── api/               # API endpoints
+│   ├── auth/              # صفحات المصادقة
+│   ├── about/             # صفحة من نحن
+│   ├── services/          # صفحة الخدمات
+│   ├── contact/           # صفحة الاتصال
+│   └── globals.css        # الأنماط العامة
+├── components/            # مكونات React
+│   ├── ui/               # مكونات UI الأساسية
+│   ├── admin/            # مكونات لوحة الإدارة
+│   ├── sections/         # أقسام الصفحات
+│   └── layout/           # مكونات التخطيط
+├── hooks/                # React Hooks
+├── lib/                  # مكتبات ووظائف مساعدة
+├── data/                 # البيانات الثابتة
+├── public/               # الملفات العامة
+└── reports/              # التقارير
+```
+
+## 🔐 نظام المصادقة
+
+### بيانات الدخول الافتراضية
+
+- **اسم المستخدم**: `admin`
+- **كلمة المرور**: `admin123`
+
+### إدارة الصلاحيات
+
+- **Admin**: صلاحيات كاملة
+- **Manager**: إدارة المحتوى والخدمات
+- **Operator**: إدارة الحجوزات والعملاء
+
+## 🌐 النشر
+
+### Vercel (موصى به)
+
+1. اربط مستودع GitHub بـ Vercel
+2. أضف متغيرات البيئة في إعدادات Vercel
+3. انشر تلقائياً
 
 ### Netlify
-```bash
-# Build command
-npm run build
 
-# Publish directory
-.next
-```
+1. اربط مستودع GitHub بـ Netlify
+2. أضف متغيرات البيئة
+3. انشر تلقائياً
 
 ### Docker
+
 ```dockerfile
-# Available in the repository
 FROM node:18-alpine
-# ... (see Dockerfile for full configuration)
+
+WORKDIR /app
+
+COPY package*.json ./
+RUN npm ci --only=production
+
+COPY . .
+RUN npm run build
+
+EXPOSE 3000
+
+CMD ["npm", "start"]
 ```
 
-### Environment Variables for Production | متغيرات البيئة للإنتاج
-```env
-NODE_ENV=production
-JWT_SECRET=your-production-secret
-DATABASE_URL=your-database-url
-# Add other production variables
+## 📊 الأداء والتحسين
+
+### تحسينات مدمجة
+
+- **Lazy Loading**: تحميل المكونات عند الحاجة
+- **Image Optimization**: تحسين الصور تلقائياً
+- **Code Splitting**: تقسيم الكود لتحسين الأداء
+- **Caching**: تخزين مؤقت ذكي
+- **Bundle Analysis**: تحليل حجم الحزم
+
+### مراقبة الأداء
+
+```bash
+# تحليل حجم الحزم
+npm run build:analyze
+
+# فحص الأداء
+npm run performance-check
 ```
 
-## 📈 Performance | الأداء
+## 🔧 الأوامر المتاحة
 
-### Lighthouse Scores | نتائج Lighthouse
-- **Performance**: 95+
-- **Accessibility**: 100
-- **Best Practices**: 100
-- **SEO**: 100
+```bash
+# التطوير
+npm run dev              # تشغيل خادم التطوير
+npm run dev:fast         # تشغيل سريع للتطوير
 
-### Optimizations | التحسينات
-- Image optimization with Next.js
-- Code splitting and lazy loading
-- Font optimization
-- Bundle size optimization
-- Caching strategies
+# البناء
+npm run build            # بناء المشروع
+npm run build:fast       # بناء سريع
+npm run build:analyze    # بناء مع تحليل الحزم
 
-## 🛡 Security | الأمان
+# الفحص والتحسين
+npm run lint             # فحص الكود
+npm run typecheck        # فحص الأنواع
+npm run format           # تنسيق الكود
 
-### Security Features | مميزات الأمان
-- **JWT Authentication** - مصادقة JWT
-- **Input Validation** - التحقق من صحة المدخلات
-- **XSS Protection** - حماية من XSS
-- **CSRF Protection** - حماية من CSRF
-- **Rate Limiting** - تحديد معدل الطلبات
-- **Secure Headers** - رؤوس آمنة
+# التنظيف
+npm run clean            # تنظيف ملفات البناء
+npm run clean:all        # تنظيف شامل
 
-### Security Checklist | قائمة فحص الأم��ن
-- [ ] Environment variables secured
-- [ ] API routes protected
-- [ ] Input sanitization implemented
-- [ ] Authentication tokens secured
-- [ ] HTTPS enabled in production
-
-## 🌍 Internationalization | التدويل
-
-### Supported Languages | اللغات المدعومة
-- **Arabic (ar)** - العربية
-- **English (en)** - الإنجليزية
-
-### Translation Files | ملفات الترجمة
-```
-public/i18n/
-├── ar.json
-└── en.json
+# قاعدة البيانات
+npm run db:seed          # ملء قاعدة البيانات
 ```
 
-### Usage | الاستخدام
-```typescript
-const { t, currentLanguage, switchLanguage } = useTranslation();
+## 🎨 التخصيص
 
-// Translate text
-const text = t('welcome.message');
+### الألوان والثيمات
 
-// Switch language
-switchLanguage('ar');
+يمكن تخصيص الألوان من خلال:
+- `tailwind.config.ts` - إعدادات Tailwind
+- `app/globals.css` - متغيرات CSS
+- `lib/constants.ts` - ألوان التطبيق
+
+### المحتوى
+
+يمكن تعديل المحتوى من خلال:
+- `data/` - البيانات الثابتة
+- `lib/constants.ts` - النصوص والروابط
+- لوحة الإدارة - المحتوى الديناميكي
+
+## 🔒 الأمان
+
+### ميزات الأمان المدمجة
+
+- **JWT Authentication**: مصادقة آمنة
+- **Password Hashing**: تشفير كلمات المرور
+- **Rate Limiting**: حماية من الهجمات
+- **Input Validation**: التحقق من المدخلات
+- **XSS Protection**: حماية من XSS
+- **CSRF Protection**: حماية من CSRF
+
+### أفضل الممارسات
+
+1. غيّر `JWT_SECRET` في الإنتاج
+2. استخدم HTTPS في الإنتاج
+3. فعّل Rate Limiting
+4. راقب السجلات بانتظام
+5. حدث التبعيات دورياً
+
+## 📈 SEO والتحليلات
+
+### تحسين محركات البحث
+
+- **Meta Tags**: علامات وصفية محسنة
+- **Structured Data**: بيانات منظمة
+- **Sitemap**: خريطة الموقع
+- **Robots.txt**: ملف الروبوتات
+- **Open Graph**: مشاركة وسائل التواصل
+
+### التحليلات
+
+- **Google Analytics**: تتبع الزوار
+- **Vercel Analytics**: تحليلات Vercel
+- **Performance Monitoring**: مراقبة الأداء
+
+## 🐛 استكشاف الأخطاء
+
+### مشاكل شائعة
+
+1. **خطأ في المصادقة**
+   - تأكد من صحة بيانات الدخول
+   - تحقق من إعدادات JWT_SECRET
+
+2. **مشاكل في البناء**
+   - امسح cache: `npm run clean`
+   - أعد تثبيت التبعيات: `rm -rf node_modules && npm install`
+
+3. **مشاكل في الأداء**
+   - استخدم `npm run build:analyze`
+   - تحقق من حجم الصور
+   - فعّل ضغط Gzip
+
+### السجلات
+
+```bash
+# سجلات التطوير
+npm run dev
+
+# سجلات الإنتاج
+npm start
 ```
 
-## 🤝 Contributing | المساهمة
+## 🤝 المساهمة
 
-### Development Workflow | سير عمل التطوير
-1. Fork the repository
-2. Create feature branch: `git checkout -b feature/amazing-feature`
-3. Commit changes: `git commit -m 'Add amazing feature'`
-4. Push to branch: `git push origin feature/amazing-feature`
-5. Open Pull Request
+1. Fork المشروع
+2. أنشئ فرع للميزة الجديدة
+3. اكتب الكود مع الاختبارات
+4. أرسل Pull Request
 
-### Code Standards | معايير الكود
-- Follow TypeScript best practices
-- Use meaningful variable names
-- Write tests for new features
-- Follow Arabic/English naming conventions
-- Ensure accessibility compliance
+## 📄 الترخيص
 
-## 📞 Support | الدعم
+هذا المشروع مرخص تحت رخصة MIT.
 
-### Documentation | التوثيق
-- [API Documentation](./docs/api.md)
-- [Component Documentation](./docs/components.md)
-- [Deployment Guide](./docs/deployment.md)
-- [Troubleshooting](./docs/troubleshooting.md)
+## 📞 الدعم
 
-### Getting Help | الحصول على المساعدة
-- 📧 Email: support@m-clean.net
-- 💬 Discord: [Join our community](#)
-- 🐛 Issues: [GitHub Issues](https://github.com/your-username/cleaning-world/issues)
-- 📖 Wiki: [Project Wiki](https://github.com/your-username/cleaning-world/wiki)
+- **البريد الإلكتروني**: admin@cw.com.sa
+- **الهاتف**: +966559061065
+- **الموقع**: جدة، المملكة العربية السعودية
 
-## 📄 License | الترخيص
+## 🔄 التحديثات
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 👥 Team | الفريق
-
-- **Lead Developer** - [Your Name](https://github.com/yourusername)
-- **UI/UX Designer** - [Designer Name](https://github.com/designer)
-- **Product Manager** - [PM Name](https://github.com/pm)
-
-## 🙏 Acknowledgments | شكر وتقدير
-
-- [Next.js](https://nextjs.org/) for the amazing framework
-- [Tailwind CSS](https://tailwindcss.com/) for the utility-first CSS
-- [Radix UI](https://www.radix-ui.com/) for accessible components
-- [Lucide](https://lucide.dev/) for beautiful icons
-- All contributors and supporters
+### الإصدار 1.0.0
+- ✅ نظام مصادقة كامل
+- ✅ لوحة إدارة شاملة
+- ✅ تصميم متجاوب
+- ✅ دعم متعدد اللغات
+- ✅ نظام ثيمات متقدم
+- ✅ نموذج اتصال تفاعلي
+- ✅ تحسينات SEO
+- ✅ تحسينات الأداء
 
 ---
 
-**Built with ❤️ in Saudi Arabia | صُنع بحب في المملكة العربية السعودية**
-
-For more information, visit our [website](https://m-clean.net) or contact us at [info@m-clean.net](mailto:info@m-clean.net).
+**تم التطوير بواسطة فريق عالم النظافة** 🧹✨

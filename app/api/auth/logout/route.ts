@@ -1,25 +1,46 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { clearAuthCookie } from '@/lib/auth';
 
 export async function POST(request: NextRequest) {
   try {
-    // In a real application, you would:
-    // 1. Invalidate the token on the server
-    // 2. Add it to a blacklist
-    // 3. Update user's last logout time
-    
-    // For now, we'll just return success
-    // The client should remove the token from localStorage
-    
-    return NextResponse.json({
+    // Create response
+    const response = NextResponse.json({
       success: true,
-      message: 'تم تسجيل الخروج بنجاح'
+      message: 'Logout successful',
     });
-    
+
+    // Clear authentication cookie
+    clearAuthCookie(response);
+
+    return response;
+
   } catch (error) {
     console.error('Logout error:', error);
     return NextResponse.json(
-      { error: 'حدث خطأ أثناء تسجيل الخروج' },
+      { error: 'Internal server error' },
       { status: 500 }
     );
   }
+}
+
+// Prevent other HTTP methods
+export async function GET() {
+  return NextResponse.json(
+    { error: 'Method not allowed' },
+    { status: 405 }
+  );
+}
+
+export async function PUT() {
+  return NextResponse.json(
+    { error: 'Method not allowed' },
+    { status: 405 }
+  );
+}
+
+export async function DELETE() {
+  return NextResponse.json(
+    { error: 'Method not allowed' },
+    { status: 405 }
+  );
 }

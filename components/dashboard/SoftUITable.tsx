@@ -14,13 +14,15 @@ interface SoftUITableProps {
     render?: (value: any, row: any) => React.ReactNode;
   }>;
   className?: string;
+  loading?: boolean;
 }
 
 const SoftUITable: React.FC<SoftUITableProps> = ({ 
   title, 
   data, 
   columns, 
-  className = "" 
+  className = "",
+  loading = false
 }) => {
   return (
     <SoftUICard variant="glass" className={className}>
@@ -54,7 +56,13 @@ const SoftUITable: React.FC<SoftUITableProps> = ({
 
       {/* Table */}
       <div className="overflow-x-auto">
-        <table className="w-full">
+        {loading ? (
+          <div className="flex items-center justify-center py-12">
+            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
+            <span className="mr-3 text-gray-600" dir="rtl">جاري التحميل...</span>
+          </div>
+        ) : (
+          <table className="w-full">
           <thead>
             <tr className="border-b border-gray-200/50">
               {columns.map((column, index) => (
@@ -105,6 +113,7 @@ const SoftUITable: React.FC<SoftUITableProps> = ({
             ))}
           </tbody>
         </table>
+        )}
       </div>
 
       {/* Pagination */}

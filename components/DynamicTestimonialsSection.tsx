@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { useTranslation } from "@/hooks/useTranslation";
-import { useThemeColors, useThemeClasses } from "@/hooks/useTheme";
+import { useThemeColors } from "@/hooks/useTheme";
 import { getLocalizedText } from "@/lib/utils";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -84,9 +84,9 @@ export default function DynamicTestimonialsSection({
   isVisible = true,
   isPreview = false,
 }: TestimonialsSectionProps) {
-  const { t, isArabic } = useTranslation();
-  const { colors } = useThemeColors();
-  const themeClasses = useThemeClasses();
+  const { t, isRTL } = useTranslation();
+  const isArabic = isRTL;
+  const colors = useThemeColors();
 
   const [testimonials, setTestimonials] = useState<Testimonial[]>([]);
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -113,6 +113,7 @@ export default function DynamicTestimonialsSection({
 
       return () => clearInterval(interval);
     }
+    return undefined;
   }, [isPlaying, testimonials.length, data.slideInterval, testimonialStyle]);
 
   const loadTestimonials = async () => {
@@ -261,7 +262,7 @@ export default function DynamicTestimonialsSection({
                     />
                     <p
                       className="text-xl md:text-2xl leading-relaxed"
-                      style={{ color: colors.text }}
+                      style={{ color: colors.foreground }}
                     >
                       "{getLocalizedText(testimonial.comment, isArabic, "تعليق")}"
                     </p>
@@ -299,7 +300,7 @@ export default function DynamicTestimonialsSection({
                       <div className="flex items-center gap-2 justify-center">
                         <h3
                           className="font-bold text-lg"
-                          style={{ color: colors.text }}
+                          style={{ color: colors.foreground }}
                         >
                           {testimonial.name}
                         </h3>
@@ -311,7 +312,7 @@ export default function DynamicTestimonialsSection({
                       {testimonial.title && (
                         <p
                           className="text-sm"
-                          style={{ color: colors.textSecondary }}
+                          style={{ color: colors["muted-foreground"] }}
                         >
                           {testimonial.title}
                           {testimonial.company && ` - ${testimonial.company}`}
@@ -322,11 +323,11 @@ export default function DynamicTestimonialsSection({
                         <div className="flex items-center justify-center gap-1 mt-1">
                           <MapPin
                             className="w-3 h-3"
-                            style={{ color: colors.textSecondary }}
+                            style={{ color: colors["muted-foreground"] }}
                           />
                           <span
                             className="text-xs"
-                            style={{ color: colors.textSecondary }}
+                            style={{ color: colors["muted-foreground"] }}
                           >
                             {testimonial.location}
                           </span>
@@ -343,7 +344,7 @@ export default function DynamicTestimonialsSection({
                     {data.showDates && (
                       <div
                         className="flex items-center gap-1 text-xs"
-                        style={{ color: colors.textSecondary }}
+                        style={{ color: colors["muted-foreground"] }}
                       >
                         <Calendar className="w-3 h-3" />
                         <span>
@@ -398,7 +399,7 @@ export default function DynamicTestimonialsSection({
                       />
                       <span
                         className="text-sm"
-                        style={{ color: colors.textSecondary }}
+                        style={{ color: colors["muted-foreground"] }}
                       >
                         {testimonial.likes} شخص أعجب بهذه الشهادة
                       </span>
@@ -508,7 +509,7 @@ export default function DynamicTestimonialsSection({
                   <div className="flex items-center gap-2">
                     <h3
                       className="font-semibold"
-                      style={{ color: colors.text }}
+                      style={{ color: colors.foreground }}
                     >
                       {testimonial.name}
                     </h3>
@@ -526,7 +527,7 @@ export default function DynamicTestimonialsSection({
                   {testimonial.title && (
                     <p
                       className="text-sm"
-                      style={{ color: colors.textSecondary }}
+                      style={{ color: colors["muted-foreground"] }}
                     >
                       {testimonial.title}
                     </p>
@@ -557,7 +558,7 @@ export default function DynamicTestimonialsSection({
                 />
                 <p
                   className="text-sm leading-relaxed"
-                  style={{ color: colors.text }}
+                  style={{ color: colors.foreground }}
                 >
                   {getLocalizedText(testimonial.comment, isArabic, "تعليق")}
                 </p>
@@ -566,7 +567,7 @@ export default function DynamicTestimonialsSection({
               {/* معلومات إضافية */}
               <div
                 className="flex items-center justify-between text-xs"
-                style={{ color: colors.textSecondary }}
+                style={{ color: colors["muted-foreground"] }}
               >
                 <div className="flex items-center gap-2">
                   {testimonial.service && (
@@ -591,7 +592,7 @@ export default function DynamicTestimonialsSection({
                 <div className="flex items-center justify-between mt-4 pt-4 border-t">
                   <div
                     className="flex items-center gap-2 text-sm"
-                    style={{ color: colors.textSecondary }}
+                    style={{ color: colors["muted-foreground"] }}
                   >
                     <ThumbsUp className="w-4 h-4" />
                     <span>{testimonial.likes}</span>
@@ -736,7 +737,7 @@ export default function DynamicTestimonialsSection({
               />
               <p
                 className="text-sm leading-relaxed"
-                style={{ color: colors.text }}
+                style={{ color: colors.foreground }}
               >
                 {getLocalizedText(testimonial.comment, isArabic, "تعليق")}
               </p>
@@ -758,7 +759,7 @@ export default function DynamicTestimonialsSection({
                 <div className="flex items-center gap-2">
                   <h3
                     className="font-semibold text-sm"
-                    style={{ color: colors.text }}
+                    style={{ color: colors.foreground }}
                   >
                     {testimonial.name}
                   </h3>
@@ -770,7 +771,7 @@ export default function DynamicTestimonialsSection({
                 {testimonial.title && (
                   <p
                     className="text-xs"
-                    style={{ color: colors.textSecondary }}
+                    style={{ color: colors["muted-foreground"] }}
                   >
                     {testimonial.title}
                   </p>
@@ -787,7 +788,7 @@ export default function DynamicTestimonialsSection({
             {/* التاريخ والتفاعل */}
             <div
               className="flex items-center justify-between mt-3 pt-3 border-t text-xs"
-              style={{ color: colors.textSecondary }}
+              style={{ color: colors["muted-foreground"] }}
             >
               {data.showDates && (
                 <span>
@@ -827,7 +828,7 @@ export default function DynamicTestimonialsSection({
             {data.title && (
               <h2
                 className="text-3xl md:text-4xl font-bold mb-4"
-                style={{ color: colors.text }}
+                style={{ color: colors.foreground }}
               >
                 {getLocalizedText(data.title, isArabic, "آراء العملاء")}
               </h2>
@@ -835,7 +836,7 @@ export default function DynamicTestimonialsSection({
             {data.subtitle && (
               <h3
                 className="text-xl md:text-2xl mb-6"
-                style={{ color: colors.textSecondary }}
+                style={{ color: colors["muted-foreground"] }}
               >
                 {getLocalizedText(data.subtitle, isArabic, "تعرف على آراء عملائنا")}
               </h3>
@@ -843,7 +844,7 @@ export default function DynamicTestimonialsSection({
             {data.description && (
               <p
                 className="text-lg max-w-3xl mx-auto"
-                style={{ color: colors.textSecondary }}
+                style={{ color: colors["muted-foreground"] }}
               >
                 {getLocalizedText(data.description, isArabic, "وصف")}
               </p>
@@ -899,7 +900,7 @@ export default function DynamicTestimonialsSection({
             >
               {testimonials.length}+
             </div>
-            <div className="text-sm" style={{ color: colors.textSecondary }}>
+            <div className="text-sm" style={{ color: colors["muted-foreground"] }}>
               عميل راضي
             </div>
           </div>
@@ -915,7 +916,7 @@ export default function DynamicTestimonialsSection({
                   10,
               ) / 10}
             </div>
-            <div className="text-sm" style={{ color: colors.textSecondary }}>
+            <div className="text-sm" style={{ color: colors["muted-foreground"] }}>
               متوسط التقييم
             </div>
           </div>
@@ -927,7 +928,7 @@ export default function DynamicTestimonialsSection({
             >
               98%
             </div>
-            <div className="text-sm" style={{ color: colors.textSecondary }}>
+            <div className="text-sm" style={{ color: colors["muted-foreground"] }}>
               معدل الرضا
             </div>
           </div>

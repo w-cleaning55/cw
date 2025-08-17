@@ -1,50 +1,35 @@
-'use client';
+"use client";
 
-import React from 'react';
-import { NotificationProvider, NotificationDisplay } from './NotificationSystem';
-import { AnimationController } from './AnimationController';
-import { AuthProvider } from './AuthProvider';
-import AIAssistant from './AIAssistant';
-import AnalyticsMount from './AnalyticsMount';
-
-function AIWidgetMount() {
-  const [enabled, setEnabled] = React.useState(false);
-  const [context, setContext] = React.useState<'sales'|'support'|'content'|'general'>('sales');
-  React.useEffect(() => {
-    let active = true;
-    (async () => {
-      try {
-        const res = await fetch('/api/admin/system-settings', { cache: 'no-store' });
-        const data = await res.json();
-        if (!active) return;
-        const ai = data?.data?.settings?.ai || data?.settings?.ai || {};
-        setEnabled(!!ai?.enabled);
-        setContext(ai?.defaultContext || 'sales');
-      } catch {
-        setEnabled(false);
-      }
-    })();
-    return () => { active = false; };
-  }, []);
-  if (!enabled) return null;
-  return <AIAssistant context={context} />;
-}
+import React from "react";
+import { ThemeProvider as NextThemeProvider } from "next-themes";
+import { ThemeProvider } from "@/hooks/useTheme";
+import { useTranslation } from "@/hooks/useTranslation";
+import { useSystemSettings } from "@/hooks/useSystemSettings";
 
 interface ClientProvidersProps {
   children: React.ReactNode;
 }
 
 export default function ClientProviders({ children }: ClientProvidersProps) {
+  const { currentLanguage } = useTranslation();
+  const { settings } = useSystemSettings();
+
   return (
-    <AuthProvider>
-      <AnimationController>
-        <NotificationProvider>
+    <NextThemeProvider
+      attribute="class"
+      defaultTheme="system"
+      enableSystem
+      disableTransitionOnChange
+    >
+      <ThemeProvider>
+        <div
+          dir={currentLanguage === "ar" ? "rtl" : "ltr"}
+          lang={currentLanguage === "ar" ? "ar-SA" : "en-US"}
+          className={`${currentLanguage === "ar" ? "font-tajawal" : "font-inter"} antialiased`}
+        >
           {children}
-          <NotificationDisplay />
-          <AIWidgetMount />
-          <AnalyticsMount />
-        </NotificationProvider>
-      </AnimationController>
-    </AuthProvider>
+        </div>
+      </ThemeProvider>
+    </NextThemeProvider>
   );
 }

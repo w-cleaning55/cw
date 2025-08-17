@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { useTranslation } from "@/hooks/useTranslation";
-import { useThemeColors, useThemeClasses } from "@/hooks/useTheme";
+import { useThemeColors } from "@/hooks/useTheme";
 import { getLocalizedText } from "@/lib/utils";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -124,9 +124,9 @@ export default function DynamicFeaturesSection({
   isVisible = true,
   isPreview = false,
 }: FeaturesSectionProps) {
-  const { t, isArabic } = useTranslation();
-  const { colors } = useThemeColors();
-  const themeClasses = useThemeClasses();
+  const { t, isRTL } = useTranslation();
+  const isArabic = isRTL;
+  const colors = useThemeColors();
 
   const [hoveredFeature, setHoveredFeature] = useState<string | null>(null);
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -164,7 +164,7 @@ export default function DynamicFeaturesSection({
             feature.highlighted ? "ring-2 ring-blue-500" : ""
           }`}
           style={{
-            backgroundColor: colors.surface,
+            backgroundColor: colors.card,
             borderColor: feature.highlighted ? colors.primary : colors.border,
           }}
           onMouseEnter={() => setHoveredFeature(feature.id)}
@@ -191,7 +191,7 @@ export default function DynamicFeaturesSection({
           {/* الوصف */}
           <p
             className="text-sm leading-relaxed mb-4"
-            style={{ color: colors.textSecondary }}
+            style={{ color: colors["muted-foreground"] }}
           >
             {getLocalizedText(feature.description, isArabic, "وصف")}
           </p>
@@ -205,7 +205,7 @@ export default function DynamicFeaturesSection({
               >
                 {feature.stats.value}
               </div>
-              <div className="text-xs" style={{ color: colors.textSecondary }}>
+              <div className="text-xs" style={{ color: colors["muted-foreground"] }}>
                 {getLocalizedText(feature.stats.label, isArabic, "تسمية")}
               </div>
             </div>
@@ -248,14 +248,14 @@ export default function DynamicFeaturesSection({
 
                 <h3
                   className="text-3xl font-bold mb-4"
-                  style={{ color: colors.text }}
+                  style={{ color: colors.foreground }}
                 >
                   {getLocalizedText(feature.title, isArabic, "ميزة")}
                 </h3>
 
                 <p
                   className="text-xl leading-relaxed max-w-2xl mx-auto"
-                  style={{ color: colors.textSecondary }}
+                  style={{ color: colors["muted-foreground"] }}
                 >
                   {getLocalizedText(feature.description, isArabic, "وصف الميزة")}
                 </p>
@@ -270,7 +270,7 @@ export default function DynamicFeaturesSection({
                     </div>
                     <div
                       className="text-lg"
-                      style={{ color: colors.textSecondary }}
+                      style={{ color: colors["muted-foreground"] }}
                     >
                       {getLocalizedText(feature.stats.label, isArabic, "تسمية")}
                     </div>
@@ -338,7 +338,7 @@ export default function DynamicFeaturesSection({
                     {getLocalizedText(feature.title, isArabic, "عنوان")}
                   </h3>
                 </div>
-                <p className="text-sm" style={{ color: colors.textSecondary }}>
+                <p className="text-sm" style={{ color: colors["muted-foreground"] }}>
                   {getLocalizedText(feature.description, isArabic, "وصف")}
                 </p>
               </Card>
@@ -373,7 +373,7 @@ export default function DynamicFeaturesSection({
       <div>
         <h3
           className="text-2xl font-bold mb-6 text-center"
-          style={{ color: colors.text }}
+          style={{ color: colors.foreground }}
         >
           {isArabic ? "مع خدماتنا" : "With Our Services"}
         </h3>
@@ -405,7 +405,7 @@ export default function DynamicFeaturesSection({
       <div>
         <h3
           className="text-2xl font-bold mb-6 text-center"
-          style={{ color: colors.text }}
+          style={{ color: colors.foreground }}
         >
           {isArabic ? "بدون خدماتنا" : "Without Our Services"}
         </h3>
@@ -475,7 +475,7 @@ export default function DynamicFeaturesSection({
               <h3 className="font-bold mb-2">
                 {getLocalizedText(feature.title, isArabic, "عنوان")}
               </h3>
-              <p className="text-sm" style={{ color: colors.textSecondary }}>
+              <p className="text-sm" style={{ color: colors["muted-foreground"] }}>
                 {getLocalizedText(feature.description, isArabic, "وصف")}
               </p>
             </div>
@@ -513,7 +513,7 @@ export default function DynamicFeaturesSection({
           <div className="absolute inset-0 w-full h-full backface-hidden rotate-y-180 rounded-xl p-6 flex flex-col justify-center text-center shadow-lg bg-white border">
             <p
               className="text-sm leading-relaxed"
-              style={{ color: colors.textSecondary }}
+              style={{ color: colors["muted-foreground"] }}
             >
               {getLocalizedText(feature.description, isArabic, "وصف")}
             </p>
@@ -527,7 +527,7 @@ export default function DynamicFeaturesSection({
                 </div>
                 <div
                   className="text-xs"
-                  style={{ color: colors.textSecondary }}
+                  style={{ color: colors["muted-foreground"] }}
                 >
                   {getLocalizedText(feature.stats.label, isArabic, "تسمية")}
                 </div>
@@ -566,7 +566,7 @@ export default function DynamicFeaturesSection({
             {/* الوصف */}
             <p
               className="text-sm leading-relaxed"
-              style={{ color: colors.textSecondary }}
+              style={{ color: colors["muted-foreground"] }}
             >
               {getLocalizedText(feature.description, isArabic, "وصف")}
             </p>
@@ -648,7 +648,7 @@ export default function DynamicFeaturesSection({
             {data.title && (
               <h2
                 className="text-3xl md:text-4xl font-bold mb-4"
-                style={{ color: colors.text }}
+                style={{ color: colors.foreground }}
               >
                 {getLocalizedText(data.title, isArabic, "ميزاتنا")}
               </h2>
@@ -656,7 +656,7 @@ export default function DynamicFeaturesSection({
             {data.subtitle && (
               <h3
                 className="text-xl md:text-2xl mb-6"
-                style={{ color: colors.textSecondary }}
+                style={{ color: colors["muted-foreground"] }}
               >
                 {getLocalizedText(data.subtitle, isArabic, "اكتشف ما يميزنا")}
               </h3>
@@ -664,7 +664,7 @@ export default function DynamicFeaturesSection({
             {data.description && (
               <p
                 className="text-lg max-w-3xl mx-auto"
-                style={{ color: colors.textSecondary }}
+                style={{ color: colors["muted-foreground"] }}
               >
                 {getLocalizedText(data.description, isArabic, "وصف")}
               </p>

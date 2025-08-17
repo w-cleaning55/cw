@@ -1,154 +1,102 @@
 import { NextRequest, NextResponse } from 'next/server';
-import jwt from 'jsonwebtoken';
-import bcrypt from 'bcryptjs';
-import { dataManager } from '../../../../server/utils/dataManager';
+import { authenticateUser, generateToken, setAuthCookie, checkRateLimit } from '@/lib/auth';
+import { z } from 'zod';
 
-const JWT_SECRET = process.env.JWT_SECRET || 'your-super-secret-jwt-key-change-in-production';
-
-// Embedded users for Vercel compatibility
-const embeddedUsers = [
-  {
-    id: 'admin-1',
-    username: 'admin',
-    email: 'admin@cleaningworld.sa',
-    password: '$2b$10$cnmRVkKL012/IbI2.1SbGe5gVhcjfge9/wdE3zJlwb3pazO3wC7hK', // admin123
-    role: 'admin',
-    permissions: [
-      { module: 'users', actions: ['create', 'read', 'update', 'delete'] },
-      { module: 'services', actions: ['create', 'read', 'update', 'delete'] },
-      { module: 'bookings', actions: ['create', 'read', 'update', 'delete'] },
-      { module: 'customers', actions: ['create', 'read', 'update', 'delete'] },
-      { module: 'settings', actions: ['create', 'read', 'update', 'delete'] },
-      { module: 'notifications', actions: ['create', 'read', 'update', 'delete'] },
-      { module: 'content', actions: ['create', 'read', 'update', 'delete'] },
-    ],
-    isActive: true,
-    createdAt: new Date().toISOString(),
-    updatedAt: new Date().toISOString(),
-  },
-  {
-    id: 'manager-1',
-    username: 'manager',
-    email: 'manager@cleaningworld.sa',
-    password: '$2b$10$DhnyTUlEU5IR9DeA4I5xL.JTLNXq1EhQV7rTJIjNOBUWwWZ1jFcY.', // manager123
-    role: 'manager',
-    permissions: [
-      { module: 'users', actions: ['read', 'update'] },
-      { module: 'services', actions: ['create', 'read', 'update'] },
-      { module: 'bookings', actions: ['create', 'read', 'update'] },
-      { module: 'customers', actions: ['create', 'read', 'update'] },
-      { module: 'notifications', actions: ['create', 'read', 'update'] },
-      { module: 'content', actions: ['create', 'read', 'update'] },
-    ],
-    isActive: true,
-    createdAt: new Date().toISOString(),
-    updatedAt: new Date().toISOString(),
-  },
-  {
-    id: 'operator-1',
-    username: 'operator',
-    email: 'operator@cleaningworld.sa',
-    password: '$2b$10$eOGer1WbKtyzzgXqyf9ccOWSUQXKu1v/vHd8IyoKh1Ymei7F9nvHu', // employee123
-    role: 'operator',
-    permissions: [
-      { module: 'bookings', actions: ['create', 'read', 'update'] },
-      { module: 'customers', actions: ['create', 'read', 'update'] },
-      { module: 'notifications', actions: ['read'] },
-    ],
-    isActive: true,
-    createdAt: new Date().toISOString(),
-    updatedAt: new Date().toISOString(),
-  },
-  {
-    id: 'admin-test-1',
-    username: 'testadmin',
-    email: 'testadmin@cleaningworld.sa',
-    password: '$2b$10$lCvruuPWcjumULGIlaeiiOtfBU2xFJIwuxhNTRH9/oV62lIe.hRQW', // test123
-    role: 'admin',
-    permissions: [
-      { module: 'users', actions: ['create', 'read', 'update', 'delete'] },
-      { module: 'services', actions: ['create', 'read', 'update', 'delete'] },
-      { module: 'bookings', actions: ['create', 'read', 'update', 'delete'] },
-      { module: 'customers', actions: ['create', 'read', 'update', 'delete'] },
-      { module: 'settings', actions: ['create', 'read', 'update', 'delete'] },
-    ],
-    isActive: true,
-    createdAt: new Date().toISOString(),
-    updatedAt: new Date().toISOString(),
-  },
-];
-
-async function getUsers() {
-  try {
-    const data = await dataManager.readData('users');
-    if (data && data.users && Array.isArray(data.users)) {
-      return data.users;
-    }
-    return embeddedUsers;
-  } catch (error) {
-    console.error('Error reading users:', error);
-    return embeddedUsers;
-  }
-}
-
-function sanitizeUser(user: any) {
-  const { password, ...rest } = user;
-  return rest;
-}
+// Input validation schema
+const loginSchema = z.object({
+  username: z.string().min(3).max(50),
+  password: z.string().min(6).max(100),
+});
 
 export async function POST(request: NextRequest) {
   try {
-    const body = await request.json();
-    const { username, password } = body;
-
-    if (!username || !password) {
+    // Rate limiting
+    const clientIp = request.headers.get('x-forwarded-for') || request.headers.get('x-real-ip') || 'unknown';
+    if (!checkRateLimit(`login:${clientIp}`, 5, 15 * 60 * 1000)) {
       return NextResponse.json(
-        { error: 'Username and password are required' },
+        { error: 'Too many login attempts. Please try again later.' },
+        { status: 429 }
+      );
+    }
+
+    // Parse and validate request body
+    const body = await request.json();
+    const validationResult = loginSchema.safeParse(body);
+    
+    if (!validationResult.success) {
+      return NextResponse.json(
+        { 
+          error: 'Invalid input data',
+          details: validationResult.error.errors 
+        },
         { status: 400 }
       );
     }
 
-    const users = await getUsers();
-    const user = users.find((u: any) => u.username === username);
+    const { username, password } = validationResult.data;
 
+    // Sanitize inputs
+    const sanitizedUsername = username.trim().toLowerCase();
+    const sanitizedPassword = password.trim();
+
+    // Authenticate user
+    const user = await authenticateUser(sanitizedUsername, sanitizedPassword);
+    
     if (!user) {
       return NextResponse.json(
-        { error: 'اسم المستخدم أو كلمة المرور غير صحيحة' },
+        { error: 'Invalid username or password' },
         { status: 401 }
       );
     }
 
-    const isValid = await bcrypt.compare(password, user.password);
-    if (!isValid) {
-      return NextResponse.json(
-        { error: 'اسم المستخدم أو كلمة المرور غير صحيحة' },
-        { status: 401 }
-      );
-    }
+    // Generate JWT token
+    const token = generateToken(user);
 
-    if (!user.isActive) {
-      return NextResponse.json(
-        { error: 'حساب المستخدم غير نشط' },
-        { status: 401 }
-      );
-    }
-
-    const token = jwt.sign(
-      { id: user.id, username: user.username, role: user.role },
-      JWT_SECRET,
-      { expiresIn: '24h' }
-    );
-
-    return NextResponse.json({
-      user: sanitizeUser(user),
-      token,
-      message: 'تم تسجيل الدخول بنجاح',
+    // Create response
+    const response = NextResponse.json({
+      success: true,
+      message: 'Login successful',
+      user: {
+        id: user.id,
+        username: user.username,
+        email: user.email,
+        role: user.role,
+        permissions: user.permissions,
+      },
     });
+
+    // Set authentication cookie
+    setAuthCookie(token, response);
+
+    return response;
+
   } catch (error) {
     console.error('Login error:', error);
     return NextResponse.json(
-      { error: 'خطأ في الخادم' },
+      { error: 'Internal server error' },
       { status: 500 }
     );
   }
+}
+
+// Prevent other HTTP methods
+export async function GET() {
+  return NextResponse.json(
+    { error: 'Method not allowed' },
+    { status: 405 }
+  );
+}
+
+export async function PUT() {
+  return NextResponse.json(
+    { error: 'Method not allowed' },
+    { status: 405 }
+  );
+}
+
+export async function DELETE() {
+  return NextResponse.json(
+    { error: 'Method not allowed' },
+    { status: 405 }
+  );
 }

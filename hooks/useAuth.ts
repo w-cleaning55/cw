@@ -1,169 +1,170 @@
 'use client';
 
-import { useState, useEffect, useCallback, createContext, useContext } from 'react';
-import { authService, User, LoginCredentials } from '../services/authService';
+import { useState, useEffect, useCallback } from 'react';
+import { useRouter } from 'next/navigation';
+import type { User } from '@/lib/auth';
 
-interface AuthContextType {
+interface AuthState {
   user: User | null;
-  isAuthenticated: boolean;
   isLoading: boolean;
   error: string | null;
-  login: (credentials: LoginCredentials) => Promise<void>;
-  logout: () => Promise<void>;
-  register: (userData: Omit<User, 'id' | 'createdAt' | 'updatedAt'>) => Promise<User>;
-  updateUser: (userId: string, updates: Partial<User>) => Promise<User>;
-  changePassword: (currentPassword: string, newPassword: string) => Promise<void>;
-  hasPermission: (module: string, action: 'create' | 'read' | 'update' | 'delete') => boolean;
-  hasRole: (role: 'admin' | 'manager' | 'operator') => boolean;
-  clearError: () => void;
+  isAuthenticated: boolean;
 }
 
-const AuthContext = createContext<AuthContextType | null>(null);
-
-export function useAuth(): AuthContextType {
-  const context = useContext(AuthContext);
-  if (!context) {
-    throw new Error('useAuth must be used within an AuthProvider');
-  }
-  return context;
+interface LoginCredentials {
+  username: string;
+  password: string;
 }
 
-export function useAuthState() {
-  const [user, setUser] = useState<User | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+export function useAuth() {
+  const [state, setState] = useState<AuthState>({
+    user: null,
+    isLoading: true,
+    error: null,
+    isAuthenticated: false,
+  });
+  
+  const router = useRouter();
 
-  const isAuthenticated = !!user;
-
-  // Initialize auth state
+  // Check authentication status on mount
   useEffect(() => {
-    const initializeAuth = async () => {
-      try {
-        setIsLoading(true);
-        
-        // Check if user is already authenticated
-        if (authService.isAuthenticated()) {
-          // Verify token with server
-          const verifiedUser = await authService.verifyToken();
-          setUser(verifiedUser);
-        }
-      } catch (err) {
-        console.error('Auth initialization error:', err);
-        setError('فشل في تهيئة المصادقة');
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    initializeAuth();
+    checkAuth();
   }, []);
 
-  // Login function
+  const checkAuth = useCallback(async () => {
+    try {
+      setState(prev => ({ ...prev, isLoading: true, error: null }));
+      
+      const response = await fetch('/api/auth/verify', {
+        method: 'GET',
+        credentials: 'include',
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        setState({
+          user: data.user,
+          isLoading: false,
+          error: null,
+          isAuthenticated: true,
+        });
+      } else {
+        setState({
+          user: null,
+          isLoading: false,
+          error: null,
+          isAuthenticated: false,
+        });
+      }
+    } catch (error) {
+      console.error('Auth check error:', error);
+      setState({
+        user: null,
+        isLoading: false,
+        error: 'Authentication check failed',
+        isAuthenticated: false,
+      });
+    }
+  }, []);
+
   const login = useCallback(async (credentials: LoginCredentials) => {
     try {
-      setIsLoading(true);
-      setError(null);
+      setState(prev => ({ ...prev, isLoading: true, error: null }));
       
-      const { user: loggedUser } = await authService.login(credentials);
-      setUser(loggedUser);
-    } catch (err) {
-      const errorMessage = err instanceof Error ? err.message : 'خطأ في تسجيل الدخول';
-      setError(errorMessage);
-      throw err;
-    } finally {
-      setIsLoading(false);
+      const response = await fetch('/api/auth/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        credentials: 'include',
+        body: JSON.stringify(credentials),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        setState({
+          user: data.user,
+          isLoading: false,
+          error: null,
+          isAuthenticated: true,
+        });
+        return data.user;
+      } else {
+        const errorMessage = data.error || 'Login failed';
+        setState(prev => ({
+          ...prev,
+          isLoading: false,
+          error: errorMessage,
+          isAuthenticated: false,
+        }));
+        throw new Error(errorMessage);
+      }
+    } catch (error) {
+      console.error('Login error:', error);
+      const errorMessage = error instanceof Error ? error.message : 'Login failed';
+      setState(prev => ({
+        ...prev,
+        isLoading: false,
+        error: errorMessage,
+        isAuthenticated: false,
+      }));
+      throw error;
     }
   }, []);
 
-  // Logout function
   const logout = useCallback(async () => {
     try {
-      setIsLoading(true);
-      await authService.logout();
-      setUser(null);
-      setError(null);
-    } catch (err) {
-      console.error('Logout error:', err);
-    } finally {
-      setIsLoading(false);
-    }
-  }, []);
-
-  // Register function
-  const register = useCallback(async (userData: Omit<User, 'id' | 'createdAt' | 'updatedAt'>) => {
-    try {
-      setError(null);
-      const newUser = await authService.register(userData);
-      return newUser;
-    } catch (err) {
-      const errorMessage = err instanceof Error ? err.message : 'خطأ في إنشاء المستخدم';
-      setError(errorMessage);
-      throw err;
-    }
-  }, []);
-
-  // Update user function
-  const updateUser = useCallback(async (userId: string, updates: Partial<User>) => {
-    try {
-      setError(null);
-      const updatedUser = await authService.updateUser(userId, updates);
+      setState(prev => ({ ...prev, isLoading: true }));
       
-      // If updating current user, update state
-      if (user && user.id === userId) {
-        setUser(updatedUser);
-      }
-      
-      return updatedUser;
-    } catch (err) {
-      const errorMessage = err instanceof Error ? err.message : 'خطأ في تحديث المستخدم';
-      setError(errorMessage);
-      throw err;
+      await fetch('/api/auth/logout', {
+        method: 'POST',
+        credentials: 'include',
+      });
+
+      setState({
+        user: null,
+        isLoading: false,
+        error: null,
+        isAuthenticated: false,
+      });
+
+      // Redirect to login page
+      router.push('/auth/login');
+    } catch (error) {
+      console.error('Logout error:', error);
+      setState(prev => ({
+        ...prev,
+        isLoading: false,
+        error: 'Logout failed',
+      }));
     }
-  }, [user]);
+  }, [router]);
 
-  // Change password function
-  const changePassword = useCallback(async (currentPassword: string, newPassword: string) => {
-    try {
-      setError(null);
-      await authService.changePassword(currentPassword, newPassword);
-    } catch (err) {
-      const errorMessage = err instanceof Error ? err.message : 'خطأ في تغيير كلمة المرور';
-      setError(errorMessage);
-      throw err;
-    }
-  }, []);
-
-  // Permission check
-  const hasPermission = useCallback((module: string, action: 'create' | 'read' | 'update' | 'delete') => {
-    if (!user) return false;
-    const perms = user.permissions || [];
-    return perms.some(p => p.module === module && p.actions?.includes(action));
-  }, [user]);
-
-  // Role check
-  const hasRole = useCallback((role: 'admin' | 'manager' | 'operator') => {
-    return !!user && user.role === role;
-  }, [user]);
-
-  // Clear error
   const clearError = useCallback(() => {
-    setError(null);
+    setState(prev => ({ ...prev, error: null }));
   }, []);
+
+  const hasPermission = useCallback((module: string, action: 'create' | 'read' | 'update' | 'delete') => {
+    if (!state.user) return false;
+    
+    if (state.user.role === 'admin') return true;
+    
+    const permission = state.user.permissions.find(p => p.module === module);
+    return permission?.actions.includes(action) || false;
+  }, [state.user]);
+
+  const hasRole = useCallback((role: 'admin' | 'manager' | 'operator') => {
+    return state.user?.role === role || false;
+  }, [state.user]);
 
   return {
-    user,
-    isAuthenticated,
-    isLoading,
-    error,
+    ...state,
     login,
     logout,
-    register,
-    updateUser,
-    changePassword,
+    checkAuth,
+    clearError,
     hasPermission,
     hasRole,
-    clearError,
   };
 }
-
-export { AuthContext };

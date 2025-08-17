@@ -523,7 +523,7 @@ export default function MessagingSystem({
                 key={conversation.id}
                 className={`p-3 rounded-lg cursor-pointer transition-colors hover:bg-muted ${
                   selectedConversation?.id === conversation.id ? "bg-muted" : ""
-                } ${isAnimationEnabled() ? "transition-enhanced" : ""}`}
+                } ${isAnimationEnabled ? "transition-enhanced" : ""}`}
                 onClick={() => selectConversation(conversation)}
               >
                 <div className="flex items-center space-x-3">
@@ -655,7 +655,7 @@ export default function MessagingSystem({
                     <div
                       key={message.id}
                       className={`flex ${isOwn ? "justify-end" : "justify-start"} ${
-                        isAnimationEnabled() ? "animate-fade-in" : ""
+                        isAnimationEnabled ? "animate-fade-in" : ""
                       }`}
                     >
                       <div

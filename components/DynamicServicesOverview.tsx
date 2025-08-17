@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { useTranslation } from "@/hooks/useTranslation";
-import { useThemeColors, useThemeClasses } from "@/hooks/useTheme";
+import { useThemeColors } from "@/hooks/useTheme";
 import { getLocalizedText } from "@/lib/utils";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -96,9 +96,9 @@ export default function DynamicServicesOverview({
   isVisible = true,
   isPreview = false,
 }: ServicesOverviewProps) {
-  const { t, isArabic } = useTranslation();
-  const { colors } = useThemeColors();
-  const themeClasses = useThemeClasses();
+  const { t, isRTL } = useTranslation();
+  const isArabic = isRTL;
+  const colors = useThemeColors();
 
   const [services, setServices] = useState<Service[]>([]);
   const [filteredServices, setFilteredServices] = useState<Service[]>([]);
@@ -374,9 +374,9 @@ export default function DynamicServicesOverview({
       {filteredServices.map((service) => (
         <Card
           key={service.id}
-          className={`group hover:shadow-lg transition-all duration-300 hover:-translate-y-1 ${themeClasses.rounded.lg} border-0`}
+          className="group hover:shadow-lg transition-all duration-300 hover:-translate-y-1 rounded-lg border-0"
           style={{
-            backgroundColor: colors.surface,
+            backgroundColor: colors.card,
             borderColor: colors.border,
           }}
         >
@@ -451,13 +451,13 @@ export default function DynamicServicesOverview({
             <div className="mb-4">
               <h3
                 className="text-xl font-bold mb-2"
-                style={{ color: colors.text }}
+                style={{ color: colors.foreground }}
               >
                 {getLocalizedText(service.title, isArabic, "عنوان")}
               </h3>
               <p
                 className="text-sm leading-relaxed"
-                style={{ color: colors.textSecondary }}
+                style={{ color: colors["muted-foreground"] }}
               >
                 {getLocalizedText(service.shortDescription, isArabic, "") ||
                   getLocalizedText(service.description, isArabic, "وصف")}
@@ -472,7 +472,7 @@ export default function DynamicServicesOverview({
                   <span className="font-semibold">{service.rating}</span>
                   <span
                     className="text-sm"
-                    style={{ color: colors.textSecondary }}
+                    style={{ color: colors["muted-foreground"] }}
                   >
                     ({service.reviewCount})
                   </span>
@@ -482,7 +482,7 @@ export default function DynamicServicesOverview({
               {data.showDuration && service.duration && (
                 <div
                   className="flex items-center gap-1"
-                  style={{ color: colors.textSecondary }}
+                  style={{ color: colors["muted-foreground"] }}
                 >
                   <Clock className="w-4 h-4" />
                   <span className="text-sm">
@@ -504,7 +504,7 @@ export default function DynamicServicesOverview({
                         className="flex items-center gap-2 text-sm"
                       >
                         <CheckCircle className="w-3 h-3 text-green-500" />
-                        <span style={{ color: colors.textSecondary }}>
+                        <span style={{ color: colors["muted-foreground"] }}>
                           {getLocalizedText(feature, isArabic, "نص")}
                         </span>
                       </li>
@@ -526,7 +526,7 @@ export default function DynamicServicesOverview({
                     </span>
                     {service.price.max && (
                       <>
-                        <span style={{ color: colors.textSecondary }}>-</span>
+                        <span style={{ color: colors["muted-foreground"] }}>-</span>
                         <span
                           className="text-2xl font-bold"
                           style={{ color: colors.primary }}
@@ -537,7 +537,7 @@ export default function DynamicServicesOverview({
                     )}
                     <span
                       className="text-sm"
-                      style={{ color: colors.textSecondary }}
+                      style={{ color: colors["muted-foreground"] }}
                     >
                       {service.price.currency}
                     </span>
@@ -545,7 +545,7 @@ export default function DynamicServicesOverview({
                   {service.price.unit && (
                     <p
                       className="text-xs"
-                      style={{ color: colors.textSecondary }}
+                      style={{ color: colors["muted-foreground"] }}
                     >
                       {getLocalizedText(service.price.unit, isArabic, "وحدة")}
                     </p>
@@ -604,13 +604,13 @@ export default function DynamicServicesOverview({
                   <div className="p-6 flex flex-col justify-center">
                     <h3
                       className="text-3xl font-bold mb-4"
-                      style={{ color: colors.text }}
+                      style={{ color: colors.foreground }}
                     >
                       {getLocalizedText(service.title, isArabic, "عنوان")}
                     </h3>
                     <p
                       className="text-lg mb-6"
-                      style={{ color: colors.textSecondary }}
+                      style={{ color: colors["muted-foreground"] }}
                     >
                       {getLocalizedText(service.description, isArabic, "وصف")}
                     </p>
@@ -621,7 +621,7 @@ export default function DynamicServicesOverview({
                         {service.features.map((feature, index) => (
                           <li key={index} className="flex items-center gap-2">
                             <CheckCircle className="w-5 h-5 text-green-500" />
-                            <span style={{ color: colors.textSecondary }}>
+                            <span style={{ color: colors["muted-foreground"] }}>
                               {getLocalizedText(feature, isArabic, "نص")}
                             </span>
                           </li>
@@ -641,7 +641,7 @@ export default function DynamicServicesOverview({
                           {service.price.unit && (
                             <p
                               className="text-sm"
-                              style={{ color: colors.textSecondary }}
+                              style={{ color: colors["muted-foreground"] }}
                             >
                               {getLocalizedText(service.price.unit, isArabic, "وحدة")}
                             </p>
@@ -724,7 +724,7 @@ export default function DynamicServicesOverview({
                   <div className="flex items-center gap-2 mb-2">
                     <h3
                       className="text-xl font-bold"
-                      style={{ color: colors.text }}
+                      style={{ color: colors.foreground }}
                     >
                       {getLocalizedText(service.title, isArabic, "عنوان")}
                     </h3>
@@ -736,7 +736,7 @@ export default function DynamicServicesOverview({
                     )}
                   </div>
 
-                  <p className="mb-3" style={{ color: colors.textSecondary }}>
+                  <p className="mb-3" style={{ color: colors["muted-foreground"] }}>
                     {getLocalizedText(service.description, isArabic, "وصف")}
                   </p>
 
@@ -745,7 +745,7 @@ export default function DynamicServicesOverview({
                       <div className="flex items-center gap-1">
                         <Star className="w-4 h-4 text-yellow-400 fill-current" />
                         <span>{service.rating}</span>
-                        <span style={{ color: colors.textSecondary }}>
+                        <span style={{ color: colors["muted-foreground"] }}>
                           ({service.reviewCount})
                         </span>
                       </div>
@@ -754,7 +754,7 @@ export default function DynamicServicesOverview({
                     {service.duration && (
                       <div
                         className="flex items-center gap-1"
-                        style={{ color: colors.textSecondary }}
+                        style={{ color: colors["muted-foreground"] }}
                       >
                         <Clock className="w-4 h-4" />
                         <span>{getLocalizedText(service.duration, isArabic, "مدة")}</span>
@@ -764,7 +764,7 @@ export default function DynamicServicesOverview({
                     {service.bookingCount && (
                       <div
                         className="flex items-center gap-1"
-                        style={{ color: colors.textSecondary }}
+                        style={{ color: colors["muted-foreground"] }}
                       >
                         <Users className="w-4 h-4" />
                         <span>
@@ -787,7 +787,7 @@ export default function DynamicServicesOverview({
                       {service.price.unit && (
                         <p
                           className="text-sm"
-                          style={{ color: colors.textSecondary }}
+                          style={{ color: colors["muted-foreground"] }}
                         >
                           {getLocalizedText(service.price.unit, isArabic, "وحدة")}
                         </p>
@@ -831,11 +831,11 @@ export default function DynamicServicesOverview({
           </div>
 
           <CardContent className="p-4">
-            <h3 className="font-bold mb-2" style={{ color: colors.text }}>
+            <h3 className="font-bold mb-2" style={{ color: colors.foreground }}>
               {getLocalizedText(service.title, isArabic, "عنوان")}
             </h3>
 
-            <p className="text-sm mb-3" style={{ color: colors.textSecondary }}>
+            <p className="text-sm mb-3" style={{ color: colors["muted-foreground"] }}>
               {getLocalizedText(service.description, isArabic, "وصف")}
             </p>
 
@@ -844,7 +844,7 @@ export default function DynamicServicesOverview({
                 {service.features.map((feature, index) => (
                   <li key={index} className="flex items-center gap-2 text-sm">
                     <CheckCircle className="w-3 h-3 text-green-500" />
-                    <span style={{ color: colors.textSecondary }}>
+                    <span style={{ color: colors["muted-foreground"] }}>
                       {getLocalizedText(feature, isArabic, "نص")}
                     </span>
                   </li>
@@ -1019,11 +1019,11 @@ export default function DynamicServicesOverview({
             <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-500 rounded-full"></div>
           </div>
 
-          <h3 className="font-semibold mb-2" style={{ color: colors.text }}>
+          <h3 className="font-semibold mb-2" style={{ color: colors.foreground }}>
             {getLocalizedText(service.title, isArabic, "عنوان")}
           </h3>
 
-          <p className="text-sm mb-4" style={{ color: colors.textSecondary }}>
+          <p className="text-sm mb-4" style={{ color: colors["muted-foreground"] }}>
             {getLocalizedText(service.shortDescription, isArabic, "")}
           </p>
 
@@ -1123,7 +1123,7 @@ export default function DynamicServicesOverview({
             {data.title && (
               <h2
                 className="text-3xl md:text-4xl font-bold mb-4"
-                style={{ color: colors.text }}
+                style={{ color: colors.foreground }}
               >
                 {getLocalizedText(data.title, isArabic, "خدماتنا")}
               </h2>
@@ -1131,7 +1131,7 @@ export default function DynamicServicesOverview({
             {data.subtitle && (
               <h3
                 className="text-xl md:text-2xl mb-6"
-                style={{ color: colors.textSecondary }}
+                style={{ color: colors["muted-foreground"] }}
               >
                 {getLocalizedText(data.subtitle, isArabic, "اكتشف خدماتنا المميزة")}
               </h3>
@@ -1139,7 +1139,7 @@ export default function DynamicServicesOverview({
             {data.description && (
               <p
                 className="text-lg max-w-3xl mx-auto"
-                style={{ color: colors.textSecondary }}
+                style={{ color: colors["muted-foreground"] }}
               >
                 {getLocalizedText(data.description, isArabic, "وصف")}
               </p>

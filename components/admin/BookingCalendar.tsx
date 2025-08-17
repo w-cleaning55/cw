@@ -130,7 +130,7 @@ export default function BookingCalendar({ className = "" }: BookingCalendarProps
 							<div key={idx} onDragOver={(e)=>e.preventDefault()} onDrop={(e)=>onDropDay(e, dateStr)} className={`min-h-[110px] rounded-lg border p-2 ${inMonth ? 'bg-white' : 'bg-gray-50 text-gray-400'}`}>
 								<div className="flex items-center justify-between mb-2">
 									<button onClick={()=> openCreate(dateStr)} className="text-xs text-blue-600 hover:underline">{d.getDate()}</button>
-									<Button size="xs" variant="ghost" onClick={()=> openCreate(dateStr)}><Plus className="w-3 h-3" /></Button>
+									                                        <Button size="sm" variant="ghost" onClick={()=> openCreate(dateStr)}><Plus className="w-3 h-3" /></Button>
 								</div>
 								<div className="space-y-1">
 									{dayEvents.map(ev => (

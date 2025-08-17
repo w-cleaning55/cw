@@ -449,3 +449,5 @@ export const useEnhancedTheme = () => {
 
   return context;
 };
+
+export default EnhancedThemeProvider;

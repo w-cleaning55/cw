@@ -72,8 +72,9 @@ interface RecentActivity {
 }
 
 export default function ContentManagementInterface() {
-  const { t, isArabic } = useTranslation();
-  const { currentTheme, isDarkMode } = useTheme();
+  const { t, isRTL } = useTranslation();
+  const isArabic = isRTL;
+  const { theme, isDark } = useTheme();
 
   const [activeTab, setActiveTab] = useState("overview");
   const [stats, setStats] = useState<ContentStats>({
