@@ -121,7 +121,7 @@ export function usePerformanceMonitor(componentName: string) {
 
   React.useEffect(() => {
     const renderTime = performance.now() - renderStart.current;
-    if (process.env.NODE_ENV === "development") {
+    if (process.env.NODE_ENV === "development" && renderTime > 100) {
       console.log(`${componentName} render #${renderCount.current}: ${renderTime.toFixed(2)}ms`);
     }
   });
