@@ -9,8 +9,10 @@ const nextConfig = {
   // Allow Builder.io cross-origin requests
   allowedDevOrigins: [
     "5968d79e40fa414b92f4d6f4055d93ed-22bd19dd88ee46419b6784aea.fly.dev",
+    "5968d79e40fa414b92f4d6f4055d93ed-22bd19dd88ee46419b6784aea.projects.builder.codes",
     "builder.io",
     "*.builder.io",
+    "*.builder.codes",
   ],
 
   // Webpack configuration - simplified to prevent chunk loading issues
