@@ -99,32 +99,6 @@ export function getRTLProps(content: string): { dir: string; className: string }
   };
 }
 
-// Loading skeleton utility
-export function createLoadingSkeleton(type: "section" | "card" | "button" = "section"): React.ReactElement {
-  const skeletons = {
-    section: React.createElement("div", { className: "py-20 bg-gray-50 animate-pulse" },
-      React.createElement("div", { className: "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" },
-        React.createElement("div", { className: "h-8 bg-gray-200 rounded w-64 mx-auto mb-4" }),
-        React.createElement("div", { className: "h-4 bg-gray-200 rounded w-96 mx-auto mb-8" }),
-        React.createElement("div", { className: "grid grid-cols-1 md:grid-cols-3 gap-8" },
-          Array.from({ length: 3 }, (_, i) => 
-            React.createElement("div", { key: i, className: "bg-white p-6 rounded-lg shadow" },
-              React.createElement("div", { className: "h-4 bg-gray-200 rounded w-full mb-2" }),
-              React.createElement("div", { className: "h-4 bg-gray-200 rounded w-3/4" })
-            )
-          )
-        )
-      )
-    ),
-    card: React.createElement("div", { className: "bg-white p-6 rounded-lg shadow animate-pulse" },
-      React.createElement("div", { className: "h-4 bg-gray-200 rounded w-full mb-2" }),
-      React.createElement("div", { className: "h-4 bg-gray-200 rounded w-3/4" })
-    ),
-    button: React.createElement("div", { className: "h-10 bg-gray-200 rounded animate-pulse w-24" }),
-  };
-  
-  return skeletons[type];
-}
 
 // Performance optimization: memoize expensive calculations
 export function memoizeComponent<P extends object>(
