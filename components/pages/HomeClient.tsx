@@ -40,7 +40,7 @@ const SectionSkeleton: React.FC = React.memo(() => (
 SectionSkeleton.displayName = "SectionSkeleton";
 
 const HomeClient: React.FC<BaseComponent> = () => {
-  usePerformanceMonitor("HomePage");
+  const { renderCount } = usePerformanceMonitor("HomePage");
   const [content, setContent] = React.useState<any | null>(null);
 
   React.useEffect(() => {
