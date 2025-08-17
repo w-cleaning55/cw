@@ -12,18 +12,22 @@ export class OpenAI {
 
   constructor(config: OpenAIConfig) {
     this.config = config;
-    console.warn('OpenAI provider is not configured. Install openai package to use this provider.');
+    console.warn(
+      "OpenAI provider is not configured. Install openai package to use this provider.",
+    );
   }
 
   async generateText(prompt: string): Promise<string> {
-    throw new Error('OpenAI provider requires openai package. Run: npm install openai');
+    throw new Error(
+      "OpenAI provider requires openai package. Run: npm install openai",
+    );
   }
 
   async chat(messages: any[]): Promise<string> {
-    throw new Error('OpenAI provider not available');
+    throw new Error("OpenAI provider not available");
   }
 
   async createCompletion(prompt: string, options?: any): Promise<string> {
-    throw new Error('OpenAI provider not available');
+    throw new Error("OpenAI provider not available");
   }
 }
