@@ -3,7 +3,7 @@ import React from "react";
 // Intersection Observer hook for lazy loading
 export function useIntersectionObserver(
   ref: React.RefObject<Element>,
-  options: IntersectionObserverInit = {}
+  options: IntersectionObserverInit = {},
 ) {
   const [isIntersecting, setIsIntersecting] = React.useState(false);
   const [hasIntersected, setHasIntersected] = React.useState(false);
@@ -23,7 +23,7 @@ export function useIntersectionObserver(
         threshold: 0.1,
         rootMargin: "50px",
         ...options,
-      }
+      },
     );
 
     observer.observe(element);
@@ -34,15 +34,15 @@ export function useIntersectionObserver(
 }
 
 // Default fallback component
-const DefaultFallback: React.ComponentType = () => 
-  React.createElement("div", { 
-    className: "animate-pulse bg-gray-200 h-48 rounded" 
+const DefaultFallback: React.ComponentType = () =>
+  React.createElement("div", {
+    className: "animate-pulse bg-gray-200 h-48 rounded",
   });
 
 // Lazy loading component wrapper
 export function withLazyLoading<P extends object>(
   Component: React.ComponentType<P>,
-  fallback: React.ComponentType = DefaultFallback
+  fallback: React.ComponentType = DefaultFallback,
 ) {
   return React.forwardRef<HTMLDivElement, P>((props, ref) => {
     const containerRef = React.useRef<HTMLDivElement>(null);
@@ -50,10 +50,12 @@ export function withLazyLoading<P extends object>(
 
     React.useImperativeHandle(ref, () => containerRef.current!);
 
-    return React.createElement("div", { ref: containerRef }, 
-      hasIntersected 
+    return React.createElement(
+      "div",
+      { ref: containerRef },
+      hasIntersected
         ? React.createElement(Component, props)
-        : React.createElement(fallback)
+        : React.createElement(fallback),
     );
   });
 }
@@ -80,7 +82,7 @@ export function useLazyImage(src: string, placeholder?: string) {
           observer.disconnect();
         }
       },
-      { threshold: 0.1 }
+      { threshold: 0.1 },
     );
 
     observer.observe(img);
@@ -93,7 +95,7 @@ export function useLazyImage(src: string, placeholder?: string) {
 // Debounced state hook
 export function useDebouncedState<T>(
   initialValue: T,
-  delay: number = 300
+  delay: number = 300,
 ): [T, T, React.Dispatch<React.SetStateAction<T>>] {
   const [value, setValue] = React.useState<T>(initialValue);
   const [debouncedValue, setDebouncedValue] = React.useState<T>(initialValue);
@@ -122,7 +124,9 @@ export function usePerformanceMonitor(componentName: string) {
   React.useEffect(() => {
     const renderTime = performance.now() - renderStart.current;
     if (process.env.NODE_ENV === "development" && renderTime > 100) {
-      console.log(`${componentName} render #${renderCount.current}: ${renderTime.toFixed(2)}ms`);
+      console.log(
+        `${componentName} render #${renderCount.current}: ${renderTime.toFixed(2)}ms`,
+      );
     }
   });
 
@@ -150,15 +154,16 @@ export function useMemoryMonitor() {
 
 // Bundle splitting helper
 export function createAsyncComponent<P = {}>(
-  importFunc: () => Promise<{ default: React.ComponentType<P> }>
+  importFunc: () => Promise<{ default: React.ComponentType<P> }>,
 ) {
   const LazyComponent = React.lazy(importFunc);
 
-  return React.forwardRef<any, P>((props, ref) => 
-    React.createElement(React.Suspense, 
+  return React.forwardRef<any, P>((props, ref) =>
+    React.createElement(
+      React.Suspense,
       { fallback: React.createElement("div", { children: "Loading..." }) },
-      React.createElement(LazyComponent, { ...props, ref })
-    )
+      React.createElement(LazyComponent, { ...props, ref }),
+    ),
   );
 }
 
@@ -166,14 +171,14 @@ export function createAsyncComponent<P = {}>(
 export function useVirtualScrolling(
   items: any[],
   itemHeight: number,
-  containerHeight: number
+  containerHeight: number,
 ) {
   const [scrollTop, setScrollTop] = React.useState(0);
 
   const startIndex = Math.floor(scrollTop / itemHeight);
   const endIndex = Math.min(
     startIndex + Math.ceil(containerHeight / itemHeight) + 1,
-    items.length
+    items.length,
   );
 
   const visibleItems = items.slice(startIndex, endIndex);
@@ -206,9 +211,12 @@ export function useResourcePreload(resources: string[]) {
 // Error boundary HOC
 export function withErrorBoundary<P extends object>(
   Component: React.ComponentType<P>,
-  ErrorFallback?: React.ComponentType<{ error: Error; resetError: () => void }>
+  ErrorFallback?: React.ComponentType<{ error: Error; resetError: () => void }>,
 ) {
-  return class extends React.Component<P, { hasError: boolean; error?: Error }> {
+  return class extends React.Component<
+    P,
+    { hasError: boolean; error?: Error }
+  > {
     constructor(props: P) {
       super(props);
       this.state = { hasError: false };
@@ -228,11 +236,12 @@ export function withErrorBoundary<P extends object>(
 
     render() {
       if (this.state.hasError) {
-        const FallbackComponent = ErrorFallback || (() => 
-          React.createElement("div", { 
-            children: "Something went wrong. Please try again." 
-          })
-        );
+        const FallbackComponent =
+          ErrorFallback ||
+          (() =>
+            React.createElement("div", {
+              children: "Something went wrong. Please try again.",
+            }));
         return React.createElement(FallbackComponent, {
           error: this.state.error!,
           resetError: this.resetError,
@@ -248,7 +257,7 @@ export function withErrorBoundary<P extends object>(
 export function useCache<T>(key: string, defaultValue: T) {
   const [value, setValue] = React.useState<T>(() => {
     if (typeof window === "undefined") return defaultValue;
-    
+
     try {
       const cached = localStorage.getItem(key);
       return cached ? JSON.parse(cached) : defaultValue;
@@ -257,14 +266,17 @@ export function useCache<T>(key: string, defaultValue: T) {
     }
   });
 
-  const setCachedValue = React.useCallback((newValue: T) => {
-    setValue(newValue);
-    try {
-      localStorage.setItem(key, JSON.stringify(newValue));
-    } catch (error) {
-      console.warn("Failed to cache value:", error);
-    }
-  }, [key]);
+  const setCachedValue = React.useCallback(
+    (newValue: T) => {
+      setValue(newValue);
+      try {
+        localStorage.setItem(key, JSON.stringify(newValue));
+      } catch (error) {
+        console.warn("Failed to cache value:", error);
+      }
+    },
+    [key],
+  );
 
   return [value, setCachedValue] as const;
 }

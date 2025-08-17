@@ -8,14 +8,38 @@ import { createLoadingSkeleton } from "@/lib/component-utils";
 import { usePerformanceMonitor } from "@/lib/performance";
 import type { BaseComponent } from "@/lib/types";
 
-const ModernHeroSection = dynamic(() => import("@/components/sections/ModernHeroSection"), { ssr: true, loading: () => createLoadingSkeleton("section") });
-const AdvancedStatsSection = dynamic(() => import("@/components/sections/AdvancedStatsSection"), { ssr: true, loading: () => createLoadingSkeleton("section") });
-const PremiumServicesSection = dynamic(() => import("@/components/sections/PremiumServicesSection"), { ssr: true, loading: () => createLoadingSkeleton("section") });
-const FeaturesSection = dynamic(() => import("@/components/sections/FeaturesSection"), { ssr: true, loading: () => createLoadingSkeleton("section") });
-const AboutSection = dynamic(() => import("@/components/sections/AboutSection"), { ssr: true, loading: () => createLoadingSkeleton("section") });
-const TestimonialsSection = dynamic(() => import("@/components/sections/TestimonialsSection"), { ssr: true, loading: () => createLoadingSkeleton("section") });
-const ContactSection = dynamic(() => import("@/components/sections/ContactSection"), { ssr: true, loading: () => createLoadingSkeleton("section") });
-const Footer = dynamic(() => import("@/components/layout/Footer"), { ssr: true, loading: () => createLoadingSkeleton("section") });
+const ModernHeroSection = dynamic(
+  () => import("@/components/sections/ModernHeroSection"),
+  { ssr: true, loading: () => createLoadingSkeleton("section") },
+);
+const AdvancedStatsSection = dynamic(
+  () => import("@/components/sections/AdvancedStatsSection"),
+  { ssr: true, loading: () => createLoadingSkeleton("section") },
+);
+const PremiumServicesSection = dynamic(
+  () => import("@/components/sections/PremiumServicesSection"),
+  { ssr: true, loading: () => createLoadingSkeleton("section") },
+);
+const FeaturesSection = dynamic(
+  () => import("@/components/sections/FeaturesSection"),
+  { ssr: true, loading: () => createLoadingSkeleton("section") },
+);
+const AboutSection = dynamic(
+  () => import("@/components/sections/AboutSection"),
+  { ssr: true, loading: () => createLoadingSkeleton("section") },
+);
+const TestimonialsSection = dynamic(
+  () => import("@/components/sections/TestimonialsSection"),
+  { ssr: true, loading: () => createLoadingSkeleton("section") },
+);
+const ContactSection = dynamic(
+  () => import("@/components/sections/ContactSection"),
+  { ssr: true, loading: () => createLoadingSkeleton("section") },
+);
+const Footer = dynamic(() => import("@/components/layout/Footer"), {
+  ssr: true,
+  loading: () => createLoadingSkeleton("section"),
+});
 
 const SectionSkeleton: React.FC = React.memo(() => (
   <div className="py-20 bg-gray-50" role="status" aria-label="Loading content">
@@ -47,7 +71,7 @@ const HomeClient: React.FC<BaseComponent> = () => {
     let active = true;
     const load = async () => {
       try {
-        const res = await fetch('/api/dynamic-content', { cache: 'no-store' });
+        const res = await fetch("/api/dynamic-content", { cache: "no-store" });
         const data = await res.json();
         if (!active) return;
         setContent(data);
@@ -56,17 +80,27 @@ const HomeClient: React.FC<BaseComponent> = () => {
       }
     };
     load();
-    return () => { active = false; };
+    return () => {
+      active = false;
+    };
   }, []);
 
-  const order: string[] = content?.homepage?.order || ["hero","services","features","about","testimonials","contact"];
+  const order: string[] = content?.homepage?.order || [
+    "hero",
+    "services",
+    "features",
+    "about",
+    "testimonials",
+    "contact",
+  ];
   const visible = (secId: string) => {
     const v = content?.homepage?.[secId]?.visible;
     return v === undefined ? true : !!v;
   };
-  const heroVariant = content?.homepage?.hero?.component || 'modern';
-  const servicesVariant = content?.homepage?.services?.component || 'premium';
-  const getText = (obj?: { ar?: string; en?: string }) => obj?.ar || obj?.en || undefined;
+  const heroVariant = content?.homepage?.hero?.component || "modern";
+  const servicesVariant = content?.homepage?.services?.component || "premium";
+  const getText = (obj?: { ar?: string; en?: string }) =>
+    obj?.ar || obj?.en || undefined;
 
   return (
     <div className="min-h-screen bg-white">
@@ -75,7 +109,7 @@ const HomeClient: React.FC<BaseComponent> = () => {
         <Suspense fallback={<SectionSkeleton />}>
           {order.map((secId) => {
             if (!visible(secId)) return null;
-            if (secId === 'hero') {
+            if (secId === "hero") {
               return (
                 <React.Fragment key="hero">
                   <ModernHeroSection />
@@ -83,10 +117,10 @@ const HomeClient: React.FC<BaseComponent> = () => {
                 </React.Fragment>
               );
             }
-            if (secId === 'services') {
+            if (secId === "services") {
               return (
                 <Suspense key="services" fallback={<SectionSkeleton />}>
-                  {servicesVariant === 'premium' ? (
+                  {servicesVariant === "premium" ? (
                     <PremiumServicesSection />
                   ) : (
                     <PremiumServicesSection />
@@ -94,7 +128,7 @@ const HomeClient: React.FC<BaseComponent> = () => {
                 </Suspense>
               );
             }
-            if (secId === 'features') {
+            if (secId === "features") {
               return (
                 <Suspense key="features" fallback={<SectionSkeleton />}>
                   <FeaturesSection
@@ -105,7 +139,7 @@ const HomeClient: React.FC<BaseComponent> = () => {
                 </Suspense>
               );
             }
-            if (secId === 'about') {
+            if (secId === "about") {
               return (
                 <Suspense key="about" fallback={<SectionSkeleton />}>
                   <AboutSection
@@ -117,24 +151,28 @@ const HomeClient: React.FC<BaseComponent> = () => {
                 </Suspense>
               );
             }
-            if (secId === 'testimonials') {
+            if (secId === "testimonials") {
               return (
                 <Suspense key="testimonials" fallback={<SectionSkeleton />}>
                   <TestimonialsSection
                     title={getText(content?.homepage?.testimonials?.title)}
-                    subtitle={getText(content?.homepage?.testimonials?.subtitle)}
+                    subtitle={getText(
+                      content?.homepage?.testimonials?.subtitle,
+                    )}
                     items={content?.homepage?.testimonials?.items}
                   />
                 </Suspense>
               );
             }
-            if (secId === 'contact') {
+            if (secId === "contact") {
               return (
                 <Suspense key="contact" fallback={<SectionSkeleton />}>
                   <ContactSection
                     title={getText(content?.homepage?.contact?.title)}
                     subtitle={getText(content?.homepage?.contact?.subtitle)}
-                    description={getText(content?.homepage?.contact?.description)}
+                    description={getText(
+                      content?.homepage?.contact?.description,
+                    )}
                   />
                 </Suspense>
               );

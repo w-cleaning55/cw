@@ -9,6 +9,7 @@
 
 2. **Environment Variables:**
    Set these in Vercel dashboard under Settings → Environment Variables:
+
    ```
    NEXT_PUBLIC_BUILDER_KEY=your_builder_key_here
    JWT_SECRET=your_secure_jwt_secret_here
