@@ -6,6 +6,7 @@
   "type": "module",
   "scripts": {
     "dev": "next dev",
+    "dev:fast": "node scripts/dev-optimized.js",
     "build": "next build",
     "build:fast": "cross-env NEXT_TELEMETRY_DISABLED=1 next build",
     "build:analyze": "cross-env ANALYZE=true npm run build",
