@@ -127,18 +127,21 @@ export class DatabaseManager {
     try {
       const provider = await this.getProvider(connection.type);
       const result = await provider.testConnection(connection.config);
+      const success = typeof result === 'boolean' ? result : result.success;
       
-      if (result.success) {
+      if (success) {
         // تحديث الميتاداتا
         connection.isConnected = true;
         connection.lastConnected = new Date().toISOString();
-        connection.metadata = result.metadata;
+        if (typeof result !== 'boolean') {
+          connection.metadata = result.metadata;
+        }
         
         this.connections.set(connectionId, connection);
         await this.saveConnections();
       }
 
-      return result;
+      return typeof result === 'boolean' ? { success: result, message: '' } : result;
     } catch (error: any) {
       return {
         success: false,
@@ -569,7 +572,7 @@ export class DatabaseManager {
 
     try {
       // إنشاء النسخة الاحتياطية
-      const backupData = await provider.createBackup(connection.config, {
+      const backupData = await provider.backup(connection.config, {
         includeTables: options.includeTables,
         excludeTables: options.excludeTables
       });
@@ -646,8 +649,27 @@ export class DatabaseManager {
 
   private async getProvider(type: string): Promise<DatabaseProvider> {
     if (!this.providers.has(type)) {
-      const { createProvider } = await import('./index');
-      const provider = createProvider(type);
+      let provider: DatabaseProvider;
+      switch (type) {
+        case "firebase":
+          const { FirebaseDatabase } = await import("./providers/firebase");
+          provider = new FirebaseDatabase({});
+          break;
+        case "supabase":
+          const { SupabaseDatabase } = await import("./providers/supabase");
+          provider = new SupabaseDatabase({});
+          break;
+        case "mongodb":
+          const { MongoDatabase } = await import("./providers/mongodb");
+          provider = new MongoDatabase({});
+          break;
+        case "json":
+          const { JsonDatabase } = await import("./providers/json");
+          provider = new JsonDatabase({});
+          break;
+        default:
+          throw new Error(`Unsupported database type: ${type}`);
+      }
       this.providers.set(type, provider);
     }
     

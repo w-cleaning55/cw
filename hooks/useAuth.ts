@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
-import type { User } from '@/lib/auth';
+import type { User } from '../lib/auth';
 
 interface AuthState {
   user: User | null;
@@ -28,7 +28,9 @@ export function useAuth() {
 
   // Check authentication status on mount
   useEffect(() => {
-    checkAuth();
+    if (window.location.pathname !== '/auth/login') {
+      checkAuth();
+    }
   }, []);
 
   const checkAuth = useCallback(async () => {
@@ -67,6 +69,10 @@ export function useAuth() {
     }
   }, []);
 
+  const recheck = useCallback(() => {
+    checkAuth();
+  }, [checkAuth]);
+
   const login = useCallback(async (credentials: LoginCredentials) => {
     try {
       setState(prev => ({ ...prev, isLoading: true, error: null }));
@@ -98,7 +104,7 @@ export function useAuth() {
           error: errorMessage,
           isAuthenticated: false,
         }));
-        throw new Error(errorMessage);
+        throw new Error(errorMessage); // Still throw error for component to catch
       }
     } catch (error) {
       console.error('Login error:', error);
@@ -109,28 +115,39 @@ export function useAuth() {
         error: errorMessage,
         isAuthenticated: false,
       }));
-      throw error;
+      // Do not re-throw here, as the state is already updated and the component can react to it.
+      // The component's try-catch will still catch the error thrown above if response.ok is false.
     }
-  }, []);
+  }, []); // Removed router from dependency array as it's no longer used for push
 
   const logout = useCallback(async () => {
     try {
       setState(prev => ({ ...prev, isLoading: true }));
       
-      await fetch('/api/auth/logout', {
+      const response = await fetch('/api/auth/logout', {
         method: 'POST',
         credentials: 'include',
       });
 
-      setState({
-        user: null,
-        isLoading: false,
-        error: null,
-        isAuthenticated: false,
-      });
-
-      // Redirect to login page
-      router.push('/auth/login');
+      if (response.ok) {
+        setState({
+          user: null,
+          isLoading: false,
+          error: null,
+          isAuthenticated: false,
+        });
+        // Redirect to login page
+        router.push('/auth/login');
+      } else {
+        const errorData = await response.json();
+        const errorMessage = errorData.error || 'Logout failed';
+        setState(prev => ({
+          ...prev,
+          isLoading: false,
+          error: errorMessage,
+        }));
+        throw new Error(errorMessage);
+      }
     } catch (error) {
       console.error('Logout error:', error);
       setState(prev => ({
@@ -163,6 +180,7 @@ export function useAuth() {
     login,
     logout,
     checkAuth,
+    recheck,
     clearError,
     hasPermission,
     hasRole,

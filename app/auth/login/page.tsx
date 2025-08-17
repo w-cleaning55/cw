@@ -1,8 +1,9 @@
 'use client';
 
 import React from 'react';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import dynamic from 'next/dynamic';
+import { useAuth } from '../../../hooks/useAuth';
 
 const EnhancedLoginForm = dynamic(() => import('../../../components/EnhancedLoginForm'), {
   ssr: false,
@@ -11,9 +12,14 @@ const EnhancedLoginForm = dynamic(() => import('../../../components/EnhancedLogi
 
 export default function LoginPage() {
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const nextUrl = searchParams.get('next') || '/admin';
+
+  const { recheck } = useAuth();
 
   const handleLoginSuccess = () => {
-    router.push('/admin');
+    recheck();
+    router.push(nextUrl);
   };
 
   return (

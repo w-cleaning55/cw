@@ -1,3 +1,4 @@
+'use client';
 import React, { createContext, useContext, useEffect, useState } from 'react';
 
 type Theme = 'light' | 'dark' | 'blue' | 'green';
@@ -26,19 +27,28 @@ export function ThemeProvider({
   storageKey = 'app-theme',
   ...props
 }: ThemeProviderProps) {
-  const [theme, setTheme] = useState<Theme>(
-    () => (localStorage.getItem(storageKey) as Theme) || defaultTheme
-  );
+  const [theme, setTheme] = useState<Theme>(defaultTheme);
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    const root = window.document.documentElement;
+    setMounted(true);
+    try {
+      const storedTheme = localStorage.getItem(storageKey) as Theme;
+      if (storedTheme) {
+        setTheme(storedTheme);
+      }
+    } catch (e) {
+      // Ignore localStorage errors
+    }
+  }, []);
 
-    // Remove all theme classes
-    root.classList.remove('light', 'dark', 'blue', 'green');
-
-    // Add the current theme class
-    root.classList.add(theme);
-  }, [theme]);
+  useEffect(() => {
+    if (mounted) {
+      const root = window.document.documentElement;
+      root.classList.remove('light', 'dark', 'blue', 'green');
+      root.classList.add(theme);
+    }
+  }, [theme, mounted]);
 
 
   const value = {

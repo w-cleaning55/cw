@@ -13,7 +13,7 @@ export interface DatabaseConfig {
 export interface DatabaseProvider {
   connect(): Promise<boolean>;
   disconnect(): Promise<void>;
-  testConnection(): Promise<boolean>;
+  testConnection(config?: any): Promise<{ success: boolean; message: string; metadata?: any; } | boolean>;
 
   // CRUD Operations
   create(collection: string, data: any): Promise<any>;
@@ -24,8 +24,15 @@ export interface DatabaseProvider {
   // Advanced Operations
   query(collection: string, filters: any): Promise<any[]>;
   count(collection: string, filters?: any): Promise<number>;
-  backup(): Promise<any>;
-  restore(data: any): Promise<boolean>;
+  backup(config: any, options?: any): Promise<any>;
+  restore(config: any, data: any, options?: any): Promise<boolean>;
+  getDatabaseStatus(config: any): Promise<{ isEmpty: boolean; hasIncompatibleSchema: boolean; hasOldSchema: boolean; }>;
+  createTable(config: any, table: any): Promise<void>;
+  createIndex(config: any, index: any): Promise<void>;
+  createRelation(config: any, relation: any): Promise<void>;
+  insertBatch(config: any, tableName: string, records: any[]): Promise<void>;
+  truncateTable(config: any, tableName: string): Promise<void>;
+  findAll(config: any, tableName: string, filters?: any): Promise<any[]>;
 }
 
 class DatabaseManager {
@@ -76,12 +83,13 @@ class DatabaseManager {
     if (!this.currentProvider) return false;
 
     try {
-      const result = await this.currentProvider.testConnection();
+      const result = await this.currentProvider.testConnection(this.config?.config);
+      const success = typeof result === 'boolean' ? result : result.success;
       if (this.config) {
-        this.config.connectionStatus = result ? "connected" : "error";
+        this.config.connectionStatus = success ? "connected" : "error";
         this.config.lastTested = new Date().toISOString();
       }
-      return result;
+      return success;
     } catch (error) {
       console.error("Database connection test failed:", error);
       if (this.config) {
@@ -93,9 +101,9 @@ class DatabaseManager {
 
   async switchDatabase(newConfig: DatabaseConfig): Promise<boolean> {
     // Backup current data if needed
-    if (this.currentProvider && this.config?.type !== "json") {
+    if (this.currentProvider && this.config) {
       try {
-        const backup = await this.currentProvider.backup();
+        const backup = await this.currentProvider.backup(this.config.config);
         // Store backup temporarily
         console.log("Database backup created before switching");
       } catch (error) {

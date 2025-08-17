@@ -66,9 +66,9 @@ export async function POST(request: NextRequest) {
     });
 
     // Set authentication cookie
-    setAuthCookie(token, response);
+    const responseWithCookie = setAuthCookie(token, response);
 
-    return response;
+    return responseWithCookie;
 
   } catch (error) {
     console.error('Login error:', error);

@@ -94,6 +94,7 @@ export default function RootLayout({
       lang="ar"
       dir="rtl"
       className={`${inter.variable} ${tajawal.variable}`}
+      suppressHydrationWarning
     >
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />

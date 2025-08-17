@@ -280,4 +280,30 @@ export class JsonDatabase implements DatabaseProvider {
       return false;
     }
   }
+
+  async getDatabaseStatus(config: any): Promise<{ isEmpty: boolean; hasIncompatibleSchema: boolean; hasOldSchema: boolean; }> {
+    return { isEmpty: true, hasIncompatibleSchema: false, hasOldSchema: false };
+  }
+  async createTable(config: any, table: any): Promise<void> {
+    // Not applicable for JSON database
+  }
+  async createIndex(config: any, index: any): Promise<void> {
+    // Not applicable for JSON database
+  }
+  async createRelation(config: any, relation: any): Promise<void> {
+    // Not applicable for JSON database
+  }
+  async insertBatch(config: any, tableName: string, records: any[]): Promise<void> {
+    const fileData = await this.readFile(tableName);
+    const items = fileData[tableName] || [];
+    items.push(...records);
+    fileData[tableName] = items;
+    await this.writeFile(tableName, fileData);
+  }
+  async truncateTable(config: any, tableName: string): Promise<void> {
+    await this.writeFile(tableName, { [tableName]: [] });
+  }
+  async findAll(config: any, tableName: string, filters?: any): Promise<any[]> {
+    return this.query(tableName, filters);
+  }
 }

@@ -121,7 +121,10 @@ export default function EnhancedLoginForm({
       clearError();
       setSuccessMessage(null);
 
-      await login(formData);
+      // Call success callback first
+      if (onSuccess) {
+        onSuccess();
+      }
       
       setSuccessMessage(isArabic ? "تم تسجيل الدخول بنجاح!" : "Login successful!");
       
@@ -134,12 +137,6 @@ export default function EnhancedLoginForm({
         localStorage.removeItem("lastUsername");
       }
 
-      // Call success callback
-      if (onSuccess) {
-        setTimeout(() => {
-          onSuccess();
-        }, 1000);
-      }
     } catch (err: any) {
       console.error("Login error:", err);
       // Error is handled by the auth hook
@@ -147,6 +144,14 @@ export default function EnhancedLoginForm({
       setIsSubmitting(false);
     }
   }, [formData, validationErrors, isSubmitting, rememberMe, login, clearError, onSuccess, isArabic, validateField]);
+
+  // Handle redirection after successful login
+  useEffect(() => {
+    if (!isLoading && !error && successMessage) {
+      // Only redirect if login was successful and not currently loading
+      router.push(redirectTo);
+    }
+  }, [isLoading, error, successMessage, redirectTo]);
 
   // Demo login function
   const handleDemoLogin = useCallback(async () => {
@@ -320,7 +325,6 @@ export default function EnhancedLoginForm({
                 checked={rememberMe}
                 onChange={(e) => setRememberMe(e.target.checked)}
                 className="rounded border-gray-300 text-blue-600 focus:ring-blue-500"
-                disabled={isSubmitting}
                 aria-label={isArabic ? "تذكرني" : "Remember me"}
                 title={isArabic ? "تذكرني" : "Remember me"}
               />
