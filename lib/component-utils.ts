@@ -170,7 +170,7 @@ export function createOptimizedSection<P extends Record<string, any>>(
 
 // Loading skeleton generator
 export function createLoadingSkeleton(
-  type: "card" | "text" | "section" = "section"
+  type: "card" | "text" | "section" | "button" = "section"
 ): React.ReactElement {
   const skeletons = {
     card: React.createElement("div", {
@@ -187,6 +187,7 @@ export function createLoadingSkeleton(
         React.createElement("div", { key: "2", className: "h-4 bg-gray-200 rounded w-5/6" }),
       ]
     }),
+    button: React.createElement("div", { className: "h-10 bg-gray-200 rounded animate-pulse w-24" }),
     section: React.createElement("div", {
       className: "py-20 bg-gray-50 animate-pulse",
       children: React.createElement("div", {
@@ -198,6 +199,6 @@ export function createLoadingSkeleton(
       })
     })
   };
-  
+
   return skeletons[type];
 }
