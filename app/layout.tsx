@@ -2,7 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Inter, Tajawal } from "next/font/google";
 import "./globals.css";
 import ClientProviders from "../components/ClientProviders";
-import { ThemeProvider } from "../hooks/useTheme";
+import { ThemeProvider } from "@/hooks/useTheme";
 import PerformanceOptimizer from "../components/PerformanceOptimizer";
 import { SEO_CONFIG, APP_CONFIG } from "../lib/constants";
 import { generateCleaningServiceStructuredData } from "../lib/seo";
