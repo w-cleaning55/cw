@@ -54,8 +54,8 @@ const nextConfig = {
     removeConsole: process.env.NODE_ENV === 'production',
   },
 
-  // Output configuration - only in production
-  output: process.env.NODE_ENV === 'production' ? 'standalone' : undefined,
+  // Output configuration - remove standalone for Vercel
+  // output: 'standalone', // Not needed for Vercel
 };
 
 export default nextConfig;
