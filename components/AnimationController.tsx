@@ -1,21 +1,29 @@
-'use client';
+"use client";
 
-import React, { createContext, useContext, useEffect, useState, ReactNode } from 'react';
+import React, {
+  createContext,
+  useContext,
+  useEffect,
+  useState,
+  ReactNode,
+} from "react";
 
 interface AnimationState {
   isAnimationEnabled: boolean;
-  animationSpeed: 'slow' | 'normal' | 'fast';
+  animationSpeed: "slow" | "normal" | "fast";
   prefersReducedMotion: boolean;
 }
 
 interface AnimationContextType extends AnimationState {
   enableAnimations: () => void;
   disableAnimations: () => void;
-  setAnimationSpeed: (speed: 'slow' | 'normal' | 'fast') => void;
+  setAnimationSpeed: (speed: "slow" | "normal" | "fast") => void;
   triggerAnimation: (elementId: string, animation: string) => void;
 }
 
-const AnimationContext = createContext<AnimationContextType | undefined>(undefined);
+const AnimationContext = createContext<AnimationContextType | undefined>(
+  undefined,
+);
 
 interface AnimationControllerProps {
   children: ReactNode;
@@ -23,16 +31,18 @@ interface AnimationControllerProps {
 
 export function AnimationController({ children }: AnimationControllerProps) {
   const [isAnimationEnabled, setIsAnimationEnabled] = useState(true);
-  const [animationSpeed, setAnimationSpeed] = useState<'slow' | 'normal' | 'fast'>('normal');
+  const [animationSpeed, setAnimationSpeed] = useState<
+    "slow" | "normal" | "fast"
+  >("normal");
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
 
   useEffect(() => {
-    if (typeof window === 'undefined') return;
+    if (typeof window === "undefined") return;
 
     // Check user preference for reduced motion
-    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
     setPrefersReducedMotion(mediaQuery.matches);
-    
+
     if (mediaQuery.matches) {
       setIsAnimationEnabled(false);
     }
@@ -44,29 +54,29 @@ export function AnimationController({ children }: AnimationControllerProps) {
       }
     };
 
-    mediaQuery.addEventListener('change', handleChange);
-    return () => mediaQuery.removeEventListener('change', handleChange);
+    mediaQuery.addEventListener("change", handleChange);
+    return () => mediaQuery.removeEventListener("change", handleChange);
   }, []);
 
   // Load settings from localStorage
   useEffect(() => {
-    if (typeof window === 'undefined') return;
+    if (typeof window === "undefined") return;
 
-    const savedSettings = localStorage.getItem('animation-settings');
+    const savedSettings = localStorage.getItem("animation-settings");
     if (savedSettings) {
       try {
         const settings = JSON.parse(savedSettings);
         setIsAnimationEnabled(settings.enabled ?? true);
-        setAnimationSpeed(settings.speed ?? 'normal');
+        setAnimationSpeed(settings.speed ?? "normal");
       } catch (error) {
-        console.warn('Failed to load animation settings:', error);
+        console.warn("Failed to load animation settings:", error);
       }
     }
   }, []);
 
   // Save settings to localStorage
   useEffect(() => {
-    if (typeof window === 'undefined') return;
+    if (typeof window === "undefined") return;
 
     const settings = {
       enabled: isAnimationEnabled,
@@ -74,9 +84,9 @@ export function AnimationController({ children }: AnimationControllerProps) {
     };
 
     try {
-      localStorage.setItem('animation-settings', JSON.stringify(settings));
+      localStorage.setItem("animation-settings", JSON.stringify(settings));
     } catch (error) {
-      console.warn('Failed to save animation settings:', error);
+      console.warn("Failed to save animation settings:", error);
     }
   }, [isAnimationEnabled, animationSpeed]);
 
@@ -96,13 +106,13 @@ export function AnimationController({ children }: AnimationControllerProps) {
     const element = document.getElementById(elementId);
     if (element) {
       element.classList.add(animation);
-      
+
       const handleAnimationEnd = () => {
         element.classList.remove(animation);
-        element.removeEventListener('animationend', handleAnimationEnd);
+        element.removeEventListener("animationend", handleAnimationEnd);
       };
 
-      element.addEventListener('animationend', handleAnimationEnd);
+      element.addEventListener("animationend", handleAnimationEnd);
     }
   };
 
@@ -126,7 +136,7 @@ export function AnimationController({ children }: AnimationControllerProps) {
 export function useAnimation() {
   const context = useContext(AnimationContext);
   if (context === undefined) {
-    throw new Error('useAnimation must be used within an AnimationController');
+    throw new Error("useAnimation must be used within an AnimationController");
   }
   return context;
 }
