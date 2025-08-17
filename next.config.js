@@ -2,8 +2,8 @@
 const nextConfig = {
   // Experimental features
   experimental: {
-    webpackBuildWorker: true,
-    optimizePackageImports: ["lucide-react", "@radix-ui/react-icons"],
+    webpackBuildWorker: false, // Disable for faster dev builds
+    optimizePackageImports: ["lucide-react"],
   },
 
   // Allow Builder.io cross-origin requests
@@ -15,7 +15,7 @@ const nextConfig = {
     "*.builder.codes",
   ],
 
-  // Webpack configuration - simplified to prevent chunk loading issues
+  // Webpack configuration - optimized for development speed
   webpack: (config, { dev, isServer }) => {
     // Basic fallbacks only
     config.resolve = config.resolve || {};
@@ -26,25 +26,9 @@ const nextConfig = {
       tls: false,
     };
 
-    // Fix chunk loading issues
-    if (dev && !isServer) {
-      config.optimization = {
-        ...config.optimization,
-        splitChunks: {
-          chunks: "all",
-          cacheGroups: {
-            default: false,
-            vendors: false,
-            framework: {
-              chunks: "all",
-              name: "framework",
-              test: /(?<!node_modules.*)[\\/]node_modules[\\/](react|react-dom|scheduler|prop-types|use-subscription)[\\/]/,
-              priority: 40,
-              enforce: true,
-            },
-          },
-        },
-      };
+    // Disable webpack build worker in development for faster compilation
+    if (dev) {
+      config.cache = false;
     }
 
     return config;
