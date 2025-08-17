@@ -39,7 +39,8 @@ export default function ThemeSelector({
   compact = false,
   position = "popup",
 }: ThemeSelectorProps) {
-  const { t, isArabic } = useTranslation();
+  const { t, isRTL } = useTranslation();
+  const isArabic = isRTL;
   const { isDarkMode, setDarkMode, toggleDarkMode, autoTheme, setAutoTheme } =
     useDarkMode();
 

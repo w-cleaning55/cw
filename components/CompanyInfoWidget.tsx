@@ -228,7 +228,7 @@ const CompanyInfoWidget: React.FC<CompanyInfoWidgetProps> = ({
             <div className="flex items-start gap-3">
               <MapPin className="w-4 h-4 text-gray-500 mt-1" />
               <div className="flex-1">
-                <p className="text-sm">{COMPANY_INFO.location.address}</p>
+                <p className="text-sm">{COMPANY_INFO.location.streetAddress}</p>
                 <p className="text-sm text-gray-500">
                   {COMPANY_INFO.location.city}, {COMPANY_INFO.location.country}
                 </p>
@@ -266,7 +266,7 @@ const CompanyInfoWidget: React.FC<CompanyInfoWidgetProps> = ({
                   width="100%"
                   height="100%"
                   frameBorder="0"
-                  src={`https://www.google.com/maps/embed/v1/place?key=YOUR_GOOGLE_MAPS_API_KEY&q=${encodeURIComponent(COMPANY_INFO.location.address + ", " + COMPANY_INFO.location.city)}&language=${currentLanguage}`}
+                  src={`https://www.google.com/maps/embed/v1/place?key=YOUR_GOOGLE_MAPS_API_KEY&q=${encodeURIComponent(COMPANY_INFO.location.streetAddress + ", " + COMPANY_INFO.location.city)}&language=${currentLanguage}`}
                   allowFullScreen
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"

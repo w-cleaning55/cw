@@ -31,7 +31,7 @@ export interface AIMessage {
   timestamp?: string;
 }
 
-export interface AIProvider {
+export interface AIProviderClient {
   connect(): Promise<boolean>;
   testConnection(): Promise<boolean>;
   generateResponse(messages: AIMessage[], options?: any): Promise<AIResponse>;
@@ -40,7 +40,7 @@ export interface AIProvider {
 }
 
 class AIManager {
-  private currentProvider: AIProvider | null = null;
+  private currentProvider: AIProviderClient | null = null;
   private config: AIConfig | null = null;
   private systemPrompts: Map<string, string> = new Map();
 

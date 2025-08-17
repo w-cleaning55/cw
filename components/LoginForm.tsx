@@ -32,8 +32,12 @@ export default function LoginForm({ onSuccess }: LoginFormProps) {
     password: "",
   });
   const { login, isLoading, error } = useAuth();
-  const { t, currentLanguage, toggleLanguage } = useTranslation();
+  const { t, currentLanguage, switchLanguage } = useTranslation();
   const { theme, toggleTheme, themes } = useTheme();
+
+  const handleLanguageToggle = async () => {
+    await switchLanguage(currentLanguage === 'ar' ? 'en' : 'ar');
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -71,7 +75,7 @@ export default function LoginForm({ onSuccess }: LoginFormProps) {
         <div className="flex justify-end gap-2 mb-4">
           {/* Language Toggle */}
           <button
-            onClick={toggleLanguage}
+            onClick={handleLanguageToggle}
             className="p-2 bg-white/80 backdrop-blur-sm rounded-lg shadow-sm hover:bg-white/90 transition-colors"
             title={currentLanguage === "ar" ? "Switch to English" : "التبديل إلى العربية"}
           >

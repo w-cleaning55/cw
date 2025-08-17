@@ -95,6 +95,8 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
       mediaQuery.addEventListener("change", handleChange);
       return () => mediaQuery.removeEventListener("change", handleChange);
     }
+
+    return undefined;
   }, []);
 
   // تطبيق الثيم عند التغيير
@@ -184,6 +186,7 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
     customization: settings.customization,
     setCustomization,
     getAvailableThemes,
+    themes: THEMES,
     resetToDefaults,
     exportSettings,
     importSettings,

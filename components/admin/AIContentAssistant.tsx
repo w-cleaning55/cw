@@ -57,7 +57,11 @@ interface AIAssistantProps {
     location: string;
     services: string[];
     targetAudience: string;
+    company?: string;
+    experience?: string;
+    employees?: string;
   };
+
 }
 
 interface AITemplate {
@@ -274,7 +278,8 @@ export default function AIContentAssistant({
   onClose,
   businessContext = BUSINESS_CONTEXT,
 }: AIAssistantProps) {
-  const { t, isArabic } = useTranslation();
+  const { t, isRTL } = useTranslation();
+  const isArabic = isRTL;
   const [isOpen, setIsOpen] = useState(false);
   const [generating, setGenerating] = useState(false);
   const [selectedTemplate, setSelectedTemplate] = useState<AITemplate | null>(

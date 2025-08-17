@@ -124,7 +124,8 @@ export default function DynamicFeaturesSection({
   isVisible = true,
   isPreview = false,
 }: FeaturesSectionProps) {
-  const { t, isArabic } = useTranslation();
+  const { t, isRTL } = useTranslation();
+  const isArabic = isRTL;
   const { colors } = useThemeColors();
   const themeClasses = useThemeClasses();
 

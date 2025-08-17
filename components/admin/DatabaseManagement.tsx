@@ -93,6 +93,7 @@ export default function DatabaseManagement() {
     name: "",
     type: "supabase" as const,
     config: {},
+    isActive: false as boolean,
   });
 
   // حالة قاعدة البيانات
@@ -168,7 +169,7 @@ export default function DatabaseManagement() {
       const connectionId = await databaseManager.addConnection(newConnection);
       notify.success("تم الإضافة", "تم إضافة الاتصال بنجاح");
 
-      setNewConnection({ name: "", type: "supabase", config: {} });
+      setNewConnection({ name: "", type: "supabase", config: {}, isActive: false });
       setIsAddingConnection(false);
       loadConnections();
     } catch (error: any) {
@@ -198,16 +199,9 @@ export default function DatabaseManagement() {
 
   const handleActivateConnection = async (connectionId: string) => {
     try {
-      const result = await databaseManager.setActiveConnection(connectionId);
+      await databaseManager.setActiveConnection(connectionId);
 
       notify.success("تم التفعيل", "تم تفعيل قاعدة البيانات بنجاح");
-
-      if (result.setupRequired) {
-        notify.info(
-          "إعداد قاعدة البيانات",
-          `تم تنفيذ: ${result.actions.join(", ")}`,
-        );
-      }
 
       loadConnections();
       loadActiveConnection();

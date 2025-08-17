@@ -96,7 +96,8 @@ export default function DynamicServicesOverview({
   isVisible = true,
   isPreview = false,
 }: ServicesOverviewProps) {
-  const { t, isArabic } = useTranslation();
+  const { t, isRTL } = useTranslation();
+  const isArabic = isRTL;
   const { colors } = useThemeColors();
   const themeClasses = useThemeClasses();
 

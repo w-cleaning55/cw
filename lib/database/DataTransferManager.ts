@@ -323,9 +323,9 @@ export class DataTransferManager {
 
         // تحويل أسماء الحقول
         const mappedRecord: any = {};
-        for (const [sourceField, targetField] of Object.entries(mapping.fieldMapping)) {
-          if (record[sourceField] !== undefined) {
-            mappedRecord[targetField] = record[sourceField];
+        for (const [sourceField, targetField] of Object.entries(mapping.fieldMapping as Record<string, string>)) {
+          if ((record as any)[sourceField] !== undefined) {
+            (mappedRecord as any)[targetField as any] = (record as any)[sourceField as any];
           }
         }
 

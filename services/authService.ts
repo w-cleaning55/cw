@@ -67,6 +67,50 @@ class AuthService {
     }
   }
 
+  // Register user (client-side stub)
+  async register(userData: Omit<User, 'id' | 'createdAt' | 'updatedAt'>): Promise<User> {
+    const now = new Date().toISOString();
+    const newUser: User = {
+      id: `user_${Date.now()}`,
+      createdAt: now,
+      updatedAt: now,
+      permissions: userData.permissions || [],
+      role: userData.role,
+      name: (userData as any).name,
+      email: (userData as any).email,
+    } as User;
+    this.currentUser = newUser;
+    this.setToken(`local_${btoa(newUser.id)}`);
+    return newUser;
+  }
+
+  // Update user (client-side stub)
+  async updateUser(userId: string, updates: Partial<User>): Promise<User> {
+    if (!this.currentUser || this.currentUser.id !== userId) {
+      // If current user is different, just return merged object for compatibility
+      const now = new Date().toISOString();
+      const merged: User = {
+        id: userId,
+        name: updates.name || 'User',
+        email: updates.email || 'user@example.com',
+        role: updates.role || 'admin',
+        permissions: updates.permissions || [],
+        createdAt: now,
+        updatedAt: now,
+      };
+      this.currentUser = merged;
+      return merged;
+    }
+    this.currentUser = { ...this.currentUser, ...updates, updatedAt: new Date().toISOString() } as User;
+    return this.currentUser;
+  }
+
+  // Change password (client-side stub)
+  async changePassword(currentPassword: string, newPassword: string): Promise<void> {
+    // In this demo implementation, we just resolve. Integrate with backend when available.
+    return;
+  }
+
   // Logout user
   logout(): void {
     this.removeToken();

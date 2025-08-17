@@ -20,7 +20,7 @@ export const GET = withErrorHandler(async (request: NextRequest) => {
   const category = url.searchParams.get('category');
   const featured = url.searchParams.get('featured');
   
-  const servicesData = await safeFileRead(SERVICES_FILE, { services: getDefaultResponse('services') });
+  const servicesData = await safeFileRead(SERVICES_FILE, { services: [] });
   let services = servicesData.services || [];
   
   // Apply filters

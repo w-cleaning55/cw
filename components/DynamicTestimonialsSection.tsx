@@ -84,7 +84,8 @@ export default function DynamicTestimonialsSection({
   isVisible = true,
   isPreview = false,
 }: TestimonialsSectionProps) {
-  const { t, isArabic } = useTranslation();
+  const { t, isRTL } = useTranslation();
+  const isArabic = isRTL;
   const { colors } = useThemeColors();
   const themeClasses = useThemeClasses();
 
@@ -104,15 +105,15 @@ export default function DynamicTestimonialsSection({
 
   // التشغيل التلقائي للكاروسيل
   useEffect(() => {
+    let interval: ReturnType<typeof setInterval> | null = null;
     if (isPlaying && testimonialStyle === "carousel") {
-      const interval = setInterval(() => {
-        setCurrentSlide((prev) =>
-          prev >= testimonials.length - 1 ? 0 : prev + 1,
-        );
+      interval = setInterval(() => {
+        setCurrentSlide((prev) => (prev >= testimonials.length - 1 ? 0 : prev + 1));
       }, data.slideInterval || 5000);
-
-      return () => clearInterval(interval);
     }
+    return () => {
+      if (interval) clearInterval(interval);
+    };
   }, [isPlaying, testimonials.length, data.slideInterval, testimonialStyle]);
 
   const loadTestimonials = async () => {

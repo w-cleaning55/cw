@@ -63,7 +63,7 @@ interface Service {
 
 export default function ServicesManagement() {
   const { t, currentLanguage } = useTranslation();
-  const { addNotification } = useNotify();
+  const notify = useNotify();
   const isArabic = currentLanguage === "ar";
 
   const [services, setServices] = useState<Service[]>([]);
@@ -95,8 +95,8 @@ export default function ServicesManagement() {
       }
     } catch (error) {
       console.error("Error loading services:", error);
-      addNotification(
-        "error",
+      notify.error(
+        isArabic ? "خطأ" : "Error",
         isArabic ? "خطأ في تحميل الخدمات" : "Error loading services",
       );
     } finally {
@@ -124,8 +124,8 @@ export default function ServicesManagement() {
 
       if (response.ok) {
         const data = await response.json();
-        addNotification(
-          "success",
+        notify.success(
+          isArabic ? "نجاح" : "Success",
           editingService
             ? isArabic
               ? "تم تحديث الخدمة بنجاح"
@@ -143,8 +143,8 @@ export default function ServicesManagement() {
       }
     } catch (error) {
       console.error("Error saving service:", error);
-      addNotification(
-        "error",
+      notify.error(
+        isArabic ? "خطأ" : "Error",
         isArabic ? "خطأ في حفظ الخدمة" : "Error saving service",
       );
     }
@@ -168,8 +168,8 @@ export default function ServicesManagement() {
       });
 
       if (response.ok) {
-        addNotification(
-          "success",
+        notify.success(
+          isArabic ? "نجاح" : "Success",
           isArabic ? "تم حذف الخدمة بنجاح" : "Service deleted successfully",
         );
         await loadServices();
@@ -178,8 +178,8 @@ export default function ServicesManagement() {
       }
     } catch (error) {
       console.error("Error deleting service:", error);
-      addNotification(
-        "error",
+      notify.error(
+        isArabic ? "خطأ" : "Error",
         isArabic ? "خطأ في حذف الخدمة" : "Error deleting service",
       );
     }
@@ -200,8 +200,8 @@ export default function ServicesManagement() {
       });
 
       if (response.ok) {
-        addNotification(
-          "success",
+        notify.success(
+          isArabic ? "نجاح" : "Success",
           isArabic
             ? `تم ${!service.active ? "تفعيل" : "إلغاء تفعيل"} الخدمة`
             : `Service ${!service.active ? "enabled" : "disabled"} successfully`,
@@ -212,8 +212,8 @@ export default function ServicesManagement() {
       }
     } catch (error) {
       console.error("Error toggling service status:", error);
-      addNotification(
-        "error",
+      notify.error(
+        isArabic ? "خطأ" : "Error",
         isArabic ? "خطأ في تغيير حالة الخدمة" : "Error toggling service status",
       );
     }

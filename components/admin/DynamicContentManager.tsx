@@ -71,7 +71,9 @@ interface ContentSection {
 }
 
 export default function DynamicContentManager() {
-  const { t, language, isArabic } = useTranslation();
+  const { t, currentLanguage, isRTL } = useTranslation();
+  const language = currentLanguage;
+  const isArabic = isRTL;
   const [content, setContent] = useState<DynamicContent | null>(null);
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
@@ -124,14 +126,14 @@ export default function DynamicContentManager() {
   const updateContent = (path: string[], value: any) => {
     if (!content) return;
 
-    const newContent = { ...content };
-    let current = newContent;
+    const newContent: any = { ...content };
+    let current: any = newContent;
 
     for (let i = 0; i < path.length - 1; i++) {
-      current = current[path[i]];
+      current = current[path[i] as any];
     }
 
-    current[path[path.length - 1]] = value;
+    current[path[path.length - 1] as any] = value;
     setContent(newContent);
     setUnsavedChanges(true);
   };
@@ -597,7 +599,7 @@ export default function DynamicContentManager() {
             </CardHeader>
             <CardContent>
               <div className="space-y-2" dir="rtl">
-                {(content?.homepage?.order || ["hero","services","features","about","testimonials","contact"]).map((secId: string, idx: number) => (
+                {((content as any)?.homepage?.order || ["hero","services","features","about","testimonials","contact"]).map((secId: string, idx: number) => (
                   <div
                     key={secId}
                     className="flex items-center justify-between p-3 bg-white rounded-lg border"
@@ -606,10 +608,10 @@ export default function DynamicContentManager() {
                     onDragOver={(e) => e.preventDefault()}
                     onDrop={() => {
                       if (dragIndex === null || dragIndex === idx) return;
-                      const arr = [...content.homepage.order];
+                      const arr = [...(((content as any).homepage.order) || [])];
                       const [moved] = arr.splice(dragIndex, 1);
                       arr.splice(idx, 0, moved);
-                      updateContent(["homepage","order"], arr);
+                      updateContent(["homepage","order"], arr as any);
                       setDragIndex(null);
                     }}
                   >
@@ -624,11 +626,11 @@ export default function DynamicContentManager() {
                         variant="outline"
                         size="sm"
                         onClick={() => {
-                          const arr = [...content.homepage.order];
-                          if (idx > 0) {
-                            [arr[idx - 1], arr[idx]] = [arr[idx], arr[idx - 1]];
-                            updateContent(["homepage","order"], arr);
-                          }
+                                                     const arr = [...(((content as any).homepage.order) || [])];
+                           if (idx > 0) {
+                             [arr[idx - 1], arr[idx]] = [arr[idx], arr[idx - 1]];
+                             updateContent(["homepage","order"], arr as any);
+                           }
                         }}
                       >
                         ↑
@@ -637,11 +639,11 @@ export default function DynamicContentManager() {
                         variant="outline"
                         size="sm"
                         onClick={() => {
-                          const arr = [...content.homepage.order];
-                          if (idx < arr.length - 1) {
-                            [arr[idx + 1], arr[idx]] = [arr[idx], arr[idx + 1]];
-                            updateContent(["homepage","order"], arr);
-                          }
+                                                     const arr = [...(((content as any).homepage.order) || [])];
+                           if (idx < arr.length - 1) {
+                             [arr[idx + 1], arr[idx]] = [arr[idx], arr[idx + 1]];
+                             updateContent(["homepage","order"], arr as any);
+                           }
                         }}
                       >
                         ↓

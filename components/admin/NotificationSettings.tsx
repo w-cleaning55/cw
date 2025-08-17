@@ -22,7 +22,6 @@ import {
   VolumeX,
   CheckCircle,
   AlertTriangle,
-  Test,
   Save,
   RefreshCw
 } from 'lucide-react';
@@ -552,7 +551,7 @@ export default function NotificationSettings() {
                               </>
                             ) : (
                               <>
-                                <Test className="w-4 h-4 mr-1" />
+                                <Send className="w-4 h-4 mr-1" />
                                 اختبار
                               </>
                             )}

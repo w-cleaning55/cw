@@ -31,3 +31,36 @@ export class OpenAI {
     throw new Error("OpenAI provider not available");
   }
 }
+
+import type { AIMessage, AIResponse, AIConfig } from '../index';
+
+export class OpenAIProvider {
+  private config: AIConfig;
+
+  constructor(config: AIConfig) {
+    this.config = config;
+  }
+
+  async connect(): Promise<boolean> {
+    // Stub connection; real implementation requires openai SDK and network call
+    return false;
+  }
+
+  async testConnection(): Promise<boolean> {
+    return false;
+  }
+
+  async generateResponse(_messages: AIMessage[], _options?: any): Promise<AIResponse> {
+    return {
+      content: 'OpenAI provider is not configured on this deployment.',
+    } as AIResponse;
+  }
+
+  async generateEmbedding?(_text: string): Promise<number[]> {
+    return [];
+  }
+
+  async getModels?(): Promise<string[]> {
+    return [this.config.model || 'gpt-4'];
+  }
+}

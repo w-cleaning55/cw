@@ -1,14 +1,14 @@
 'use client';
 
 import { useState, useEffect, useCallback, createContext, useContext } from 'react';
-import { authService, User, LoginCredentials } from '../services/authService';
+import { authService, User } from '../services/authService';
 
 interface AuthContextType {
   user: User | null;
   isAuthenticated: boolean;
   isLoading: boolean;
   error: string | null;
-  login: (credentials: LoginCredentials) => Promise<void>;
+  login: (credentials: { username: string; password: string }) => Promise<void>;
   logout: () => Promise<void>;
   register: (userData: Omit<User, 'id' | 'createdAt' | 'updatedAt'>) => Promise<User>;
   updateUser: (userId: string, updates: Partial<User>) => Promise<User>;
@@ -59,12 +59,12 @@ export function useAuthState() {
   }, []);
 
   // Login function
-  const login = useCallback(async (credentials: LoginCredentials) => {
+  const login = useCallback(async (credentials: { username: string; password: string }) => {
     try {
       setIsLoading(true);
       setError(null);
       
-      const { user: loggedUser } = await authService.login(credentials);
+      const loggedUser = await authService.login(credentials);
       setUser(loggedUser);
     } catch (err) {
       const errorMessage = err instanceof Error ? err.message : 'خطأ في تسجيل الدخول';

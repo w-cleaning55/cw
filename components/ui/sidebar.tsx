@@ -161,12 +161,12 @@ export default function Sidebar({ isOpen, onToggle, className }: SidebarProps) {
           <div className="flex items-center space-x-3">
             <div className="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center">
               <span className="text-white font-medium text-sm">
-                {user?.username?.charAt(0).toUpperCase() || "A"}
+                {(user?.name || user?.email || "A").charAt(0).toUpperCase()}
               </span>
             </div>
             <div className="flex-1 min-w-0">
               <p className="text-sm font-medium text-gray-900 truncate">
-                {user?.username || "Admin"}
+                {user?.name || user?.email || "Admin"}
               </p>
               <p className="text-xs text-gray-500 truncate">
                 {user?.role || "Admin"}

@@ -113,8 +113,8 @@ export function getRTLProps(content: string): {
 // Performance optimization: memoize expensive calculations
 export function memoizeComponent<P extends object>(
   Component: React.ComponentType<P>,
-  areEqual?: (prevProps: P, nextProps: P) => boolean,
-): React.ComponentType<P> {
+  areEqual?: (prevProps: Readonly<P>, nextProps: Readonly<P>) => boolean,
+): React.MemoExoticComponent<React.ComponentType<P>> {
   return React.memo(Component, areEqual);
 }
 
@@ -178,13 +178,13 @@ export function debounce<T extends (...args: any[]) => any>(
 // Create optimized section component wrapper
 export function createOptimizedSection<P extends Record<string, any>>(
   Component: React.ComponentType<P>,
-): React.ComponentType<P> {
+): React.MemoExoticComponent<React.ComponentType<P>> {
   const OptimizedSection = React.memo((props: P) => {
     return React.createElement(Component, props);
   });
 
   OptimizedSection.displayName = `Optimized(${Component.displayName || Component.name})`;
-  return OptimizedSection;
+  return OptimizedSection as React.MemoExoticComponent<React.ComponentType<P>>;
 }
 
 // Loading skeleton generator

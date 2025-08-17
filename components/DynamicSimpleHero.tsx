@@ -64,7 +64,8 @@ export default function DynamicSimpleHero({
   isVisible = true,
   isPreview = false,
 }: HeroProps) {
-  const { t, isArabic } = useTranslation();
+  const { t, isRTL } = useTranslation();
+  const isArabic = isRTL;
   const [isVideoPlaying, setIsVideoPlaying] = useState(false);
 
   if (!isVisible && !isPreview) return null;
