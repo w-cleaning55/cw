@@ -1,0 +1,51 @@
+{
+  "company": {
+    "name": {
+      "ar": "عالم التنظيف",
+      "en": "Cleaning World"
+    },
+    "tagline": {
+      "ar": "نظافة مثالية لحياة أفضل",
+      "en": "Perfect cleanliness for a better life"
+    },
+    "description": {
+      "ar": "شركة تنظيف رائدة في المملكة العربية السعودية",
+      "en": "Leading cleaning company in Saudi Arabia"
+    },
+    "contact": {
+      "phone": "+966-50-123-4567",
+      "email": "info@cleaningworld.com",
+      "address": {
+        "ar": "جدة، المملكة العربية السعودية",
+        "en": "Jeddah, Saudi Arabia"
+      },
+      "workingHours": {
+        "ar": "الأحد - الخميس: 8:00 ص - 6:00 م",
+        "en": "Sunday - Thursday: 8:00 AM - 6:00 PM"
+      }
+    },
+    "social": {
+      "facebook": "https://facebook.com/cleaningworld",
+      "twitter": "https://twitter.com/cleaningworld",
+      "instagram": "https://instagram.com/cleaningworld",
+      "linkedin": "https://linkedin.com/company/cleaningworld"
+    },
+    "stats": {
+      "customers": 5000,
+      "experience": 10,
+      "rating": 4.8,
+      "services": 15
+    },
+    "seo": {
+      "title": "Cleaning World - Professional Cleaning Services",
+      "description": "Professional cleaning services for homes and offices in Saudi Arabia",
+      "keywords": "cleaning, professional cleaning, home cleaning, office cleaning, Saudi Arabia"
+    },
+    "theme": {
+      "primaryColor": "#2563eb",
+      "secondaryColor": "#1e40af",
+      "accentColor": "#f59e0b",
+      "logoUrl": "/images/logo.png"
+    }
+  }
+}

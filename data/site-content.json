@@ -1,0 +1,108 @@
+{
+  "content": {
+    "heroSection": {
+      "title": {
+        "ar": "خدمات تنظيف احترافية",
+        "en": "Professional Cleaning Services"
+      },
+      "subtitle": {
+        "ar": "نظافة مثالية لحياة أفضل",
+        "en": "Perfect cleanliness for a better life"
+      },
+      "description": {
+        "ar": "نقدم خدمات تنظيف شاملة ومحترفة للمنازل والمكاتب والشركات",
+        "en": "We provide comprehensive and professional cleaning services for homes, offices and companies"
+      },
+      "buttonText": {
+        "ar": "احجز الآن",
+        "en": "Book Now"
+      },
+      "buttonLink": "/contact"
+    },
+    "featuredSection": {
+      "titleAr": "خدماتنا المميزة",
+      "title": "Our Featured Services",
+      "subtitleAr": "حلول تنظيف مهنية لجميع احتياجاتك",
+      "subtitle": "Professional cleaning solutions for all your needs"
+    },
+    "aboutSection": {
+      "title": {
+        "ar": "من نحن",
+        "en": "About Us"
+      },
+      "subtitle": {
+        "ar": "شركة تنظيف موثوقة ومحترفة",
+        "en": "Trusted and Professional Cleaning Company"
+      },
+      "description": {
+        "ar": "نحن شركة تنظيف رائدة في المملكة العربية السعودية، نقدم خدمات عالية الجودة منذ أكثر من 10 سنوات",
+        "en": "We are a leading cleaning company in Saudi Arabia, providing high-quality services for over 10 years"
+      }
+    },
+    "featuresSection": {
+      "title": {
+        "ar": "لماذا تختارنا",
+        "en": "Why Choose Us"
+      },
+      "subtitle": {
+        "ar": "نتميز بالجودة والموثوقية",
+        "en": "We excel in quality and reliability"
+      },
+      "features": [
+        {
+          "title": {
+            "ar": "جودة عالية",
+            "en": "High Quality"
+          },
+          "description": {
+            "ar": "نستخدم أفضل المواد والمعدات",
+            "en": "We use the best materials and equipment"
+          },
+          "icon": "star"
+        },
+        {
+          "title": {
+            "ar": "موثوقية",
+            "en": "Reliability"
+          },
+          "description": {
+            "ar": "نلتزم بالمواعيد والجودة",
+            "en": "We commit to schedules and quality"
+          },
+          "icon": "clock"
+        },
+        {
+          "title": {
+            "ar": "أسعار منافسة",
+            "en": "Competitive Prices"
+          },
+          "description": {
+            "ar": "أسعار عادلة ومنافسة",
+            "en": "Fair and competitive prices"
+          },
+          "icon": "dollar-sign"
+        }
+      ]
+    },
+    "testimonialsSection": {
+      "title": {
+        "ar": "آراء العملاء",
+        "en": "Customer Reviews"
+      },
+      "subtitle": {
+        "ar": "ماذا يقول عملاؤنا عنا",
+        "en": "What our customers say about us"
+      }
+    },
+    "contactSection": {
+      "title": {
+        "ar": "اتصل بنا",
+        "en": "Contact Us"
+      },
+      "subtitle": {
+        "ar": "نحن هنا لمساعدتك",
+        "en": "We are here to help you"
+      }
+    }
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "palettes": [
+    {
+      "id": "default",
+      "name": "Default Blue",
+      "description": "Classic blue theme",
+      "colors": {
+        "primary": "#2563eb",
+        "secondary": "#1e40af",
+        "accent": "#f59e0b",
+        "background": "#ffffff",
+        "surface": "#f8fafc",
+        "text": "#1e293b",
+        "textSecondary": "#64748b"
+      },
+      "active": true
+    },
+    {
+      "id": "green",
+      "name": "Nature Green",
+      "description": "Fresh green theme",
+      "colors": {
+        "primary": "#059669",
+        "secondary": "#047857",
+        "accent": "#fbbf24",
+        "background": "#ffffff",
+        "surface": "#f0fdf4",
+        "text": "#1e293b",
+        "textSecondary": "#64748b"
+      },
+      "active": false
+    },
+    {
+      "id": "purple",
+      "name": "Royal Purple",
+      "description": "Elegant purple theme",
+      "colors": {
+        "primary": "#7c3aed",
+        "secondary": "#5b21b6",
+        "accent": "#f59e0b",
+        "background": "#ffffff",
+        "surface": "#faf5ff",
+        "text": "#1e293b",
+        "textSecondary": "#64748b"
+      },
+      "active": false
+    }
+  ]
+}
