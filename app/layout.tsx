@@ -13,13 +13,15 @@ const inter = Inter({
   subsets: ["latin"],
   display: "swap",
   variable: "--font-inter",
+  preload: true,
 });
 
 const tajawal = Tajawal({
   subsets: ["arabic"],
-  weight: ["200", "300", "400", "500", "700", "800", "900"],
+  weight: ["400", "500", "700"],
   display: "swap",
   variable: "--font-tajawal",
+  preload: true,
 });
 
 export const metadata: Metadata = {
