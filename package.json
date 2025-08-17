@@ -23,11 +23,11 @@
     "clean": "rimraf .next out dist .tsbuildinfo",
     "clean:all": "rimraf .next out dist .tsbuildinfo node_modules package-lock.json",
     "db:seed": "node scripts/seed-database.js",
-    "backup:data": "node scripts/backup-data.js",
     "prebuild": "npm run clean",
     "postbuild": "next-sitemap --config next-sitemap.config.cjs"
   },
   "dependencies": {
+    "@hookform/resolvers": "^3.9.0",
     "@next/bundle-analyzer": "^15.0.3",
     "@radix-ui/react-accordion": "^1.2.0",
     "@radix-ui/react-alert-dialog": "^1.1.1",
@@ -55,15 +55,18 @@
     "@radix-ui/react-toast": "^1.2.1",
     "@radix-ui/react-toggle": "^1.1.0",
     "@radix-ui/react-toggle-group": "^1.1.0",
+    "@tanstack/react-query": "^5.56.2",
     "@vercel/analytics": "^1.5.0",
     "@vercel/speed-insights": "^1.2.0",
     "bcryptjs": "^3.0.2",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "cmdk": "^1.0.0",
+    "date-fns": "^3.6.0",
     "input-otp": "^1.2.4",
     "jsonwebtoken": "^9.0.2",
     "lucide-react": "^0.462.0",
+    "multer": "^2.0.2",
     "next": "^15.0.3",
     "next-themes": "^0.3.0",
     "react": "^18.3.1",
@@ -75,7 +78,8 @@
     "tailwind-merge": "^2.5.2",
     "tailwindcss-animate": "^1.0.7",
     "uuid": "^11.1.0",
-    "vaul": "^0.9.3"
+    "vaul": "^0.9.3",
+    "zod": "^3.23.8"
   },
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.15",
