@@ -1,0 +1,35 @@
+{
+  "siteName": "عالم النظافة",
+  "siteNameEn": "Cleaning World",
+  "language": "ar",
+  "timezone": "Asia/Riyadh",
+  "currency": "SAR",
+  "maintenance": false,
+  "analytics": {
+    "enabled": true,
+    "googleAnalytics": "",
+    "facebookPixel": ""
+  },
+  "seo": {
+    "defaultTitle": "عالم النظافة - خدمات التنظيف المتخصصة",
+    "defaultDescription": "نوفر خدمات التنظيف المتخصصة بأعلى جودة في المملكة العربية السعودية",
+    "keywords": "تنظيف, خدمات تنظيف, السعودية, تنظيف منازل"
+  },
+  "contact": {
+    "phone": "+966501234567",
+    "email": "info@m-clean.net",
+    "address": "الرياض, المملكة العربية السعودية"
+  },
+  "social": {
+    "facebook": "",
+    "twitter": "",
+    "instagram": "",
+    "linkedin": ""
+  },
+  "features": {
+    "booking": true,
+    "chat": true,
+    "multiLanguage": true,
+    "darkMode": true
+  }
+}

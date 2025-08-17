@@ -1,279 +1,48 @@
-# Dependencies
-node_modules/
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+/node_modules
+/.pnp
+.pnp.js
+
+# testing
+/coverage
+
+# next.js
+/.next/
+/out/
+/dist
+
+# production
+/build
+
+# misc
+.DS_Store
+*.pem
+
+# debug
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-pnpm-debug.log*
-lerna-debug.log*
 
-# Next.js build output
-.next/
-out/
-dist/
-build/
-
-# Production builds
-/build
-/dist
-
-# TypeScript build info
-*.tsbuildinfo
-.tsbuildinfo
-
-# Environment variables
+# local env files
 .env
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
+.env*.local
+.env.production
 
-# Vercel
+# vercel
 .vercel
 
-# Netlify
-.netlify
+# typescript
+*.tsbuildinfo
+next-env.d.ts
 
-# IDE and editor files
+# IDE files
 .vscode/
 .idea/
-*.swp
-*.swo
-*~
 
 # OS generated files
-.DS_Store
-.DS_Store?
-._*
-.Spotlight-V100
-.Trashes
-ehthumbs.db
 Thumbs.db
 
-# Logs
-logs
-*.log
-
-# Runtime data
-pids
-*.pid
-*.seed
-*.pid.lock
-
-# Coverage directory used by tools like istanbul
-coverage/
-*.lcov
-
-# nyc test coverage
-.nyc_output
-
-# Dependency directories
-jspm_packages/
-
-# Optional npm cache directory
-.npm
-
-# Optional eslint cache
-.eslintcache
-
-# Microbundle cache
-.rpt2_cache/
-.rts2_cache_cjs/
-.rts2_cache_es/
-.rts2_cache_umd/
-
-# Optional REPL history
-.node_repl_history
-
-# Output of 'npm pack'
-*.tgz
-
-# Yarn Integrity file
-.yarn-integrity
-
-# parcel-bundler cache (https://parceljs.org/)
-.cache
-.parcel-cache
-
-# Next.js build cache
-.next/cache/
-
-# Storybook build outputs
-.out
-.storybook-out
-
-# Temporary folders
-tmp/
-temp/
-
-# Local development
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
-
-# Database files
-*.db
-*.sqlite
-*.sqlite3
-
-# Backup files
-*.backup
-*.bak
-
-# Test files
-*.test.js
-*.test.ts
-*.test.tsx
-*.spec.js
-*.spec.ts
-*.spec.tsx
-
-# Performance analysis files
-bundle-analysis.html
-bundle-analysis.json
-
-# Build optimization files
-webpack.config.js
-next.config.analyze.js
-
-# Server files (if not needed in production)
-server/
-api/
-
-# Documentation files (optional)
-*.md
-!README.md
-!CHANGELOG.md
-!LICENSE.md
-
-# Local configuration files
-.local
-local.*
-
-# Cache directories
-.cache/
-cache/
-
-# Temporary build files
-.tmp/
-tmp/
-
-# Generated files
-generated/
-auto-generated/
-
-# Local development files
-.dev
-development/
-
-# Backup directories
-backup/
-backups/
-
-# Archive files
-*.zip
-*.tar.gz
-*.rar
-
-# Lock files (keep package-lock.json but ignore others)
-yarn.lock
-pnpm-lock.yaml
-
-# Local development scripts
-scripts/local/
-scripts/dev/
-
-# Test coverage reports
-coverage/
-.nyc_output/
-
-# Bundle analyzer reports
-bundle-analyzer/
-bundle-reports/
-
-# Performance monitoring files
-performance-logs/
-performance-reports/
-
-# Local database files
-*.sqlite
-*.db
-*.sql
-
-# Local environment files
-.env.*.local
-
-# Local configuration overrides
-config.local.*
-*.local.*
-
-# Temporary files
-*.tmp
-*.temp
-temp/
-tmp/
-
-# IDE specific files
-.vscode/settings.json
-.vscode/launch.json
-.vscode/extensions.json
-.idea/workspace.xml
-.idea/tasks.xml
-
-# OS specific files
-Thumbs.db
-ehthumbs.db
-Desktop.ini
-$RECYCLE.BIN/
-
-# Local development tools
-.local/
-dev-tools/
-development-tools/
-
-# Build artifacts
-build-artifacts/
-build-output/
-dist-output/
-
-# Cache and temporary files
-.cache/
-.temp/
-.tmp/
-cache/
-temp/
-tmp/
-
-# Generated documentation
-docs/generated/
-docs/build/
-
-# Local development databases
-dev-db/
-local-db/
-development-db/
-
-# Performance test files
-performance-tests/
-benchmark-results/
-
-# Local development logs
-dev-logs/
-development-logs/
-
-# Build optimization cache
-optimization-cache/
-build-cache/
-
-# Local development configurations
-dev-config/
-local-config/
-development-config/
-
-.vercel
-
-# App data (keep repo clean)
-# Ignore runtime data JSON files and backups; keep the folder
-/data/*.json
-/data/backups/
-!data/.gitkeep
+# Build cache
+.turbo
