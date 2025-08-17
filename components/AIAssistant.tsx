@@ -4,6 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 import { Input } from "./ui/input";
 import { Badge } from "./ui/badge";
 import { useTranslation } from "../hooks/useTranslation";
+import { getLocalizedText } from "../lib/utils";
 import {
   MessageCircle,
   Send,
@@ -101,7 +102,7 @@ export default function AIAssistant({
       },
     };
 
-    return messages[context][isArabic ? "ar" : "en"];
+    return getLocalizedText(messages[context], isArabic, "رسالة");
   };
 
   const getContextPrompt = () => {

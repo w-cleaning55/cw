@@ -384,7 +384,7 @@ export default function DynamicServicesOverview({
           <div className="relative overflow-hidden rounded-t-lg h-48">
             <img
               src={service.image || "/placeholder.svg"}
-              alt={service.title[isArabic ? "ar" : "en"]}
+              alt={getLocalizedText(service.title, isArabic, "عنوان")}
               className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
             />
 
@@ -453,14 +453,14 @@ export default function DynamicServicesOverview({
                 className="text-xl font-bold mb-2"
                 style={{ color: colors.text }}
               >
-                {service.title[isArabic ? "ar" : "en"]}
+                {getLocalizedText(service.title, isArabic, "عنوان")}
               </h3>
               <p
                 className="text-sm leading-relaxed"
                 style={{ color: colors.textSecondary }}
               >
-                {service.shortDescription?.[isArabic ? "ar" : "en"] ||
-                  service.description[isArabic ? "ar" : "en"]}
+                {getLocalizedText(service.shortDescription, isArabic, "") ||
+                  getLocalizedText(service.description, isArabic, "وصف")}
               </p>
             </div>
 
@@ -486,7 +486,7 @@ export default function DynamicServicesOverview({
                 >
                   <Clock className="w-4 h-4" />
                   <span className="text-sm">
-                    {service.duration[isArabic ? "ar" : "en"]}
+                    {getLocalizedText(service.duration, isArabic, "مدة")}
                   </span>
                 </div>
               )}
@@ -505,7 +505,7 @@ export default function DynamicServicesOverview({
                       >
                         <CheckCircle className="w-3 h-3 text-green-500" />
                         <span style={{ color: colors.textSecondary }}>
-                          {feature[isArabic ? "ar" : "en"]}
+                          {getLocalizedText(feature, isArabic, "نص")}
                         </span>
                       </li>
                     ))}
@@ -547,7 +547,7 @@ export default function DynamicServicesOverview({
                       className="text-xs"
                       style={{ color: colors.textSecondary }}
                     >
-                      {service.price.unit[isArabic ? "ar" : "en"]}
+                      {getLocalizedText(service.price.unit, isArabic, "وحدة")}
                     </p>
                   )}
                 </div>
@@ -589,7 +589,7 @@ export default function DynamicServicesOverview({
                   <div className="relative h-64 md:h-full">
                     <img
                       src={service.image || "/placeholder.svg"}
-                      alt={service.title[isArabic ? "ar" : "en"]}
+                      alt={getLocalizedText(service.title, isArabic, "عنوان")}
                       className="w-full h-full object-cover rounded-lg"
                     />
                     {service.featured && (
@@ -606,13 +606,13 @@ export default function DynamicServicesOverview({
                       className="text-3xl font-bold mb-4"
                       style={{ color: colors.text }}
                     >
-                      {service.title[isArabic ? "ar" : "en"]}
+                      {getLocalizedText(service.title, isArabic, "عنوان")}
                     </h3>
                     <p
                       className="text-lg mb-6"
                       style={{ color: colors.textSecondary }}
                     >
-                      {service.description[isArabic ? "ar" : "en"]}
+                      {getLocalizedText(service.description, isArabic, "وصف")}
                     </p>
 
                     {/* المميزات */}
@@ -622,7 +622,7 @@ export default function DynamicServicesOverview({
                           <li key={index} className="flex items-center gap-2">
                             <CheckCircle className="w-5 h-5 text-green-500" />
                             <span style={{ color: colors.textSecondary }}>
-                              {feature[isArabic ? "ar" : "en"]}
+                              {getLocalizedText(feature, isArabic, "نص")}
                             </span>
                           </li>
                         ))}
@@ -643,7 +643,7 @@ export default function DynamicServicesOverview({
                               className="text-sm"
                               style={{ color: colors.textSecondary }}
                             >
-                              {service.price.unit[isArabic ? "ar" : "en"]}
+                              {getLocalizedText(service.price.unit, isArabic, "وحدة")}
                             </p>
                           )}
                         </div>
@@ -712,7 +712,7 @@ export default function DynamicServicesOverview({
             <div className="w-48 h-32 flex-shrink-0">
               <img
                 src={service.image || "/placeholder.svg"}
-                alt={service.title[isArabic ? "ar" : "en"]}
+                alt={getLocalizedText(service.title, isArabic, "عنوان")}
                 className="w-full h-full object-cover"
               />
             </div>
@@ -726,7 +726,7 @@ export default function DynamicServicesOverview({
                       className="text-xl font-bold"
                       style={{ color: colors.text }}
                     >
-                      {service.title[isArabic ? "ar" : "en"]}
+                      {getLocalizedText(service.title, isArabic, "عنوان")}
                     </h3>
                     {service.featured && (
                       <Badge variant="secondary">
@@ -737,7 +737,7 @@ export default function DynamicServicesOverview({
                   </div>
 
                   <p className="mb-3" style={{ color: colors.textSecondary }}>
-                    {service.description[isArabic ? "ar" : "en"]}
+                    {getLocalizedText(service.description, isArabic, "وصف")}
                   </p>
 
                   <div className="flex items-center gap-4 text-sm">
@@ -757,7 +757,7 @@ export default function DynamicServicesOverview({
                         style={{ color: colors.textSecondary }}
                       >
                         <Clock className="w-4 h-4" />
-                        <span>{service.duration[isArabic ? "ar" : "en"]}</span>
+                        <span>{getLocalizedText(service.duration, isArabic, "مدة")}</span>
                       </div>
                     )}
 
@@ -789,7 +789,7 @@ export default function DynamicServicesOverview({
                           className="text-sm"
                           style={{ color: colors.textSecondary }}
                         >
-                          {service.price.unit[isArabic ? "ar" : "en"]}
+                          {getLocalizedText(service.price.unit, isArabic, "وحدة")}
                         </p>
                       )}
                     </div>
@@ -819,7 +819,7 @@ export default function DynamicServicesOverview({
           <div className="relative">
             <img
               src={service.image || "/placeholder.svg"}
-              alt={service.title[isArabic ? "ar" : "en"]}
+              alt={getLocalizedText(service.title, isArabic, "عنوان")}
               className="w-full h-48 object-cover"
             />
             {service.featured && (
@@ -832,11 +832,11 @@ export default function DynamicServicesOverview({
 
           <CardContent className="p-4">
             <h3 className="font-bold mb-2" style={{ color: colors.text }}>
-              {service.title[isArabic ? "ar" : "en"]}
+              {getLocalizedText(service.title, isArabic, "عنوان")}
             </h3>
 
             <p className="text-sm mb-3" style={{ color: colors.textSecondary }}>
-              {service.description[isArabic ? "ar" : "en"]}
+              {getLocalizedText(service.description, isArabic, "وصف")}
             </p>
 
             {service.features && (
@@ -845,7 +845,7 @@ export default function DynamicServicesOverview({
                   <li key={index} className="flex items-center gap-2 text-sm">
                     <CheckCircle className="w-3 h-3 text-green-500" />
                     <span style={{ color: colors.textSecondary }}>
-                      {feature[isArabic ? "ar" : "en"]}
+                      {getLocalizedText(feature, isArabic, "نص")}
                     </span>
                   </li>
                 ))}
@@ -884,7 +884,7 @@ export default function DynamicServicesOverview({
             <div className="h-56 overflow-hidden">
               <img
                 src={service.image || "/placeholder.svg"}
-                alt={service.title[isArabic ? "ar" : "en"]}
+                alt={getLocalizedText(service.title, isArabic, "عنوان")}
                 className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
@@ -923,11 +923,11 @@ export default function DynamicServicesOverview({
           <CardContent className="p-6">
             <div className="mb-4">
               <h3 className="text-xl font-bold mb-2 group-hover:text-blue-600 transition-colors">
-                {service.title[isArabic ? "ar" : "en"]}
+                {getLocalizedText(service.title, isArabic, "عنوان")}
               </h3>
               <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
-                {service.shortDescription?.[isArabic ? "ar" : "en"] ||
-                  service.description[isArabic ? "ar" : "en"]}
+                {getLocalizedText(service.shortDescription, isArabic, "") ||
+                  getLocalizedText(service.description, isArabic, "وصف")}
               </p>
             </div>
 
@@ -960,7 +960,7 @@ export default function DynamicServicesOverview({
                 <div className="flex items-center gap-2 text-gray-600">
                   <Clock className="w-4 h-4" />
                   <span className="text-sm">
-                    {service.duration[isArabic ? "ar" : "en"]}
+                    {getLocalizedText(service.duration, isArabic, "مدة")}
                   </span>
                 </div>
               )}
@@ -989,7 +989,7 @@ export default function DynamicServicesOverview({
                     </div>
                     {service.price.unit && (
                       <p className="text-xs text-gray-500">
-                        {service.price.unit[isArabic ? "ar" : "en"]}
+                        {getLocalizedText(service.price.unit, isArabic, "وحدة")}
                       </p>
                     )}
                   </div>
@@ -1020,11 +1020,11 @@ export default function DynamicServicesOverview({
           </div>
 
           <h3 className="font-semibold mb-2" style={{ color: colors.text }}>
-            {service.title[isArabic ? "ar" : "en"]}
+            {getLocalizedText(service.title, isArabic, "عنوان")}
           </h3>
 
           <p className="text-sm mb-4" style={{ color: colors.textSecondary }}>
-            {service.shortDescription?.[isArabic ? "ar" : "en"]}
+            {getLocalizedText(service.shortDescription, isArabic, "")}
           </p>
 
           {service.price && (
@@ -1063,7 +1063,7 @@ export default function DynamicServicesOverview({
             </option>
             {data.categories.map((category) => (
               <option key={category.id} value={category.id}>
-                {category.name[isArabic ? "ar" : "en"]}
+                {getLocalizedText(category.name, isArabic, "اسم")}
               </option>
             ))}
           </select>
@@ -1081,7 +1081,7 @@ export default function DynamicServicesOverview({
           >
             {data.sortOptions.map((option) => (
               <option key={option.id} value={option.id}>
-                {option.name[isArabic ? "ar" : "en"]}
+                {getLocalizedText(option.name, isArabic, "اسم")}
               </option>
             ))}
           </select>
@@ -1141,7 +1141,7 @@ export default function DynamicServicesOverview({
                 className="text-lg max-w-3xl mx-auto"
                 style={{ color: colors.textSecondary }}
               >
-                {data.description[isArabic ? "ar" : "en"]}
+                {getLocalizedText(data.description, isArabic, "وصف")}
               </p>
             )}
           </div>
@@ -1173,7 +1173,7 @@ export default function DynamicServicesOverview({
                   color: "white",
                 }}
               >
-                {data.viewAllButton[isArabic ? "ar" : "en"]}
+                {getLocalizedText(data.viewAllButton, isArabic, "عرض الكل")}
                 <Eye className="w-5 h-5 ml-2" />
               </Button>
             </div>

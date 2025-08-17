@@ -248,7 +248,7 @@ export default function ContentManagementInterface() {
                     {getLocalizedText(action.title, isArabic, "إجراء")}
                   </div>
                   <div className="text-xs text-gray-500">
-                    {action.description[isArabic ? "ar" : "en"]}
+                    {getLocalizedText(action.description, isArabic, "وصف")}
                   </div>
                 </div>
               </Button>

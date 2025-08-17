@@ -4,6 +4,7 @@ import React, { useState, useRef, useEffect } from "react";
 import { Palette, ChevronDown, Check } from "lucide-react";
 import { useTheme } from "@/hooks/useTheme";
 import { useTranslation } from "@/hooks/useTranslation";
+import { getLocalizedText } from "@/lib/utils";
 import { THEMES } from "@/lib/theme-system";
 
 interface ThemeSwitcherProps {

@@ -2,6 +2,7 @@
 
 import React, { useState, useRef, useEffect } from "react";
 import { useTranslation } from "@/hooks/useTranslation";
+import { getLocalizedText } from "@/lib/utils";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -619,7 +620,7 @@ export default function AdvancedImageUploader({
                   >
                     {DEFAULT_CATEGORIES.map((cat) => (
                       <option key={cat.id} value={cat.id}>
-                        {cat.name[isArabic ? "ar" : "en"]}
+                        {getLocalizedText(cat.name, isArabic, "اسم الفئة")}
                       </option>
                     ))}
                   </select>
@@ -661,7 +662,7 @@ export default function AdvancedImageUploader({
                     <option value="all">جميع الفئات</option>
                     {DEFAULT_CATEGORIES.map((cat) => (
                       <option key={cat.id} value={cat.id}>
-                        {cat.name[isArabic ? "ar" : "en"]}
+                        {getLocalizedText(cat.name, isArabic, "اسم الفئة")}
                       </option>
                     ))}
                   </select>
@@ -717,7 +718,7 @@ export default function AdvancedImageUploader({
                       <img
                         src={image.url}
                         alt={
-                          image.altText?.[isArabic ? "ar" : "en"] ||
+                          getLocalizedText(image.altText, isArabic, "نص بديل") ||
                           image.originalName
                         }
                         className="w-full h-full object-cover"
@@ -746,7 +747,7 @@ export default function AdvancedImageUploader({
                     </div>
                     <CardContent className="p-2">
                       <p className="text-xs font-medium truncate">
-                        {image.title?.[isArabic ? "ar" : "en"] ||
+                        {getLocalizedText(image.title, isArabic, "عنوان") ||
                           image.originalName}
                       </p>
                       <p className="text-xs text-gray-500 truncate">
@@ -781,7 +782,7 @@ export default function AdvancedImageUploader({
                       <img
                         src={image.url}
                         alt={
-                          image.altText?.[isArabic ? "ar" : "en"] ||
+                          getLocalizedText(image.altText, isArabic, "نص بديل") ||
                           image.originalName
                         }
                         className="w-full h-full object-cover"
@@ -789,11 +790,11 @@ export default function AdvancedImageUploader({
                     </div>
                     <div className="flex-1 min-w-0">
                       <p className="font-medium truncate">
-                        {image.title?.[isArabic ? "ar" : "en"] ||
+                        {getLocalizedText(image.title, isArabic, "عنوان") ||
                           image.originalName}
                       </p>
                       <p className="text-sm text-gray-500 truncate">
-                        {image.description?.[isArabic ? "ar" : "en"]}
+                        {getLocalizedText(image.description, isArabic, "وصف")}
                       </p>
                       <div className="flex items-center space-x-4 rtl:space-x-reverse mt-1">
                         <span className="text-xs text-gray-400">

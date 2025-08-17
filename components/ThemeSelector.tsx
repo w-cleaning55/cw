@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import { useTranslation } from "@/hooks/useTranslation";
 import { useTheme, useDarkMode, useThemeControl } from "@/hooks/useTheme";
+import { getLocalizedText } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -142,11 +143,11 @@ export default function ThemeSelector({
         </div>
 
         <h3 className="font-semibold text-sm mb-1">
-          {theme.name[isArabic ? "ar" : "en"]}
+          {getLocalizedText(theme.name, isArabic, "اسم الثيم")}
         </h3>
 
         <p className="text-xs text-gray-600 mb-2">
-          {theme.description[isArabic ? "ar" : "en"]}
+          {getLocalizedText(theme.description, isArabic, "وصف الثيم")}
         </p>
 
         {currentTheme === themeId && (
@@ -333,7 +334,7 @@ export default function ThemeSelector({
                   ? theme.dark.primary
                   : theme.light.primary,
               }}
-              title={theme.name[isArabic ? "ar" : "en"]}
+              title={getLocalizedText(theme.name, isArabic, "اسم الثيم")}
             />
           ))}
         </div>
@@ -409,11 +410,7 @@ export default function ThemeSelector({
                       style={{ backgroundColor: colors.primary }}
                     />
                     <span className="font-semibold">
-                      {
-                        availableThemes[currentTheme]?.name[
-                          isArabic ? "ar" : "en"
-                        ]
-                      }
+                                              {getLocalizedText(availableThemes[currentTheme]?.name, isArabic, "اسم الثيم")}
                     </span>
                   </div>
 

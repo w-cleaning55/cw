@@ -263,7 +263,7 @@ export default function DynamicTestimonialsSection({
                       className="text-xl md:text-2xl leading-relaxed"
                       style={{ color: colors.text }}
                     >
-                      "{testimonial.comment[isArabic ? "ar" : "en"]}"
+                      "{getLocalizedText(testimonial.comment, isArabic, "تعليق")}"
                     </p>
                   </div>
 
@@ -559,7 +559,7 @@ export default function DynamicTestimonialsSection({
                   className="text-sm leading-relaxed"
                   style={{ color: colors.text }}
                 >
-                  {testimonial.comment[isArabic ? "ar" : "en"]}
+                  {getLocalizedText(testimonial.comment, isArabic, "تعليق")}
                 </p>
               </div>
 
@@ -669,7 +669,7 @@ export default function DynamicTestimonialsSection({
                 </div>
 
                 <p className="text-sm leading-relaxed mb-4">
-                  {testimonial.comment[isArabic ? "ar" : "en"]}
+                  {getLocalizedText(testimonial.comment, isArabic, "تعليق")}
                 </p>
 
                 <div className="flex items-center justify-between text-xs text-gray-500">
@@ -738,7 +738,7 @@ export default function DynamicTestimonialsSection({
                 className="text-sm leading-relaxed"
                 style={{ color: colors.text }}
               >
-                {testimonial.comment[isArabic ? "ar" : "en"]}
+                {getLocalizedText(testimonial.comment, isArabic, "تعليق")}
               </p>
             </div>
 
@@ -845,7 +845,7 @@ export default function DynamicTestimonialsSection({
                 className="text-lg max-w-3xl mx-auto"
                 style={{ color: colors.textSecondary }}
               >
-                {data.description[isArabic ? "ar" : "en"]}
+                {getLocalizedText(data.description, isArabic, "وصف")}
               </p>
             )}
           </div>

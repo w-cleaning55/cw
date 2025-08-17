@@ -3,6 +3,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Globe, ChevronDown, Check } from "lucide-react";
 import { useTranslation } from "@/hooks/useTranslation";
+import { getLocalizedText } from "@/lib/utils";
 
 interface LanguageSwitcherProps {
   className?: string;

@@ -6,9 +6,10 @@ import { Globe, Palette } from "lucide-react";
 import { CompanyLogo } from "@/components/ui/CompactIcons";
 import { useSystemSettings } from "@/hooks/useSystemSettings";
 import QuickThemeSwitcher from "@/components/QuickThemeSwitcher";
-import DatabaseIndicator from "@/components/DatabaseIndicator";
+// import DatabaseIndicator from "@/components/DatabaseIndicator";
 // import EnhancedIndicators from "@/components/EnhancedIndicators";
 import { useTranslation } from "@/hooks/useTranslation";
+import { getLocalizedText } from "@/lib/utils";
 import { useTheme } from "@/hooks/useTheme";
 
 interface HeaderProps {
@@ -97,7 +98,7 @@ const Header: React.FC<HeaderProps> = ({ className = "" }) => {
             </button>
           </div>
                      <div className="hidden md:flex items-center gap-3">
-             <DatabaseIndicator />
+             {/* <DatabaseIndicator /> */}
              <QuickThemeSwitcher />
              {/* <EnhancedIndicators /> */}
            </div>

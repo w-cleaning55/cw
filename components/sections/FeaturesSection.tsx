@@ -2,11 +2,12 @@
 
 import React from "react";
 import { Shield, Clock, Award } from "lucide-react";
+import { getLocalizedText } from "@/lib/utils";
 
 interface FeatureItemInput {
   icon?: string;
-  title?: string;
-  description?: string;
+  title?: string | { ar: string; en: string };
+  description?: string | { ar: string; en: string };
 }
 
 interface Feature {
@@ -76,8 +77,8 @@ const FeaturesSection: React.FC<FeaturesSectionProps> = ({ className = "", title
   const features: Feature[] = (items && items.length > 0)
     ? items.map((it) => ({
         icon: mapIcon(it.icon),
-        title: it.title || "",
-        description: it.description || "",
+        title: getLocalizedText(it.title, true, ""),
+        description: getLocalizedText(it.description, true, ""),
       }))
     : defaultFeatures;
 
@@ -104,3 +105,4 @@ const FeaturesSection: React.FC<FeaturesSectionProps> = ({ className = "", title
 };
 
 export default FeaturesSection;
+

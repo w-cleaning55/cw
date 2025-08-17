@@ -110,13 +110,13 @@ export default function DynamicSimpleHero({
                   className={`px-3 py-1 ${badge.color || "bg-blue-100 text-blue-800"}`}
                 >
                   <Sparkles className="w-3 h-3 mr-1" />
-                  {badge.text[isArabic ? "ar" : "en"]}
+                  {getLocalizedText(badge.text, isArabic, "شارة")}
                 </Badge>
               ))}
             </div>
           )}
 
-          {/* العنوان الر��يسي */}
+          {/* العنوان الرئيسي */}
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
             {getLocalizedText(data.title, isArabic, "عنوان البانر")}
           </h1>
@@ -212,14 +212,12 @@ export default function DynamicSimpleHero({
 
           {/* الإحصائيات */}
           {data.showStats && data.stats && data.stats.length > 0 && (
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-              {data.stats.map((stat, index) => (
+            <div className="grid grid-cols-3 gap-8">
+              {data.stats.slice(0, 3).map((stat, index) => (
                 <div key={index} className="text-center">
-                  <div className="text-3xl md:text-4xl font-bold mb-2">
-                    {stat.value}
-                  </div>
+                  <div className="text-3xl font-bold mb-2">{stat.value}</div>
                   <div className="text-sm text-gray-300">
-                    {stat.label[isArabic ? "ar" : "en"]}
+                    {getLocalizedText(stat.label, isArabic, "إحصائية")}
                   </div>
                 </div>
               ))}
@@ -230,36 +228,36 @@ export default function DynamicSimpleHero({
     </section>
   );
 
+  // شكل البانر الحديث
   const renderModernHero = () => (
-    <section className="relative min-h-screen flex items-center">
+    <section className="py-20 bg-white">
       <div className="container mx-auto px-4">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
-          {/* المحتوى */}
           <div className="space-y-8">
             {/* الشارات */}
             {data.badges && data.badges.length > 0 && (
               <div className="flex gap-2">
                 {data.badges.map((badge, index) => (
                   <Badge key={index} variant="outline" className="px-3 py-1">
-                    {badge.text[isArabic ? "ar" : "en"]}
+                    {getLocalizedText(badge.text, isArabic, "شارة")}
                   </Badge>
                 ))}
               </div>
             )}
 
             <h1 className="text-4xl md:text-6xl font-bold leading-tight text-gray-900">
-              {data.title[isArabic ? "ar" : "en"]}
+              {getLocalizedText(data.title, isArabic, "عنوان البانر")}
             </h1>
 
             {data.subtitle && (
               <h2 className="text-xl md:text-2xl text-gray-600">
-                {data.subtitle[isArabic ? "ar" : "en"]}
+                {getLocalizedText(data.subtitle, isArabic, "نص فرعي")}
               </h2>
             )}
 
             {data.description && (
               <p className="text-lg text-gray-700 leading-relaxed">
-                {data.description[isArabic ? "ar" : "en"]}
+                {getLocalizedText(data.description, isArabic, "وصف البانر")}
               </p>
             )}
 
@@ -270,7 +268,7 @@ export default function DynamicSimpleHero({
                   <div key={index} className="flex items-center gap-3">
                     <CheckCircle className="w-5 h-5 text-green-500" />
                     <span className="text-gray-700">
-                      {feature.text[isArabic ? "ar" : "en"]}
+                      {getLocalizedText(feature.text, isArabic, "ميزة")}
                     </span>
                   </div>
                 ))}
@@ -281,14 +279,14 @@ export default function DynamicSimpleHero({
             <div className="flex flex-col sm:flex-row gap-4">
               {data.cta && (
                 <Button size="lg" className="bg-blue-600 hover:bg-blue-700">
-                  {data.cta[isArabic ? "ar" : "en"]}
+                  {getLocalizedText(data.cta, isArabic, "ابدأ الآن")}
                   <ArrowRight className="w-5 h-5 ml-2" />
                 </Button>
               )}
               {data.ctaSecondary && (
                 <Button variant="outline" size="lg">
                   <MessageCircle className="w-5 h-5 mr-2" />
-                  {data.ctaSecondary[isArabic ? "ar" : "en"]}
+                  {getLocalizedText(data.ctaSecondary, isArabic, "اتصل بنا")}
                 </Button>
               )}
             </div>
@@ -302,7 +300,7 @@ export default function DynamicSimpleHero({
                       {stat.value}
                     </div>
                     <div className="text-sm text-gray-600">
-                      {stat.label[isArabic ? "ar" : "en"]}
+                      {getLocalizedText(stat.label, isArabic, "إحصائية")}
                     </div>
                   </div>
                 ))}
@@ -335,33 +333,33 @@ export default function DynamicSimpleHero({
           {/* شارة بسيطة */}
           {data.badges && data.badges[0] && (
             <Badge variant="outline" className="mx-auto">
-              {data.badges[0].text[isArabic ? "ar" : "en"]}
+              {getLocalizedText(data.badges[0].text, isArabic, "شارة")}
             </Badge>
           )}
 
           <h1 className="text-4xl md:text-5xl font-bold text-gray-900">
-            {data.title[isArabic ? "ar" : "en"]}
+            {getLocalizedText(data.title, isArabic, "عنوان البانر")}
           </h1>
 
           {data.subtitle && (
             <p className="text-xl text-gray-600">
-              {data.subtitle[isArabic ? "ar" : "en"]}
+              {getLocalizedText(data.subtitle, isArabic, "نص فرعي")}
             </p>
           )}
 
           {data.description && (
             <p className="text-lg text-gray-700 max-w-2xl mx-auto">
-              {data.description[isArabic ? "ar" : "en"]}
+              {getLocalizedText(data.description, isArabic, "وصف البانر")}
             </p>
           )}
 
           <div className="flex justify-center gap-4">
             {data.cta && (
-              <Button size="lg">{data.cta[isArabic ? "ar" : "en"]}</Button>
+              <Button size="lg">{getLocalizedText(data.cta, isArabic, "ابدأ الآن")}</Button>
             )}
             {data.ctaSecondary && (
               <Button variant="outline" size="lg">
-                {data.ctaSecondary[isArabic ? "ar" : "en"]}
+                {getLocalizedText(data.ctaSecondary, isArabic, "اتصل بنا")}
               </Button>
             )}
           </div>
@@ -375,7 +373,7 @@ export default function DynamicSimpleHero({
                     {stat.value}
                   </div>
                   <div className="text-sm text-gray-600">
-                    {stat.label[isArabic ? "ar" : "en"]}
+                    {getLocalizedText(stat.label, isArabic, "إحصائية")}
                   </div>
                 </div>
               ))}
@@ -399,18 +397,18 @@ export default function DynamicSimpleHero({
           </div>
 
           <h1 className="text-5xl md:text-7xl font-bold leading-tight">
-            {data.title[isArabic ? "ar" : "en"]}
+            {getLocalizedText(data.title, isArabic, "عنوان البانر")}
           </h1>
 
           {data.subtitle && (
             <h2 className="text-2xl md:text-3xl text-gray-100">
-              {data.subtitle[isArabic ? "ar" : "en"]}
+              {getLocalizedText(data.subtitle, isArabic, "نص فرعي")}
             </h2>
           )}
 
           {data.description && (
             <p className="text-xl text-gray-200 max-w-3xl mx-auto">
-              {data.description[isArabic ? "ar" : "en"]}
+              {getLocalizedText(data.description, isArabic, "وصف البانر")}
             </p>
           )}
 
@@ -420,7 +418,7 @@ export default function DynamicSimpleHero({
                 size="lg"
                 className="bg-white text-gray-900 hover:bg-gray-100 px-10 py-4 text-lg"
               >
-                {data.cta[isArabic ? "ar" : "en"]}
+                {getLocalizedText(data.cta, isArabic, "ابدأ الآن")}
                 <TrendingUp className="w-5 h-5 ml-2" />
               </Button>
             )}
@@ -430,7 +428,7 @@ export default function DynamicSimpleHero({
                 size="lg"
                 className="border-white text-white hover:bg-white hover:text-gray-900 px-10 py-4 text-lg"
               >
-                {data.ctaSecondary[isArabic ? "ar" : "en"]}
+                {getLocalizedText(data.ctaSecondary, isArabic, "اتصل بنا")}
               </Button>
             )}
           </div>
@@ -445,7 +443,7 @@ export default function DynamicSimpleHero({
                 >
                   <div className="text-3xl font-bold mb-2">{stat.value}</div>
                   <div className="text-sm text-gray-200">
-                    {stat.label[isArabic ? "ar" : "en"]}
+                    {getLocalizedText(stat.label, isArabic, "إحصائية")}
                   </div>
                 </Card>
               ))}
@@ -464,23 +462,23 @@ export default function DynamicSimpleHero({
           {data.badges && data.badges[0] && (
             <Badge className="bg-blue-100 text-blue-800">
               <Award className="w-3 h-3 mr-1" />
-              {data.badges[0].text[isArabic ? "ar" : "en"]}
+              {getLocalizedText(data.badges[0].text, isArabic, "شارة")}
             </Badge>
           )}
 
           <h1 className="text-4xl md:text-5xl font-bold text-gray-900 leading-tight">
-            {data.title[isArabic ? "ar" : "en"]}
+            {getLocalizedText(data.title, isArabic, "عنوان البانر")}
           </h1>
 
           {data.subtitle && (
             <h2 className="text-xl text-gray-700">
-              {data.subtitle[isArabic ? "ar" : "en"]}
+              {getLocalizedText(data.subtitle, isArabic, "نص فرعي")}
             </h2>
           )}
 
           {data.description && (
             <p className="text-lg text-gray-600 leading-relaxed">
-              {data.description[isArabic ? "ar" : "en"]}
+              {getLocalizedText(data.description, isArabic, "وصف البانر")}
             </p>
           )}
 
@@ -493,7 +491,7 @@ export default function DynamicSimpleHero({
                     <CheckCircle className="w-4 h-4 text-blue-600" />
                   </div>
                   <span className="text-gray-700">
-                    {feature.text[isArabic ? "ar" : "en"]}
+                    {getLocalizedText(feature.text, isArabic, "ميزة")}
                   </span>
                 </div>
               ))}
@@ -503,14 +501,14 @@ export default function DynamicSimpleHero({
           <div className="space-y-4">
             {data.cta && (
               <Button size="lg" className="w-full sm:w-auto">
-                {data.cta[isArabic ? "ar" : "en"]}
+                {getLocalizedText(data.cta, isArabic, "ابدأ الآن")}
                 <ArrowRight className="w-5 h-5 ml-2" />
               </Button>
             )}
             {data.ctaSecondary && (
               <Button variant="outline" size="lg" className="w-full sm:w-auto">
                 <Phone className="w-5 h-5 mr-2" />
-                {data.ctaSecondary[isArabic ? "ar" : "en"]}
+                {getLocalizedText(data.ctaSecondary, isArabic, "اتصل بنا")}
               </Button>
             )}
           </div>
@@ -524,7 +522,7 @@ export default function DynamicSimpleHero({
                     {stat.value}
                   </div>
                   <div className="text-sm text-gray-600">
-                    {stat.label[isArabic ? "ar" : "en"]}
+                    {getLocalizedText(stat.label, isArabic, "إحصائية")}
                   </div>
                 </div>
               ))}
@@ -606,18 +604,18 @@ export default function DynamicSimpleHero({
           )}
 
           <h1 className="text-5xl md:text-7xl font-bold leading-tight">
-            {data.title[isArabic ? "ar" : "en"]}
+            {getLocalizedText(data.title, isArabic, "عنوان البانر")}
           </h1>
 
           {data.subtitle && (
             <h2 className="text-2xl md:text-3xl text-gray-100">
-              {data.subtitle[isArabic ? "ar" : "en"]}
+              {getLocalizedText(data.subtitle, isArabic, "نص فرعي")}
             </h2>
           )}
 
           {data.description && (
             <p className="text-xl text-gray-200 max-w-3xl mx-auto">
-              {data.description[isArabic ? "ar" : "en"]}
+              {getLocalizedText(data.description, isArabic, "وصف البانر")}
             </p>
           )}
 
@@ -627,7 +625,7 @@ export default function DynamicSimpleHero({
                 size="lg"
                 className="bg-white text-gray-900 hover:bg-gray-100 px-10 py-4 text-lg"
               >
-                {data.cta[isArabic ? "ar" : "en"]}
+                {getLocalizedText(data.cta, isArabic, "ابدأ الآن")}
                 <ArrowRight className="w-5 h-5 ml-2" />
               </Button>
             )}
@@ -638,7 +636,7 @@ export default function DynamicSimpleHero({
                 className="border-white text-white hover:bg-white hover:text-gray-900 px-10 py-4 text-lg"
               >
                 <MessageCircle className="w-5 h-5 mr-2" />
-                {data.ctaSecondary[isArabic ? "ar" : "en"]}
+                {getLocalizedText(data.ctaSecondary, isArabic, "اتصل بنا")}
               </Button>
             )}
           </div>
