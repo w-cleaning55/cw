@@ -3,28 +3,15 @@ const nextConfig = {
   // Experimental features
   experimental: {
     webpackBuildWorker: true,
-    optimizePackageImports: [
-      "lucide-react",
-      "@radix-ui/react-icons",
-      "@radix-ui/react-accordion",
-      "@radix-ui/react-alert-dialog",
-      "@radix-ui/react-avatar",
-      "@radix-ui/react-button",
-      "@radix-ui/react-card",
-      "@radix-ui/react-dialog",
-      "@radix-ui/react-dropdown-menu",
-      "@radix-ui/react-form",
-      "@radix-ui/react-label",
-      "@radix-ui/react-popover",
-      "@radix-ui/react-scroll-area",
-      "@radix-ui/react-select",
-      "@radix-ui/react-separator",
-      "@radix-ui/react-slider",
-      "@radix-ui/react-switch",
-      "@radix-ui/react-tabs",
-      "@radix-ui/react-toast",
-    ],
+    optimizePackageImports: ["lucide-react", "@radix-ui/react-icons"],
   },
+
+  // Allow Builder.io cross-origin requests
+  allowedDevOrigins: [
+    "5968d79e40fa414b92f4d6f4055d93ed-22bd19dd88ee46419b6784aea.fly.dev",
+    "builder.io",
+    "*.builder.io",
+  ],
 
   // Webpack configuration - simplified to prevent chunk loading issues
   webpack: (config, { dev, isServer }) => {
@@ -37,12 +24,33 @@ const nextConfig = {
       tls: false,
     };
 
+    // Fix chunk loading issues
+    if (dev && !isServer) {
+      config.optimization = {
+        ...config.optimization,
+        splitChunks: {
+          chunks: "all",
+          cacheGroups: {
+            default: false,
+            vendors: false,
+            framework: {
+              chunks: "all",
+              name: "framework",
+              test: /(?<!node_modules.*)[\\/]node_modules[\\/](react|react-dom|scheduler|prop-types|use-subscription)[\\/]/,
+              priority: 40,
+              enforce: true,
+            },
+          },
+        },
+      };
+    }
+
     return config;
   },
 
   // Image optimization
   images: {
-    domains: ["localhost"],
+    domains: ["localhost", "cdn.builder.io"],
     formats: ["image/webp", "image/avif"],
   },
 
@@ -54,7 +62,7 @@ const nextConfig = {
         headers: [
           {
             key: "X-Frame-Options",
-            value: "DENY",
+            value: "SAMEORIGIN",
           },
           {
             key: "X-Content-Type-Options",
@@ -74,8 +82,8 @@ const nextConfig = {
     removeConsole: process.env.NODE_ENV === "production",
   },
 
-  // Output configuration - remove standalone for Vercel
-  // output: 'standalone', // Not needed for Vercel
+  // Disable telemetry
+  telemetry: false,
 };
 
 export default nextConfig;
