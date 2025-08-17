@@ -81,9 +81,6 @@ const nextConfig = {
   compiler: {
     removeConsole: process.env.NODE_ENV === "production",
   },
-
-  // Disable telemetry
-  telemetry: false,
 };
 
 export default nextConfig;
